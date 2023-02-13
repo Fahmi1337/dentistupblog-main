@@ -91,7 +91,7 @@ export const addPost = (formData) => async (dispatch) => {
 
   try {
     const res = await axios.post("/api/posts", formData, config);
-
+console.log("test")
     dispatch({
       type: ADD_POST,
       payload: res.data,

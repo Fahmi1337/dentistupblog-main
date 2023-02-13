@@ -8,11 +8,79 @@ const PostSchema = new Schema({
     ref: "user",
   },
   postInfo: {
-    text: {
+    bloodPressure: {
       type: String,
       required: true,
     },
-    text1: {
+    dailyMedications: {
+      type: String,
+      required: true,
+    },
+    dateOfBirth: {
+      type: String,
+      required: true,
+    },
+    dentalHistory: {
+      type: String,
+      required: true,
+    },
+    dermato: {
+      type: String,
+      required: true,
+    },
+    detailsDeglutition: {
+      type: String,
+      required: true,
+    },
+    detailsMastication: {
+      type: String,
+      required: true,
+    },
+    detailsRespiration: {
+      type: String,
+      required: true,
+    },
+    examenExoBuccal: {
+      type: String,
+      required: true,
+    },
+    extraoralExamination: {
+      type: String,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
+    imageTest: {
+      type: String,
+      required: true,
+    },
+    intraoralExamination: {
+      type: String,
+      required: true,
+    },
+    medicalHistory: {
+      type: String,
+      required: true,
+    },
+    patientReference: {
+      type: String,
+      required: true,
+    },
+    pulse: {
+      type: String,
+      required: true,
+    },
+    reasonConsultation: {
+      type: String,
+      required: true,
+    },
+    respiration: {
+      type: String,
+      required: true,
+    },
+    symetrieExplanation: {
       type: String,
       required: true,
     },

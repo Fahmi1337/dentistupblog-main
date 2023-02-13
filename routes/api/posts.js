@@ -25,8 +25,26 @@ router.post(
 
       const newPost = new Post({
         postInfo: {
-          text: req.body.text,
-          text1: req.body.text1,
+          bloodPressure: req.body.bloodPressure,
+          dailyMedications: req.body.dailyMedications,
+                 dateOfBirth: req.body.dateOfBirth,
+          dentalHistory: req.body.dentalHistory,
+                 dermato: req.body.dermato,
+                 detailsDeglutition: req.body.detailsDeglutition,
+                 detailsMastication: req.body.detailsMastication,
+                 detailsRespiration: req.body.detailsRespiration,
+                 examenExoBuccal: req.body.examenExoBuccal,
+                 extraoralExamination: req.body.extraoralExamination,
+                 gender: req.body.gender,
+                 imageTest: req.body.imageTest,
+                 intraoralExamination: req.body.intraoralExamination,
+                 medicalHistory: req.body.medicalHistory,
+                 patientReference: req.body.patientReference,
+                 pulse: req.body.pulse,
+                 reasonConsultation: req.body.reasonConsultation,
+                 respiration: req.body.respiration,
+                 symetrieExplanation: req.body.symetrieExplanation,
+          
         },
         name: user.name,
         avatar: user.avatar,

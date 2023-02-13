@@ -75,6 +75,7 @@ const PostForm = ({ addPost }) => {
     detailsRespiration: "",
     detailsMastication: "",
     detailsDeglutition: "",
+    imageTest: "",
   });
 
   // function for going to next step by increasing step state by 1

@@ -2,27 +2,56 @@ import React, { useState } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addPost } from "../../actions/post";
+
+
+
 // creating functional component ans getting props from app.js and destucturing them
-const StepFive = ({ nextStep, handleFormData, prevStep, values }) => {
+const StepFive = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
 
+  // const { bloodPressure, lastName, age, email } = values;
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+const patientReference = values.patientReference;
+const dateOfBirth = values.dateOfBirth;
+const reasonConsultation = values.reasonConsultation;
+const gender = "hey";
+const medicalHistory = values.medicalHistory;
+const dailyMedications = values.dailyMedications;
+const bloodPressure = values.bloodPressure;
+const pulse = values.pulse;
+const respiration = values.respiration;
+const dentalHistory = values.dentalHistory;
+const extraoralExamination = values.extraoralExamination;
+const intraoralExamination = values.intraoralExamination;
+const examenExoBuccal = values.examenExoBuccal;
+const dermato = values.dermato;
+const symetrieExplanation = values.symetrieExplanation;
+const detailsRespiration = values.detailsRespiration;
+const detailsMastication = values.detailsMastication;
+const detailsDeglutition = values.detailsDeglutition;
+const imageTest = values.imageTest;
+const text = "test";
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
-
+    addPost({ values });
     // checking if value of first name and last name is empty show error else take to next step
-    if (validator.isEmpty(values.medicalHistory) 
-    || validator.isEmpty(values.dailyMedications) 
-    || validator.isEmpty(values.bloodPressure) 
-    || validator.isEmpty(values.pulse) 
-    || validator.isEmpty(values.respiration) 
-    || validator.isEmpty(values.dentalHistory)
-    || validator.isEmpty(values.extraoralExamination)
-    || validator.isEmpty(values.intraoralExamination)) {
+    if (validator.isEmpty(values.imageTest) 
+    ) {
       setError(true);
     } else {
-      nextStep();
+      // nextStep();
+      addPost({ patientReference, dateOfBirth, reasonConsultation, gender, medicalHistory, dailyMedications, bloodPressure, pulse, respiration, dentalHistory, extraoralExamination, intraoralExamination, examenExoBuccal, dermato, symetrieExplanation, detailsRespiration, detailsMastication, detailsDeglutition, imageTest, text});
+      console.log("my data :", values)
     }
   };
   return (
@@ -31,12 +60,12 @@ const StepFive = ({ nextStep, handleFormData, prevStep, values }) => {
         <Card.Body>
           <Form onSubmit={submitFormData} className="form my-1">
             <Form.Group className="mb-3">
-              <Form.Label>Medical History</Form.Label>
+              <Form.Label>Image test</Form.Label>
               <Form.Control
                 style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("medicalHistory")}
+                type="file" 
+                name="imageTest"
+                onChange={handleFormData("imageTest")}
               />
               {error ? (
                 <Form.Text style={{ color: "red" }}>
@@ -46,125 +75,19 @@ const StepFive = ({ nextStep, handleFormData, prevStep, values }) => {
                 ""
               )}
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Daily medications</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("dailyMedications")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Blood Pressure</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("bloodPressure")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Pulse</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("pulse")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Respiration</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("respiration")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Dental History</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("dentalHistory")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Extraoral Examination</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("extraoralExamination")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Intraoral Examination</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("intraoralExamination")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+         
            
              
 
-              <Button variant="primary" type="submit">
-                Submit
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <Button variant="primary" onClick={prevStep}>
+                Previous
               </Button>
+
+              <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            </div>
            
           </Form>
         </Card.Body>
@@ -173,7 +96,13 @@ const StepFive = ({ nextStep, handleFormData, prevStep, values }) => {
   );
 };
 
-export default StepFive;
+
+StepFive.propTypes = {
+  addPost: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addPost })(StepFive);
+
 
 
 
