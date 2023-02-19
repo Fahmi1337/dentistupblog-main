@@ -12,14 +12,16 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
     e.preventDefault();
 
     // checking if value of first name and last name is empty show error else take to next step
-    if (validator.isEmpty(values.medicalHistory) 
-    || validator.isEmpty(values.dailyMedications) 
-    || validator.isEmpty(values.bloodPressure) 
-    || validator.isEmpty(values.pulse) 
-    || validator.isEmpty(values.respiration) 
-    || validator.isEmpty(values.dentalHistory)
-    || validator.isEmpty(values.extraoralExamination)
-    || validator.isEmpty(values.intraoralExamination)) {
+    if (
+      validator.isEmpty(values.medicalHistory) ||
+      validator.isEmpty(values.dailyMedications) ||
+      validator.isEmpty(values.bloodPressure) ||
+      validator.isEmpty(values.pulse) ||
+      validator.isEmpty(values.respiration) ||
+      validator.isEmpty(values.dentalHistory) ||
+      validator.isEmpty(values.extraoralExamination) ||
+      validator.isEmpty(values.intraoralExamination)
+    ) {
       setError(true);
     } else {
       nextStep();
@@ -62,55 +64,57 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
                 ""
               )}
             </Form.Group>
+            <div id="bloodPulseRespirationContainer">
+              <Form.Group className="mb-3">
+                <Form.Label>Blood Pressure</Form.Label>
+                <Form.Control
+                  style={{ border: error ? "2px solid red" : "" }}
+                  type="text"
+                  placeholder="Write something"
+                  onChange={handleFormData("bloodPressure")}
+                />
+                {error ? (
+                  <Form.Text style={{ color: "red" }}>
+                    This is a required field
+                  </Form.Text>
+                ) : (
+                  ""
+                )}
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Pulse</Form.Label>
+                <Form.Control
+                  style={{ border: error ? "2px solid red" : "" }}
+                  type="text"
+                  placeholder="Write something"
+                  onChange={handleFormData("pulse")}
+                />
+                {error ? (
+                  <Form.Text style={{ color: "red" }}>
+                    This is a required field
+                  </Form.Text>
+                ) : (
+                  ""
+                )}
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Respiration</Form.Label>
+                <Form.Control
+                  style={{ border: error ? "2px solid red" : "" }}
+                  type="text"
+                  placeholder="Write something"
+                  onChange={handleFormData("respiration")}
+                />
+                {error ? (
+                  <Form.Text style={{ color: "red" }}>
+                    This is a required field
+                  </Form.Text>
+                ) : (
+                  ""
+                )}
+              </Form.Group>
+            </div>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Blood Pressure</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("bloodPressure")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Pulse</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("pulse")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Respiration</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("respiration")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Dental History</Form.Label>
               <Form.Control
@@ -165,8 +169,8 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
               </Button>
 
               <Button variant="primary" type="submit">
-              Continue
-            </Button>
+                Continue
+              </Button>
             </div>
           </Form>
         </Card.Body>

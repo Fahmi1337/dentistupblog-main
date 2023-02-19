@@ -10,79 +10,79 @@ const PostSchema = new Schema({
   postInfo: {
     bloodPressure: {
       type: String,
-      required: true,
+      required: false,
     },
     dailyMedications: {
       type: String,
-      required: true,
+      required: false,
     },
     dateOfBirth: {
       type: String,
-      required: true,
+      required: false,
     },
     dentalHistory: {
       type: String,
-      required: true,
+      required: false,
     },
     dermato: {
       type: String,
-      required: true,
+      required: false,
     },
     detailsDeglutition: {
       type: String,
-      required: true,
+      required: false,
     },
     detailsMastication: {
       type: String,
-      required: true,
+      required: false,
     },
     detailsRespiration: {
       type: String,
-      required: true,
+      required: false,
     },
     examenExoBuccal: {
       type: String,
-      required: true,
+      required: false,
     },
     extraoralExamination: {
       type: String,
-      required: true,
+      required: false,
     },
     gender: {
       type: String,
-      required: true,
-    },
-    imageTest: {
-      type: String,
-      required: true,
+      required: false,
     },
     intraoralExamination: {
       type: String,
-      required: true,
+      required: false,
     },
     medicalHistory: {
       type: String,
-      required: true,
+      required: false,
     },
     patientReference: {
       type: String,
-      required: true,
+      required: false,
     },
     pulse: {
       type: String,
-      required: true,
+      required: false,
     },
     reasonConsultation: {
       type: String,
-      required: true,
+      required: false,
     },
     respiration: {
       type: String,
-      required: true,
+      required: false,
     },
     symetrieExplanation: {
       type: String,
-      required: true,
+      required: false,
+    },
+    atmAutre: {
+      type: String,
+      required: false,
     },
   },
 
@@ -106,9 +106,11 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "user",
       },
-      text: {
+      treatment: {
         type: String,
-        required: true,
+      },
+      diagnostic: {
+        type: String,
       },
       name: {
         type: String,

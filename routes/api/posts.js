@@ -13,7 +13,7 @@ const Post = require("../../models/Post");
 // @access  Private
 router.post(
   "/",
-  [auth, [check("text", "Text is required").not().isEmpty()]],
+  [auth, [check("bloodPressure", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
@@ -27,24 +27,24 @@ router.post(
         postInfo: {
           bloodPressure: req.body.bloodPressure,
           dailyMedications: req.body.dailyMedications,
-                 dateOfBirth: req.body.dateOfBirth,
+          dateOfBirth: req.body.dateOfBirth,
           dentalHistory: req.body.dentalHistory,
-                 dermato: req.body.dermato,
-                 detailsDeglutition: req.body.detailsDeglutition,
-                 detailsMastication: req.body.detailsMastication,
-                 detailsRespiration: req.body.detailsRespiration,
-                 examenExoBuccal: req.body.examenExoBuccal,
-                 extraoralExamination: req.body.extraoralExamination,
-                 gender: req.body.gender,
-                 imageTest: req.body.imageTest,
-                 intraoralExamination: req.body.intraoralExamination,
-                 medicalHistory: req.body.medicalHistory,
-                 patientReference: req.body.patientReference,
-                 pulse: req.body.pulse,
-                 reasonConsultation: req.body.reasonConsultation,
-                 respiration: req.body.respiration,
-                 symetrieExplanation: req.body.symetrieExplanation,
-          
+          dermato: req.body.dermato,
+          detailsDeglutition: req.body.detailsDeglutition,
+          detailsMastication: req.body.detailsMastication,
+          detailsRespiration: req.body.detailsRespiration,
+          examenExoBuccal: req.body.examenExoBuccal,
+          extraoralExamination: req.body.extraoralExamination,
+          gender: req.body.gender,
+
+          intraoralExamination: req.body.intraoralExamination,
+          medicalHistory: req.body.medicalHistory,
+          patientReference: req.body.patientReference,
+          pulse: req.body.pulse,
+          reasonConsultation: req.body.reasonConsultation,
+          respiration: req.body.respiration,
+          symetrieExplanation: req.body.symetrieExplanation,
+          atmAutre: req.body.atmAutre,
         },
         name: user.name,
         avatar: user.avatar,
@@ -175,36 +175,33 @@ router.put("/unlike/:id", auth, async (req, res) => {
 // @route   POST api/posts/comment/:id
 // @desc    Create a comment on a post
 // @access  Private
-router.post(
-  "/comment/:id",
-  [auth, [check("text", "Text is required").not().isEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    //   if there are errors
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    try {
-      const user = await User.findById(req.user.id).select("-password");
-      const post = await Post.findById(req.params.id);
-
-      const newComment = {
-        text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
-        user: req.user.id,
-      };
-
-      post.comments.unshift(newComment);
-
-      await post.save();
-      res.json(post.comments);
-    } catch (e) {
-      console.error(e.message);
-      res.status(500).send("Server Error");
-    }
+router.post("/comment/:id", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  //   if there are errors
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
-);
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const post = await Post.findById(req.params.id);
+    console.log("hello", req.body.formData);
+    const newComment = {
+      treatment: req.body.formData.treatment,
+      diagnostic: req.body.formData.diagnostic,
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user.id,
+    };
+
+    post.comments.unshift(newComment);
+
+    await post.save();
+    res.json(post.comments);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 // @route   POST api/posts/comment/:id/:comment_id
 // @desc    Delete a comment on a post
@@ -238,14 +235,6 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
-
-
-
-
 
 // const express = require("express");
 // const multer = require("multer");

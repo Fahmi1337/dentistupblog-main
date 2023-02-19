@@ -7,31 +7,28 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
   const [item, setItem] = useState({ getGender: "" });
-  
+
   // after form submit validating the form data using validator
   const { getGender } = item;
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.persist();
     console.log(e?.target?.value);
 
-    setItem(prevState => ({
+    setItem((prevState) => ({
       ...prevState,
-      getGender: e?.target?.value
+      getGender: e?.target?.value,
     }));
   };
 
   const submitFormData = (e) => {
     e.preventDefault();
 
-    
- 
     // checking if value of first name and last name is empty show error else take to step 2
     if (
-     
       validator.isEmpty(values?.patientReference) ||
       validator.isEmpty(values?.dateOfBirth) ||
-      validator.isEmpty(values?.reasonConsultation) || getGender.length < 2
-     
+      validator.isEmpty(values?.reasonConsultation) ||
+      getGender.length < 2
     ) {
       setError(true);
     } else {
@@ -80,32 +77,37 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
                 ""
               )}
             </Form.Group>
-            <Form.Group controlId="getGender" className="mb-3">
-        <Form.Check
-          value="male"
-          type="radio"
-          aria-label="male"
-          label="Male"
-          onChange={handleChange}
-          checked={getGender === "male"}
-        />
-        <Form.Check
-          value="female"
-          type="radio"
-          aria-label="female"
-          label="Female"
-          onChange={handleChange}
-          checked={getGender === "female"}
-        />
-         {error ? (
+            <Form.Group
+              controlId="getGender"
+              className="mb-3"
+              id="genderRadioboxContainer"
+            >
+              <Form.Label>Gender</Form.Label>
+              <Form.Check
+                value="male"
+                type="radio"
+                aria-label="male"
+                label="Male"
+                onChange={handleChange}
+                checked={getGender === "male"}
+              />
+              <Form.Check
+                value="female"
+                type="radio"
+                aria-label="female"
+                label="Female"
+                onChange={handleChange}
+                checked={getGender === "female"}
+              />
+              {error ? (
                 <Form.Text style={{ color: "red" }}>
                   This is a required field
                 </Form.Text>
               ) : (
                 ""
               )}
-      </Form.Group>
-             <Form.Group className="mb-3">
+            </Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Reason for consultation</Form.Label>
               <Form.Control
                 style={{ border: error ? "2px solid red" : "" }}

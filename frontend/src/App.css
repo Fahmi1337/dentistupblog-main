@@ -581,3 +581,59 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+.form-label {
+  color: #17a2b8;
+  font-size: larger;
+  font-weight: 600;
+}
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  border-radius: 25px;
+  padding-left: 20px;
+  margin: 20px 0px;
+  height: 2.5em;
+}
+#genderRadioboxContainer {
+  display: flex;
+}
+#genderRadioboxContainer label {
+  margin-right: 50%;
+}
+#genderRadioboxContainer div {
+  margin: 0 20px;
+}
+#bloodPulseRespirationContainer {
+  display: flex;
+}
+#bloodPulseRespirationContainer div {
+  margin: 0 20px;
+}
+#symetrieContainer {
+  display: flex;
+}
+#symetrieContainer div {
+  margin: 0 50px;
+}
+#atmContainer {
+  display: flex;
+}
+#atmContainer div {
+  margin: 0 50px;
+}
+#atmAutre {
+  display: flex;
+}
+#respirationChoices,
+#masticationChoices,
+#deglutationChoices {
+  display: flex;
+}
+#respirationChoices div,
+#masticationChoices div,
+#deglutationChoices div {
+  margin: 0 30px;
+}

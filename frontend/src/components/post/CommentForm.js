@@ -8,8 +8,11 @@ import { EditorState } from "draft-js";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const CommentForm = ({ postId, addComment }) => {
-  const [text, setText] = useState("");
-
+  // const [text, setText] = useState("");
+  const [formData, setFormData] = useState({
+    diagnostic: "",
+    treatment: "",
+  });
   // this.state = {
   //   editorState: EditorState.createEmpty(),
   // };
@@ -22,6 +25,26 @@ const CommentForm = ({ postId, addComment }) => {
 
   // const { editorState } = this.state;
 
+  const handleFormData = (input) => (e) => {
+    // input value from the form
+    const { value } = e.target;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [input]: value,
+    }));
+  };
+
+  const handleReset = (input) => (e) => {
+    // input value from the form
+    const { value } = "";
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [input]: value,
+    }));
+  };
+
   return (
     <div>
       <div className="post-form">
@@ -32,17 +55,27 @@ const CommentForm = ({ postId, addComment }) => {
           className="form my-1"
           onSubmit={(e) => {
             e.preventDefault();
-            addComment(postId, { text });
-            setText("");
+
+            addComment(postId, { formData });
+            handleReset();
           }}
         >
           <textarea
-            name="text"
+            name="diagnostic"
             cols="30"
             rows="5"
-            placeholder="This is a good Post!"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            placeholder="Diagnostic"
+            value={formData.diagnostic}
+            onChange={handleFormData("diagnostic")}
+            required
+          ></textarea>
+          <textarea
+            name="treatment"
+            cols="30"
+            rows="5"
+            placeholder="Treatment"
+            value={formData.treatment}
+            onChange={handleFormData("treatment")}
             required
           ></textarea>
           {/* <Editor /> */}

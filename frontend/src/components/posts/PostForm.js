@@ -60,7 +60,7 @@ const PostForm = ({ addPost }) => {
     patientReference: "",
     dateOfBirth: "",
     reasonConsultation: "",
-    gender: "",
+    gender: "test",
     medicalHistory: "",
     dailyMedications: "",
     bloodPressure: "",
@@ -72,10 +72,10 @@ const PostForm = ({ addPost }) => {
     examenExoBuccal: "",
     dermato: "",
     symetrieExplanation: "",
+    atmAutre: "",
     detailsRespiration: "",
     detailsMastication: "",
     detailsDeglutition: "",
-    imageTest: "",
   });
 
   // function for going to next step by increasing step state by 1
@@ -137,57 +137,57 @@ const PostForm = ({ addPost }) => {
           </Container>
         </div>
       );
-      case 3:
-        return (
-          <div className="App">
-            <Container>
-              <Row>
-                <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                  <StepThree
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                    handleFormData={handleInputData}
-                    values={formData}
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        );
-        case 4:
-          return (
-            <div className="App">
-              <Container>
-                <Row>
-                  <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                    <StepFour
-                      nextStep={nextStep}
-                      prevStep={prevStep}
-                      handleFormData={handleInputData}
-                      values={formData}
-                    />
-                  </Col>
-                </Row>
-              </Container>
-            </div>
-          );
-          case 5:
-            return (
-              <div className="App">
-                <Container>
-                  <Row>
-                    <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                      <StepFive
-                        nextStep={nextStep}
-                        prevStep={prevStep}
-                        handleFormData={handleInputData}
-                        values={formData}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </div>
-            );
+    case 3:
+      return (
+        <div className="App">
+          <Container>
+            <Row>
+              <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                <StepThree
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+    case 4:
+      return (
+        <div className="App">
+          <Container>
+            <Row>
+              <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                <StepFour
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+    case 5:
+      return (
+        <div className="App">
+          <Container>
+            <Row>
+              <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                <StepFive
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
     // Only formData is passed as prop to show the final value at form submit
     case 6:
       return (
