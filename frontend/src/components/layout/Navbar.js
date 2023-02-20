@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/auth";
+import logoDentistup from "../../img/logoDentistup.png";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   const authLinks = (
@@ -48,17 +49,46 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
     </ul>
   );
 
+  const personalNavLinks = (
+    <ul>
+      <li>
+        <Link to="/">
+          <i class="fas fa-question"></i>{" "}
+          <span className="hide-sm">My Questions</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/">
+          <i class="far fa-comments"></i>{" "}
+          <span className="hide-sm">My Groups</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/">
+          <i class="far fa-thumbs-up"></i>{" "}
+          <span className="hide-sm">My Cases</span>
+        </Link>
+      </li>
+    </ul>
+  );
+
   return (
     <div>
-      <nav className="navbar bg-dark">
+      <nav className="navbar">
         <h1>
           <Link to="/">
-            {/* <i className="fas fa-code"></i>  */} DentistUp
+            {/* <i className="fas fa-code"></i>  DentistUp */}
+            <img id="logoDentistup" src={logoDentistup} />
           </Link>
         </h1>
         {/* if not loading and authenticated show logged in navbar links else guest links */}
+        <p>MENU</p>
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        )}
+        <p>PERSONAL NAVIGATOR</p>
+        {!loading && (
+          <Fragment>{isAuthenticated ? personalNavLinks : null}</Fragment>
         )}
       </nav>
     </div>

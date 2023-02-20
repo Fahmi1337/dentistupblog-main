@@ -11,6 +11,7 @@ const CreateProfile = ({ createProfile, history }) => {
     location: "",
     bio: "",
     status: "",
+    speciality: "",
     githubusername: "",
     skills: "",
     youtube: "",
@@ -28,6 +29,7 @@ const CreateProfile = ({ createProfile, history }) => {
     location,
     bio,
     status,
+    speciality,
     githubusername,
     skills,
     youtube,
@@ -56,7 +58,7 @@ const CreateProfile = ({ createProfile, history }) => {
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
-            <option value="0">* Select Professional Status</option>
+            <option value="0">* Select Professional Position</option>
             <option value="Dentist">Dentist</option>
             <option value="Junior Dentist">Junior Dentist</option>
             <option value="Senior Dentist">Senior Dentist</option>
@@ -65,6 +67,23 @@ const CreateProfile = ({ createProfile, history }) => {
             <option value="Instructor">Instructor or Teacher</option>
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
+          </select>
+          <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
+        </div>
+        <div className="form-group">
+          <select
+            name="speciality"
+            value={speciality}
+            onChange={(e) => onChange(e)}
+          >
+            <option value="0">* Select Professional Speciality</option>
+            <option value="Endodontie">Endodontie</option>
+            <option value="Parodontie">Parodontie</option>
+            <option value="Orthodontie">Orthodontie</option>
+            <option value="Implantologie">Implantologie</option>
+            <option value="Esthétique">Esthétique</option>
           </select>
           <small className="form-text">
             Give us an idea of where you are at in your career

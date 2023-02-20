@@ -60,7 +60,7 @@ const PostForm = ({ addPost }) => {
     patientReference: "",
     dateOfBirth: "",
     reasonConsultation: "",
-    gender: "test",
+    gender: "",
     medicalHistory: "",
     dailyMedications: "",
     bloodPressure: "",
@@ -71,10 +71,22 @@ const PostForm = ({ addPost }) => {
     intraoralExamination: "",
     examenExoBuccal: "",
     dermato: "",
+    symetrie: "",
     symetrieExplanation: "",
-    atmAutre: "",
+    examenAtmNormal: "",
+    examenAtmDouleur: "",
+    examenAtmClaquement: "",
+    examenAtmAutre: "",
+    examenAtmAutreExplanation: "",
+    respirationNasal: "",
+    respirationBuccal: "",
+    respirationMixte: "",
     detailsRespiration: "",
+    masticationUnilateral: "",
+    masticationBilateral: "",
     detailsMastication: "",
+    deglutitionTypique: "",
+    deglutitionAtypique: "",
     detailsDeglutition: "",
   });
 
@@ -113,6 +125,7 @@ const PostForm = ({ addPost }) => {
                   nextStep={nextStep}
                   handleFormData={handleInputData}
                   values={formData}
+                  setFormData={setFormData}
                 />
               </Col>
             </Row>
@@ -148,6 +161,7 @@ const PostForm = ({ addPost }) => {
                   prevStep={prevStep}
                   handleFormData={handleInputData}
                   values={formData}
+                  setFormData={setFormData}
                 />
               </Col>
             </Row>
@@ -165,6 +179,7 @@ const PostForm = ({ addPost }) => {
                   prevStep={prevStep}
                   handleFormData={handleInputData}
                   values={formData}
+                  setFormData={setFormData}
                 />
               </Col>
             </Row>

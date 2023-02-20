@@ -3,18 +3,23 @@ import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 // creating functional component ans getting props from app.js and destucturing them
-const StepOne = ({ nextStep, handleFormData, values }) => {
+const StepOne = ({ nextStep, handleFormData, values, setFormData }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
-  const [item, setItem] = useState({ getGender: "" });
+  const [gender, setGender] = useState({ getGender: "" });
 
   // after form submit validating the form data using validator
-  const { getGender } = item;
+  const { getGender } = gender;
   const handleChange = (e) => {
     e.persist();
     console.log(e?.target?.value);
 
-    setItem((prevState) => ({
+    setFormData((prevState) => ({
+      ...prevState,
+      ["gender"]: e?.target?.value,
+    }));
+
+    setGender((prevState) => ({
       ...prevState,
       getGender: e?.target?.value,
     }));
@@ -32,6 +37,7 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
     ) {
       setError(true);
     } else {
+      console.log("values", values);
       nextStep();
     }
   };

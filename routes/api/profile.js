@@ -63,6 +63,7 @@ router.post(
       location,
       bio,
       status,
+      speciality,
       githubusername,
       skills,
       youtube,
@@ -80,6 +81,7 @@ router.post(
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
+    if (speciality) profileFields.speciality = speciality;
     if (githubusername) profileFields.githubusername = githubusername;
     // Separating the skills by comma from the skills array
     if (skills) {

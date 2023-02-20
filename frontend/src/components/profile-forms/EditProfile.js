@@ -16,6 +16,7 @@ const EditProfile = ({
     location: "",
     bio: "",
     status: "",
+    speciality: "",
     githubusername: "",
     skills: "",
     youtube: "",
@@ -35,6 +36,7 @@ const EditProfile = ({
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
+      speciality: loading || !profile.speciality ? "" : profile.speciality,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
       githubusername:
         loading || !profile.githubusername ? "" : profile.githubusername,
@@ -54,6 +56,7 @@ const EditProfile = ({
     location,
     bio,
     status,
+    speciality,
     githubusername,
     skills,
     youtube,
@@ -91,6 +94,23 @@ const EditProfile = ({
             <option value="Instructor">Instructor or Teacher</option>
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
+          </select>
+          <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
+        </div>
+        <div className="form-group">
+          <select
+            name="speciality"
+            value={speciality}
+            onChange={(e) => onChange(e)}
+          >
+            <option value="0">* Select Professional Speciality</option>
+            <option value="Endodontie">Endodontie</option>
+            <option value="Parodontie">Parodontie</option>
+            <option value="Orthodontie">Orthodontie</option>
+            <option value="Implantologie">Implantologie</option>
+            <option value="Esthétique">Esthétique</option>
           </select>
           <small className="form-text">
             Give us an idea of where you are at in your career

@@ -80,7 +80,69 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
-    atmAutre: {
+    symetrie: {
+      type: String,
+      required: false,
+    },
+    examenAtmNormal: {
+      type: String,
+      required: false,
+    },
+
+    examenAtmDouleur: {
+      type: String,
+      required: false,
+    },
+    examenAtmClaquement: {
+      type: String,
+      required: false,
+    },
+    examenAtmAutre: {
+      type: String,
+      required: false,
+    },
+    examenAtmAutreExplanation: {
+      type: String,
+      required: false,
+    },
+
+    respirationNasal: {
+      type: String,
+      required: false,
+    },
+    respirationBuccal: {
+      type: String,
+      required: false,
+    },
+    respirationMixte: {
+      type: String,
+      required: false,
+    },
+    detailsRespiration: {
+      type: String,
+      required: false,
+    },
+    masticationUnilateral: {
+      type: String,
+      required: false,
+    },
+    masticationBilateral: {
+      type: String,
+      required: false,
+    },
+    detailsMastication: {
+      type: String,
+      required: false,
+    },
+    deglutitionTypique: {
+      type: String,
+      required: false,
+    },
+    deglutitionAtypique: {
+      type: String,
+      required: false,
+    },
+    detailsDeglutition: {
       type: String,
       required: false,
     },

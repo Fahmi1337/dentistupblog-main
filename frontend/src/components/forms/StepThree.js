@@ -3,23 +3,75 @@ import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 // creating functional component ans getting props from app.js and destucturing them
-const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
+const StepThree = ({
+  nextStep,
+  handleFormData,
+  prevStep,
+  values,
+  setFormData,
+}) => {
   //creating error state for validation
   const [error, setError] = useState(false);
-  const [item, setItem] = useState({ getSymetrie: "" });
+  //handle symetrie  value
+  const [symetrie, setSymetrie] = useState({ getSymetrie: "" });
 
+  const [isAtmNormalChecked, setIsAtmNormalChecked] = useState(false);
+  const handleOnIsAtmNormalChange = () => {
+    setIsAtmNormalChecked(!isAtmNormalChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["examenAtmNormal"]: !isAtmNormalChecked,
+    }));
+    console.log("isAtmNormalChecked?", !isAtmNormalChecked);
+  };
+
+  const [isAtmDouleurChecked, setIsAtmDouleurChecked] = useState(false);
+  const handleOnIsAtmDouleurChange = () => {
+    setIsAtmDouleurChecked(!isAtmDouleurChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["examenAtmDouleur"]: !isAtmDouleurChecked,
+    }));
+    console.log("isAtmDouleurChecked?", !isAtmDouleurChecked);
+  };
+
+  const [isAtmClaquementChecked, setIsAtmClaquementChecked] = useState(false);
+  const handleOnIsAtmClaquementChange = () => {
+    setIsAtmClaquementChecked(!isAtmClaquementChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["examenAtmClaquement"]: !isAtmClaquementChecked,
+    }));
+    console.log("isAtmClaquementChecked?", !isAtmClaquementChecked);
+  };
+
+  const [isAtmAutreChecked, setIsAtmAutreChecked] = useState(false);
+  const handleOnIsAtmAutreChange = () => {
+    setIsAtmAutreChecked(!isAtmAutreChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["examenAtmAutre"]: !isAtmAutreChecked,
+    }));
+    console.log("isAtmAutreChecked?", !isAtmAutreChecked);
+  };
   // after form submit validating the form data using validator
-  const { getSymetrie } = item;
-  const handleChange = (e) => {
+  const { getSymetrie } = symetrie;
+  const handleChangeSymetrie = (e) => {
     e.persist();
     console.log(e?.target?.value);
 
-    setItem((prevState) => ({
+    setFormData((prevState) => ({
+      ...prevState,
+      ["symetrie"]: e?.target?.value,
+    }));
+
+    setSymetrie((prevState) => ({
       ...prevState,
       getSymetrie: e?.target?.value,
     }));
   };
 
+  //handle symetrie  value
   const submitFormData = (e) => {
     e.preventDefault();
 
@@ -33,6 +85,7 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
       setError(true);
     } else {
       nextStep();
+      console.log("values?", values);
     }
   };
 
@@ -85,7 +138,7 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
                   type="radio"
                   aria-label="ouiSymetrie"
                   label="Oui"
-                  onChange={handleChange}
+                  onChange={handleChangeSymetrie}
                   checked={getSymetrie === "ouiSymetrie"}
                 />
                 <Form.Check
@@ -93,7 +146,7 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
                   type="radio"
                   aria-label="nonSymetrie"
                   label="Non"
-                  onChange={handleChange}
+                  onChange={handleChangeSymetrie}
                   checked={getSymetrie === "nonSymetrie"}
                 />
                 {error ? (
@@ -128,22 +181,29 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
               <Form.Label>Examen des ATM</Form.Label>
               <div id="atmContainer">
                 <Form.Check
-                  value="Normal"
+                  value="examenAtmNormal"
                   type="checkbox"
-                  aria-label="Normal"
+                  aria-label="examenAtmNormal"
                   label="Normal"
+                  name="examenAtmNormal"
+                  checked={isAtmNormalChecked}
+                  onChange={handleOnIsAtmNormalChange}
                 />
                 <Form.Check
                   value="Douleur"
                   type="checkbox"
                   aria-label="Douleur"
                   label="Douleur"
+                  checked={isAtmDouleurChecked}
+                  onChange={handleOnIsAtmDouleurChange}
                 />
                 <Form.Check
                   value="Claquement"
                   type="checkbox"
                   aria-label="Claquement"
                   label="Claquement"
+                  checked={isAtmClaquementChecked}
+                  onChange={handleOnIsAtmClaquementChange}
                 />
               </div>
               <div id="atmAutre">
@@ -152,6 +212,8 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
                   type="checkbox"
                   aria-label="Autres"
                   label="Autres"
+                  checked={isAtmAutreChecked}
+                  onChange={handleOnIsAtmAutreChange}
                 />
                 {error ? (
                   <Form.Text style={{ color: "red" }}>

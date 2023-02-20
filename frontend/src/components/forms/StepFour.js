@@ -6,45 +6,121 @@ import { connect } from "react-redux";
 import { addPost } from "../../actions/post";
 
 // creating functional component ans getting props from app.js and destucturing them
-const StepFour = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
+const StepFour = ({
+  nextStep,
+  handleFormData,
+  prevStep,
+  values,
+  addPost,
+  setFormData,
+}) => {
   //creating error state for validation
   const [error, setError] = useState(false);
   const [item, setItem] = useState({ getGender: "" });
 
   // after form submit validating the form data using validator
-  const { getSymetrie } = item;
-  const handleChange = (e) => {
-    e.persist();
-    console.log(e?.target?.value);
-
-    setItem((prevState) => ({
+  const [isRespirationNasalChecked, setIsRespirationNasalChecked] =
+    useState(false);
+  const handleOnIsRespirationNasalChange = () => {
+    setIsRespirationNasalChecked(!isRespirationNasalChecked);
+    setFormData((prevState) => ({
       ...prevState,
-      getGender: e?.target?.value,
+      ["respirationNasal"]: !isRespirationNasalChecked,
     }));
+    console.log("isRespirationNasalChecked?", !isRespirationNasalChecked);
   };
 
+  const [isRespirationBuccalChecked, setIsRespirationBuccal] = useState(false);
+  const handleOnIsRespirationBuccalChange = () => {
+    setIsRespirationBuccal(!isRespirationBuccalChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["respirationBuccal"]: !isRespirationBuccalChecked,
+    }));
+    console.log("isRespirationBuccalChecked?", !isRespirationBuccalChecked);
+  };
+
+  const [isRespirationMixteChecked, setIsRespirationMixteChecked] =
+    useState(false);
+  const handleOnIsRespirationMixteChange = () => {
+    setIsRespirationMixteChecked(!isRespirationMixteChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["respirationMixte"]: !isRespirationMixteChecked,
+    }));
+    console.log("isRespirationMixteChecked?", !isRespirationMixteChecked);
+  };
+
+  const [isMasticationUnilateralChecked, setIsMasticationUnilateralChecked] =
+    useState(false);
+  const handleOnIsMasticationUnilateralChange = () => {
+    setIsMasticationUnilateralChecked(!isMasticationUnilateralChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["masticationUnilateral"]: !isMasticationUnilateralChecked,
+    }));
+    console.log(
+      "isMasticationUnilateralChecked?",
+      !isMasticationUnilateralChecked
+    );
+  };
+  const [isMasticationBilateralChecked, setIsMasticationBilateralChecked] =
+    useState(false);
+  const handleOnIsMasticationBilateralChange = () => {
+    setIsMasticationBilateralChecked(!isMasticationBilateralChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["masticationBilateral"]: !isMasticationBilateralChecked,
+    }));
+    console.log(
+      "isMasticationBilateralChecked?",
+      !isMasticationBilateralChecked
+    );
+  };
+
+  const [isDeglutitionTypiqueChecked, setIsDeglutitionTypiqueChecked] =
+    useState(false);
+  const handleOnIsDeglutitionTypiqueChange = () => {
+    setIsDeglutitionTypiqueChecked(!isDeglutitionTypiqueChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["deglutitionTypique"]: !isDeglutitionTypiqueChecked,
+    }));
+    console.log("isDeglutitionTypiqueChecked?", !isDeglutitionTypiqueChecked);
+  };
+
+  const [isDeglutitionAtypiqueChecked, setIsDeglutitionAtypiqueChecked] =
+    useState(false);
+  const handleOnIsDeglutitionAtypiqueChange = () => {
+    setIsDeglutitionAtypiqueChecked(!isDeglutitionAtypiqueChecked);
+    setFormData((prevState) => ({
+      ...prevState,
+      ["deglutitionAtypique"]: !isDeglutitionAtypiqueChecked,
+    }));
+    console.log("isDeglutitionAtypiqueChecked?", !isDeglutitionAtypiqueChecked);
+  };
   const submitFormData = (e) => {
     e.preventDefault();
-    const patientReference = values.patientReference;
-    const dateOfBirth = values.dateOfBirth;
-    const reasonConsultation = values.reasonConsultation;
-    const gender = "hey";
-    const medicalHistory = values.medicalHistory;
-    const dailyMedications = values.dailyMedications;
-    const bloodPressure = values.bloodPressure;
-    const pulse = values.pulse;
-    const respiration = values.respiration;
-    const dentalHistory = values.dentalHistory;
-    const extraoralExamination = values.extraoralExamination;
-    const intraoralExamination = values.intraoralExamination;
-    const examenExoBuccal = values.examenExoBuccal;
-    const dermato = values.dermato;
-    const symetrieExplanation = values.symetrieExplanation;
-    const detailsRespiration = values.detailsRespiration;
-    const detailsMastication = values.detailsMastication;
-    const detailsDeglutition = values.detailsDeglutition;
-    const imageTest = values.imageTest;
-    const text = "test";
+    // const patientReference = values.patientReference;
+    // const dateOfBirth = values.dateOfBirth;
+    // const reasonConsultation = values.reasonConsultation;
+    // const gender = "hey";
+    // const medicalHistory = values.medicalHistory;
+    // const dailyMedications = values.dailyMedications;
+    // const bloodPressure = values.bloodPressure;
+    // const pulse = values.pulse;
+    // const respiration = values.respiration;
+    // const dentalHistory = values.dentalHistory;
+    // const extraoralExamination = values.extraoralExamination;
+    // const intraoralExamination = values.intraoralExamination;
+    // const examenExoBuccal = values.examenExoBuccal;
+    // const dermato = values.dermato;
+    // const symetrieExplanation = values.symetrieExplanation;
+    // const detailsRespiration = values.detailsRespiration;
+    // const detailsMastication = values.detailsMastication;
+    // const detailsDeglutition = values.detailsDeglutition;
+    // const imageTest = values.imageTest;
+    // const text = "test";
     // checking if value of first name and last name is empty show error else take to step 2
     if (
       validator.isEmpty(values?.detailsRespiration) ||
@@ -95,18 +171,24 @@ const StepFour = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
                   type="checkbox"
                   aria-label="Nasal"
                   label="Nasal"
+                  checked={isRespirationNasalChecked}
+                  onChange={handleOnIsRespirationNasalChange}
                 />
                 <Form.Check
                   value="Buccal"
                   type="checkbox"
                   aria-label="Buccal"
                   label="Buccal"
+                  checked={isRespirationBuccalChecked}
+                  onChange={handleOnIsRespirationBuccalChange}
                 />
                 <Form.Check
                   value="Mixte"
                   type="checkbox"
                   aria-label="Mixte"
                   label="Mixte"
+                  checked={isRespirationMixteChecked}
+                  onChange={handleOnIsRespirationMixteChange}
                 />
               </div>
 
@@ -145,12 +227,16 @@ const StepFour = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
                   type="checkbox"
                   aria-label="Unilatéral"
                   label="Unilatéral"
+                  checked={isMasticationUnilateralChecked}
+                  onChange={handleOnIsMasticationUnilateralChange}
                 />
                 <Form.Check
                   value="Bi-latéral"
                   type="checkbox"
                   aria-label="Bi-latéral"
                   label="Bi-latéral"
+                  checked={isMasticationBilateralChecked}
+                  onChange={handleOnIsMasticationBilateralChange}
                 />
               </div>
 
@@ -189,12 +275,16 @@ const StepFour = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
                   type="checkbox"
                   aria-label="Typique"
                   label="Typique"
+                  checked={isDeglutitionTypiqueChecked}
+                  onChange={handleOnIsDeglutitionTypiqueChange}
                 />
                 <Form.Check
                   value="Atypique"
                   type="checkbox"
                   aria-label="Atypique"
                   label="Atypique"
+                  checked={isDeglutitionAtypiqueChecked}
+                  onChange={handleOnIsDeglutitionAtypiqueChange}
                 />
               </div>
 
