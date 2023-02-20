@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const ProfileTop = ({
   profile: {
     status,
+    speciality,
     company,
     location,
     website,
@@ -18,6 +19,7 @@ const ProfileTop = ({
       <p className="lead">
         {status} {company && <span> at {company}</span>}
       </p>
+      <p className="lead">{speciality} speciality</p>
       <p>{location && <span>{location}</span>}</p>
       <div className="icons my-1">
         {website && (
