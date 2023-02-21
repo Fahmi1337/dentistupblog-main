@@ -5,6 +5,8 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 
+const getPostsNumber = () => {};
+
 const PostItem = ({
   addLike,
   removeLike,
@@ -62,6 +64,7 @@ const PostItem = ({
                   <i className="fas fa-times"></i>
                 </button>
               )}
+              {console.log("auth?", user)}
             </Fragment>
           )}
         </div>
