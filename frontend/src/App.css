@@ -344,7 +344,7 @@ button {
   padding: 0.45rem;
   margin: 1rem 0.25rem;
   display: block;
-  width: 10em;
+  width: 15em;
 }
 
 .navbar a:hover {
@@ -691,7 +691,7 @@ button {
   background: #17a2b8;
   color: #17a2b8;
 
-  left: -29%;
+  left: -17%;
 
   content: "\00BB";
   position: relative;
