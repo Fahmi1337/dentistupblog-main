@@ -1,30 +1,47 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/auth";
 import logoDentistup from "../../img/logoDentistup.png";
+import { NavLink } from "react-router-dom";
+import { getProfileById } from "../../actions/profile";
+const Navbar = ({
+  auth: { isAuthenticated, loading },
+  logoutUser,
+  getProfileById,
+  profile: { profile },
+  match,
+}) => {
+  useEffect(() => {
+    getProfileById(match?.params.id);
+  }, [getProfileById, match?.params.id]);
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">
+        <NavLink to="/profiles" activeClassName="active">
           <i className="fas fa-user-friends"></i>{" "}
           <span className="hide-sm">Dentists</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/posts">
+        <NavLink to="/posts" activeClassName="active">
           <i className="fas fa-file-alt"></i>{" "}
           <span className="hide-sm">Posts</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/dashboard">
+        <NavLink to="/dashboard" activeClassName="active">
           <i className="fas fa-address-card"></i>{" "}
           <span className="hide-sm">Dashboard</span>
-        </Link>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={`/profile/${profile?.user?._id}`} activeClassName="active">
+          <i className="fa fa-user"></i>{" "}
+          <span className="hide-sm">Profile</span>
+        </NavLink>
       </li>
       <li>
         <a onClick={logoutUser} href="/login">
@@ -38,13 +55,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Dentists</Link>
+        <NavLink to="/profiles" activeClassName="active">
+          Dentists
+        </NavLink>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <NavLink to="/register" activeClassName="active">
+          Register
+        </NavLink>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <NavLink to="/login" activeClassName="active">
+          Login
+        </NavLink>
       </li>
     </ul>
   );
@@ -52,22 +75,22 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   const personalNavLinks = (
     <ul>
       <li>
-        <Link to="/">
-          <i class="fas fa-question"></i>{" "}
+        <NavLink to="/myquestions" activeClassName="active">
+          <i className="fas fa-question"></i>{" "}
           <span className="hide-sm">My Questions</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/">
-          <i class="far fa-comments"></i>{" "}
+        <NavLink to="/mygroups" activeClassName="active">
+          <i className="far fa-comments"></i>{" "}
           <span className="hide-sm">My Groups</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/">
-          <i class="far fa-thumbs-up"></i>{" "}
+        <NavLink to="/mycases" activeClassName="active">
+          <i className="far fa-thumbs-up"></i>{" "}
           <span className="hide-sm">My Cases</span>
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );
@@ -98,10 +121,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  getProfileById: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(mapStateToProps, { logoutUser, getProfileById })(Navbar);

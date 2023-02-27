@@ -9,8 +9,9 @@ const ProfileTop = ({
     location,
     website,
     social,
-    user: { name, avatar },
+    user: { name, avatar, _id },
   },
+  posts,
 }) => {
   return (
     <div className="profile-top-container bg-light">
@@ -24,7 +25,14 @@ const ProfileTop = ({
         <p>{location && <span>{location}</span>}</p>
         <p>
           <span className="btn-round">500+ Connections</span>
-          <span className="btn-round">37 Cases</span>
+          <span className="btn-round">
+            {/* we will compare _id with posts.user */}
+            {
+              posts.filter((g) => _id?.includes(g.user)).map((g) => g.user)
+                .length
+            }{" "}
+            Cases
+          </span>
         </p>
         <div className="icons my-1">
           {website && (

@@ -10,18 +10,22 @@ import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
 import { getProfileById } from "../../actions/profile";
 import { Link } from "react-router-dom";
-import { getPost } from "../../actions/post";
+import { getPosts } from "../../actions/post";
 
 const Profile = ({
   getProfileById,
   profile: { profile, loading },
+  getPosts,
+  post: { posts },
   auth,
   match,
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
-
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -93,7 +97,7 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
-          <ProfileTop profile={profile} />
+          <ProfileTop profile={profile} posts={posts} />
           <ProfileAbout profile={profile} />
           <div className="profile-grid my-1">
             <div className="profile-exp bg-white p-2">
@@ -145,11 +149,13 @@ Profile.propTypes = {
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
   auth: state.auth,
+  post: state.post,
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, { getProfileById, getPosts })(Profile);

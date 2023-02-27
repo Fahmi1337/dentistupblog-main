@@ -49,7 +49,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
           type="Text"
           placeholder="Start a new post"
           onClick={handleOpen}
-        ></input>
+        />
       </form>
 
       <Modal

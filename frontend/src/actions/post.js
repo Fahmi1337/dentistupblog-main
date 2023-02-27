@@ -23,7 +23,7 @@ export const getPosts = () => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: { msg: e.response?.statusText, status: e.response.status },
     });
   }
 };
@@ -91,7 +91,7 @@ export const addPost = (formData) => async (dispatch) => {
 
   try {
     const res = await axios.post("/api/posts", formData, config);
-console.log("test")
+    console.log("test");
     dispatch({
       type: ADD_POST,
       payload: res.data,
