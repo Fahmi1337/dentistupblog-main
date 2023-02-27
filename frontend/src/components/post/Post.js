@@ -20,7 +20,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       <Link to="/posts" className="btn btn-primary">
         Back to All Posts
       </Link>
-      <PostItem post={post} showActions={false} />
+      <PostItem post={post} showActions={false} showDetails={true} />
       <CommentForm postId={post._id} />
       <h1 className="my-1">Comments</h1>
       <div className="comments">

@@ -8,6 +8,14 @@ const PostSchema = new Schema({
     ref: "user",
   },
   postInfo: {
+    title: {
+      type: String,
+      required: false,
+    },
+    description: {
+      type: String,
+      required: false,
+    },
     bloodPressure: {
       type: String,
       required: false,

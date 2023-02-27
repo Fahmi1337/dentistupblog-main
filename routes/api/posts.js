@@ -25,6 +25,8 @@ router.post(
 
       const newPost = new Post({
         postInfo: {
+          title: req.body.title,
+          description: req.body.description,
           bloodPressure: req.body.bloodPressure,
           dailyMedications: req.body.dailyMedications,
           dateOfBirth: req.body.dateOfBirth,

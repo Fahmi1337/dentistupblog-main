@@ -14,6 +14,7 @@ const PostItem = ({
   auth,
   post: { _id, postInfo, name, avatar, user, likes, comments, date },
   showActions,
+  showDetails,
 }) => {
   return (
     <div className="posts">
@@ -25,11 +26,13 @@ const PostItem = ({
           </Link>
         </div>
         <div>
+          <p className="my-1">{postInfo.title}</p>
           <p className="my-1">
-            {postInfo.text} : {postInfo.text1}
+            {postInfo.description?.slice(0, 200) +
+              (postInfo.description?.length > 200 ? "..." : "")}
           </p>
           <p className="post-date">
-            Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
+            Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
           </p>
 
           {showActions && (
@@ -64,7 +67,101 @@ const PostItem = ({
                   <i className="fas fa-times"></i>
                 </button>
               )}
-              {console.log("auth?", user)}
+              {console.log("user?", user, "auth user?", auth.user._id)}
+            </Fragment>
+          )}
+          {showDetails && (
+            <Fragment>
+              <div>
+                <p className="my-1">Post Details : </p>
+                <p className="my-1"> Title : {postInfo.title} </p>
+                <p className="my-1"> Description : {postInfo.description} </p>
+                <p className="my-1">
+                  {" "}
+                  bloodPressure : {postInfo.bloodPressure}{" "}
+                </p>
+                <p className="my-1">
+                  dailyMedications : {postInfo.dailyMedications}{" "}
+                </p>
+                <p className="my-1">dateOfBirth : {postInfo.dateOfBirth} </p>
+                <p className="my-1">
+                  deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
+                </p>
+                <p className="my-1">
+                  deglutitionTypique : {postInfo.deglutitionTypique}{" "}
+                </p>
+                <p className="my-1">
+                  {" "}
+                  dentalHistory : {postInfo.dentalHistory}
+                </p>
+                <p className="my-1">dermato : {postInfo.dermato} </p>
+                <p className="my-1">
+                  detailsDeglutition : {postInfo.detailsDeglutition}{" "}
+                </p>
+                <p className="my-1">
+                  detailsMastication : {postInfo.detailsMastication}{" "}
+                </p>
+                <p className="my-1">
+                  detailsRespiration : {postInfo.detailsRespiration}{" "}
+                </p>
+                <p className="my-1">
+                  examenAtmAutre : {postInfo.examenAtmAutre}{" "}
+                </p>
+                <p className="my-1">
+                  examenAtmAutreExplanation :
+                  {postInfo.examenAtmAutreExplanation}{" "}
+                </p>
+                <p className="my-1">
+                  examenAtmClaquement : {postInfo.examenAtmClaquement}{" "}
+                </p>
+                <p className="my-1">
+                  examenAtmDouleur :{postInfo.examenAtmDouleur}{" "}
+                </p>
+                <p className="my-1">
+                  examenAtmNormal : {postInfo.examenAtmNormal}{" "}
+                </p>
+                <p className="my-1">
+                  examenExoBuccal: {postInfo.examenExoBuccal}{" "}
+                </p>
+                <p className="my-1">
+                  extraoralExamination : {postInfo.extraoralExamination}{" "}
+                </p>
+                <p className="my-1"> gender : {postInfo.gender}</p>
+                <p className="my-1">
+                  intraoralExamination : {postInfo.intraoralExamination}{" "}
+                </p>
+                <p className="my-1">
+                  masticationBilateral : {postInfo.masticationBilateral}{" "}
+                </p>
+                <p className="my-1">
+                  masticationUnilateral: {postInfo.masticationUnilateral}{" "}
+                </p>
+                <p className="my-1">
+                  medicalHistory: {postInfo.medicalHistory}{" "}
+                </p>
+                <p className="my-1">
+                  patientReference: {postInfo.patientReference}{" "}
+                </p>
+                <p className="my-1">pulse: {postInfo.pulse} </p>
+                <p className="my-1">
+                  reasonConsultation: {postInfo.reasonConsultation}{" "}
+                </p>
+                <p className="my-1">respiration: {postInfo.respiration} </p>
+                <p className="my-1">
+                  {" "}
+                  respirationBuccal: {postInfo.respirationBuccal}
+                </p>
+                <p className="my-1">
+                  respirationMixte: {postInfo.respirationMixte}{" "}
+                </p>
+                <p className="my-1">
+                  respirationNasal: {postInfo.respirationNasal}{" "}
+                </p>
+                <p className="my-1">symetrie: {postInfo.symetrie} </p>
+                <p className="my-1">
+                  symetrieExplanation : {postInfo.symetrieExplanation}{" "}
+                </p>
+              </div>
             </Fragment>
           )}
         </div>
@@ -75,6 +172,7 @@ const PostItem = ({
 
 PostItem.defaultProps = {
   showActions: true,
+  showDetails: true,
 };
 
 PostItem.propTypes = {

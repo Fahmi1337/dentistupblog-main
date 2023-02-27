@@ -10,6 +10,7 @@ import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
 import { getProfileById } from "../../actions/profile";
 import { Link } from "react-router-dom";
+import { getPost } from "../../actions/post";
 
 const Profile = ({
   getProfileById,
@@ -143,6 +144,7 @@ Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -88,6 +88,8 @@ const PostForm = ({ addPost }) => {
     deglutitionTypique: "",
     deglutitionAtypique: "",
     detailsDeglutition: "",
+    title: "",
+    description: "",
   });
 
   // function for going to next step by increasing step state by 1

@@ -14,7 +14,8 @@
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
+  font-family: "Roboto";
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -35,7 +36,7 @@ img {
 }
 
 /* Utilities */
-.container {
+Section.container {
   /* max-width: 1100px; */
   margin: auto;
   overflow: hidden;
@@ -45,7 +46,16 @@ img {
   margin-left: 15em;
   /* background: #e5e5e5; */
 }
-
+div.App.container {
+  /* max-width: 1100px; */
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  margin-left: 7em;
+  /* background: #e5e5e5; */
+}
 /* Text Styles*/
 .x-large {
   font-size: 4rem;

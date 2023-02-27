@@ -32,6 +32,8 @@ const StepOne = ({ nextStep, handleFormData, values, setFormData }) => {
     if (
       validator.isEmpty(values?.patientReference) ||
       validator.isEmpty(values?.dateOfBirth) ||
+      validator.isEmpty(values?.title) ||
+      validator.isEmpty(values?.description) ||
       validator.isEmpty(values?.reasonConsultation) ||
       getGender.length < 2
     ) {
@@ -47,6 +49,42 @@ const StepOne = ({ nextStep, handleFormData, values, setFormData }) => {
       <Card style={{ marginTop: 100 }}>
         <Card.Body>
           <Form onSubmit={submitFormData} className="form my-1">
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                style={{ border: error ? "2px solid red" : "" }}
+                name="title"
+                defaultValue={values.title}
+                type="text"
+                placeholder="Type an attractive title"
+                onChange={handleFormData("title")}
+              />
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                style={{ border: error ? "2px solid red" : "" }}
+                name="description"
+                defaultValue={values.description}
+                type="text"
+                placeholder="Describe in brief the case"
+                onChange={handleFormData("description")}
+              />
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Patient Reference</Form.Label>
               <Form.Control
