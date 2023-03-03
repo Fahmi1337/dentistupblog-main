@@ -6,12 +6,14 @@ import { logoutUser } from "../../actions/auth";
 import logoDentistup from "../../img/logoDentistup.png";
 import { NavLink } from "react-router-dom";
 import { getProfileById } from "../../actions/profile";
+import Spinner from "../layout/Spinner";
 const Navbar = ({
   auth: { isAuthenticated, loading },
   logoutUser,
   getProfileById,
   profile: { profile },
   match,
+  auth
 }) => {
   useEffect(() => {
     getProfileById(match?.params.id);
@@ -34,11 +36,11 @@ const Navbar = ({
       <li>
         <NavLink to="/dashboard" activeClassName="active">
           <i className="fas fa-address-card"></i>{" "}
-          <span className="hide-sm">Dashboard</span>
+          <span className="hide-sm">Profile Dashboard</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to={`/profile/${profile?.user?._id}`} activeClassName="active">
+        <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
           <span className="hide-sm">Profile</span>
         </NavLink>
@@ -94,14 +96,16 @@ const Navbar = ({
       </li>
     </ul>
   );
-
-  return (
+console.log("auth nav?", auth)
+  return loading && auth === null ? (
+    <Spinner />
+  ) : (
     <div>
       <nav className="navbar">
         <h1>
           <Link to="/">
             {/* <i className="fas fa-code"></i>  DentistUp */}
-            <img id="logoDentistup" src={logoDentistup} />
+            <img id="logoDentistup" src={logoDentistup} alt="logoDentistup"/>
           </Link>
         </h1>
         {/* if not loading and authenticated show logged in navbar links else guest links */}

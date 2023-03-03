@@ -700,3 +700,6 @@ button {
   padding-bottom: 0.6rem;
   padding-top: 0.6rem;
 }
+.btn-round:hover{
+  cursor: pointer;
+}

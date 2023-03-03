@@ -97,7 +97,7 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
-          <ProfileTop profile={profile} posts={posts} />
+          <ProfileTop profile={profile} posts={posts} auth={auth}/>
           <ProfileAbout profile={profile} />
           <div className="profile-grid my-1">
             <div className="profile-exp bg-white p-2">

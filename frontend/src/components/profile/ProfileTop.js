@@ -1,5 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import PostItem from "../posts/PostItem";
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { useHistory } from "react-router-dom";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "70rem",
+  bgcolor: "background.paper",
+
+  boxShadow: 24,
+  p: 4,
+};
 
 const ProfileTop = ({
   profile: {
@@ -11,10 +30,40 @@ const ProfileTop = ({
     social,
     user: { name, avatar, _id },
   },
+  auth,
   posts,
 }) => {
+  const [open, setOpen] = React.useState(false);
+const handleOpen = () => setOpen(true);
+const handleClose = () => setOpen(false);
+const history = useHistory();
+console.log("auth?", auth);
+console.log("profile???", _id)
   return (
+    
     <div className="profile-top-container bg-light">
+        <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            {/* PostForm */}
+            {posts.map((post) => (
+          <PostItem key={post._id} post={post} showDetails={false} postsByUserId={_id} showUserPosts={true}/>
+        ))}
+          </Box>
+        </Fade>
+      </Modal>
       <img className="round-img my-1" src={avatar} alt="" />
       <div className="profile-top p-2">
         <h1 className="large">{name}</h1>
@@ -22,10 +71,11 @@ const ProfileTop = ({
           {status} {company && <span> at {company}</span>}
         </p>
         <p className="lead">{speciality} speciality</p>
-        <p>{location && <span>{location}</span>}</p>
+        <p className="lead">{location && <span>{location}</span>}</p>
         <p>
-          <span className="btn-round">500+ Connections</span>
-          <span className="btn-round">
+   
+          <span className="btn-round" onClick={function(e){ e.preventDefault(); alert("Coming soon!")}}>500+ Connections</span>
+          <span className="btn-round" onClick={handleOpen}>
             {/* we will compare _id with posts.user */}
             {
               posts.filter((g) => _id?.includes(g.user)).map((g) => g.user)
@@ -72,8 +122,27 @@ const ProfileTop = ({
         </div>
       </div>
       <div>
-        <button className="btn-round">+ Follow</button>{" "}
-        <button className="btn-round">test</button>
+      {auth.isAuthenticated &&
+            auth.loading === false &&
+            auth.user._id !== _id && (
+              <button className="btn-round" onClick={function(e){ e.preventDefault(); alert('You now follow '+name)}}>+ Follow</button>
+            )}
+        
+        {auth.isAuthenticated &&
+            auth.loading === false &&
+            auth.user._id === _id && (
+              <IconButton aria-label="edit" className="btn-round" onClick={function(e){ e.preventDefault(); history.push('/dashboard');}}>
+              <EditIcon  />
+            </IconButton>
+            )}
+
+      
+          
+
+
+          
+    
+        {/* <button className="btn-round" onClick={function(e){ e.preventDefault(); alert('Coming soon!')}}>Edit</button> */}
       </div>
     </div>
   );
