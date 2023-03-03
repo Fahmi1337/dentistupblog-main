@@ -8,6 +8,7 @@ import PostItem from "../posts/PostItem";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from "react-router-dom";
+import bg from "../../img/dentistUpProfileBG.png"
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,11 +38,15 @@ const ProfileTop = ({
 const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 const history = useHistory();
-console.log("auth?", auth);
-console.log("profile???", _id)
+
   return (
     
-    <div className="profile-top-container bg-light">
+    <div className="profile-top-container bg-light" style={{  
+      backgroundImage: "url(" + bg + ")",
+      backgroundPosition: 'top',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
+    }}>
         <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -64,7 +69,8 @@ console.log("profile???", _id)
           </Box>
         </Fade>
       </Modal>
-      <img className="round-img my-1" src={avatar} alt="" />
+      <div className="profilePictureContainer"><img className="round-img my-1" src={avatar} alt="dentistUpProfilePicture" /></div>
+      
       <div className="profile-top p-2">
         <h1 className="large">{name}</h1>
         <p className="lead">
@@ -72,7 +78,7 @@ console.log("profile???", _id)
         </p>
         <p className="lead">{speciality} speciality</p>
         <p className="lead">{location && <span>{location}</span>}</p>
-        <p>
+        <div className="profileButtonsContainer">
    
           <span className="btn-round" onClick={function(e){ e.preventDefault(); alert("Coming soon!")}}>500+ Connections</span>
           <span className="btn-round" onClick={handleOpen}>
@@ -83,7 +89,7 @@ console.log("profile???", _id)
             }{" "}
             Cases
           </span>
-        </p>
+        </div>
         <div className="icons my-1">
           {website && (
             <a href={website} target="_blank" rel="noopener noreferrer">
@@ -131,7 +137,7 @@ console.log("profile???", _id)
         {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === _id && (
-              <IconButton aria-label="edit" className="btn-round" onClick={function(e){ e.preventDefault(); history.push('/dashboard');}}>
+              <IconButton aria-label="edit" className="editProfile-btn-round" onClick={function(e){ e.preventDefault(); history.push('/dashboard');}}>
               <EditIcon  />
             </IconButton>
             )}

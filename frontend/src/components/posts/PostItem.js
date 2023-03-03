@@ -69,7 +69,7 @@ const PostItem = ({
                   <i className="fas fa-times"></i>
                 </button>
               )}
-              {console.log("user?", user, "auth user?", auth.user._id)}
+          
             </Fragment>
           )}
           {showDetails && (
@@ -219,7 +219,7 @@ const PostItem = ({
                      <i className="fas fa-times"></i>
                    </button>
                  )}
-                 {console.log("user?", user, "auth user?", auth.user._id)}
+              
                </Fragment>
              )}
              {showDetails && (

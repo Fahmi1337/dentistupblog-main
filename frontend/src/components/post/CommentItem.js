@@ -34,7 +34,7 @@ const CommentItem = ({
             <i className="fas fa-trash-alt"></i>
           </button>
         )}
-        {console.log("user?", user, "auth?", auth)}
+    
       </div>
     </div>
   );

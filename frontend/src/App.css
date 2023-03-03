@@ -64,14 +64,17 @@ div.App.container {
 }
 
 .large {
-  font-size: 3rem;
-  line-height: 1.2;
+  font-size: 2.7rem;
+  line-height: 1;
   margin-bottom: 1rem;
 }
 
 .lead {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  /* font-size: 1.5rem;
+  margin-bottom: 1rem; */
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
   color: #333;
 }
 
@@ -221,7 +224,7 @@ div.App.container {
 .alert-white {
   background: #fff;
   color: #333;
-  border: #ccc solid 1px;
+  /* border: #ccc solid 1px; */
 }
 
 .btn:hover {
@@ -230,7 +233,7 @@ div.App.container {
 
 .bg-light,
 .badge-light {
-  border: #ccc solid 1px;
+  /* border: #ccc solid 1px; */
 }
 
 .round-img {
@@ -405,7 +408,7 @@ button {
   justify-content: center;
   text-align: center;
   color: #17a2b8;
-  padding-top: 6rem;
+  padding-top: 15rem;
 }
 .btn-round {
   padding: 0.4em 1.5em;
@@ -417,6 +420,17 @@ button {
   font-size: large;
   border: 2px solid #17a2b8;
   margin: 0 5px;
+}
+.editProfile-btn-round {
+
+  border-radius: 25px !important;
+  border-color: #17a2b8 !important;
+
+  color: #17a2b8 !important;
+  font-weight: 600 !important;
+  font-size: large !important;
+  border: 2px solid #17a2b8 !important;
+  margin: 0 5px !important;
 }
 .profile-top-container img {
   width: 250px;
@@ -439,16 +453,19 @@ button {
   justify-content: center;
   text-align: center;
 }
+.profilePictureContainer{
+  margin: -6em 0em 2em -20em;
+}
 .profile-about {
   /* grid-area: about; */
-  text-align: center;
+  text-align: left;
 }
 
 .profile-about .skills {
   /* display: flex; */
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 .profile-exp {
@@ -702,4 +719,7 @@ button {
 }
 .btn-round:hover{
   cursor: pointer;
+}
+.profileButtonsContainer{
+  margin: 20px 5px;
 }

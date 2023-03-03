@@ -10,39 +10,36 @@ import Spinner from "../layout/Spinner";
 const Navbar = ({
   auth: { isAuthenticated, loading },
   logoutUser,
-  getProfileById,
-  profile: { profile },
-  match,
   auth
 }) => {
-  useEffect(() => {
-    getProfileById(match?.params.id);
-  }, [getProfileById, match?.params.id]);
+
 
   const authLinks = (
     <ul>
-      <li>
-        <NavLink to="/profiles" activeClassName="active">
-          <i className="fas fa-user-friends"></i>{" "}
-          <span className="hide-sm">Dentists</span>
-        </NavLink>
-      </li>
-      <li>
+         <li>
         <NavLink to="/posts" activeClassName="active">
           <i className="fas fa-file-alt"></i>{" "}
           <span className="hide-sm">Posts</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard" activeClassName="active">
-          <i className="fas fa-address-card"></i>{" "}
-          <span className="hide-sm">Profile Dashboard</span>
+        <NavLink to="/profiles" activeClassName="active">
+          <i className="fas fa-user-friends"></i>{" "}
+          <span className="hide-sm">Dentists</span>
         </NavLink>
       </li>
+   
+     
       <li>
         <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
           <span className="hide-sm">Profile</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard" activeClassName="active">
+          <i className="fas fa-address-card"></i>{" "}
+          <span className="hide-sm">Profile Dashboard</span>
         </NavLink>
       </li>
       <li>
@@ -56,11 +53,16 @@ const Navbar = ({
 
   const guestLinks = (
     <ul>
+      {/* <li>
+        <NavLink to="/posts" activeClassName="active">
+          Posts
+        </NavLink>
+      </li>
       <li>
         <NavLink to="/profiles" activeClassName="active">
           Dentists
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink to="/register" activeClassName="active">
           Register
@@ -75,7 +77,9 @@ const Navbar = ({
   );
 
   const personalNavLinks = (
+    
     <ul>
+       <p>PERSONAL NAVIGATOR</p>
       <li>
         <NavLink to="/myquestions" activeClassName="active">
           <i className="fas fa-question"></i>{" "}
@@ -96,7 +100,7 @@ const Navbar = ({
       </li>
     </ul>
   );
-console.log("auth nav?", auth)
+
   return loading && auth === null ? (
     <Spinner />
   ) : (
@@ -113,7 +117,7 @@ console.log("auth nav?", auth)
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
-        <p>PERSONAL NAVIGATOR</p>
+       
         {!loading && (
           <Fragment>{isAuthenticated ? personalNavLinks : null}</Fragment>
         )}
@@ -131,7 +135,7 @@ Navbar.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile,
+ 
 });
 
-export default connect(mapStateToProps, { logoutUser, getProfileById })(Navbar);
+export default connect(mapStateToProps, { logoutUser })(Navbar);

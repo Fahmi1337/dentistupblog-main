@@ -51,7 +51,7 @@ const text = "test";
     } else {
       // nextStep();
       addPost({ patientReference, dateOfBirth, reasonConsultation, gender, medicalHistory, dailyMedications, bloodPressure, pulse, respiration, dentalHistory, extraoralExamination, intraoralExamination, examenExoBuccal, dermato, symetrieExplanation, detailsRespiration, detailsMastication, detailsDeglutition, imageTest, text});
-      console.log("my data :", values)
+   
     }
   };
   return (

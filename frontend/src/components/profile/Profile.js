@@ -89,7 +89,7 @@ const Profile = ({
           <Link to="/profiles" className="btn btn-primary">
             Back to Profiles
           </Link>
-          {console.log("profile?", profile)}
+          
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
