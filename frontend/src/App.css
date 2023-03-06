@@ -422,7 +422,6 @@ button {
   margin: 0 5px;
 }
 .editProfile-btn-round {
-
   border-radius: 25px !important;
   border-color: #17a2b8 !important;
 
@@ -439,8 +438,7 @@ button {
 }
 
 .profile-top .icons a {
-  /* color: #fff; */
-  color: #140a0a;
+  color: #17a2b8;
   margin: 0 0.3rem;
 }
 
@@ -453,7 +451,7 @@ button {
   justify-content: center;
   text-align: center;
 }
-.profilePictureContainer{
+.profilePictureContainer {
   margin: -6em 0em 2em -20em;
 }
 .profile-about {
@@ -717,9 +715,29 @@ button {
   padding-bottom: 0.6rem;
   padding-top: 0.6rem;
 }
-.btn-round:hover{
+.btn-round:hover {
   cursor: pointer;
+
+  border-color: #17a2b8;
+
+  color: white;
+
+  border: 2px solid #17a2b8;
+  background-color: #17a2b8;
 }
-.profileButtonsContainer{
+.profileButtonsContainer {
   margin: 20px 5px;
+}
+.profile-top .icons a:hover {
+  color: #17a3b8af;
+}
+.editProfile-btn-round:hover {
+  border-radius: 25px !important;
+  border-color: #17a2b8 !important;
+  color: #ffffff !important;
+  background-color: #17a2b8 !important;
+  font-weight: 600 !important;
+  font-size: large !important;
+  border: 2px solid #17a2b8 !important;
+  margin: 0 5px !important;
 }

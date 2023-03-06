@@ -86,7 +86,7 @@ const Profile = ({
         // </Fragment>
 
         <Fragment>
-          <Link to="/profiles" className="btn btn-primary">
+          {/* <Link to="/profiles" className="btn btn-primary">
             Back to Profiles
           </Link>
           
@@ -96,8 +96,8 @@ const Profile = ({
               <Link to="/edit-profile" className="btn btn-dark">
                 Edit Profile
               </Link>
-            )}
-          <ProfileTop profile={profile} posts={posts} auth={auth}/>
+            )} */}
+          <ProfileTop profile={profile} posts={posts} auth={auth} />
           <ProfileAbout profile={profile} />
           <div className="profile-grid my-1">
             <div className="profile-exp bg-white p-2">
