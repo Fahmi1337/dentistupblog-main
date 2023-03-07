@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
+import TopBar from "./components/layout/TopBar";
 import Landing from "./components/layout/Landing";
 import Routes from "./components/routing/Routes";
 
@@ -25,6 +26,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <TopBar />
           <Navbar />
           <Switch>
             <Route exact path="/" component={Landing} />

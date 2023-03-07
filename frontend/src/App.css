@@ -329,7 +329,7 @@ button {
   position: fixed;
   z-index: 1;
   width: 20em;
-  top: 0;
+  top: 2em;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
   height: -webkit-fill-available;
@@ -740,4 +740,16 @@ button {
   font-size: large !important;
   border: 2px solid #17a2b8 !important;
   margin: 0 5px !important;
+}
+#topBarContainer{
+  background-color: white;
+}
+#searchIconContainer{
+  color: #BEBEBE;
+}
+#SearchInputTopBar{
+  border: 1px solid #BEBEBE;
+  border-radius: 25px;
+  color: black;
+  width: 110ch;
 }

@@ -30,7 +30,7 @@ const Navbar = ({
       </li>
    
      
-      <li>
+      {/* <li>
         <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
           <span className="hide-sm">Profile</span>
@@ -41,13 +41,13 @@ const Navbar = ({
           <i className="fas fa-address-card"></i>{" "}
           <span className="hide-sm">Profile Dashboard</span>
         </NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <a onClick={logoutUser} href="/login">
           <i className="fas fa-sign-out-alt"></i>{" "}
           <span className="hide-sm">Logout</span>
         </a>
-      </li>
+      </li> */}
     </ul>
   );
 
@@ -92,12 +92,12 @@ const Navbar = ({
           <span className="hide-sm">My Groups</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/mycases" activeClassName="active">
           <i className="far fa-thumbs-up"></i>{" "}
           <span className="hide-sm">My Cases</span>
         </NavLink>
-      </li>
+      </li> */}
     </ul>
   );
 
@@ -109,7 +109,7 @@ const Navbar = ({
         <h1>
           <Link to="/">
             {/* <i className="fas fa-code"></i>  DentistUp */}
-            <img id="logoDentistup" src={logoDentistup} alt="logoDentistup"/>
+            {/* <img id="logoDentistup" src={logoDentistup} alt="logoDentistup"/> */}
           </Link>
         </h1>
         {/* if not loading and authenticated show logged in navbar links else guest links */}
