@@ -15,7 +15,7 @@ const CommentItem = ({
     <div class="post bg-white p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
-          <img class="round-img" src={avatar} alt="" />
+          <img class="round-img" src={avatar} alt="DentistUpAvatar" />
           <h4>{name}</h4>
         </Link>
       </div>
@@ -26,15 +26,19 @@ const CommentItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
         {!auth.loading && user === auth.user._id && (
-          <button
-            onClick={(e) => deleteComment(postId, _id)}
-            type="button"
-            className="btn btn-danger"
-          >
-            <i className="fas fa-trash-alt"></i>
-          </button>
+          <div>
+            <button type="button" className="btn btn-success">
+              <i className="fas fa-pen-alt"></i>
+            </button>
+            <button
+              onClick={(e) => deleteComment(postId, _id)}
+              type="button"
+              className="btn btn-danger"
+            >
+              <i className="fas fa-trash-alt"></i>
+            </button>
+          </div>
         )}
-    
       </div>
     </div>
   );

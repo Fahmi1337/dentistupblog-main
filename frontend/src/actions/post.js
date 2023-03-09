@@ -6,6 +6,7 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  EDIT_POST,
   GET_POST,
   ADD_COMMENT,
   DELETE_COMMENT,
@@ -91,7 +92,7 @@ export const addPost = (formData) => async (dispatch) => {
 
   try {
     const res = await axios.post("/api/posts", formData, config);
-  
+
     dispatch({
       type: ADD_POST,
       payload: res.data,
@@ -103,6 +104,24 @@ export const addPost = (formData) => async (dispatch) => {
       type: POST_ERROR,
       payload: { msg: e.response.statusText, status: e.response.status },
     });
+  }
+};
+
+// Edit Post
+export const editPost = (_id, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.put(`/api/posts/${_id}`, formData);
+    console.log(res.data);
+    // Add any additional logic for success/failure handling here
+  } catch (err) {
+    console.error(err);
+    // Add any additional logic for error handling here
   }
 };
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
-
+import PostDetails from "./PostDetails";
 const PostItem = ({
   addLike,
   removeLike,
@@ -78,109 +78,127 @@ const PostItem = ({
             </div>
           </div>
           {showDetails && (
-            <Fragment>
-              <div>
-                {/* <p className="my-1"> Title : {postInfo.title} </p> */}
-                <p className="my-1"> Description : {postInfo.description} </p>
-                <div className="threeColumns">
-                  <div className="gridOne">
-                    <p className="my-1">
-                      patientReference: {postInfo.patientReference}{" "}
-                    </p>
-                    <p className="my-1"> gender : {postInfo.gender}</p>
-                    <p className="my-1">
-                      dateOfBirth : {postInfo.dateOfBirth}{" "}
-                    </p>
-                  </div>
-                  <div className="gridTwo">
-                    <p className="my-1">
-                      {" "}
-                      bloodPressure : {postInfo.bloodPressure}{" "}
-                    </p>
-                    <p className="my-1">
-                      dailyMedications : {postInfo.dailyMedications}{" "}
-                    </p>
+            // <Fragment>
+            //   <div>
+            //     {!auth.loading && user === auth.user._id && (
+            //       <div>
+            //         <button
+            //           onClick={(e) => deletePost(_id)}
+            //           type="button"
+            //           className="btn btn-danger"
+            //         >
+            //           <i className="fas fa-times"> Delete Post</i>
+            //         </button>
+            //       </div>
+            //     )}
+            //     {/* <p className="my-1"> Title : {postInfo.title} </p> */}
+            //     <p className="my-1"> Description : {postInfo.description} </p>
+            //     <div className="threeColumns">
+            //       <div className="gridOne">
+            //         <p className="my-1">
+            //           patientReference: {postInfo.patientReference}{" "}
+            //         </p>
+            //         <p className="my-1"> gender : {postInfo.gender}</p>
+            //         <p className="my-1">
+            //           dateOfBirth : {postInfo.dateOfBirth}{" "}
+            //         </p>
+            //       </div>
+            //       <div className="gridTwo">
+            //         <p className="my-1">
+            //           {" "}
+            //           bloodPressure : {postInfo.bloodPressure}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           dailyMedications : {postInfo.dailyMedications}{" "}
+            //         </p>
 
-                    <p className="my-1">
-                      deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
-                    </p>
-                    <p className="my-1">
-                      deglutitionTypique : {postInfo.deglutitionTypique}{" "}
-                    </p>
-                    <p className="my-1">
-                      {" "}
-                      dentalHistory : {postInfo.dentalHistory}
-                    </p>
-                    <p className="my-1">dermato : {postInfo.dermato} </p>
-                    <p className="my-1">
-                      detailsDeglutition : {postInfo.detailsDeglutition}{" "}
-                    </p>
-                    <p className="my-1">
-                      detailsMastication : {postInfo.detailsMastication}{" "}
-                    </p>
-                    <p className="my-1">
-                      detailsRespiration : {postInfo.detailsRespiration}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmAutre : {postInfo.examenAtmAutre}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmAutreExplanation :
-                      {postInfo.examenAtmAutreExplanation}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmClaquement : {postInfo.examenAtmClaquement}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmDouleur :{postInfo.examenAtmDouleur}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmNormal : {postInfo.examenAtmNormal}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenExoBuccal: {postInfo.examenExoBuccal}{" "}
-                    </p>
-                    <p className="my-1">
-                      extraoralExamination : {postInfo.extraoralExamination}{" "}
-                    </p>
-                  </div>
-                  <div className="gridThree">
-                    <p className="my-1">
-                      intraoralExamination : {postInfo.intraoralExamination}{" "}
-                    </p>
-                    <p className="my-1">
-                      masticationBilateral : {postInfo.masticationBilateral}{" "}
-                    </p>
-                    <p className="my-1">
-                      masticationUnilateral: {postInfo.masticationUnilateral}{" "}
-                    </p>
-                    <p className="my-1">
-                      medicalHistory: {postInfo.medicalHistory}{" "}
-                    </p>
+            //         <p className="my-1">
+            //           deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           deglutitionTypique : {postInfo.deglutitionTypique}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           {" "}
+            //           dentalHistory : {postInfo.dentalHistory}
+            //         </p>
+            //         <p className="my-1">dermato : {postInfo.dermato} </p>
+            //         <p className="my-1">
+            //           detailsDeglutition : {postInfo.detailsDeglutition}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           detailsMastication : {postInfo.detailsMastication}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           detailsRespiration : {postInfo.detailsRespiration}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmAutre : {postInfo.examenAtmAutre}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmAutreExplanation :
+            //           {postInfo.examenAtmAutreExplanation}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmClaquement : {postInfo.examenAtmClaquement}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmDouleur :{postInfo.examenAtmDouleur}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmNormal : {postInfo.examenAtmNormal}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenExoBuccal: {postInfo.examenExoBuccal}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           extraoralExamination : {postInfo.extraoralExamination}{" "}
+            //         </p>
+            //       </div>
+            //       <div className="gridThree">
+            //         <p className="my-1">
+            //           intraoralExamination : {postInfo.intraoralExamination}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           masticationBilateral : {postInfo.masticationBilateral}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           masticationUnilateral: {postInfo.masticationUnilateral}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           medicalHistory: {postInfo.medicalHistory}{" "}
+            //         </p>
 
-                    <p className="my-1">pulse: {postInfo.pulse} </p>
-                    <p className="my-1">
-                      reasonConsultation: {postInfo.reasonConsultation}{" "}
-                    </p>
-                    <p className="my-1">respiration: {postInfo.respiration} </p>
-                    <p className="my-1">
-                      {" "}
-                      respirationBuccal: {postInfo.respirationBuccal}
-                    </p>
-                    <p className="my-1">
-                      respirationMixte: {postInfo.respirationMixte}{" "}
-                    </p>
-                    <p className="my-1">
-                      respirationNasal: {postInfo.respirationNasal}{" "}
-                    </p>
-                    <p className="my-1">symetrie: {postInfo.symetrie} </p>
-                    <p className="my-1">
-                      symetrieExplanation : {postInfo.symetrieExplanation}{" "}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Fragment>
+            //         <p className="my-1">pulse: {postInfo.pulse} </p>
+            //         <p className="my-1">
+            //           reasonConsultation: {postInfo.reasonConsultation}{" "}
+            //         </p>
+            //         <p className="my-1">respiration: {postInfo.respiration} </p>
+            //         <p className="my-1">
+            //           {" "}
+            //           respirationBuccal: {postInfo.respirationBuccal}
+            //         </p>
+            //         <p className="my-1">
+            //           respirationMixte: {postInfo.respirationMixte}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           respirationNasal: {postInfo.respirationNasal}{" "}
+            //         </p>
+            //         <p className="my-1">symetrie: {postInfo.symetrie} </p>
+            //         <p className="my-1">
+            //           symetrieExplanation : {postInfo.symetrieExplanation}{" "}
+            //         </p>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </Fragment>
+            <PostDetails
+              postInfo={postInfo}
+              auth={auth}
+              user={user}
+              deletePost={deletePost}
+              _id={_id}
+            />
           )}
         </div>
       )}
@@ -246,109 +264,125 @@ const PostItem = ({
             </div>
           </div>
           {showDetails && (
-            <Fragment>
-              <div>
-                {/* <p className="my-1"> Title : {postInfo.title} </p> */}
-                <p className="my-1"> Description : {postInfo.description} </p>
-                <div className="threeColumns">
-                  <div className="gridOne">
-                    <p className="my-1">
-                      patientReference: {postInfo.patientReference}{" "}
-                    </p>
-                    <p className="my-1"> gender : {postInfo.gender}</p>
-                    <p className="my-1">
-                      dateOfBirth : {postInfo.dateOfBirth}{" "}
-                    </p>
-                  </div>
-                  <div className="gridTwo">
-                    <p className="my-1">
-                      {" "}
-                      bloodPressure : {postInfo.bloodPressure}{" "}
-                    </p>
-                    <p className="my-1">
-                      dailyMedications : {postInfo.dailyMedications}{" "}
-                    </p>
+            <PostDetails
+              postInfo={postInfo}
+              auth={auth}
+              user={user}
+              deletePost={deletePost}
+              _id={_id}
+            />
+            // <Fragment>
+            //   <div>
+            //     {!auth.loading && user === auth.user._id && (
+            //       <button
+            //         onClick={(e) => deletePost(_id)}
+            //         type="button"
+            //         className="btn btn-danger"
+            //       >
+            //         <i className="fas fa-times"> Delete Post</i>
+            //       </button>
+            //     )}
+            //     {/* <p className="my-1"> Title : {postInfo.title} </p> */}
+            //     <p className="my-1"> Description : {postInfo.description} </p>
+            //     <div className="threeColumns">
+            //       <div className="gridOne">
+            //         <p className="my-1">
+            //           patientReference: {postInfo.patientReference}{" "}
+            //         </p>
+            //         <p className="my-1"> gender : {postInfo.gender}</p>
+            //         <p className="my-1">
+            //           dateOfBirth : {postInfo.dateOfBirth}{" "}
+            //         </p>
+            //       </div>
+            //       <div className="gridTwo">
+            //         <p className="my-1">
+            //           {" "}
+            //           bloodPressure : {postInfo.bloodPressure}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           dailyMedications : {postInfo.dailyMedications}{" "}
+            //         </p>
 
-                    <p className="my-1">
-                      deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
-                    </p>
-                    <p className="my-1">
-                      deglutitionTypique : {postInfo.deglutitionTypique}{" "}
-                    </p>
-                    <p className="my-1">
-                      {" "}
-                      dentalHistory : {postInfo.dentalHistory}
-                    </p>
-                    <p className="my-1">dermato : {postInfo.dermato} </p>
-                    <p className="my-1">
-                      detailsDeglutition : {postInfo.detailsDeglutition}{" "}
-                    </p>
-                    <p className="my-1">
-                      detailsMastication : {postInfo.detailsMastication}{" "}
-                    </p>
-                    <p className="my-1">
-                      detailsRespiration : {postInfo.detailsRespiration}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmAutre : {postInfo.examenAtmAutre}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmAutreExplanation :
-                      {postInfo.examenAtmAutreExplanation}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmClaquement : {postInfo.examenAtmClaquement}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmDouleur :{postInfo.examenAtmDouleur}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenAtmNormal : {postInfo.examenAtmNormal}{" "}
-                    </p>
-                    <p className="my-1">
-                      examenExoBuccal: {postInfo.examenExoBuccal}{" "}
-                    </p>
-                    <p className="my-1">
-                      extraoralExamination : {postInfo.extraoralExamination}{" "}
-                    </p>
-                  </div>
-                  <div className="gridThree">
-                    <p className="my-1">
-                      intraoralExamination : {postInfo.intraoralExamination}{" "}
-                    </p>
-                    <p className="my-1">
-                      masticationBilateral : {postInfo.masticationBilateral}{" "}
-                    </p>
-                    <p className="my-1">
-                      masticationUnilateral: {postInfo.masticationUnilateral}{" "}
-                    </p>
-                    <p className="my-1">
-                      medicalHistory: {postInfo.medicalHistory}{" "}
-                    </p>
+            //         <p className="my-1">
+            //           deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           deglutitionTypique : {postInfo.deglutitionTypique}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           {" "}
+            //           dentalHistory : {postInfo.dentalHistory}
+            //         </p>
+            //         <p className="my-1">dermato : {postInfo.dermato} </p>
+            //         <p className="my-1">
+            //           detailsDeglutition : {postInfo.detailsDeglutition}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           detailsMastication : {postInfo.detailsMastication}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           detailsRespiration : {postInfo.detailsRespiration}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmAutre : {postInfo.examenAtmAutre}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmAutreExplanation :
+            //           {postInfo.examenAtmAutreExplanation}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmClaquement : {postInfo.examenAtmClaquement}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmDouleur :{postInfo.examenAtmDouleur}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenAtmNormal : {postInfo.examenAtmNormal}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           examenExoBuccal: {postInfo.examenExoBuccal}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           extraoralExamination : {postInfo.extraoralExamination}{" "}
+            //         </p>
+            //       </div>
+            //       <div className="gridThree">
+            //         <p className="my-1">
+            //           intraoralExamination : {postInfo.intraoralExamination}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           masticationBilateral : {postInfo.masticationBilateral}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           masticationUnilateral: {postInfo.masticationUnilateral}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           medicalHistory: {postInfo.medicalHistory}{" "}
+            //         </p>
 
-                    <p className="my-1">pulse: {postInfo.pulse} </p>
-                    <p className="my-1">
-                      reasonConsultation: {postInfo.reasonConsultation}{" "}
-                    </p>
-                    <p className="my-1">respiration: {postInfo.respiration} </p>
-                    <p className="my-1">
-                      {" "}
-                      respirationBuccal: {postInfo.respirationBuccal}
-                    </p>
-                    <p className="my-1">
-                      respirationMixte: {postInfo.respirationMixte}{" "}
-                    </p>
-                    <p className="my-1">
-                      respirationNasal: {postInfo.respirationNasal}{" "}
-                    </p>
-                    <p className="my-1">symetrie: {postInfo.symetrie} </p>
-                    <p className="my-1">
-                      symetrieExplanation : {postInfo.symetrieExplanation}{" "}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Fragment>
+            //         <p className="my-1">pulse: {postInfo.pulse} </p>
+            //         <p className="my-1">
+            //           reasonConsultation: {postInfo.reasonConsultation}{" "}
+            //         </p>
+            //         <p className="my-1">respiration: {postInfo.respiration} </p>
+            //         <p className="my-1">
+            //           {" "}
+            //           respirationBuccal: {postInfo.respirationBuccal}
+            //         </p>
+            //         <p className="my-1">
+            //           respirationMixte: {postInfo.respirationMixte}{" "}
+            //         </p>
+            //         <p className="my-1">
+            //           respirationNasal: {postInfo.respirationNasal}{" "}
+            //         </p>
+            //         <p className="my-1">symetrie: {postInfo.symetrie} </p>
+            //         <p className="my-1">
+            //           symetrieExplanation : {postInfo.symetrieExplanation}{" "}
+            //         </p>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </Fragment>
           )}
         </div>
       )}

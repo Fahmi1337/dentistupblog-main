@@ -78,6 +78,85 @@ router.post(
   }
 );
 
+// @route   PUT api/posts/:id
+// @desc    Update a post
+// @access  Private
+router.put(
+  "/:id",
+  [auth, [check("bloodPressure", "Text is required").not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+    //   if there are errors
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const user = await User.findById(req.user.id).select("-password");
+
+      const post = await Post.findById(req.params.id);
+
+      if (!post) {
+        return res.status(404).json({ msg: "Post not found" });
+      }
+
+      // Only allow post update by post owner
+      if (post.user.toString() !== req.user.id) {
+        return res.status(401).json({ msg: "User not authorized" });
+      }
+
+      (post.postInfo = {
+        title: req.body.title,
+        description: req.body.description,
+        bloodPressure: req.body.bloodPressure,
+        dailyMedications: req.body.dailyMedications,
+        dateOfBirth: req.body.dateOfBirth,
+        dentalHistory: req.body.dentalHistory,
+        dermato: req.body.dermato,
+        detailsDeglutition: req.body.detailsDeglutition,
+        detailsMastication: req.body.detailsMastication,
+        detailsRespiration: req.body.detailsRespiration,
+        examenExoBuccal: req.body.examenExoBuccal,
+        extraoralExamination: req.body.extraoralExamination,
+        gender: req.body.gender,
+
+        intraoralExamination: req.body.intraoralExamination,
+        medicalHistory: req.body.medicalHistory,
+        patientReference: req.body.patientReference,
+        pulse: req.body.pulse,
+        reasonConsultation: req.body.reasonConsultation,
+        respiration: req.body.respiration,
+        symetrieExplanation: req.body.symetrieExplanation,
+        symetrie: req.body.symetrie,
+
+        examenAtmNormal: req.body.examenAtmNormal,
+        examenAtmDouleur: req.body.examenAtmDouleur,
+        examenAtmClaquement: req.body.examenAtmClaquement,
+        examenAtmAutre: req.body.examenAtmAutre,
+        examenAtmAutreExplanation: req.body.examenAtmAutreExplanation,
+        respirationNasal: req.body.respirationNasal,
+        respirationBuccal: req.body.respirationBuccal,
+        respirationMixte: req.body.respirationMixte,
+        detailsRespiration: req.body.detailsRespiration,
+        masticationUnilateral: req.body.masticationUnilateral,
+        masticationBilateral: req.body.masticationBilateral,
+        detailsMastication: req.body.detailsMastication,
+        deglutitionTypique: req.body.deglutitionTypique,
+        deglutitionAtypique: req.body.deglutitionAtypique,
+        detailsDeglutition: req.body.detailsDeglutition,
+      }),
+        (post.name = user.name),
+        (post.avatar = user.avatar),
+        (post.user = req.user.id);
+
+      const updatedPost = await post.save();
+      res.json(updatedPost);
+    } catch (e) {
+      console.error(e.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
 // @route   GET api/posts
 // @desc    Get all posts
 // @access  Private
