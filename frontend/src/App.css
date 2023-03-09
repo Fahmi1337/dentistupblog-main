@@ -741,15 +741,27 @@ button {
   border: 2px solid #17a2b8 !important;
   margin: 0 5px !important;
 }
-#topBarContainer{
+#topBarContainer {
   background-color: white;
 }
-#searchIconContainer{
-  color: #BEBEBE;
+#searchIconContainer {
+  color: #bebebe;
 }
-#SearchInputTopBar{
-  border: 1px solid #BEBEBE;
+#SearchInputTopBar {
+  border: 1px solid #bebebe;
   border-radius: 25px;
   color: black;
   width: 110ch;
+}
+.threeColumns {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+@media only screen and (max-width: 899px) {
+  .navbar {
+    display: none;
+  }
+  Section.container {
+    margin-left: 0em !important;
+  }
 }
