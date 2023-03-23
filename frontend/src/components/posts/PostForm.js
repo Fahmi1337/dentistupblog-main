@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
 // import { addPost } from "../../actions/post";
@@ -11,47 +11,8 @@ import StepFour from "../forms/StepFour";
 import StepFive from "../forms/StepFive";
 import Final from "../forms/Final";
 
-const PostForm = ({ addPost }) => {
-  //   const [text, setText] = useState("");
-  //   const [text1, setText1] = useState("");
+const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost, editMode}) => {
 
-  //   return (
-  //     <div className="post-form">
-  //       <div className="bg-primary p">
-  //         <h3>Say Something to share with the community!</h3>
-  //       </div>
-  //       <form
-  //         className="form my-1"
-  //         onSubmit={(e) => {
-  //           e.preventDefault();
-  //           addPost({ text, text1 });
-  //           setText("");
-  //           setText1("");
-  //         }}
-  //       >
-  //         <textarea
-  //           name="text"
-  //           cols="30"
-  //           rows="5"
-  //           placeholder="Create a post"
-  //           value={text}
-  //           onChange={(e) => setText(e.target.value)}
-  //           required
-  //         ></textarea>
-  //         <textarea
-  //           name="text"
-  //           cols="30"
-  //           rows="5"
-  //           placeholder="Create a post"
-  //           value={text1}
-  //           onChange={(e) => setText1(e.target.value)}
-  //           required
-  //         ></textarea>
-  //         <input type="submit" className="btn btn-dark my-1" value="Submit" />
-  //       </form>
-  //     </div>
-  //   );
-  // };
 
   const [step, setstep] = useState(1);
 
@@ -91,7 +52,13 @@ const PostForm = ({ addPost }) => {
     title: "",
     description: "",
   });
-
+  useEffect(() => {
+    if(postInfo){
+      setFormData(postInfo);
+      console.log("edit form?", formData)
+    }
+ 
+  }, [postInfo]);
   // function for going to next step by increasing step state by 1
   const nextStep = () => {
     setstep(step + 1);
@@ -128,6 +95,7 @@ const PostForm = ({ addPost }) => {
                   handleFormData={handleInputData}
                   values={formData}
                   setFormData={setFormData}
+                  editMode={editMode}
                 />
               </Col>
             </Row>
@@ -146,6 +114,7 @@ const PostForm = ({ addPost }) => {
                   prevStep={prevStep}
                   handleFormData={handleInputData}
                   values={formData}
+                  editMode={editMode}
                 />
               </Col>
             </Row>
@@ -164,6 +133,7 @@ const PostForm = ({ addPost }) => {
                   handleFormData={handleInputData}
                   values={formData}
                   setFormData={setFormData}
+                  editMode={editMode}
                 />
               </Col>
             </Row>
@@ -182,6 +152,7 @@ const PostForm = ({ addPost }) => {
                   handleFormData={handleInputData}
                   values={formData}
                   setFormData={setFormData}
+                  editMode={editMode}
                 />
               </Col>
             </Row>
@@ -199,6 +170,7 @@ const PostForm = ({ addPost }) => {
                   prevStep={prevStep}
                   handleFormData={handleInputData}
                   values={formData}
+                  editMode={editMode}
                 />
               </Col>
             </Row>

@@ -68,7 +68,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         <Fade in={open}>
           <Box sx={style}>
             {/* PostForm */}
-            <PostForm />
+            <PostForm editMode={false}/>
           </Box>
         </Fade>
       </Modal>

@@ -300,6 +300,77 @@ router.post("/comment/:id", [auth], async (req, res) => {
   }
 });
 
+
+
+
+// @route   PUT api/posts/comment/:postId/:commentId
+// @desc    Edit a comment on a post
+// @access  Private
+router.put("/comment/:postId/:commentId", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  
+  // Return 400 error response if there are validation errors
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  
+  try {
+    const post = await Post.findById(req.params.postId);
+    
+    // Find the index of the comment to be edited
+    const commentIndex = post.comments.findIndex(
+      (comment) => comment._id.toString() === req.params.commentId
+    );
+
+    // Return 404 error response if the comment is not found
+    if (commentIndex === -1) {
+      return res.status(404).json({ msg: "Comment not found" });
+    }
+
+    // Only allow the user who created the comment to edit it
+    if (post.comments[commentIndex].user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "Not authorized" });
+    }
+
+    // Update the comment object with the new data
+    post.comments[commentIndex].treatment = req.body.formData.treatment;
+    post.comments[commentIndex].diagnostic = req.body.formData.diagnostic;
+
+    // Save the updated post
+    await post.save();
+    
+    // Return the updated comments array as response
+    res.json(post.comments);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+// @route   GET api/posts/comment/:id/:comment_id
+// @desc    Get a comment by id
+// @access  Private
+router.get("/comment/:id/:comment_id", [auth], async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    // Check if post exists
+    if (!post) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    // Find the comment by id
+    const comment = post.comments.find((comment) => comment.id.toString() === req.params.comment_id);
+    // Check if comment exists
+    if (!comment) {
+      return res.status(404).json({ msg: "Comment not found" });
+    }
+    res.json(comment);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   POST api/posts/comment/:id/:comment_id
 // @desc    Delete a comment on a post
 // @access  Private

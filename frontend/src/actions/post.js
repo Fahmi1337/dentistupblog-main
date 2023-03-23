@@ -9,6 +9,8 @@ import {
   EDIT_POST,
   GET_POST,
   ADD_COMMENT,
+  EDIT_COMMENT,
+  GET_COMMENT_BY_ID,
   DELETE_COMMENT,
 } from "./types";
 
@@ -107,21 +109,28 @@ export const addPost = (formData) => async (dispatch) => {
   }
 };
 
-// Edit Post
+
+// Edit post
 export const editPost = (_id, formData) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-
   try {
-    const res = await axios.put(`/api/posts/${_id}`, formData);
-    console.log(res.data);
-    // Add any additional logic for success/failure handling here
-  } catch (err) {
-    console.error(err);
-    // Add any additional logic for error handling here
+    await axios.put(`/api/posts/${_id}`, formData, config);
+
+    dispatch({
+      type: EDIT_POST,
+      payload: _id,
+    });
+
+    dispatch(setAlert("Post successfully edited", "success"));
+  } catch (e) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: e.response.statusText, status: e.response.status },
+    });
   }
 };
 
@@ -182,6 +191,25 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
     });
 
     dispatch(setAlert("Comment successfully deleted", "success"));
+  } catch (e) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: e.response.statusText, status: e.response.status },
+    });
+  }
+};
+
+// Edit comment
+export const editComment = (postId, commentId, formData) => async (dispatch) => {
+  try {
+    await axios.put(`/api/posts/comment/${postId}/${commentId}`, {formData});
+
+    dispatch({
+      type: EDIT_COMMENT,
+      payload: commentId,
+    });
+
+    dispatch(setAlert("Comment successfully edited", "success"));
   } catch (e) {
     dispatch({
       type: POST_ERROR,

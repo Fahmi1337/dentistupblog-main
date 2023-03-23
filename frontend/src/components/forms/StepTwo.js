@@ -3,7 +3,7 @@ import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 // creating functional component ans getting props from app.js and destucturing them
-const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
+const StepTwo = ({ nextStep, handleFormData, prevStep, values, editMode }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
 

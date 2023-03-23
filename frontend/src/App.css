@@ -743,6 +743,8 @@ button {
 }
 #topBarContainer {
   background-color: white;
+  position: fixed;
+  top: 0em;
 }
 #searchIconContainer {
   color: #bebebe;
@@ -757,6 +759,9 @@ button {
   display: grid;
   grid-template-columns: 33% 33% 33%;
 }
+#postDetailsContainer{
+  margin : 5em 0;
+}
 @media only screen and (max-width: 899px) {
   .navbar {
     display: none;
@@ -764,4 +769,10 @@ button {
   Section.container {
     margin-left: 0em !important;
   }
+}
+#editPostContainer form{
+  height: 40em;
+  overflow-y: auto;
+  
+  padding: 0 1em;
 }

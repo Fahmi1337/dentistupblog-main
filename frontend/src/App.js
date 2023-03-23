@@ -26,7 +26,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <TopBar />
+          {localStorage.token && ( <TopBar />)}
+         
           <Navbar />
           <Switch>
             <Route exact path="/" component={Landing} />
