@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 // for authentication middleware
 const auth = require("../../middleware/auth");
 //validation by express
@@ -15,7 +16,9 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 // importing User model
 const Post = require("../../models/Post");
-
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path');
 // @route   GET api/profile/me
 // @desc    Get current user's profile
 // @access  Private
@@ -38,11 +41,35 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
+
+
 // @route   POST api/profile
 // @desc    Create or update the user's profile
 // @access  Private
+router.use(bodyParser.urlencoded({
+  extended: false
+}));
+router.use(bodyParser.json());
+router.use(express.static('public'));
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    let extArray = file.mimetype.split("/");
+    let extension = extArray[extArray.length - 1];
+    cb(null, file.fieldname + '-' + Date.now() + '.' + extension)
+  }
+})
+const upload = multer({ storage: storage });
+const dirname = path.resolve();
+router.use('/uploads', express.static(path.join(dirname, '/uploads')));
+
 router.post(
   "/",
+
+  upload.single('profileImage'),
   [
     auth,
     [
@@ -56,6 +83,8 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    // console.log("res?", res);
+
     // destructure the request
     const {
       company,
@@ -72,7 +101,8 @@ router.post(
       linkedin,
       facebook,
     } = req.body;
-
+    const profileImage = req.file.path;
+    console.log("req?", req.file);
     // Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
@@ -83,6 +113,7 @@ router.post(
     if (status) profileFields.status = status;
     if (speciality) profileFields.speciality = speciality;
     if (githubusername) profileFields.githubusername = githubusername;
+    if (profileImage) profileFields.profileImage = profileImage;
     // Separating the skills by comma from the skills array
     if (skills) {
       profileFields.skills = skills.split(",").map((skill) => skill.trim());
@@ -95,6 +126,8 @@ router.post(
     if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
 
+
+    
     try {
       let profile = await Profile.findOne({ user: req.user.id });
       // if there is a profile that match

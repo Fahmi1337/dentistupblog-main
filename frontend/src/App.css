@@ -776,3 +776,6 @@ button {
   
   padding: 0 1em;
 }
+.profile.bg-light img{
+  width: 50%;
+}

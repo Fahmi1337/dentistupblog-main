@@ -21,6 +21,10 @@ app.use("/api/profile", require("./routes/api/profile"));
 // Posts Routes
 app.use("/api/posts", require("./routes/api/posts"));
 
+
+const dirname = path.resolve();
+app.use('/uploads', express.static(path.join(dirname, '/uploads')));
+
 //Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder

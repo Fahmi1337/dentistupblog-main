@@ -29,6 +29,7 @@ const ProfileTop = ({
     location,
     website,
     social,
+    profileImage,
     user: { name, avatar, _id },
   },
   auth,
@@ -38,6 +39,7 @@ const ProfileTop = ({
 const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 const history = useHistory();
+
 
   return (
     
@@ -69,7 +71,7 @@ const history = useHistory();
           </Box>
         </Fade>
       </Modal>
-      <div className="profilePictureContainer"><img className="round-img my-1" src={avatar} alt="dentistUpProfilePicture" /></div>
+      <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
       
       <div className="profile-top p-2">
         <h1 className="large">{name}</h1>
