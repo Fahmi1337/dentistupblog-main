@@ -11,7 +11,7 @@ import StepFour from "../forms/StepFour";
 import StepFive from "../forms/StepFive";
 import Final from "../forms/Final";
 
-const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost, editMode}) => {
+const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost, editMode, handleClose}) => {
 
 
   const [step, setstep] = useState(1);
@@ -153,6 +153,7 @@ const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost,
                   values={formData}
                   setFormData={setFormData}
                   editMode={editMode}
+                  handleClose={handleClose}
                 />
               </Col>
             </Row>

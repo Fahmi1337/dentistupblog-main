@@ -10,8 +10,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 const style = {
   position: "absolute",
@@ -68,7 +66,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         <Fade in={open}>
           <Box sx={style}>
             {/* PostForm */}
-            <PostForm editMode={false}/>
+            <PostForm editMode={false} handleClose={handleClose}/>
           </Box>
         </Fade>
       </Modal>

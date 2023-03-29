@@ -13,6 +13,7 @@ const StepFour = ({
   values,
   addPost,
   setFormData,
+  handleClose
 }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
@@ -101,26 +102,7 @@ const StepFour = ({
   };
   const submitFormData = (e) => {
     e.preventDefault();
-    // const patientReference = values.patientReference;
-    // const dateOfBirth = values.dateOfBirth;
-    // const reasonConsultation = values.reasonConsultation;
-    // const gender = "hey";
-    // const medicalHistory = values.medicalHistory;
-    // const dailyMedications = values.dailyMedications;
-    // const bloodPressure = values.bloodPressure;
-    // const pulse = values.pulse;
-    // const respiration = values.respiration;
-    // const dentalHistory = values.dentalHistory;
-    // const extraoralExamination = values.extraoralExamination;
-    // const intraoralExamination = values.intraoralExamination;
-    // const examenExoBuccal = values.examenExoBuccal;
-    // const dermato = values.dermato;
-    // const symetrieExplanation = values.symetrieExplanation;
-    // const detailsRespiration = values.detailsRespiration;
-    // const detailsMastication = values.detailsMastication;
-    // const detailsDeglutition = values.detailsDeglutition;
-    // const imageTest = values.imageTest;
-    // const text = "test";
+
     // checking if value of first name and last name is empty show error else take to step 2
     if (
       validator.isEmpty(values?.detailsRespiration) ||
@@ -131,27 +113,8 @@ const StepFour = ({
     } else {
       // nextStep();
       addPost(values);
-      // addPost({
-      //   patientReference,
-      //   dateOfBirth,
-      //   reasonConsultation,
-      //   gender,
-      //   medicalHistory,
-      //   dailyMedications,
-      //   bloodPressure,
-      //   pulse,
-      //   respiration,
-      //   dentalHistory,
-      //   extraoralExamination,
-      //   intraoralExamination,
-      //   examenExoBuccal,
-      //   dermato,
-      //   symetrieExplanation,
-      //   detailsRespiration,
-      //   detailsMastication,
-      //   detailsDeglutition,
-      //   text,
-      // });
+      handleClose();
+
       console.log("my data :", values);
     }
   };
