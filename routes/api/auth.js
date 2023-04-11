@@ -13,6 +13,41 @@ const { check, validationResult } = require("express-validator");
 
 //import User model
 const User = require("../../models/User");
+const Profile = require("../../models/Profile");
+// // @route   GET api/auth
+// // @desc    Test route
+// // @access  Public
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id).select("-password");
+//     res.json(user);
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
+
+
+// // @route   GET api/auth
+// // @desc    Test route
+// // @access  Public
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id).select("-password");
+//     const profile = await Profile.findOne({ user: req.user.id });
+//     res.json({
+//       user,
+//       profileImage: profile ? profile.profileImage : null,
+//     });
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
 
 // @route   GET api/auth
 // @desc    Test route
@@ -20,12 +55,19 @@ const User = require("../../models/User");
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
+    const profile = await Profile.findOne({ user: req.user.id });
+    const profileImage = profile ? profile.profileImage : null;
+    const userWithProfileImage = {
+      ...user.toObject(),
+      profileImage
+    };
+    res.json(userWithProfileImage);
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server Error");
   }
 });
+
 
 // @route   POST api/auth
 // @desc    Authenticate user & get token

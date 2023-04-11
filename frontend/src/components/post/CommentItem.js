@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 const CommentItem = ({
   postId,
-  comment: { _id, name, diagnostic, treatment, avatar, user, date },
+  comment: { _id, name, diagnostic, treatment, avatar, user, date, profileImage },
   auth,
   comment,
   deleteComment,
@@ -36,7 +36,7 @@ const CommentItem = ({
     <div class="post bg-white p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
-          <img class="round-img" src={avatar} alt="DentistUpAvatar" />
+          <img class="round-img" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="DentistUpAvatar" />
           <h4>{name}</h4>
         </Link>
       </div>

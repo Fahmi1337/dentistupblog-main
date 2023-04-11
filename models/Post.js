@@ -7,6 +7,7 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user",
   },
+
   postInfo: {
     title: {
       type: String,
@@ -155,13 +156,17 @@ const PostSchema = new Schema({
       required: false,
     },
   },
-
+  profileImage: {
+    type: String,
+    default: null,
+  },
   name: {
     type: String,
   },
   avatar: {
     type: String,
   },
+
   likes: [
     {
       user: {

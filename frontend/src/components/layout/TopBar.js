@@ -206,7 +206,7 @@ const handleUserMenuNavigation = (setting, e) =>{
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={auth?.user?.avatar}/>
+                <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `http://localhost:5050/${auth?.user?.profileImage}` : auth?.user?.avatar}/>
               </IconButton>
             </Tooltip>
             <Menu

@@ -26,11 +26,24 @@ const Profile = ({
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-
+console.log("profile,?????", profile)
   return (
     <Fragment>
       {profile === null || loading ? (
-        <Spinner />
+       
+        <div> 
+             <Fragment>
+          <p>
+            You have not yet setup a profile, please add some information so
+            others can know you better!
+          </p>
+          <Link to="/create-profile" className="btn btn-primary my-1">
+            Create Profile
+          </Link>
+        </Fragment>
+          <Spinner />
+        
+        </div>
       ) : (
        
 

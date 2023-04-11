@@ -11,7 +11,7 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, postInfo, name, avatar, user, likes, comments, date },
+  post: { _id, postInfo, name, avatar, user, likes, comments, date, profileImage },
   showActions,
   showDetails,
   showUserPosts,
@@ -27,7 +27,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={avatar} alt="" />
+                <img className="round-img" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="Dentistup" />
                 <h4>{name}</h4>
               </Link>
             </div>
@@ -100,7 +100,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={avatar} alt="" />
+                <img className="round-img" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="Dentisup" />
                 <h4>{name}</h4>
               </Link>
             </div>

@@ -67,6 +67,7 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
+      
       });
 
       const post = await newPost.save();
@@ -157,32 +158,136 @@ router.put(
   }
 );
 
+// // @route   GET api/posts
+// // @desc    Get all posts
+// // @access  Private
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     //   to get the most recent posts
+//     const posts = await Post.find().sort({ date: -1 });
+//     res.json(posts);
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
+
+
 // @route   GET api/posts
 // @desc    Get all posts
 // @access  Private
 router.get("/", auth, async (req, res) => {
   try {
-    //   to get the most recent posts
+    // Get all posts
     const posts = await Post.find().sort({ date: -1 });
-    res.json(posts);
+
+    // Loop through each post and get the user's profileImage
+    const postsWithProfileImages = await Promise.all(
+      posts.map(async (post) => {
+        const profile = await Profile.findOne({ user: post.user });
+        const profileImage = profile ? profile.profileImage : null;
+        return { ...post._doc, profileImage };
+      })
+    );
+
+    res.json(postsWithProfileImages);
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server Error");
   }
 });
 
+
+
+// // @route   GET api/posts/:id
+// // @desc    Get post by Post Id
+// // @access  Private
+// router.get("/:id", auth, async (req, res) => {
+//   try {
+//     //   to get the most recent posts
+//     const post = await Post.findById(req.params.id);
+//     // if there are no post
+//     if (!post) {
+//       return res.status(404).json({ msg: "Post not found" });
+//     }
+//     res.json(post);
+//   } catch (e) {
+//     console.error(e.message);
+//     if (e.kind === "ObjectId") {
+//       return res.status(404).json({ msg: "Post not found" });
+//     }
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
+// // @route   GET api/posts/:id
+// // @desc    Get post by Post Id
+// // @access  Private
+// router.get("/:id", auth, async (req, res) => {
+//   try {
+//     const post = await Post.findById(req.params.id);
+//     if (!post) {
+//       return res.status(404).json({ msg: "Post not found" });
+//     }
+//     const profile = await Profile.findOne({ user: post.user });
+//     res.json({
+//       _id: post._id,
+//       name: post.name,
+//       profileImage: profile ? profile.profileImage : null,
+//       postInfo: post.postInfo,
+//       date: post.date,
+//       likes: post.likes,
+//       comments: post.comments,
+//     });
+//   } catch (e) {
+//     console.error(e.message);
+//     if (e.kind === "ObjectId") {
+//       return res.status(404).json({ msg: "Post not found" });
+//     }
+//     res.status(500).send("Server Error");
+//   }
+// });
+
 // @route   GET api/posts/:id
 // @desc    Get post by Post Id
 // @access  Private
 router.get("/:id", auth, async (req, res) => {
   try {
-    //   to get the most recent posts
     const post = await Post.findById(req.params.id);
-    // if there are no post
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
-    res.json(post);
+    const profile = await Profile.findOne({ user: post.user });
+
+    const commentsWithProfileImage = [];
+    for (const comment of post.comments) {
+      const commentProfile = await Profile.findOne({ user: comment.user });
+      commentsWithProfileImage.push({
+        _id: comment._id,
+       
+        name: comment.name,
+        profileImage: commentProfile ? commentProfile.profileImage : null,
+        user: comment.user,
+        date: comment.date,
+        treatment: comment.treatment,
+        diagnostic: comment.diagnostic,
+        avatar: comment.avatar,
+
+      });
+    }
+
+    res.json({
+      _id: post._id,
+      name: post.name,
+      profileImage: profile ? profile.profileImage : null,
+      postInfo: post.postInfo,
+      date: post.date,
+      likes: post.likes,
+      comments: commentsWithProfileImage,
+    });
   } catch (e) {
     console.error(e.message);
     if (e.kind === "ObjectId") {
@@ -370,6 +475,9 @@ router.get("/comment/:id/:comment_id", [auth], async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+
+
 
 // @route   POST api/posts/comment/:id/:comment_id
 // @desc    Delete a comment on a post

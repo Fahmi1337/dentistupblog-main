@@ -19,6 +19,7 @@ const CreateProfile = ({ createProfile, history }) => {
     instagram: "",
     linkedin: "",
     facebook: "",
+    profileImage: null,
   });
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
@@ -42,10 +43,17 @@ const CreateProfile = ({ createProfile, history }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    createProfile(formData, history);
-  };
+    const onSubmit = (e) => {
+      e.preventDefault();
+      const data = new FormData();
+      data.append("profileImage", formData.profileImage);
+      Object.keys(formData).forEach((key) => {
+        if (key !== "profileImage") {
+          data.append(key, formData[key]);
+        }
+      });
+      createProfile(data, history, true);
+    };
 
   return (
     <Fragment>
@@ -56,6 +64,21 @@ const CreateProfile = ({ createProfile, history }) => {
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
+      <div className="form-group">
+  <label htmlFor="profileImage">Profile Picture</label>
+  <input
+    type="file"
+    accept=".jpg,.png,.jpeg"
+    name="profileImage"
+    onChange={(e) =>
+      setFormData({
+        ...formData,
+        profileImage: e.target.files[0],
+      })
+    }
+  />
+  <small className="form-text">Upload a profile picture</small>
+</div>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Position</option>

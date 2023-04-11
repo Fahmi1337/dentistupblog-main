@@ -133,7 +133,7 @@ const history = useHistory();
       {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id !== _id && (
-              <button className="btn-round" onClick={function(e){ e.preventDefault(); alert('You now follow '+name)}}>+ Follow</button>
+              <button className="btn-round" onClick={function(e){ e.preventDefault(); alert('Coming soon!')}}>+ Follow</button>
             )}
         
         {auth.isAuthenticated &&

@@ -24,6 +24,7 @@ const EditProfile = ({
     instagram: "",
     linkedin: "",
     facebook: "",
+    name: "",
     profileImage: null,
   });
   //   for toggling social inputs on and off
@@ -47,6 +48,7 @@ const EditProfile = ({
       linkedin: loading || !profile.social ? "" : profile.social.linkedin,
       youtube: loading || !profile.social ? "" : profile.social.youtube,
       instagram: loading || !profile.social ? "" : profile.social.instagram,
+      name: loading || !profile.user.name ? "" : profile.user.name,
       profileImage: loading || !profile.profileImage ? "" : profile.profileImage,
     });
   }, [loading, getCurrentProfile]);
@@ -66,6 +68,7 @@ const EditProfile = ({
     instagram,
     linkedin,
     facebook,
+    name,
   } = formData;
 
   const onChange = (e) =>
@@ -144,7 +147,19 @@ console.log("formData?", formData);
             <option value="Esthétique">Esthétique</option>
           </select>
           <small className="form-text">
-            Give us an idea of where you are at in your career
+            Give us an idea of where you are at in your speciality
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">
+            Name
           </small>
         </div>
         <div className="form-group">
