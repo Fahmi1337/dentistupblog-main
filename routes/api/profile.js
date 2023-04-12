@@ -346,7 +346,8 @@ router.post(
         await user.save();
       }
 
-      res.json(profile);
+      // res.json(profile, user);
+      res.status(status).json(profile, user)
     } catch (e) {
       console.error(e.message);
       res.status(500).send("Server Error");

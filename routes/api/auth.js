@@ -56,6 +56,7 @@ router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     const profile = await Profile.findOne({ user: req.user.id });
+    console.log("profile??", profile);
     const profileImage = profile ? profile.profileImage : null;
     const userWithProfileImage = {
       ...user.toObject(),
