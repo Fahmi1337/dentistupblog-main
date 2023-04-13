@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {editPost} from "../../actions/post";
@@ -80,6 +80,16 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
     deglutitionAtypique,
   } = formData;
 
+
+  const handleCheckboxChange = (event) => {
+    const { name } = event.target;
+    const value = event.target.checked; // get the new checkbox value
+  
+    // update the state with the new checkbox value
+    setFormData({ ...formData, [name]: value });
+  };
+
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log("Edit Post Form data?", formData)
@@ -125,6 +135,97 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         ></textarea>
       </div>
       <div className="form-group">
+        <label className="form-label">Patient Reference</label>
+        <input
+          type="text"
+          name="patientReference"
+          value={patientReference}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label className="form-label">Date of birth</label>
+        <input
+          type="date"
+          name="dateOfBirth"
+          value={dateOfBirth}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+      {/* <div className="form-group">
+        <label className="form-label">gender</label>
+        <input
+          type="text"
+          name="gender"
+          value={gender}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div> */}
+       <div className="form-group">
+      <label className="form-label">Gender</label>
+      <div className="form-check">
+        <input
+          type="radio"
+          id="male"
+          name="gender"
+          value="male"
+          checked={gender === 'male'}
+          onChange={onChange}
+          className="form-check-input"
+        />
+        <label htmlFor="male" className="form-check-label">
+          Male
+        </label>
+      </div>
+      <div className="form-check">
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="female"
+          checked={gender === 'female'}
+          onChange={onChange}
+          className="form-check-input"
+        />
+        <label htmlFor="female" className="form-check-label">
+          Female
+        </label>
+      </div>
+    </div>
+    <div className="form-group">
+        <label className="form-label">Reason for consultation</label>
+        <input
+          type="text"
+          name="reasonConsultation"
+          value={reasonConsultation}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label className="form-label">Medical History</label>
+        <input
+          type="text"
+          name="medicalHistory"
+          value={medicalHistory}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label className="form-label">Daily medications</label>
+        <input
+          type="text"
+          name="dailyMedications"
+          value={dailyMedications}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
         <label className="form-label">Blood Pressure</label>
         <input
           type="text"
@@ -135,27 +236,29 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         />
       </div>
       <div className="form-group">
-        <label className="form-label">dailyMedications</label>
+        <label className="form-label">Pulse</label>
         <input
           type="text"
-          name="dailyMedications"
-          value={dailyMedications}
+          name="pulse"
+          value={pulse}
           onChange={onChange}
           className="form-control"
         />
       </div>
+    
       <div className="form-group">
-        <label className="form-label">dateOfBirth</label>
+        <label className="form-label">Respiration</label>
         <input
-          type="date"
-          name="dateOfBirth"
-          value={dateOfBirth}
+          type="text"
+          name="respiration"
+          value={respiration}
           onChange={onChange}
           className="form-control"
         />
       </div>
+    
       <div className="form-group">
-        <label className="form-label">dentalHistory</label>
+        <label className="form-label">Dental History</label>
         <input
           type="text"
           name="dentalHistory"
@@ -165,47 +268,28 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         />
       </div>
       <div className="form-group">
-        <label className="form-label">dermato</label>
+        <label className="form-label">Extraoral Examination</label>
         <input
           type="text"
-          name="dermato"
-          value={dermato}
+          name="extraoralExamination"
+          value={extraoralExamination}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+  
+      <div className="form-group">
+        <label className="form-label">Intraoral Examination</label>
+        <input
+          type="text"
+          name="intraoralExamination"
+          value={intraoralExamination}
           onChange={onChange}
           className="form-control"
         />
       </div>
       <div className="form-group">
-        <label className="form-label">detailsDeglutition</label>
-        <input
-          type="text"
-          name="detailsDeglutition"
-          value={detailsDeglutition}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">detailsMastication</label>
-        <input
-          type="text"
-          name="detailsMastication"
-          value={detailsMastication}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">detailsRespiration</label>
-        <input
-          type="text"
-          name="detailsRespiration"
-          value={detailsRespiration}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">examenExoBuccal</label>
+        <label className="form-label">Examen exo-buccal</label>
         <input
           type="text"
           name="examenExoBuccal"
@@ -215,97 +299,16 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         />
       </div>
       <div className="form-group">
-        <label className="form-label">extraoralExamination</label>
+        <label className="form-label">Dermato</label>
         <input
           type="text"
-          name="extraoralExamination"
-          value={extraoralExamination}
+          name="dermato"
+          value={dermato}
           onChange={onChange}
           className="form-control"
         />
       </div>
-      <div className="form-group">
-        <label className="form-label">gender</label>
-        <input
-          type="text"
-          name="gender"
-          value={gender}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">intraoralExamination</label>
-        <input
-          type="text"
-          name="intraoralExamination"
-          value={intraoralExamination}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      
-      <div className="form-group">
-        <label className="form-label">medicalHistory</label>
-        <input
-          type="text"
-          name="medicalHistory"
-          value={medicalHistory}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">patientReference</label>
-        <input
-          type="text"
-          name="patientReference"
-          value={patientReference}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">pulse</label>
-        <input
-          type="text"
-          name="pulse"
-          value={pulse}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">reasonConsultation</label>
-        <input
-          type="text"
-          name="reasonConsultation"
-          value={reasonConsultation}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">respiration</label>
-        <input
-          type="text"
-          name="respiration"
-          value={respiration}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">symetrieExplanation</label>
-        <input
-          type="text"
-          name="symetrieExplanation"
-          value={symetrieExplanation}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
+      {/* <div className="form-group">
         <label className="form-label">symetrie</label>
         <input
           type="text"
@@ -314,60 +317,105 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
           onChange={onChange}
           className="form-control"
         />
+      </div> */}
+       <div className="form-group">
+      <label className="form-label">Symetrie</label>
+      <div className="form-check">
+        <input
+          type="radio"
+          id="ouiSymetrie"
+          name="symetrie"
+          value="ouiSymetrie"
+          checked={symetrie === 'ouiSymetrie'}
+          onChange={onChange}
+          className="form-check-input"
+        />
+        <label htmlFor="ouiSymetrie" className="form-check-label">
+          Oui
+        </label>
       </div>
-      
-      <div className="form-group">
-        <label className="form-label">examenAtmNormal</label>
+      <div className="form-check">
+        <input
+          type="radio"
+          id="nonSymetrie"
+          name="symetrie"
+          value="nonSymetrie"
+          checked={symetrie === 'nonSymetrie'}
+          onChange={onChange}
+          className="form-check-input"
+        />
+        <label htmlFor="nonSymetrie" className="form-check-label">
+          Non
+        </label>
+      </div>
+    </div>
+
+    <div className="form-group">
+        <label className="form-label">Si oui, indiquer l'emplacement</label>
         <input
           type="text"
-          name="examenAtmNormal"
-          value={examenAtmNormal}
+          name="symetrieExplanation"
+          value={symetrieExplanation}
           onChange={onChange}
           className="form-control"
         />
       </div>
+
+
+
+      <label className="form-label">Examen des ATM</label>
       <div className="form-group">
-        <label className="form-label">respirationBuccal</label>
+    
+        
         <input
-          type="text"
-          name="respirationBuccal"
-          value={respirationBuccal}
-          onChange={onChange}
+      type="checkbox"
+      id="examenAtmNormal"
+      name="examenAtmNormal"
+      checked={examenAtmNormal}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Normal
       </div>
+
       <div className="form-group">
-        <label className="form-label">examenAtmDouleur</label>
+        
         <input
-          type="text"
+          type="checkbox"
+          id="examenAtmDouleur"
           name="examenAtmDouleur"
-          value={examenAtmDouleur}
-          onChange={onChange}
+          checked={examenAtmDouleur}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Douleur
       </div>
       <div className="form-group">
-        <label className="form-label">examenAtmClaquement</label>
+    
         <input
-          type="text"
-          name="examenAtmClaquement"
-          value={examenAtmClaquement}
-          onChange={onChange}
+         type="checkbox"
+         id="examenAtmClaquement"
+         name="examenAtmClaquement"
+         checked={examenAtmClaquement}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Claquement
       </div>
       <div className="form-group">
-        <label className="form-label">examenAtmAutre</label>
+        
         <input
-          type="text"
+          type="checkbox"
+          id="examenAtmAutre"
           name="examenAtmAutre"
-          value={examenAtmAutre}
-          onChange={onChange}
+          checked={examenAtmAutre}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Autre
       </div>
       <div className="form-group">
-        <label className="form-label">examenAtmAutreExplanation</label>
+      <label className="form-label">Détails</label>
         <input
           type="text"
           name="examenAtmAutreExplanation"
@@ -376,67 +424,139 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
           className="form-control"
         />
       </div>
+
+
+
+
+    
+   
+      <label className="form-label">Examen Fonctionnel</label>
+     <div>
+     <label className="form-label">La Respiration</label>
+      </div> 
       <div className="form-group">
-        <label className="form-label">respirationNasal</label>
+       
         <input
-          type="text"
+          type="checkbox"
           name="respirationNasal"
-          value={respirationNasal}
-          onChange={onChange}
+          checked={respirationNasal}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Nasal
       </div>
       <div className="form-group">
-        <label className="form-label">respirationMixte</label>
+       
         <input
-          type="text"
+          type="checkbox"
+          name="respirationBuccal"
+          checked={respirationBuccal}
+          onChange={handleCheckboxChange}
+          className="form-control"
+        />
+        Buccal
+      </div>
+      <div className="form-group">
+       
+        <input
+          type="checkbox"
           name="respirationMixte"
-          value={respirationMixte}
-          onChange={onChange}
+          checked={respirationMixte}
+          onChange={handleCheckboxChange}
           className="form-control"
         />
+        Mixte
       </div>
       <div className="form-group">
-        <label className="form-label">masticationUnilateral</label>
+        <label className="form-label">Détails</label>
         <input
           type="text"
-          name="masticationUnilateral"
-          value={masticationUnilateral}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label className="form-label">masticationBilateral</label>
-        <input
-          type="text"
-          name="masticationBilateral"
-          value={masticationBilateral}
+          name="detailsRespiration"
+          value={detailsRespiration}
           onChange={onChange}
           className="form-control"
         />
       </div>
 
+
+      <label className="form-label">La Mastication</label>
       <div className="form-group">
-        <label className="form-label">deglutitionTypique</label>
+        
+        <input
+          type="checkbox"
+          name="masticationUnilateral"
+          checked={masticationUnilateral}
+          onChange={handleCheckboxChange}
+          className="form-control"
+        />
+        Unilatéral
+      </div>
+      <div className="form-group">
+       
+        <input
+          type="checkbox"
+          name="masticationBilateral"
+          checked={masticationBilateral}
+          onChange={handleCheckboxChange}
+          className="form-control"
+        />
+        Bi-latéral
+      </div>
+  
+      <div className="form-group">
+        <label className="form-label">Détails</label>
         <input
           type="text"
+          name="detailsMastication"
+          value={detailsMastication}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
+     
+     
+   
+      
+     
+      <label className="form-label">La Déglutition</label>
+      <div className="form-group">
+   
+        <input
+          type="checkbox"
           name="deglutitionTypique"
-          value={deglutitionTypique}
-          onChange={onChange}
+          checked={deglutitionTypique}
+          onChange={handleCheckboxChange}
           className="form-control"
-        />
+        />Typique
       </div>
       <div className="form-group">
-        <label className="form-label">deglutitionAtypique</label>
+      
+        <input
+          type="checkbox"
+          name="deglutitionAtypique"
+          checked={deglutitionAtypique}
+          onChange={handleCheckboxChange}
+          className="form-control"
+        />
+        Atypique
+      </div>
+     
+      <div className="form-group">
+        <label className="form-label">Détails</label>
         <input
           type="text"
-          name="deglutitionAtypique"
-          value={deglutitionAtypique}
+          name="detailsDeglutition"
+          value={detailsDeglutition}
           onChange={onChange}
           className="form-control"
         />
       </div>
+      
+      
+  
+     
+
+     
   
     </form>
     <button onClick={onSubmit} className="btn btn-primary">Submit</button>

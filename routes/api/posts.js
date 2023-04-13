@@ -286,6 +286,9 @@ router.get("/:id", auth, async (req, res) => {
       postInfo: post.postInfo,
       date: post.date,
       likes: post.likes,
+      user: post.user,
+      avatar: post.avatar,
+      _v: post._v,
       comments: commentsWithProfileImage,
     });
   } catch (e) {

@@ -123,6 +123,7 @@ export const createProfile =
         payload: { msg: e.response.statusText, status: e.response.status },
       });
     }
+    window.scrollTo(0, 0);
   };
 
 // Add experience to the profile
@@ -185,6 +186,7 @@ export const addUserEducation = (formData, history) => async (dispatch) => {
       payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
+  window.scrollTo(0, 0);
 };
 
 //Delete experience
@@ -204,6 +206,7 @@ export const deleteUserExperience = (id) => async (dispatch) => {
       payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
+  window.scrollTo(0, 0);
 };
 
 //Delete education
@@ -223,6 +226,7 @@ export const deleteUserEducation = (id) => async (dispatch) => {
       payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
+  window.scrollTo(0, 0);
 };
 
 //Delete account & Profile
@@ -244,4 +248,5 @@ export const deleteUserAccount = () => async (dispatch) => {
       });
     }
   }
+  window.scrollTo(0, 0);
 };

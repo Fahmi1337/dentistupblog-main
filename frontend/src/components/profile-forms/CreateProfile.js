@@ -52,7 +52,7 @@ const CreateProfile = ({ createProfile, history }) => {
           data.append(key, formData[key]);
         }
       });
-      createProfile(data, history, true);
+      createProfile(data, history, false);
     };
 
   return (

@@ -29,7 +29,7 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values, editMode }) => {
   };
   return (
     <>
-      <Card style={{ marginTop: 100 }}>
+       <Card>
         <Card.Body>
           <Form onSubmit={submitFormData} className="form my-1">
             <Form.Group className="mb-3">

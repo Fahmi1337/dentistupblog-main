@@ -121,7 +121,7 @@ const StepFour = ({
 
   return (
     <div>
-      <Card style={{ marginTop: 100 }}>
+      <Card>
         <Card.Body>
           <Form onSubmit={submitFormData} className="form my-1">
             <Form.Label>Examen Fonctionnel </Form.Label>

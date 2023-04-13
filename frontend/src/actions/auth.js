@@ -59,6 +59,7 @@ export const registerUser =
         type: REGISTER_FAILED,
       });
     }
+    window.scrollTo(0, 0);
   };
 
 // Login User
@@ -88,6 +89,7 @@ export const loginUser = (email, password) => async (dispatch) => {
       type: LOGIN_FAILED,
     });
   }
+  window.scrollTo(0, 0);
 };
 
 //Logout User / Clear Profile

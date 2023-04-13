@@ -10,10 +10,10 @@ import {
   GET_POST,
   ADD_COMMENT,
   EDIT_COMMENT,
-  GET_COMMENT_BY_ID,
   DELETE_COMMENT,
 } from "./types";
-
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
 // Get posts
 export const getPosts = () => async (dispatch) => {
   try {
@@ -76,12 +76,15 @@ export const deletePost = (id) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post successfully removed", "success"));
+   
   } catch (e) {
     dispatch({
       type: POST_ERROR,
       payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
+  history.push('/posts');
+  window.location.reload();
 };
 
 // Add Post

@@ -103,13 +103,13 @@ return !postInfo  ? (
               <i className="fas fa-pen"> Edit Post</i>
             </button>
 
-            <button
+            {/* <button
               onClick={(e) => deletePost(_id)}
               type="button"
               className="btn btn-danger"
             >
               <i className="fas fa-times"> Delete Post</i>
-            </button>
+            </button> */}
           </div>
         )}
         {/* <p className="my-1"> Title : {postInfo.title} </p> */}
