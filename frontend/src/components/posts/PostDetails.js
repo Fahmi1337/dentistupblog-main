@@ -151,7 +151,7 @@ return !postInfo  ? (
             </p>
             <p className="my-1"><span>Examen exo-buccal -</span> {postInfo.examenExoBuccal} </p>
             <p className="my-1"><span>Dermato -</span> {postInfo.dermato} </p>
-            <p className="my-1"><span>Symétrie -</span> {postInfo.symetrie === "ouiSymetrie" ? <CheckCircleIcon style={{color: "#00b300"}}/> : <UnpublishedIcon/> } </p>
+            <p className="my-1"><span>Symétrie -</span> {postInfo.symetrie === "ouiSymetrie" ? <CheckCircleIcon/> : <UnpublishedIcon/> } </p>
             <p className="my-1">
             <span>Détails Symétrie -</span> {postInfo.symetrieExplanation}{" "}
             </p>

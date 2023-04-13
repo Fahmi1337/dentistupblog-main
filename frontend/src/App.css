@@ -785,7 +785,11 @@ button {
 }
 [data-testid="CheckCircleIcon"]{
   color: #00b300;
+  margin-left: 0.2em;
+  vertical-align: top;
 }
 [data-testid="UnpublishedIcon"]{
   color: rgb(201, 44, 44);
+  margin-left: 0.2em;
+  vertical-align: top;
 }
