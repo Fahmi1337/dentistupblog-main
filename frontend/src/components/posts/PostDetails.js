@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import Modal from "@mui/material/Modal";
 import EditPost from "./EditPost";
 import PostForm from "./PostForm";
@@ -114,59 +115,60 @@ return !postInfo  ? (
         )}
         {/* <p className="my-1"> Title : {postInfo.title} </p> */}
         <div id="postDetailsContainer">
-        <p className="my-1"> Description : {postInfo.description} </p>
+        <p className="my-1"> <span>Description -</span> {postInfo.description} </p>
         <div className="threeColumns">
           <div className="gridOne">
             <p className="my-1">
-              Référence - {postInfo.patientReference}{" "}
+              <span>Référence  </span>
+               {postInfo.patientReference}{" "}
             </p>
-            <p className="my-1"> Gender - {postInfo.gender}</p>
-            <p className="my-1">Date of birth - {postInfo.dateOfBirth} </p>
-            <p className="my-1">Age - {getAge(postInfo.dateOfBirth)}</p>
-            <p className="my-1">Medical History - {postInfo.medicalHistory} </p>
+            <p className="my-1"><span>Gender -</span>  {postInfo.gender}</p>
+            <p className="my-1"><span>Date of birth -</span> {postInfo.dateOfBirth} </p>
+            <p className="my-1"><span>Age </span> {getAge(postInfo.dateOfBirth)}</p>
+            <p className="my-1"><span>Medical History -</span> {postInfo.medicalHistory} </p>
             <p className="my-1">
-              Daily Medication - {postInfo.dailyMedications}{" "}
+            <span>Daily Medication -</span> {postInfo.dailyMedications}{" "}
             </p>
            
 <p className="my-1">
-  Reason of consultation - {postInfo.reasonConsultation}{" "}
+<span>Reason of consultation -</span> {postInfo.reasonConsultation}{" "}
 </p>
-<p className="my-1"> Blood Pressure - {postInfo.bloodPressure} </p>
+<p className="my-1"> <span>Blood Pressure </span> {postInfo.bloodPressure} mm Hg</p>
           <div style={{width: "50%"}}> <BloodPressureLinearProgress variant="determinate" value={postInfo.bloodPressure*100/180} /></div>
-          <p className="my-1">Pulse - {postInfo.pulse} </p>
+          <p className="my-1"><span>Pulse </span> {postInfo.pulse} Pulse/min</p>
           <div style={{width: "50%"}}> <PulseLinearProgress variant="determinate" value={(postInfo.pulse*100/82)-30} /></div>
-          <p className="my-1">Respiration - {postInfo.respiration} </p>
+          <p className="my-1"><span>Respiration </span> {postInfo.respiration} per minute</p>
           <div style={{width: "50%"}}> <RespirationLinearProgress variant="determinate" value={(postInfo.respiration*100/45)} /></div>
           </div>
           <div className="gridTwo">
          
           
             <p className="my-1">
-              Extraoral Examination - {postInfo.extraoralExamination}{" "}
+            <span>Extraoral Examination -</span> {postInfo.extraoralExamination}{" "}
             </p>
             <p className="my-1">
-              Intraoral Examination - {postInfo.intraoralExamination}{" "}
+            <span>Intraoral Examination -</span> {postInfo.intraoralExamination}{" "}
             </p>
-            <p className="my-1">Examen exo-buccal - {postInfo.examenExoBuccal} </p>
-            <p className="my-1">Dermato - {postInfo.dermato} </p>
-            <p className="my-1">Symétrie - {postInfo.symetrie} </p>
+            <p className="my-1"><span>Examen exo-buccal -</span> {postInfo.examenExoBuccal} </p>
+            <p className="my-1"><span>Dermato -</span> {postInfo.dermato} </p>
+            <p className="my-1"><span>Symétrie -</span> {postInfo.symetrie === "ouiSymetrie" ? <CheckCircleIcon style={{color: "#00b300"}}/> : <UnpublishedIcon/> } </p>
             <p className="my-1">
-              Détails Symétrie : {postInfo.symetrieExplanation}{" "}
+            <span>Détails Symétrie -</span> {postInfo.symetrieExplanation}{" "}
             </p>
-           <h3>Examen des ATM</h3>
+           <h3><span></span>Examen des ATM</h3>
             <p className="my-1">
-              Normal - {postInfo.examenAtmNormal}{" "}
-            </p>
-            <p className="my-1">
-              Douleur - {postInfo.examenAtmDouleur}{" "}
+            <span>Normal -</span> {postInfo.examenAtmNormal === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}
             </p>
             <p className="my-1">
-              Claquement - {postInfo.examenAtmClaquement}{" "}
+            <span>Douleur -</span> {postInfo.examenAtmDouleur === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}
+            </p>
+            <p className="my-1">
+            <span>Claquement -</span> {postInfo.examenAtmClaquement === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}
             </p>
            
-            <p className="my-1">Autres - {postInfo.examenAtmAutre} </p>
+            <p className="my-1"><span>Autres -</span> {postInfo.examenAtmAutre === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}</p>
             <p className="my-1">
-              Explication - {postInfo.examenAtmAutreExplanation}{" "}
+            <span>Explication -</span> {postInfo.examenAtmAutreExplanation}{" "}
             </p>
            
          
@@ -177,41 +179,42 @@ return !postInfo  ? (
           <h3>Examens Fonctionnels</h3>
           <h4>Respiration</h4>
           <p className="my-1">
-              respirationNasal: {postInfo.respirationNasal}{" "}
+          <span>Nasal -</span> {postInfo.respirationNasal === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
             </p>
             <p className="my-1">
-              respirationMixte: {postInfo.respirationMixte}{" "}
+            <span>Mixte -</span> {postInfo.respirationMixte === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
             </p>
           <p className="my-1">
               {" "}
-              respirationBuccal: {postInfo.respirationBuccal}
+              <span>Buccal -</span> {postInfo.respirationBuccal === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}
             </p>
             <p className="my-1">
-              detailsRespiration : {postInfo.detailsRespiration}{" "}
-            </p>
-            <h4>Mastication</h4>
-            <p className="my-1">
-              detailsMastication : {postInfo.detailsMastication}{" "}
+            <span>Détails -</span> {postInfo.detailsRespiration}{" "}
             </p>
            
+           
+            <h4>Mastication</h4>
             <p className="my-1">
-              masticationBilateral : {postInfo.masticationBilateral}{" "}
+            <span>Bilateral -</span> {postInfo.masticationBilateral === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
             </p>
             <p className="my-1">
-              masticationUnilateral: {postInfo.masticationUnilateral}{" "}
+            <span>Unilateral -</span> {postInfo.masticationUnilateral === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
+            </p>
+            <p className="my-1">
+            <span>Détails -</span> {postInfo.detailsMastication}{" "}
             </p>
             <h4>Déglutition</h4>
             <p className="my-1">
-              deglutitionTypique : {postInfo.deglutitionTypique}{" "}
+            <span>Typique -</span> {postInfo.deglutitionTypique === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
             </p>
           <p className="my-1">
-              deglutitionAtypique : {postInfo.deglutitionAtypique}{" "}
+          <span>Atypique -</span> {postInfo.deglutitionAtypique === "true" ? <CheckCircleIcon/> : <UnpublishedIcon/>}{" "}
             </p>
             <p className="my-1">
-              detailsDeglutition : {postInfo.detailsDeglutition}{" "}
+            <span>Détails -</span> {postInfo.detailsDeglutition}{" "}
             </p>
 
-            <p className="my-1"> dentalHistory : {postInfo.dentalHistory}</p>
+            <p className="my-1"> <span>Dental History -</span> {postInfo.dentalHistory}</p>
           
          
           

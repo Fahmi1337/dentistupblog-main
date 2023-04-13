@@ -779,3 +779,13 @@ button {
 .profile.bg-light img{
   width: 50%;
 }
+.my-1 span{
+  font-weight: bold;
+  color: #17a2b8;
+}
+[data-testid="CheckCircleIcon"]{
+  color: #00b300;
+}
+[data-testid="UnpublishedIcon"]{
+  color: rgb(201, 44, 44);
+}

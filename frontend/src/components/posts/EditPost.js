@@ -371,7 +371,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
       type="checkbox"
       id="examenAtmNormal"
       name="examenAtmNormal"
-      checked={examenAtmNormal}
+      checked={examenAtmNormal ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -384,7 +384,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
           type="checkbox"
           id="examenAtmDouleur"
           name="examenAtmDouleur"
-          checked={examenAtmDouleur}
+          checked={examenAtmDouleur ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -396,7 +396,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
          type="checkbox"
          id="examenAtmClaquement"
          name="examenAtmClaquement"
-         checked={examenAtmClaquement}
+         checked={examenAtmClaquement ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -408,7 +408,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
           type="checkbox"
           id="examenAtmAutre"
           name="examenAtmAutre"
-          checked={examenAtmAutre}
+          checked={examenAtmAutre ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -439,7 +439,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="respirationNasal"
-          checked={respirationNasal}
+          checked={respirationNasal ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -450,7 +450,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="respirationBuccal"
-          checked={respirationBuccal}
+          checked={respirationBuccal ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -461,7 +461,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="respirationMixte"
-          checked={respirationMixte}
+          checked={respirationMixte ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -485,7 +485,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="masticationUnilateral"
-          checked={masticationUnilateral}
+          checked={masticationUnilateral ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -496,7 +496,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="masticationBilateral"
-          checked={masticationBilateral}
+          checked={masticationBilateral ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />
@@ -524,7 +524,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="deglutitionTypique"
-          checked={deglutitionTypique}
+          checked={deglutitionTypique ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />Typique
@@ -534,7 +534,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
         <input
           type="checkbox"
           name="deglutitionAtypique"
-          checked={deglutitionAtypique}
+          checked={deglutitionAtypique ==="true" ? true : undefined}
           onChange={handleCheckboxChange}
           className="form-control"
         />

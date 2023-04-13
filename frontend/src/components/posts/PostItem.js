@@ -32,7 +32,7 @@ const PostItem = ({
               </Link>
             </div>
             <div>
-              <p className="my-1">{postInfo.title}</p>
+              <h2 className="my-1">{postInfo.title}</h2>
               {!showDetails && (
                 <p className="my-1">
                   {postInfo.description?.slice(0, 200) +
@@ -110,7 +110,7 @@ const PostItem = ({
               </Link>
             </div>
             <div>
-              <p className="my-1">{postInfo.title}</p>
+              <h2 className="my-1">{postInfo.title}</h2>
               {!showDetails && (
                 <p className="my-1">
                   {postInfo.description?.slice(0, 200) +
