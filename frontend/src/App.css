@@ -525,6 +525,8 @@ button {
   grid-template-columns: 1fr 4fr;
   grid-gap: 2rem;
   align-items: center;
+  box-shadow: rgb(100 100 111 / 23%) 2px 3px 11px 0px;
+  padding-bottom: 2em;
 }
 
 .post > div:first-child {

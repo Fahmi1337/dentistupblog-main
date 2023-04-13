@@ -135,9 +135,9 @@ return !postInfo  ? (
 </p>
 <p className="my-1"> <span>Blood Pressure </span> {postInfo.bloodPressure} mm Hg</p>
           <div style={{width: "50%"}}> <BloodPressureLinearProgress variant="determinate" value={postInfo.bloodPressure*100/180} /></div>
-          <p className="my-1"><span>Pulse </span> {postInfo.pulse} Pulse/min</p>
+          <p className="my-1"><span>Pulse </span> {postInfo.pulse} /min</p>
           <div style={{width: "50%"}}> <PulseLinearProgress variant="determinate" value={(postInfo.pulse*100/82)-30} /></div>
-          <p className="my-1"><span>Respiration </span> {postInfo.respiration} per minute</p>
+          <p className="my-1"><span>Respiration </span> {postInfo.respiration} /min</p>
           <div style={{width: "50%"}}> <RespirationLinearProgress variant="determinate" value={(postInfo.respiration*100/45)} /></div>
           </div>
           <div className="gridTwo">
