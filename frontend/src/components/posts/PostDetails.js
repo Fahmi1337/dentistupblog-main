@@ -115,7 +115,7 @@ return !postInfo  ? (
         )}
         {/* <p className="my-1"> Title : {postInfo.title} </p> */}
         <div id="postDetailsContainer">
-        <p className="my-1"> <span>Description -</span> {postInfo.description} </p>
+        <p className="my-1" id="postDescription"> {postInfo.description} </p>
         <div className="threeColumns">
           <div className="gridOne">
             <p className="my-1">

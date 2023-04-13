@@ -779,7 +779,7 @@ button {
 .profile.bg-light img{
   width: 50%;
 }
-.my-1 span{
+#postDetailsContainer .my-1 span{
   font-weight: bold;
   color: #17a2b8;
 }
@@ -792,4 +792,8 @@ button {
   color: rgb(201, 44, 44);
   margin-left: 0.2em;
   vertical-align: top;
+}
+#postDescription{
+  background-color: aliceblue;
+  padding: 1em;
 }
