@@ -126,6 +126,7 @@ return !postInfo  ? (
             <p className="my-1"><span>Date of birth -</span> {postInfo.dateOfBirth} </p>
             <p className="my-1"><span>Age </span> {getAge(postInfo.dateOfBirth)}</p>
             <p className="my-1"><span>Medical History -</span> {postInfo.medicalHistory} </p>
+            <p className="my-1"> <span>Dental History -</span> {postInfo.dentalHistory}</p>
             <p className="my-1">
             <span>Daily Medication -</span> {postInfo.dailyMedications}{" "}
             </p>
@@ -214,7 +215,7 @@ return !postInfo  ? (
             <span>Détails -</span> {postInfo.detailsDeglutition}{" "}
             </p>
 
-            <p className="my-1"> <span>Dental History -</span> {postInfo.dentalHistory}</p>
+          
           
          
           

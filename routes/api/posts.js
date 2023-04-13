@@ -389,7 +389,7 @@ router.post("/comment/:id", [auth], async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     const post = await Post.findById(req.params.id);
-    console.log("hello", req.body.formData);
+  
     const newComment = {
       treatment: req.body.formData.treatment,
       diagnostic: req.body.formData.diagnostic,
