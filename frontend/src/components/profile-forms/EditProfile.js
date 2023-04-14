@@ -192,6 +192,16 @@ console.log("formData?", formData);
         <div className="form-group">
           <input
             type="text"
+            placeholder="Title"
+            name="title"
+            value={title}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">Title</small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
             placeholder="Company"
             name="company"
             value={company}
@@ -247,16 +257,7 @@ console.log("formData?", formData);
           />
           <small className="form-text">Title</small>
         </div> */}
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            value={title}
-            onChange={(e) => onChange(e)}
-          />
-          <small className="form-text">Title</small>
-        </div>
+       
         <div className="form-group">
           <textarea
             placeholder="A short bio of yourself"
