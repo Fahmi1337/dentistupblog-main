@@ -13,6 +13,7 @@ import {
   DELETE_COMMENT,
 } from "./types";
 import { createBrowserHistory } from 'history';
+axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
 const history = createBrowserHistory();
 // Get posts
 export const getPosts = () => async (dispatch) => {

@@ -10,7 +10,7 @@ import {
   GET_PROFILES,
   GET_REPOS,
 } from "./types";
-
+axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
 //Get the current user's profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {

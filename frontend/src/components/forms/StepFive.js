@@ -102,38 +102,3 @@ StepFive.propTypes = {
 };
 
 export default connect(null, { addPost })(StepFive);
-
-
-
-
-// import React, { useState } from "react";
-// import axios from "axios";
-
-// function App() {
-//   const [selectedFile, setSelectedFile] = useState(null);
-
-//   const onFileChange = (event) => {
-//     setSelectedFile(event.target.files[0]);
-//   };
-
-//   const onFormSubmit = async (event) => {
-//     event.preventDefault();
-//     const formData = new FormData();
-//     formData.append("image", selectedFile);
-//     try {
-//       const response = await axios.post("http://localhost:5000/upload", formData);
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={onFormSubmit}>
-//       <input type="file" onChange={onFileChange} />
-//       <button type="submit">Upload</button>
-//     </form>
-//   );
-// }
-
-// export default App;

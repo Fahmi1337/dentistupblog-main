@@ -1,7 +1,7 @@
 {
-  "name": "devforumhubb",
+  "name": "dentistuphub",
   "version": "1.0.0",
-  "description": "Social Network Forum Hub for Devs",
+  "description": "Social Network Forum Hub for Dentists",
   "main": "server.js",
   "scripts": {
     "start": "node server",

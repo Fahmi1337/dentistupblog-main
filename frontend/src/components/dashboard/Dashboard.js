@@ -18,7 +18,7 @@ const Dashboard = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
   // if the profile is null and still loading
-  return loading && profile === null ? (
+  return loading ? (
     <Spinner />
   ) : (
     // Then load the dashboard

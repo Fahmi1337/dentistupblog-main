@@ -12,6 +12,10 @@ import {
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
+
+axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
+
+
 // Load User
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
