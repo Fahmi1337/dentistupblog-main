@@ -19,7 +19,8 @@ import InputBase from '@mui/material/InputBase';
 import { logoutUser } from "../../actions/auth";
 import SearchIcon from '@mui/icons-material/Search';
 import { useHistory } from "react-router-dom";
-const pages = ['test', 'test', 'test'];
+import Button from '@mui/material/Button';
+const pages = ['Posts', 'Dentists', 'My Questions', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const TopBar = ({
@@ -56,7 +57,29 @@ const handleUserMenuNavigation = (setting, e) =>{
         logoutUser();
         history.push(`/login`)
     }
-    // console.log("setting???", setting.toLowerCase().trim()==="profile")
+    console.log("setting???", setting.toLowerCase().trim()==="profile")
+}
+
+
+const handleUserPagesNavigation = (setting, e) =>{
+  e.preventDefault();
+  if(setting.toLowerCase().trim()==="posts"){
+      history.push(`/posts`)
+  }
+  else if(setting.toLowerCase().trim()==="dentists"){
+      history.push(`/profiles`)
+  }
+  else if(setting.toLowerCase().trim()==="my questions"){
+    history.push(`/myquestions`)
+}
+else if(setting.toLowerCase().trim()==="my groups"){
+  history.push(`/mygroups`)
+}
+  else{
+      
+      history.push(`/dashboard`)
+  }
+  console.log("setting???", setting.toLowerCase().trim())
 }
 
   const Search = styled('div')(({ theme }) => ({
@@ -156,7 +179,10 @@ const handleUserMenuNavigation = (setting, e) =>{
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center"
+                   key={page}
+                   onClick={(e) => { handleCloseUserMenu(); handleUserPagesNavigation(page, e); }}
+                  >{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -185,7 +211,7 @@ const handleUserMenuNavigation = (setting, e) =>{
             {/* {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={(e) => { handleCloseUserMenu(); handleUserMenuNavigation(page, e); }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -206,7 +232,7 @@ const handleUserMenuNavigation = (setting, e) =>{
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `http://localhost:5050/${auth?.user?.profileImage}` : auth?.user?.avatar}/>
+                <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL + auth?.user?.profileImage}` : auth?.user?.avatar}/>
               </IconButton>
             </Tooltip>
             <Menu

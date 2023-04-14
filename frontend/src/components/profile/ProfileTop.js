@@ -50,10 +50,8 @@ if (uploadsIndex !== -1) {
   return (
     
     <div className="profile-top-container bg-light" style={{  
-      backgroundImage: profileCover ?   "url(" + `http://localhost:5050/${profileCover}` + ")" : "url(" + bg + ")",
-      backgroundPosition: 'top',
-      backgroundSize: 'contain',
-      backgroundRepeat: 'no-repeat'
+      backgroundImage: profileCover ?   "url(" + `${process.env.REACT_APP_BASE_URL + profileCover}` + ")" : "url(" + bg + ")",
+ 
     }}>
         <Modal
         aria-labelledby="transition-modal-title"
@@ -77,7 +75,7 @@ if (uploadsIndex !== -1) {
           </Box>
         </Fade>
       </Modal>
-      <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
+      <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
       
       <div className="profile-top p-2">
         <h1 className="large">{title} {name}</h1>

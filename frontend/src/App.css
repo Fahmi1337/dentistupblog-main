@@ -799,3 +799,8 @@ button {
   background-color: rgb(145 203 215 / 14%);
   padding: 1em;
 }
+.profile-top-container{
+  background-position-y: 145%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

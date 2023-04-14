@@ -21,6 +21,7 @@ const CreateProfile = ({ createProfile, history }) => {
     linkedin: "",
     facebook: "",
     profileImage: null,
+    profileCover: null,
   });
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
@@ -54,6 +55,14 @@ const CreateProfile = ({ createProfile, history }) => {
           data.append(key, formData[key]);
         }
       });
+
+
+      // data.append("profileCover", formData.profileCover);
+      // Object.keys(formData).forEach((key) => {
+      //   if (key !== "profileCover") {
+      //     data.append(key, formData[key]);
+      //   }
+      // });
       createProfile(data, history, false);
     };
 
@@ -80,6 +89,23 @@ const CreateProfile = ({ createProfile, history }) => {
     }
   />
   <small className="form-text">Upload a profile picture</small>
+</div>
+
+
+<div className="form-group">
+  <label htmlFor="profileCover">Profile Cover</label>
+  <input
+    type="file"
+    accept=".jpg,.png,.jpeg"
+    name="profileCover"
+    onChange={(e) =>
+      setFormData({
+        ...formData,
+        profileCover: e.target.files[0],
+      })
+    }
+  />
+  <small className="form-text">Upload a profile cover</small>
 </div>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>

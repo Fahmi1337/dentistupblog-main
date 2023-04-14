@@ -36,7 +36,7 @@ const CommentItem = ({
     <div class="post bg-white p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
-          <img class="round-img" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="DentistUpAvatar" />
+          <img class="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="DentistUpAvatar" />
           <h4>{name}</h4>
         </Link>
       </div>

@@ -272,9 +272,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    // console.log("profileImage", req?.files?.profileImage[0]?.path);
-    console.log("profileCover", req?.files?.profileCover[0]?.path);
-    // console.log("profileCover", req.file);
     // destructure the request
     const {
       name,
@@ -305,7 +302,7 @@ router.post(
       profileCover = req.files.profileCover[0].path;
     }
 
-
+console.log("user?", req.user.id)
 
 
     // Build profile object
@@ -365,8 +362,8 @@ router.post(
         await user.save();
       }
 
-      // res.json(profile, user);
-      res.status(status).json(profile, user)
+      res.json(profile);
+      // res.status(status).json(profile, user)
     } catch (e) {
       console.error(e.message);
       res.status(500).send("Server Error");
