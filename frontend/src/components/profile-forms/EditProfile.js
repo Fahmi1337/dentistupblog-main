@@ -12,12 +12,13 @@ const EditProfile = ({
 }) => {
   const [formData, setFormData] = useState({
     company: "",
+    title: "",
     website: "",
     location: "",
     bio: "",
     status: "",
     speciality: "",
-    githubusername: "",
+    // githubusername: "",
     skills: "",
     youtube: "",
     twitter: "",
@@ -26,6 +27,7 @@ const EditProfile = ({
     facebook: "",
     name: "",
     profileImage: null,
+    profileCover: null,
   });
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
@@ -35,13 +37,14 @@ const EditProfile = ({
 
     setFormData({
       company: loading || !profile.company ? "" : profile.company,
+      title: loading || !profile.title ? "" : profile.title,
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
       speciality: loading || !profile.speciality ? "" : profile.speciality,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
-      githubusername:
-        loading || !profile.githubusername ? "" : profile.githubusername,
+      // githubusername:
+      //   loading || !profile.githubusername ? "" : profile.githubusername,
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
@@ -50,6 +53,7 @@ const EditProfile = ({
       instagram: loading || !profile.social ? "" : profile.social.instagram,
       name: loading || !profile.user.name ? "" : profile.user.name,
       profileImage: loading || !profile.profileImage ? "" : profile.profileImage,
+      profileCover: loading || !profile.profileCover ? "" : profile.profileCover,
     });
   }, [loading, getCurrentProfile]);
 
@@ -61,7 +65,8 @@ const EditProfile = ({
     bio,
     status,
     speciality,
-    githubusername,
+    // githubusername,
+    title,
     skills,
     youtube,
     twitter,
@@ -79,13 +84,19 @@ const EditProfile = ({
   //   createProfile(formData, history, true);
   // };
 
-
   const onSubmit = (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("profileImage", formData.profileImage);
+    // data.append("profileImage", formData.profileImage);
+    // Object.keys(formData).forEach((key) => {
+    //   if (key !== "profileImage") {
+    //     data.append(key, formData[key]);
+    //   }
+    // });
+
+    data.append("profileCover", formData.profileCover);
     Object.keys(formData).forEach((key) => {
-      if (key !== "profileImage") {
+      if (key !== "profileCover") {
         data.append(key, formData[key]);
       }
     });
@@ -115,6 +126,22 @@ console.log("formData?", formData);
     }
   />
   <small className="form-text">Upload a profile picture</small>
+</div>
+
+<div className="form-group">
+  <label htmlFor="profileCover">Profile Cover</label>
+  <input
+    type="file"
+    accept=".jpg,.png,.jpeg"
+    name="profileCover"
+    onChange={(e) =>
+      setFormData({
+        ...formData,
+        profileCover: e.target.files[0],
+      })
+    }
+  />
+  <small className="form-text">Upload a profile cover</small>
 </div>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
@@ -210,12 +237,22 @@ console.log("formData?", formData);
             Please use comma separated values (eg. skill1,skill2,skill3,skill4)
           </small>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <input
             type="text"
             placeholder="Title"
             name="githubusername"
             value={githubusername}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">Title</small>
+        </div> */}
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={title}
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">Title</small>

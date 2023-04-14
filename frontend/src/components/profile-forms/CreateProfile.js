@@ -7,12 +7,13 @@ import { createProfile } from "../../actions/profile";
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     company: "",
+    title: "",
     website: "",
     location: "",
     bio: "",
     status: "",
     speciality: "",
-    githubusername: "",
+    // githubusername: "",
     skills: "",
     youtube: "",
     twitter: "",
@@ -26,12 +27,13 @@ const CreateProfile = ({ createProfile, history }) => {
   // Destructurization
   const {
     company,
+    title,
     website,
     location,
     bio,
     status,
     speciality,
-    githubusername,
+    // githubusername,
     skills,
     youtube,
     twitter,
@@ -160,12 +162,22 @@ const CreateProfile = ({ createProfile, history }) => {
             Please use comma separated values (eg. skill1,skill2,skill3,skill4)
           </small>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <input
             type="text"
             placeholder="Title"
             name="githubusername"
             value={githubusername}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">Title</small>
+        </div> */}
+         <div className="form-group">
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={title}
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">Title</small>

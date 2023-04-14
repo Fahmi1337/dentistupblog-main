@@ -29,10 +29,17 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  githubusername: {
+  // githubusername: {
+  //   type: String,
+  // },
+  title: {
     type: String,
   },
   profileImage: {
+    type: String,
+    default: null,
+  },
+  profileCover: {
     type: String,
     default: null,
   },

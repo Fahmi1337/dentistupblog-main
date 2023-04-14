@@ -30,6 +30,8 @@ const ProfileTop = ({
     website,
     social,
     profileImage,
+    profileCover,
+    title,
     user: { name, avatar, _id },
   },
   auth,
@@ -40,11 +42,15 @@ const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 const history = useHistory();
 
+const uploadsIndex = profileCover.indexOf('uploads');
+if (uploadsIndex !== -1) {
+  profileCover = profileCover.slice(0, uploadsIndex + 'uploads'.length) + '/' + profileCover.slice(uploadsIndex + 'uploads'.length);
+}
 
   return (
     
     <div className="profile-top-container bg-light" style={{  
-      backgroundImage: "url(" + bg + ")",
+      backgroundImage: profileCover ?   "url(" + `http://localhost:5050/${profileCover}` + ")" : "url(" + bg + ")",
       backgroundPosition: 'top',
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat'
@@ -74,7 +80,7 @@ const history = useHistory();
       <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `http://localhost:5050/${profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
       
       <div className="profile-top p-2">
-        <h1 className="large">{name}</h1>
+        <h1 className="large">{title} {name}</h1>
         <p className="lead">
           {status} {company && <span> at {company}</span>}
         </p>
