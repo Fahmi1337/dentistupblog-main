@@ -13,7 +13,7 @@ import {
 import setAuthToken from "../utils/setAuthToken";
 
 
-axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
 
 // Load User

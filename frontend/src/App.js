@@ -26,7 +26,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          {localStorage.token && ( <TopBar />)}
+         <TopBar />
          
           <Navbar />
           <Switch>

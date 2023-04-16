@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
+import Spinner from "../layout/Spinner";
 const EditProfile = ({
   profile: { profile, loading },
   createProfile,
@@ -31,7 +32,12 @@ const EditProfile = ({
   });
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
-
+  const [newLoading, setLoading] = useState(false);
+  const checkLoading = (e) => {
+if (newLoading){
+  return <Spinner/>
+}
+  }
   useEffect(() => {
     getCurrentProfile();
 
@@ -101,10 +107,12 @@ const EditProfile = ({
       }
     });
     createProfile(data, history, true);
+    setLoading(true);
   };
 console.log("formData?", formData);
   return (
     <Fragment>
+       {checkLoading()}
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Edit some information to make your

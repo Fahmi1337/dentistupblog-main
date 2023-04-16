@@ -27,7 +27,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="Dentistup" />
+                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentistup" />
                 <h4>{name}</h4>
               </Link>
             </div>
@@ -105,7 +105,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="Dentisup" />
+                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentisup" />
                 <h4>{name}</h4>
               </Link>
             </div>

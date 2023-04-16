@@ -1,6 +1,5 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-
 import {
   GET_PROFILE,
   PROFILE_ERROR,
@@ -10,7 +9,7 @@ import {
   GET_PROFILES,
   GET_REPOS,
 } from "./types";
-axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 //Get the current user's profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
@@ -85,8 +84,17 @@ export const getGithubRepos = (username) => async (dispatch) => {
 
 //Create or update Profile
 export const createProfile =
-  (formData, history, edit = false) =>
+  (formData, history, edit) =>
   async (dispatch) => {
+    dispatch(
+      setAlert(
+        edit 
+           ? "Updating Profile..."
+           : "Creating Profile...",
+        "success"
+      )
+    );
+    window.scrollTo(0, 0);
     try {
       const config = {
         headers: {
@@ -110,9 +118,10 @@ export const createProfile =
         )
       );
       // If not editing
-      if (!edit) {
-        history.push("/dashboard");
-      }
+      // if (!edit) {
+      //   history.push("/dashboard");
+      // }
+      history.push("/dashboard");
     } catch (e) {
       const errors = e.response.data.errors;
       if (errors) {
@@ -123,6 +132,7 @@ export const createProfile =
         payload: { msg: e.response.statusText, status: e.response.status },
       });
     }
+  
     window.scrollTo(0, 0);
   };
 

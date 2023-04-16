@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
+import Spinner from "../layout/Spinner";
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,13 @@ const CreateProfile = ({ createProfile, history }) => {
     profileImage: null,
     profileCover: null,
   });
+  const [loading, setLoading] = useState(false);
+  const checkLoading = (e) => {
+if (loading){
+  return <Spinner/>
+}
+  }
+  
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
   // Destructurization
@@ -64,10 +72,12 @@ const CreateProfile = ({ createProfile, history }) => {
       //   }
       // });
       createProfile(data, history, false);
+      setLoading(true);
     };
 
   return (
     <Fragment>
+      {checkLoading()}
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
@@ -293,6 +303,8 @@ const CreateProfile = ({ createProfile, history }) => {
           Go Back
         </Link>
       </form>
+      
+     
     </Fragment>
   );
 };

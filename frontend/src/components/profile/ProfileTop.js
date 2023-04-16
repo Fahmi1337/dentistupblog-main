@@ -7,7 +7,8 @@ import Fade from "@mui/material/Fade";
 import PostItem from "../posts/PostItem";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+
 import bg from "../../img/dentistUpProfileBG.png"
 const style = {
   position: "absolute",
@@ -42,15 +43,24 @@ const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 const history = useHistory();
 
-const uploadsIndex = profileCover.indexOf('uploads');
-if (uploadsIndex !== -1) {
+const uploadsIndex = profileCover?.indexOf('uploads');
+if (uploadsIndex !== -1 && profileCover) {
   profileCover = profileCover.slice(0, uploadsIndex + 'uploads'.length) + '/' + profileCover.slice(uploadsIndex + 'uploads'.length);
 }
+const getUserPostsCount = () => {
+   /* we will compare _id with posts.user */
+  return  posts.filter((g) => _id?.includes(g.user)).map((g) => g.user)
+  .length
+        }
+
+        const renderedCurrentUserPosts = posts.map((post) => (
+          <PostItem key={post._id} post={post} showDetails={false} postsByUserId={_id} showUserPosts={true}/>
+        ));
 
   return (
     
     <div className="profile-top-container bg-light" style={{  
-      backgroundImage: profileCover ?   "url(" + `${process.env.REACT_APP_BASE_URL + profileCover}` + ")" : "url(" + bg + ")",
+      backgroundImage: profileCover ?   "url(" + `${process.env.REACT_APP_BASE_URL +"/" + profileCover}` + ")" : "url(" + bg + ")",
  
     }}>
         <Modal
@@ -69,13 +79,20 @@ if (uploadsIndex !== -1) {
         <Fade in={open}>
           <Box sx={style}>
             {/* PostForm */}
-            {posts.map((post) => (
+            {/* {posts.map((post) => (
           <PostItem key={post._id} post={post} showDetails={false} postsByUserId={_id} showUserPosts={true}/>
-        ))}
+        ))} */}
+          {getUserPostsCount() > 0 ? (
+  renderedCurrentUserPosts
+) : (
+  <h3>You don't have any posts yet, to start you can add your first post <Link to="/posts" >
+  here
+</Link></h3> 
+)}
           </Box>
         </Fade>
       </Modal>
-      <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
+      <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
       
       <div className="profile-top p-2">
         <h1 className="large">{title} {name}</h1>
@@ -88,43 +105,42 @@ if (uploadsIndex !== -1) {
    
           <span className="btn-round" onClick={function(e){ e.preventDefault(); alert("Coming soon!")}}>500+ Connections</span>
           <span className="btn-round" onClick={handleOpen}>
-            {/* we will compare _id with posts.user */}
+           
             {
-              posts.filter((g) => _id?.includes(g.user)).map((g) => g.user)
-                .length
+             getUserPostsCount()
             }{" "}
             Cases
           </span>
         </div>
         <div className="icons my-1">
-          {website && (
-            <a href={website} target="_blank" rel="noopener noreferrer">
+          {website && website !== "undefined" && (
+            <a href={website.includes("https://www.") ? website : "https://www." + website} target="_blank" rel="noopener noreferrer">
               <i className="fas fa-globe fa-2x"></i>
             </a>
           )}
-          {social && social.twitter && (
-            <a href={social.twitter} target="_blank" rel="noopener noreferrer">
+          {social && social.twitter && social.twitter !== "undefined" && (
+            <a href={social.twitter.includes("https://www.twitter.com/") ? social.twitter : "https://www.twitter.com/" + social.twitter} target="_blank" rel="noopener noreferrer">
               <i className="fab fa-twitter fa-2x"></i>
             </a>
           )}
-          {social && social.facebook && (
-            <a href={social.facebook} target="_blank" rel="noopener noreferrer">
+          {social && social.facebook && social.facebook !== "undefined" && (
+            <a href={social.facebook.includes("https://www.facebook.com/") ? social.facebook : "https://www.facebook.com/" + social.facebook} target="_blank" rel="noopener noreferrer">
               <i className="fab fa-facebook fa-2x"></i>
             </a>
           )}
-          {social && social.linkedin && (
-            <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
+          {social && social.linkedin && social.linkedin !== "undefined" && (
+            <a href={social.linkedin.includes("https://www.linkedin.com/in/") ? social.linkedin : "https://www.linkedin.com/in/" + social.linkedin} target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin fa-2x"></i>
             </a>
           )}
-          {social && social.youtube && (
-            <a href={social.youtube} target="_blank" rel="noopener noreferrer">
+          {social && social.youtube && social.youtube !== "undefined" && (
+            <a href={social.youtube.includes("https://www.youtube.com/@") ? social.youtube : "https://www.youtube.com/@" + social.youtube} target="_blank" rel="noopener noreferrer">
               <i className="fab fa-youtube fa-2x"></i>
             </a>
           )}
-          {social && social.instagram && (
+          {social && social.instagram && social.instagram !== "undefined" && (
             <a
-              href={social.instagram}
+              href={social.instagram.includes("https://www.instagram.com/") ? social.instagram : "https://www.instagram.com/" + social.instagram}
               target="_blank"
               rel="noopener noreferrer"
             >

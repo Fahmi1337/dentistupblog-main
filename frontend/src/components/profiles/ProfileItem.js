@@ -15,7 +15,7 @@ const ProfileItem = ({
 
   return (
     <div className="profile bg-light">
-      <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL + profileImage}` : avatar} alt="Dentisup"></img>
+      <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentisup"></img>
       <div>
         <h2>{name}</h2>
         <p>

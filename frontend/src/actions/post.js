@@ -13,7 +13,7 @@ import {
   DELETE_COMMENT,
 } from "./types";
 import { createBrowserHistory } from 'history';
-axios.defaults.baseURL = 'http://api-dentistup.carthage-solutions.com:5050';
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 const history = createBrowserHistory();
 // Get posts
 export const getPosts = () => async (dispatch) => {
@@ -27,7 +27,7 @@ export const getPosts = () => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response?.statusText, status: e.response.status },
+      payload: { msg: e?.response?.statusText, status: e?.response?.status },
     });
   }
 };

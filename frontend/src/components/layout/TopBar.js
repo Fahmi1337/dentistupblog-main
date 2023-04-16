@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect} from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,10 +17,10 @@ import { styled, alpha } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import InputBase from '@mui/material/InputBase';
-import { logoutUser } from "../../actions/auth";
+import { logoutUser, loadUser } from "../../actions/auth";
 import SearchIcon from '@mui/icons-material/Search';
 import { useHistory } from "react-router-dom";
-import Button from '@mui/material/Button';
+
 const pages = ['Posts', 'Dentists', 'My Questions', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
@@ -57,9 +58,8 @@ const handleUserMenuNavigation = (setting, e) =>{
         logoutUser();
         history.push(`/login`)
     }
-    console.log("setting???", setting.toLowerCase().trim()==="profile")
+  
 }
-
 
 const handleUserPagesNavigation = (setting, e) =>{
   e.preventDefault();
@@ -79,7 +79,7 @@ else if(setting.toLowerCase().trim()==="my groups"){
       
       history.push(`/dashboard`)
   }
-  console.log("setting???", setting.toLowerCase().trim())
+
 }
 
   const Search = styled('div')(({ theme }) => ({
@@ -232,7 +232,7 @@ else if(setting.toLowerCase().trim()==="my groups"){
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL + auth?.user?.profileImage}` : auth?.user?.avatar}/>
+                <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + auth?.user?.profileImage}` : auth?.user?.avatar}/>
               </IconButton>
             </Tooltip>
             <Menu

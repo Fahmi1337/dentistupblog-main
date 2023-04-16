@@ -32,7 +32,7 @@ console.log("profile,?????", profile)
       {profile === null || loading ? (
        
         <div> 
-             <Fragment>
+             {/* <Fragment>
           <p>
             You have not yet setup a profile, please add some information so
             others can know you better!
@@ -40,7 +40,7 @@ console.log("profile,?????", profile)
           <Link to="/create-profile" className="btn btn-primary my-1">
             Create Profile
           </Link>
-        </Fragment>
+        </Fragment> */}
           <Spinner />
         
         </div>
