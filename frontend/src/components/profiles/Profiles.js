@@ -9,6 +9,13 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getAllProfiles();
   }, [getAllProfiles]);
+  const [searchKeyword, setSearchKeyword] = React.useState("");
+
+  const filteredProfiles = profiles.filter(
+    (profile) =>
+      profile.user &&
+      profile.user.name.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
   return (
     <Fragment>
       {loading ? (
@@ -21,8 +28,15 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
             other dentists
           </p>
           <div className="profiles">
-            {profiles.length > 0 ? (
-              profiles.map((profile) => (
+          <input
+          id="searchPosts"
+        type="text"
+        placeholder="Search profiles..."
+        value={searchKeyword}
+        onChange={(e) => setSearchKeyword(e.target.value)}
+      />
+            {filteredProfiles.length > 0 ? (
+              filteredProfiles.map((profile) => (
                profile.user &&  <ProfileItem key={profile._id} profile={profile} />
               ))
             ) : (

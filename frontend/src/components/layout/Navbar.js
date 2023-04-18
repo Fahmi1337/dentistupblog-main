@@ -83,7 +83,7 @@ const Navbar = ({
       <li>
         <NavLink to="/myquestions" activeClassName="active">
           <i className="fas fa-question"></i>{" "}
-          <span className="hide-sm">My Questions</span>
+          <span className="hide-sm">My Cases</span>
         </NavLink>
       </li>
       <li>

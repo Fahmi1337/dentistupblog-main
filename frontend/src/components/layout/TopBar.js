@@ -17,17 +17,41 @@ import { styled, alpha } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import InputBase from '@mui/material/InputBase';
-import { logoutUser, loadUser } from "../../actions/auth";
+import { logoutUser } from "../../actions/auth";
 import SearchIcon from '@mui/icons-material/Search';
 import { useHistory } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { getPosts } from "../../actions/post";
+import { getAllProfiles } from "../../actions/profile";
 const pages = ['Posts', 'Dentists', 'My Questions', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const TopBar = ({
    auth,
-   logoutUser 
+   logoutUser,
+   getPosts, post: { posts, loading },
+   getAllProfiles, profile: { profiles }
   }) => {
+    const [searchKeyword, setSearchKeyword] = React.useState("");
+    useEffect(() => {
+      getPosts();
+    }, [getPosts]);
+    useEffect(() => {
+      getAllProfiles();
+    }, [getAllProfiles]);
+    const filteredPosts = posts?.filter((post) =>
+    post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
+
+  const filteredProfiles = profiles?.filter(
+    (profile) =>
+      profile.user &&
+      profile.user.name.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
+
+console.log("redux profile?", filteredProfiles);
+
+console.log("redux posts?", filteredPosts);
     const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -225,8 +249,20 @@ else if(setting.toLowerCase().trim()==="my groups"){
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               id="SearchInputTopBar"
+              onChange={(e) => setSearchKeyword(e.target.value)}
             />
           </Search>
+          <div id="topBarSearchResultsContainer">
+          <ul>
+        {filteredPosts.map((post) => (
+          <li key={post._id}>{post.postInfo.title}</li>
+        ))}
+        {filteredProfiles.map((profile) => (
+          <li key={profile._id}>{profile.user.name}</li>
+        ))}
+      </ul>
+          </div>
+        
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -266,9 +302,14 @@ else if(setting.toLowerCase().trim()==="my groups"){
 TopBar.propTypes = {
     auth: PropTypes.object.isRequired,
     logoutUser: PropTypes.func.isRequired,
+    getPosts: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
+    getAllProfiles: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
   };
   const mapStateToProps = (state) => ({
     auth: state.auth,
-
+    post: state.post,
+    profile: state.profile,
   });
-  export default connect(mapStateToProps, { logoutUser })(TopBar);
+  export default connect(mapStateToProps, { logoutUser, getPosts, getAllProfiles })(TopBar);

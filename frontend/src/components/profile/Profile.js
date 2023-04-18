@@ -26,7 +26,7 @@ const Profile = ({
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-console.log("profile,?????", profile)
+
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -41,8 +41,8 @@ console.log("profile,?????", profile)
             Create Profile
           </Link>
         </Fragment> */}
-          <Spinner />
-        
+          {/* <Spinner /> */}
+        <Fragment><h3>Profile is empty!</h3></Fragment>
         </div>
       ) : (
        

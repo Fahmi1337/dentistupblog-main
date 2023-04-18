@@ -31,6 +31,15 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     getPosts();
   }, [getPosts]);
 
+
+
+  const [searchKeyword, setSearchKeyword] = React.useState("");
+
+  const filteredPosts = posts.filter((post) =>
+    post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase()) 
+  );
+
+
   return loading ? (
     <Spinner />
   ) : (
@@ -75,9 +84,15 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         {/* {posts.map((post) => (
           <PostItem key={post._id} post={post} showDetails={false} />
         ))} */}
-
-{posts.length > 0 ? (
-             posts.map((post) => (
+  <input
+  id="searchPosts"
+        type="text"
+        placeholder="Search posts..."
+        value={searchKeyword}
+        onChange={(e) => setSearchKeyword(e.target.value)}
+      />
+{filteredPosts.length > 0 ? (
+             filteredPosts.map((post) => (
               <PostItem key={post._id} post={post} showDetails={false} />
             ))
             ) : (

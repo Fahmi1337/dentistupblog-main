@@ -816,3 +816,21 @@ button {
 .profilePictureContainer {
   margin: -17em 3em 2em 23em;
 }
+#searchPosts{
+  border: 1px solid #bebebe;
+  border-radius: 25px;
+  color: black;
+  width: 50ch;
+  font-size: 1em;
+  padding: 0.5em 0.8em;
+  margin: 2em auto;
+}
+#topBarSearchResultsContainer{
+  position: absolute;
+  top: 125%;
+  background-color: white;
+}
+#topBarSearchResultsContainer li{
+  color: black;
+  border: 1px solid black;
+}
