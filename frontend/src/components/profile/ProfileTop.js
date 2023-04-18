@@ -7,7 +7,7 @@ import Fade from "@mui/material/Fade";
 import PostItem from "../posts/PostItem";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import bg from "../../img/dentistUpProfileBG.png"
 const style = {
@@ -59,10 +59,11 @@ const getUserPostsCount = () => {
 
   return (
     
-    <div className="profile-top-container bg-light" style={{  
+    <div >
+      <div className="profile-top-container bg-light" style={{  
       backgroundImage: profileCover ?   "url(" + `${process.env.REACT_APP_BASE_URL +"/" + profileCover}` + ")" : "url(" + bg + ")",
  
-    }}>
+    }}> </div>
         <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -85,13 +86,12 @@ const getUserPostsCount = () => {
           {getUserPostsCount() > 0 ? (
   renderedCurrentUserPosts
 ) : (
-  <h3>You don't have any posts yet, to start you can add your first post <Link to="/posts" >
-  here
-</Link></h3> 
+  <h3>{name} doesn't have any posts yet!</h3> 
 )}
           </Box>
         </Fade>
       </Modal>
+      <div className="profileTopSecondContainer">
       <div className="profilePictureContainer"><img className="round-img my-1" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="dentistUpProfilePicture" /></div>
       
       <div className="profile-top p-2">
@@ -149,7 +149,7 @@ const getUserPostsCount = () => {
           )}
         </div>
       </div>
-      <div>
+      <div className="editProfileButtonContainer">
       {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id !== _id && (
@@ -172,6 +172,8 @@ const getUserPostsCount = () => {
     
         {/* <button className="btn-round" onClick={function(e){ e.preventDefault(); alert('Coming soon!')}}>Edit</button> */}
       </div>
+      </div>
+    
     </div>
   );
 };

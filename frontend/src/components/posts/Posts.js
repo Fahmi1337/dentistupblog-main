@@ -72,10 +72,19 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       </Modal>
       {/* MODAL END */}
       <div className="posts">
-        {posts.map((post) => (
+        {/* {posts.map((post) => (
           <PostItem key={post._id} post={post} showDetails={false} />
-        ))}
-      </div>
+        ))} */}
+
+{posts.length > 0 ? (
+             posts.map((post) => (
+              <PostItem key={post._id} post={post} showDetails={false} />
+            ))
+            ) : (
+              <h4>No Posts found...</h4>
+            )}
+          </div>
+      
     </Fragment>
   );
 };

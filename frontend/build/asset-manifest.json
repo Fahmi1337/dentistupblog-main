@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/static/css/main.b92a8685.chunk.css",
-    "main.js": "/static/js/main.bc887cda.chunk.js",
-    "main.js.map": "/static/js/main.bc887cda.chunk.js.map",
+    "main.js": "/static/js/main.f808a32e.chunk.js",
+    "main.js.map": "/static/js/main.f808a32e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ff5b8ea4.js",
     "runtime-main.js.map": "/static/js/runtime-main.ff5b8ea4.js.map",
     "static/css/2.8e4e8e1f.chunk.css": "/static/css/2.8e4e8e1f.chunk.css",
-    "static/js/2.69744dbc.chunk.js": "/static/js/2.69744dbc.chunk.js",
-    "static/js/2.69744dbc.chunk.js.map": "/static/js/2.69744dbc.chunk.js.map",
+    "static/js/2.70fc24d4.chunk.js": "/static/js/2.70fc24d4.chunk.js",
+    "static/js/2.70fc24d4.chunk.js.map": "/static/js/2.70fc24d4.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.8e4e8e1f.chunk.css.map": "/static/css/2.8e4e8e1f.chunk.css.map",
     "static/css/main.b92a8685.chunk.css.map": "/static/css/main.b92a8685.chunk.css.map",
-    "static/js/2.69744dbc.chunk.js.LICENSE.txt": "/static/js/2.69744dbc.chunk.js.LICENSE.txt",
+    "static/js/2.70fc24d4.chunk.js.LICENSE.txt": "/static/js/2.70fc24d4.chunk.js.LICENSE.txt",
     "static/media/dentistUpProfileBG.ab341682.png": "/static/media/dentistUpProfileBG.ab341682.png",
     "static/media/App.css": "/static/media/showcase.8e04fd94.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.ff5b8ea4.js",
     "static/css/2.8e4e8e1f.chunk.css",
-    "static/js/2.69744dbc.chunk.js",
+    "static/js/2.70fc24d4.chunk.js",
     "static/css/main.b92a8685.chunk.css",
-    "static/js/main.bc887cda.chunk.js"
+    "static/js/main.f808a32e.chunk.js"
   ]
 }
