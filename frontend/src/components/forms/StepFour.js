@@ -114,8 +114,6 @@ const StepFour = ({
       // nextStep();
       addPost(values);
       handleClose();
-
-      console.log("my data :", values);
     }
   };
 

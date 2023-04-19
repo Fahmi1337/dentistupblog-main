@@ -18,7 +18,7 @@ const GroupSchema = new Schema({
       required: false,
     },
   },
-  profileImage: {
+  groupImage: {
     type: String,
     default: null,
   },

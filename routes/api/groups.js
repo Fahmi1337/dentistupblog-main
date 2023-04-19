@@ -22,12 +22,11 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select("-password");
-
+console.log("group?", req.body);
       const newGroup = new Group({
-        grouptInfo: {
+        groupInfo: {
           title: req.body.title,
           description: req.body.description,
-         
         },
         name: user.name,
         avatar: user.avatar,
@@ -111,7 +110,7 @@ router.put(
 router.get("/", auth, async (req, res) => {
   try {
     // Get all groups
-    const groups = await Post.find().sort({ date: -1 });
+    const groups = await Group.find().sort({ date: -1 });
 
     // Loop through each post and get the user's profileImage
     const groupsWithProfileImages = await Promise.all(

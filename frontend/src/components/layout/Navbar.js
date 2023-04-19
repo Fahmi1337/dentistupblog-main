@@ -87,7 +87,7 @@ const Navbar = ({
         </NavLink>
       </li>
       <li>
-        <NavLink to="/mygroups" activeClassName="active">
+        <NavLink to="/groups" activeClassName="active">
           <i className="far fa-comments"></i>{" "}
           <span className="hide-sm">My Groups</span>
         </NavLink>

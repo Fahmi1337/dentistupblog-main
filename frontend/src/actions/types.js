@@ -24,3 +24,11 @@ export const EDIT_POST = "EDIT_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+
+
+export const DELETE_GROUP = "DELETE_GROUP";
+export const ADD_GROUP = "ADD_GROUP";
+export const EDIT_GROUP = "EDIT_GROUP";
+export const GET_GROUPS = "GET_GROUPS";
+export const GET_GROUP = "GET_GROUP";
+export const GROUP_ERROR = "GROUP_ERROR";

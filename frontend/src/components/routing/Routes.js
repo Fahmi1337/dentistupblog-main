@@ -17,6 +17,7 @@ import Posts from "../posts/Posts";
 import Post from "../post/Post";
 import NotFound from "../layout/NotFound";
 import MyCases from "../mycases/MyCases";
+import Groups from "../groups/Groups";
 
 const Routes = () => {
   return (
@@ -35,6 +36,7 @@ const Routes = () => {
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/mycases" component={MyCases} />
+        <PrivateRoute exact path="/groups" component={Groups} />
         <Route component={NotFound} />
       </Switch>
     </section>

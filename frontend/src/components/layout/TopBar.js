@@ -239,21 +239,7 @@ else if(setting.toLowerCase().trim()==="my groups"){
 
 
 
-  // Define the FormComponent outside of your useForm hook
-const FormComponent = ({ setState, state, label }) => (
-  <form>
-    <label htmlFor={label}>
-      {label}
-      <input
-        type="text"
-        id={label}
-        value={state}
-        placeholder={label}
-        onChange={e => setState(e.target.value)}
-      />
-    </label>
-  </form>
-);
+
 
   return (
     <AppBar position="static" id="topBarContainer">
@@ -365,12 +351,12 @@ const FormComponent = ({ setState, state, label }) => (
           <div id="topBarSearchResultsContainer">
           <ul> 
         {filteredPosts.map((post) => (
-          <li key={post._id} >  <Link to={`/posts/${post._id}`}>
+          <li key={post._id} >Post - <Link to={`/posts/${post._id}`}>
        {post.postInfo.title}
         </Link></li>
         ))}
         {filteredProfiles.map((profile) => (
-          <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
+          <li key={profile._id}>Dentist - <Link to={`/profile/${profile.user._id}`}>
           {profile.user.name} 
         </Link></li>
         ))}
