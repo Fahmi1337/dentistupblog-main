@@ -364,7 +364,7 @@ else if(setting.toLowerCase().trim()==="my groups"){
         ))}
         {filteredProfiles.map((profile) => (
           <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
-       <span>Dentist - </span>   {profile.user.name} 
+       <span>Dentist - </span>   {profile.user.name} <span> <img className="round-img my-1" src={profile.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profile.profileImage}` : profile.avatar} alt="dentistUpProfilePicture"/></span>
         </Link></li>
         ))}
       </ul>

@@ -851,14 +851,24 @@ button {
 }
 
 #topBarSearchResultsContainer li {
-  padding: 8px 12px;
+  padding: 0px 12px;
   cursor: pointer;
   color: black;
+  border: 1px solid #ccc;
 }
 #topBarSearchResultsContainer li span{
 
   color: black;
+  margin-right: 0.5em;
 }
 #topBarSearchResultsContainer li:hover {
   background-color: #f0f0f0;
+}
+#topBarSearchResultsContainer li a{
+  display: flex;
+  align-items: center;
+}
+#topBarSearchResultsContainer li img{
+width: 3em;
+margin-left: 1em;
 }
