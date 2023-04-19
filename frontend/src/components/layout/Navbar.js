@@ -29,7 +29,12 @@ const Navbar = ({
         </NavLink>
       </li>
    
-     
+      <li>
+        <NavLink to="/groups" activeClassName="active">
+          <i className="far fa-comments"></i>{" "}
+          <span className="hide-sm">Groups</span>
+        </NavLink>
+      </li>
       {/* <li>
         <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
@@ -87,7 +92,7 @@ const Navbar = ({
         </NavLink>
       </li>
       <li>
-        <NavLink to="/groups" activeClassName="active">
+        <NavLink to="/mygroups" activeClassName="active">
           <i className="far fa-comments"></i>{" "}
           <span className="hide-sm">My Groups</span>
         </NavLink>
