@@ -92,16 +92,6 @@ const TopBar = ({
     };
 
 
-console.log("filteredPosts??", filteredPosts);
-console.log("filteredProfiles??", filteredProfiles)
-
-
-
-
-
-
-
-
 
 
 

@@ -11,12 +11,12 @@ const GroupItem = ({
   removeLike,
   deleteGroup,
   auth,
-  group: { _id, postInfo, name, avatar, user, likes, comments, date, profileImage, title },
+  group: { _id, groupInfo :{title, description}, name, avatar, user, likes, comments, date, profileImage },
   showActions,
   showDetails,
   showUserPosts,
   postsByUserId,
-  getPost,
+  getGroup,
   match
 }) => {
   
@@ -32,11 +32,11 @@ const GroupItem = ({
               </Link>
             </div>
             <div>
-              <h2 className="my-1">{postInfo.title}</h2>
+              <h2 className="my-1">{title}</h2>
               {!showDetails && (
                 <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
+                  {description?.slice(0, 200) +
+                    (description?.length > 200 ? "..." : "")}
                 </p>
               )}
               <p className="post-date">
@@ -75,8 +75,8 @@ const GroupItem = ({
               {showActions && (
                 <Fragment>
           
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
+                  <Link to={`/groups/${_id}`} className="btn btn-primary">
+                    Visit{" "}
                     {comments.length > 0 && (
                       <span className="comment-count">{comments.length}</span>
                     )}
@@ -89,12 +89,13 @@ const GroupItem = ({
           {showDetails && (
      
             <GroupDetails
-              postInfo={postInfo}
+              title={title}
+              description={description}
               auth={auth}
               user={user}
               deletePost={deleteGroup}
               _id={_id}
-              getPost={getPost} match={match}
+              getGroup={getGroup} match={match}
             />
           )}
         </div>
@@ -110,11 +111,11 @@ const GroupItem = ({
               </Link>
             </div>
             <div>
-              <h2 className="my-1">{postInfo.title}</h2>
+              <h2 className="my-1">{title}</h2>
               {!showDetails && (
                 <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
+                  {description?.slice(0, 200) +
+                    (description?.length > 200 ? "..." : "")}
                 </p>
               )}
 
@@ -153,8 +154,8 @@ const GroupItem = ({
               {showActions && (
                 <Fragment>
           
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
+                  <Link to={`/groups/${_id}`} className="btn btn-primary">
+                    Visit{" "}
                     {comments.length > 0 && (
                       <span className="comment-count">{comments.length}</span>
                     )}
@@ -166,12 +167,13 @@ const GroupItem = ({
           </div>
           {showDetails && (
             <GroupDetails
-              postInfo={postInfo}
+            title={title}
+              description={description}
               auth={auth}
               user={user}
               deletePost={deleteGroup}
               _id={_id}
-              getPost={getPost} match={match}
+              getGroup={getGroup} match={match}
             />
             
           )}
@@ -190,8 +192,8 @@ GroupItem.defaultProps = {
 GroupItem.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  deleteGroup: PropTypes.func.isRequired,
+  group: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 

@@ -18,7 +18,7 @@ import {
   
   export default function (state = initialState, action) {
     const { type, payload } = action;
-  console.log("groups store", action);
+  // console.log("groups store", action);
     switch (type) {
       case GET_GROUPS:
         return {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getGroups } from "../../actions/group";
 import Spinner from "../layout/Spinner";
-import PostItem from "./GroupItem";
+import GroupItem from "./GroupItem";
  import GroupForm from "./GroupForm";
 
 import Backdrop from "@mui/material/Backdrop";
@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import { FormGroup } from "@mui/material";
-
+import { Button } from "react-bootstrap";
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,14 +36,14 @@ const Groups = ({ getGroups, group: {groups, loading} }) => {
 
 
   const [searchKeyword, setSearchKeyword] = React.useState("");
-console.log("group?", groups)
-//   const filteredPosts = groups.filter((group) =>
-//     group.title.toLowerCase().includes(searchKeyword.toLowerCase()) 
-//   );
+console.log("group?", groups[0])
+  const filteredGroups = groups.filter((group) =>
+    group?.groupInfo?.title?.toLowerCase().includes(searchKeyword.toLowerCase()) 
+  );
 
-  const filteredPosts = [];
+//   const filteredGroups = [];
 
-  return 1 !== 1 ? (
+  return loading ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -53,15 +53,15 @@ console.log("group?", groups)
       </p>
 
       {/* MODAL START */}
-      <form className="form">
+      {/* <form className="form">
         {" "}
         <input
           type="Text"
           placeholder="Start a new post"
           onClick={handleOpen}
         />
-      </form>
-
+      </form> */}
+<Button onClick={handleOpen}>Add Group</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -92,15 +92,15 @@ console.log("group?", groups)
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
       />
-{filteredPosts.length > 0 ? (
-             filteredPosts.map((post) => (
-              <PostItem key={post._id} post={post} showDetails={false} />
+{filteredGroups.length > 0 ? (
+             filteredGroups.map((group) => (
+              <GroupItem key={group._id} group={group} showDetails={false}/>
             ))
             ) : (
               <h4>No Groups found...</h4>
             )}
           </div>
-          <GroupForm/>
+        
     </Fragment>
   );
 };
