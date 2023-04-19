@@ -855,7 +855,10 @@ button {
   cursor: pointer;
   color: black;
 }
+#topBarSearchResultsContainer li span{
 
+  color: black;
+}
 #topBarSearchResultsContainer li:hover {
   background-color: #f0f0f0;
 }

@@ -84,13 +84,13 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         {/* {posts.map((post) => (
           <PostItem key={post._id} post={post} showDetails={false} />
         ))} */}
-  <input
+  {/* <input
   id="searchPosts"
         type="text"
         placeholder="Search posts..."
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
-      />
+      /> */}
 {filteredPosts.length > 0 ? (
              filteredPosts.map((post) => (
               <PostItem key={post._id} post={post} showDetails={false} />

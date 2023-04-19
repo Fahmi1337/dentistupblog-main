@@ -336,18 +336,35 @@ else if(setting.toLowerCase().trim()==="my groups"){
               autoFocus
             />
           </Search>
+
+
+          {(filteredPosts.length === 0 &&  filteredProfiles.length === 0) && showResults &&
+          
+          <div id="topBarSearchResultsContainer">
+            <ul>
+              <li>
+              No results found...
+              </li>
+            </ul>
+         
+          </div>
+
+          }
+         
+
+
           {(filteredPosts.length > 0 ||  filteredProfiles.length > 0) && showResults &&
           
           <div id="topBarSearchResultsContainer">
           <ul> 
         {filteredPosts.map((post) => (
-          <li key={post._id} >Post - <Link to={`/posts/${post._id}`}>
-       {post.postInfo.title}
+          <li key={post._id} ><Link to={`/posts/${post._id}`}>
+      <span>Post - </span> {post.postInfo.title}
         </Link></li>
         ))}
         {filteredProfiles.map((profile) => (
-          <li key={profile._id}>Dentist - <Link to={`/profile/${profile.user._id}`}>
-          {profile.user.name} 
+          <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
+       <span>Dentist - </span>   {profile.user.name} 
         </Link></li>
         ))}
       </ul>
