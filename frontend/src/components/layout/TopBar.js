@@ -23,6 +23,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getPosts } from "../../actions/post";
 import { getAllProfiles } from "../../actions/profile";
+import { Link } from "react-router-dom";
 const pages = ['Posts', 'Dentists', 'My Questions', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
@@ -39,19 +40,105 @@ const TopBar = ({
     useEffect(() => {
       getAllProfiles();
     }, [getAllProfiles]);
-    const filteredPosts = posts?.filter((post) =>
-    post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase())
-  );
 
-  const filteredProfiles = profiles?.filter(
-    (profile) =>
-      profile.user &&
-      profile.user.name.toLowerCase().includes(searchKeyword.toLowerCase())
-  );
 
-console.log("redux profile?", filteredProfiles);
 
-console.log("redux posts?", filteredPosts);
+
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [filteredPosts, setFilteredPosts] = React.useState([]);
+    const [filteredProfiles, setFilteredProfiles] = React.useState([]);
+    const [showResults, setShowResults] = React.useState(false);
+    const searchBoxRef = React.useRef(null);
+
+
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        const isClickInsideSearchBox = searchBoxRef.current.contains(event.target);
+        const isClickInsideResultsContainer = event.target.closest('#topBarSearchResultsContainer');
+  
+        if (!isClickInsideSearchBox && !isClickInsideResultsContainer) {
+          setShowResults(false);
+        }
+      };
+  
+      document.addEventListener('click', handleClickOutside);
+  
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, []);
+  
+    const handleSearch = (event) => {
+      event.preventDefault();
+      const { value } = event.target;
+      setSearchTerm(value);
+  
+      // Filter posts and profiles based on search term
+      const filteredPosts = posts?.filter((post) =>
+      post.postInfo.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    const filteredProfiles = profiles?.filter(
+      (profile) =>
+        profile.user &&
+        profile.user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+      // Update state
+      setFilteredPosts(filteredPosts);
+      setFilteredProfiles(filteredProfiles);
+      setShowResults(true);
+    };
+
+
+console.log("filteredPosts??", filteredPosts);
+console.log("filteredProfiles??", filteredProfiles)
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //   const filteredPosts = posts?.filter((post) =>
+  //   post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  // );
+
+  // const filteredProfiles = profiles?.filter(
+  //   (profile) =>
+  //     profile.user &&
+  //     profile.user.name.toLowerCase().includes(searchKeyword.toLowerCase())
+  // );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -148,6 +235,25 @@ else if(setting.toLowerCase().trim()==="my groups"){
     },
   }));
 
+
+
+
+
+  // Define the FormComponent outside of your useForm hook
+const FormComponent = ({ setState, state, label }) => (
+  <form>
+    <label htmlFor={label}>
+      {label}
+      <input
+        type="text"
+        id={label}
+        value={state}
+        placeholder={label}
+        onChange={e => setState(e.target.value)}
+      />
+    </label>
+  </form>
+);
 
   return (
     <AppBar position="static" id="topBarContainer">
@@ -249,19 +355,30 @@ else if(setting.toLowerCase().trim()==="my groups"){
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               id="SearchInputTopBar"
-              onChange={(e) => setSearchKeyword(e.target.value)}
+              value={searchTerm} onChange={handleSearch}
+              ref={searchBoxRef}
+              autoFocus
             />
           </Search>
+          {(filteredPosts.length > 0 ||  filteredProfiles.length > 0) && showResults &&
+          
           <div id="topBarSearchResultsContainer">
-          <ul>
+          <ul> 
         {filteredPosts.map((post) => (
-          <li key={post._id}>{post.postInfo.title}</li>
+          <li key={post._id} >  <Link to={`/posts/${post._id}`}>
+       {post.postInfo.title}
+        </Link></li>
         ))}
         {filteredProfiles.map((profile) => (
-          <li key={profile._id}>{profile.user.name}</li>
+          <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
+          {profile.user.name} 
+        </Link></li>
         ))}
       </ul>
           </div>
+
+          }
+         
         
           </Box>
 
