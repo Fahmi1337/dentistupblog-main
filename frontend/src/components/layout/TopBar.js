@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import { getPosts } from "../../actions/post";
 import { getAllProfiles } from "../../actions/profile";
 import { Link } from "react-router-dom";
-const pages = ['Posts', 'Dentists', 'My Questions', 'My Groups'];
+const pages = ['Posts', 'Dentists', 'My Cases', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const TopBar = ({
@@ -180,8 +180,8 @@ const handleUserPagesNavigation = (setting, e) =>{
   else if(setting.toLowerCase().trim()==="dentists"){
       history.push(`/profiles`)
   }
-  else if(setting.toLowerCase().trim()==="my questions"){
-    history.push(`/myquestions`)
+  else if(setting.toLowerCase().trim()==="my cases"){
+    history.push(`/mycases`)
 }
 else if(setting.toLowerCase().trim()==="my groups"){
   history.push(`/mygroups`)

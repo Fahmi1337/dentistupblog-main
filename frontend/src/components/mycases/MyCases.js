@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getProfileById } from "../../actions/profile";
 import { getPosts } from "../../actions/post";
 import { Link } from "react-router-dom";
-const MyQuestions = ({
+const MyCases = ({
     getProfileById,
     profile: { profile, loading },
     getPosts,
@@ -59,7 +59,7 @@ return  posts.filter((g) => auth.user._id?.includes(g.user)).map((g) => g.user)
   
   );
 };
-MyQuestions.propTypes = {
+MyCases.propTypes = {
     getProfileById: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => ({
     post: state.post,
   });
   
-  export default connect(mapStateToProps, { getProfileById, getPosts })(MyQuestions);
+  export default connect(mapStateToProps, { getProfileById, getPosts })(MyCases);

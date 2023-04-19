@@ -16,7 +16,7 @@ import AddEducation from "../profile-forms/AddEducation";
 import Posts from "../posts/Posts";
 import Post from "../post/Post";
 import NotFound from "../layout/NotFound";
-import MyQuestions from "../myquestions/MyQuestions";
+import MyCases from "../mycases/MyCases";
 
 const Routes = () => {
   return (
@@ -34,7 +34,7 @@ const Routes = () => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
-        <PrivateRoute exact path="/myquestions" component={MyQuestions} />
+        <PrivateRoute exact path="/mycases" component={MyCases} />
         <Route component={NotFound} />
       </Switch>
     </section>
