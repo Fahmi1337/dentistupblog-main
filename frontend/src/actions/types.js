@@ -32,3 +32,6 @@ export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUPS = "GET_GROUPS";
 export const GET_GROUP = "GET_GROUP";
 export const GROUP_ERROR = "GROUP_ERROR";
+
+
+export const SAVE_POST = "SAVE_POST";

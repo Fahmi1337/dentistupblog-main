@@ -707,4 +707,67 @@ router.get("/github/:username", (req, res) => {
   }
 });
 
+
+
+
+
+
+// @route   PUT api/profile/savepost/:id
+// @desc    Save a post
+// @access  Private
+// router.put("/savepost/:id", auth, async (req, res) => {
+
+//   try {
+//     const user = await User.findById(req.user.id);
+//     // checking if the post has been saved by the logged in's user
+
+//     if (
+//       user.savedPosts.filter((savedPost) => savedPost?.post?.toString() === req.params.id).length >
+//       0
+//     ) 
+//     {
+//       return res.status(400).json({ msg: "Post already saved" });
+//     }
+
+//     user.savedPosts.unshift({ post: req.params.id });
+//     await user.save();
+//     res.json(user.savedPosts);
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
+
+// @route   PUT api/profile/savepost/:id
+// @desc    Save or unsave a post
+// @access  Private
+router.put("/savepost/:id", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const savedPostIndex = user.savedPosts.findIndex(
+      (savedPost) => savedPost?.post?.toString() === req.params.id
+    );
+
+    if (savedPostIndex !== -1) {
+      // Post has already been saved, so unsave it
+      user.savedPosts.splice(savedPostIndex, 1);
+      await user.save();
+      return res.json({ msg: "Post unsaved", savedPosts: user.savedPosts });
+    }
+
+    // Post hasn't been saved, so save it
+    user.savedPosts.unshift({ post: req.params.id });
+    await user.save();
+    res.json({ msg: "Post saved", savedPosts: user.savedPosts });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
 module.exports = router;

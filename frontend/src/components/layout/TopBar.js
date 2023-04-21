@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import { getPosts } from "../../actions/post";
 import { getAllProfiles } from "../../actions/profile";
 import { Link } from "react-router-dom";
+import { Spinner } from 'react-bootstrap';
 const pages = ['Posts', 'Dentists', 'My Cases', 'My Groups'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
@@ -358,15 +359,16 @@ else if(setting.toLowerCase().trim()==="my groups"){
           <div id="topBarSearchResultsContainer">
           <ul> 
         {filteredPosts.map((post) => (
-          <li key={post._id} ><Link to={`/posts/${post._id}`}>
+          <li key={post._id} className="postSearchResultTopBar"><Link to={`/posts/${post._id}`}>
       <span>Post - </span> {post.postInfo.title}
         </Link></li>
         ))}
         {filteredProfiles.map((profile) => (
           <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
-       <span>Dentist - </span>   {profile.user.name} <span> <img className="round-img my-1" src={profile.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profile.profileImage}` : profile.avatar} alt="dentistUpProfilePicture"/></span>
+       <span>Profile - </span>   {profile.user.name} <span> <img className="round-img my-1" src={profile.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profile.profileImage}` : profile.avatar} alt="dentistUpProfilePicture"/></span>
         </Link></li>
         ))}
+      
       </ul>
           </div>
 

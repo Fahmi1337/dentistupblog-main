@@ -8,6 +8,7 @@ import {
   ACCOUNT_DELETED,
   GET_PROFILES,
   GET_REPOS,
+  SAVE_POST,
 } from "./types";
 axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 //Get the current user's profile
@@ -259,4 +260,29 @@ export const deleteUserAccount = () => async (dispatch) => {
     }
   }
   window.scrollTo(0, 0);
+};
+
+
+
+// Save post
+export const savePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/profile/savepost/${id}`);
+   
+    dispatch({
+      type: SAVE_POST,
+      payload: { id, savedPosts: res.data },
+    });
+    
+    dispatch(setAlert(res.data.msg, "success"));
+  } catch (e) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: e?.response?.statusText, status: e?.response?.status },
+    });
+
+    
+  
+  }
+  
 };

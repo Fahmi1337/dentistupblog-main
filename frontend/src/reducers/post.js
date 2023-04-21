@@ -58,6 +58,9 @@ export default function (state = initialState, action) {
         ),
         loading: false,
       };
+
+
+
     case ADD_COMMENT:
       return {
         ...state,

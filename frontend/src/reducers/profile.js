@@ -5,6 +5,7 @@ import {
   UPDATE_PROFILE,
   GET_PROFILES,
   GET_REPOS,
+  SAVE_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -50,6 +51,15 @@ export default function (state = initialState, action) {
         repos: payload,
         loading: false,
       };
+
+      case SAVE_POST:
+        return {
+          ...state,
+          posts: state.posts.map((post) =>
+            post._id === payload.id ? { ...post, savedPosts: payload.savedPosts } : post
+          ),
+          loading: false,
+        };
 
     default:
       return state;

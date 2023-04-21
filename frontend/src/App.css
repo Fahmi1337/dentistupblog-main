@@ -851,10 +851,13 @@ button {
 }
 
 #topBarSearchResultsContainer li {
-  padding: 0px 12px;
+  padding: 0em 1em;
   cursor: pointer;
   color: black;
   border: 1px solid #ccc;
+}
+.postSearchResultTopBar{
+  padding: 2em 1em !important;
 }
 #topBarSearchResultsContainer li span{
 
