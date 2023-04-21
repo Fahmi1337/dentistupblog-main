@@ -87,7 +87,7 @@ const Navbar = ({
        <p>PERSONAL NAVIGATOR</p>
        <li>
         <NavLink to="/savedposts" activeClassName="active">
-        <i class="fa-regular fa-bookmark"></i>{" "}
+        <i class="fa-solid fa-bookmark"></i>{" "}
           <span className="hide-sm">Saved Cases</span>
         </NavLink>
       </li>
