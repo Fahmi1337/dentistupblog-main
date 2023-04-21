@@ -267,8 +267,19 @@ export const deleteUserAccount = () => async (dispatch) => {
 // Save post
 export const savePost = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/profile/savepost/${id}`);
-   
+    const res = await axios.put(`/api/profile/savepost/${id}`).then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error(`${error}`)
+    })
+    .then(json => {
+      dispatch(setAlert(json.data.msg, json.status === 200 ? "success" : "danger"));
+
+    })
+    .catch((error) => {
+      console.error(`Couldn't convert the json: ${error}`)
+    });
     dispatch({
       type: SAVE_POST,
       payload: { id, savedPosts: res.data },
@@ -281,8 +292,39 @@ export const savePost = (id) => async (dispatch) => {
       payload: { msg: e?.response?.statusText, status: e?.response?.status },
     });
 
-    
+   
   
   }
-  
+  // dispatch(setAlert("Update successful", "success"));
 };
+
+// // Save post
+// export const savePost = (id) => async (dispatch) => {
+//   try {
+//     const res = await axios.put(`/api/profile/savepost/${id}`);
+//     console.log(res.data); // Log the response data to the console
+    
+//     if (res.data.msg && res.data.savedPosts) {
+//       dispatch({
+//         type: SAVE_POST,
+//         payload: { id, savedPosts: res.data.savedPosts },
+//       });
+      
+//       dispatch(setAlert(res.data.msg, "success"));
+//     } else {
+//       dispatch(setAlert("Error", "danger"));
+//     }
+//   } catch (e) {
+//     if (e?.response?.data?.msg) {
+//       dispatch(setAlert(e.response.data.msg, "success"));
+//     } else if (e?.response?.statusText) {
+//       dispatch({
+//         type: PROFILE_ERROR,
+//         payload: { msg: e.response.statusText, status: e.response.status },
+//       });
+//       dispatch(setAlert("Error", "danger"));
+//     } else {
+//       dispatch(setAlert("Unknown error occurred", "danger"));
+//     }
+//   }
+// };
