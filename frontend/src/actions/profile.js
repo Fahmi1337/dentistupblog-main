@@ -285,7 +285,7 @@ export const savePost = (id) => async (dispatch) => {
       payload: { id, savedPosts: res.data },
     });
     
-    dispatch(setAlert(res.data.msg, "success"));
+   
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
