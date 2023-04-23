@@ -37,30 +37,40 @@ const GroupSchema = new Schema({
       },
     },
   ],
-  comments: [
+
+  posts: [
     {
-      user: {
+      post: {
         type: Schema.Types.ObjectId,
-        ref: "user",
+        ref: "post",
       },
-      treatment: {
-        type: String,
-      },
-      diagnostic: {
-        type: String,
-      },
-      name: {
-        type: String,
-      },
-      avatar: {
-        type: String,
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
+      comments: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "user",
+          },
+          treatment: {
+            type: String,
+          },
+          diagnostic: {
+            type: String,
+          },
+          name: {
+            type: String,
+          },
+          avatar: {
+            type: String,
+          },
+          date: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
     },
   ],
+
   date: {
     type: Date,
     default: Date.now,

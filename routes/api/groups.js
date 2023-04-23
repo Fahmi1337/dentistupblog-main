@@ -22,7 +22,7 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select("-password");
-console.log("group?", req.body);
+
       const newGroup = new Group({
         groupInfo: {
           title: req.body.title,
@@ -180,7 +180,7 @@ router.get("/", auth, async (req, res) => {
 //   }
 // });
 
-// @route   GET api/groupss/:id
+// @route   GET api/groups/:id
 // @desc    Get group by Group Id
 // @access  Private
 router.get("/:id", auth, async (req, res) => {
@@ -306,36 +306,81 @@ router.delete("/:id", auth, async (req, res) => {
 //   }
 // });
 
-// // @route   POST api/posts/comment/:id
-// // @desc    Create a comment on a post
-// // @access  Private
-// router.post("/comment/:id", [auth], async (req, res) => {
-//   const errors = validationResult(req);
-//   //   if there are errors
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   try {
-//     const user = await User.findById(req.user.id).select("-password");
-//     const post = await Post.findById(req.params.id);
+// @route   POST api/groups/:id/posts
+// @desc    Create a post in a group
+// @access  Private
+router.post("/:id/posts", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  //   if there are errors
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const group = await Group.findById(req.params.id);
   
-//     const newComment = {
-//       treatment: req.body.formData.treatment,
-//       diagnostic: req.body.formData.diagnostic,
-//       name: user.name,
-//       avatar: user.avatar,
-//       user: req.user.id,
-//     };
+    // const newPost = {
+    //   treatment: req.body.formData.treatment,
+    //   diagnostic: req.body.formData.diagnostic,
+    //   name: user.name,
+    //   avatar: user.avatar,
+    //   user: req.user.id,
+    // };
+    const newPost = new Post({
+      postInfo: {
+        title: req.body.title,
+        description: req.body.description,
+        bloodPressure: req.body.bloodPressure,
+        dailyMedications: req.body.dailyMedications,
+        dateOfBirth: req.body.dateOfBirth,
+        dentalHistory: req.body.dentalHistory,
+        dermato: req.body.dermato,
+        detailsDeglutition: req.body.detailsDeglutition,
+        detailsMastication: req.body.detailsMastication,
+        detailsRespiration: req.body.detailsRespiration,
+        examenExoBuccal: req.body.examenExoBuccal,
+        extraoralExamination: req.body.extraoralExamination,
+        gender: req.body.gender,
 
-//     post.comments.unshift(newComment);
+        intraoralExamination: req.body.intraoralExamination,
+        medicalHistory: req.body.medicalHistory,
+        patientReference: req.body.patientReference,
+        pulse: req.body.pulse,
+        reasonConsultation: req.body.reasonConsultation,
+        respiration: req.body.respiration,
+        symetrieExplanation: req.body.symetrieExplanation,
+        symetrie: req.body.symetrie,
 
-//     await post.save();
-//     res.json(post.comments);
-//   } catch (e) {
-//     console.error(e.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
+        examenAtmNormal: req.body.examenAtmNormal,
+        examenAtmDouleur: req.body.examenAtmDouleur,
+        examenAtmClaquement: req.body.examenAtmClaquement,
+        examenAtmAutre: req.body.examenAtmAutre,
+        examenAtmAutreExplanation: req.body.examenAtmAutreExplanation,
+        respirationNasal: req.body.respirationNasal,
+        respirationBuccal: req.body.respirationBuccal,
+        respirationMixte: req.body.respirationMixte,
+        detailsRespiration: req.body.detailsRespiration,
+        masticationUnilateral: req.body.masticationUnilateral,
+        masticationBilateral: req.body.masticationBilateral,
+        detailsMastication: req.body.detailsMastication,
+        deglutitionTypique: req.body.deglutitionTypique,
+        deglutitionAtypique: req.body.deglutitionAtypique,
+        detailsDeglutition: req.body.detailsDeglutition,
+      },
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user.id,
+    
+    });
+    group.posts.unshift(newPost);
+
+    await group.save();
+    res.json(group.posts);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 
 

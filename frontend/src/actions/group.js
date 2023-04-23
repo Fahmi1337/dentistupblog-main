@@ -8,9 +8,9 @@ import {
   ADD_GROUP,
   EDIT_GROUP,
   GET_GROUP,
-  ADD_COMMENT,
-  EDIT_COMMENT,
-  DELETE_COMMENT,
+  ADD_GROUP_POST,
+  EDIT_GROUP_POST,
+  DELETE_GROUP_POST,
 } from "./types";
 import { createBrowserHistory } from 'history';
 axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
@@ -155,8 +155,8 @@ export const getGroup = (id) => async (dispatch) => {
   }
 };
 
-// Add comment
-export const addComment = (postId, formData) => async (dispatch) => {
+// Add group post
+export const addgroupPost = (groupId, formData) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -165,17 +165,17 @@ export const addComment = (postId, formData) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `/api/posts/comment/${postId}`,
+      `/api/groups/${groupId}/posts`,
       formData,
       config
     );
 
     dispatch({
-      type: ADD_COMMENT,
+      type: ADD_GROUP_POST,
       payload: res.data,
     });
 
-    dispatch(setAlert("Comment successfully added", "success"));
+    dispatch(setAlert("Post successfully added", "success"));
   } catch (e) {
     dispatch({
       type: GROUP_ERROR,
@@ -184,17 +184,17 @@ export const addComment = (postId, formData) => async (dispatch) => {
   }
 };
 
-// Delete comment
-export const deleteComment = (postId, commentId) => async (dispatch) => {
+// Delete group post
+export const deleteGroupPost = (groupId, postId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`/api/groups/${groupId}/posts/${postId}`);
 
     dispatch({
-      type: DELETE_COMMENT,
-      payload: commentId,
+      type: DELETE_GROUP_POST,
+      payload: postId,
     });
 
-    dispatch(setAlert("Comment successfully deleted", "success"));
+    dispatch(setAlert("Post successfully deleted", "success"));
   } catch (e) {
     dispatch({
       type: GROUP_ERROR,
@@ -204,16 +204,16 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 };
 
 // Edit comment
-export const editComment = (postId, commentId, formData) => async (dispatch) => {
+export const editComment = (groupId, postId, formData) => async (dispatch) => {
   try {
-    await axios.put(`/api/posts/comment/${postId}/${commentId}`, {formData});
+    await axios.put(`/api/groups/${groupId}/posts/${postId}`, {formData});
 
     dispatch({
-      type: EDIT_COMMENT,
-      payload: commentId,
+      type: EDIT_GROUP_POST,
+      payload: postId,
     });
 
-    dispatch(setAlert("Comment successfully edited", "success"));
+    dispatch(setAlert("Post successfully edited", "success"));
   } catch (e) {
     dispatch({
       type: GROUP_ERROR,

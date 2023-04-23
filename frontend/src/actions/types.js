@@ -35,3 +35,8 @@ export const GROUP_ERROR = "GROUP_ERROR";
 
 
 export const SAVE_POST = "SAVE_POST";
+
+
+export const ADD_GROUP_POST = "ADD_GROUP_POST";
+export const EDIT_GROUP_POST = "EDIT_GROUP_POST";
+export const DELETE_GROUP_POST = "DELETE_GROUP_POST";
