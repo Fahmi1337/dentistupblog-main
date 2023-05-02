@@ -360,12 +360,12 @@ else if(setting.toLowerCase().trim()==="my groups"){
           <ul> 
         {filteredPosts.map((post) => (
           <li key={post._id} className="postSearchResultTopBar"><Link to={`/posts/${post._id}`}>
-      <span>Post - </span> {post.postInfo.title}
+       {post.postInfo.title} <span> <i class="fa-regular fa-clipboard"></i></span>
         </Link></li>
         ))}
         {filteredProfiles.map((profile) => (
           <li key={profile._id}> <Link to={`/profile/${profile.user._id}`}>
-       <span>Profile - </span>   {profile.user.name} <span> <img className="round-img my-1" src={profile.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profile.profileImage}` : profile.avatar} alt="dentistUpProfilePicture"/></span>
+         {profile.user.name} <span> <img className="round-img my-1" src={profile.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profile.profileImage}` : profile.avatar} alt="dentistUpProfilePicture"/></span>
         </Link></li>
         ))}
       

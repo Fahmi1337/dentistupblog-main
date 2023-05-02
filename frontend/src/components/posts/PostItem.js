@@ -163,7 +163,7 @@ const PostItem = ({
                     <i className="fas fa-thumbs-down" />
                   </button>
              
-                  {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
+                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
                  
                     onClick={() => {
                       savePost(_id); loadUser();
@@ -175,7 +175,7 @@ const PostItem = ({
                   </button>}
 
                  
-                  {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length !== 0 &&  <button
+                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length !== 0 &&  <button
                          onClick={() => {
                           savePost(_id); loadUser();
                         }}
@@ -286,7 +286,7 @@ const PostItem = ({
                   </button>} */}
 
                  
-                  {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id) &&  <button
+                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id) &&  <button
                          onClick={() => {
                           savePost(_id); loadUser();
                         }}

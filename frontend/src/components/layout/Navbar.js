@@ -29,12 +29,12 @@ const Navbar = ({
         </NavLink>
       </li>
    
-      <li>
+      {/* <li>
         <NavLink to="/groups" activeClassName="active">
           <i className="far fa-comments"></i>{" "}
           <span className="hide-sm">Groups</span>
         </NavLink>
-      </li>
+      </li> */}
       {/* <li>
         <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
@@ -97,12 +97,12 @@ const Navbar = ({
           <span className="hide-sm">My Cases</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/mygroups" activeClassName="active">
           <i className="far fa-comments"></i>{" "}
           <span className="hide-sm">My Groups</span>
         </NavLink>
-      </li>
+      </li> */}
       {/* <li>
         <NavLink to="/mycases" activeClassName="active">
           <i className="far fa-thumbs-up"></i>{" "}

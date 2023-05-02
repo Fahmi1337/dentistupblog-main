@@ -857,7 +857,7 @@ button {
   border: 1px solid #ccc;
 }
 .postSearchResultTopBar{
-  padding: 2em 1em !important;
+  padding: 0.7em 1em !important;
 }
 #topBarSearchResultsContainer li span{
 
@@ -875,3 +875,8 @@ button {
 width: 3em;
 margin-left: 1em;
 }
+
+#topBarSearchResultsContainer i{
+font-size: xx-large;
+margin-left: 0.5em;
+  }
