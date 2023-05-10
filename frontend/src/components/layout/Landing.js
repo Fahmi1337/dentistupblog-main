@@ -7,6 +7,9 @@ const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to="/posts" />;
   }
+  if (!isAuthenticated){
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div>

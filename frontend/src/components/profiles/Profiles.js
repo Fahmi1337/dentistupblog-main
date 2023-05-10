@@ -22,12 +22,12 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
+          <div className="grey-bg">
           <h1 className="large text-primary">Dentists</h1>
           <p className="lead">
             <i className="fab fa-connectdevelop"></i> Browse and connect with
             other dentists
           </p>
-          <div className="profiles">
           <input
           id="searchPosts"
         type="text"
@@ -35,6 +35,8 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
       />
+          <div className="profiles">
+      
             {filteredProfiles.length > 0 ? (
               filteredProfiles.map((profile) => (
                profile.user &&  <ProfileItem key={profile._id} profile={profile} />
@@ -43,6 +45,9 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
               <h4>No Profiles found...</h4>
             )}
           </div>
+          </div>
+
+     
         </Fragment>
       )}
     </Fragment>

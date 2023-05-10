@@ -15,7 +15,8 @@
 
 body {
   /* font-family: "Roboto Mono", monospace; */
-  font-family: "Roboto";
+  font-family: 'Roboto';
+  font-style: normal;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -35,6 +36,12 @@ img {
   width: 100%;
 }
 
+.grey-bg{
+  padding: 1em 2em;
+  background: #E5E5E5;
+}
+
+
 /* Utilities */
 Section.container {
   /* max-width: 1100px; */
@@ -44,7 +51,7 @@ Section.container {
   margin-top: 6rem;
   margin-bottom: 3rem;
   margin-left: 19em;
-  /* background: #e5e5e5; */
+  /* background: #E5E5E5; */
 }
 div.App.container {
   /* max-width: 1100px; */
@@ -377,6 +384,30 @@ button {
   text-align: center;
 }
 
+.profiles{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.profile-item{
+  display: grid;
+  grid-template-rows: auto auto;
+  width: 20em;
+  align-items: center;
+  justify-items: center;
+  height: auto;
+  padding-bottom: 2em;
+  margin : 1.5em 1em;
+}
+.profile-item img{
+  width: 10em;
+  padding: 1em 0em;
+}
+.profile-item div{
+  text-align: center;
+  padding-bottom: 2em;
+}
 /* Profiles Page */
 .profile {
   display: grid;
@@ -694,7 +725,7 @@ button {
   margin: 0 30px;
 }
 #logoDentistup {
-  width: 60%;
+  width: 85%;
 }
 .navbar a.active {
   background: rgba(145, 203, 215, 0.3);
@@ -879,4 +910,34 @@ margin-left: 1em;
 #topBarSearchResultsContainer i{
 font-size: xx-large;
 margin-left: 0.5em;
+  }
+
+  .inputNewPostContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    padding: 0 1em;
+    margin: 2em 0em 2em 0em;
+
+    box-shadow: -4px -4px 16px rgba(0, 0, 0, 0.06), 4px 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .inputNewPostContainer img{
+    width: 3em;
+    border-radius: 50%;
+    margin-right: 1.5em;
+  }
+  .inputNewPostContainer form{
+    width: 100%;
+  }
+  .posts .post{
+    box-shadow: -4px -4px 16px rgba(0, 0, 0, 0.06), 4px 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .topBarImgContainer i{
+    font-size: 0.5em;
+    margin-left: 0.3em;
+  }
+
+  .topBarImgContainer{
+    background-color: rgba(0, 0, 0, 0) !important;
   }

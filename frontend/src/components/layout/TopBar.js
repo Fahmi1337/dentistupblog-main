@@ -379,8 +379,9 @@ else if(setting.toLowerCase().trim()==="my groups"){
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} className='topBarImgContainer'>
                 <Avatar alt="Dentistup"    src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + auth?.user?.profileImage}` : auth?.user?.avatar}/>
+                <i class="fa-solid fa-caret-down" style={{color: "#4E9EC6"}}></i>
               </IconButton>
             </Tooltip>
             <Menu

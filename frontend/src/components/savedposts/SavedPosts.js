@@ -39,7 +39,7 @@ const SavedPosts = ({
   
 
       
-      <div >
+    <div className="grey-bg">
    
       
       {auth?.user?.savedPosts?.length > 0 ? (

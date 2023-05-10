@@ -23,7 +23,7 @@ const style = {
   p: 4,
 };
 
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -43,13 +43,17 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   return loading ? (
     <Spinner />
   ) : (
-    <Fragment>
-      <h1 className="large text-primary">Posts</h1>
+    <Fragment >
+      <div className="grey-bg">
+  {/* <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="i fas fa-user"></i> Welcome to the Community
-      </p>
+      </p> */}
 
       {/* MODAL START */}
+      <div className="inputNewPostContainer">
+
+      <img alt="Dentistup" src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + auth?.user?.profileImage}` : auth?.user?.avatar}/>
       <form className="form">
         {" "}
         <input
@@ -58,6 +62,9 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
           onClick={handleOpen}
         />
       </form>
+
+      </div>
+     
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -99,6 +106,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
               <h4>No Posts found...</h4>
             )}
           </div>
+      </div>
+    
       
     </Fragment>
   );
@@ -107,10 +116,12 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);

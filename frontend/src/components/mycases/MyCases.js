@@ -32,16 +32,16 @@ return  posts.filter((g) => auth.user._id?.includes(g.user)).map((g) => g.user)
   return (
     
 
- 
-    
-      
-      <div >
+    <div className="grey-bg">
       {/* {posts.map((post, index) => (
     
           <PostItem key={post._id} post={post} showDetails={false} postsByUserId={auth.user._id} showUserPosts={true}/>
      
         ))} */}
       
+
+
+
       {getUserPostsCount() > 0 ? (
   renderedCurrentUserPosts
 ) : (
@@ -50,10 +50,7 @@ return  posts.filter((g) => auth.user._id?.includes(g.user)).map((g) => g.user)
 </Link></h3> 
 )}
 
-  {/* we will compare _id with posts.user */}
-  {
-             
-            }
+
 
       </div>
   
