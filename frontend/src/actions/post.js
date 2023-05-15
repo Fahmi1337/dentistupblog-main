@@ -12,7 +12,7 @@ import {
   EDIT_COMMENT,
   DELETE_COMMENT,
 } from "./types";
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 const history = createBrowserHistory();
 // Get posts
@@ -66,7 +66,6 @@ export const removeLike = (id) => async (dispatch) => {
   }
 };
 
-
 //Delete Post
 export const deletePost = (id) => async (dispatch) => {
   try {
@@ -78,14 +77,13 @@ export const deletePost = (id) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post successfully removed", "success"));
-   
   } catch (e) {
     dispatch({
       type: POST_ERROR,
       payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
-  history.push('/posts');
+  history.push("/posts");
   window.location.reload();
 };
 
@@ -113,7 +111,6 @@ export const addPost = (formData) => async (dispatch) => {
     });
   }
 };
-
 
 // Edit post
 export const editPost = (_id, formData) => async (dispatch) => {
@@ -205,20 +202,23 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 };
 
 // Edit comment
-export const editComment = (postId, commentId, formData) => async (dispatch) => {
-  try {
-    await axios.put(`/api/posts/comment/${postId}/${commentId}`, {formData});
+export const editComment =
+  (postId, commentId, formData) => async (dispatch) => {
+    try {
+      await axios.put(`/api/posts/comment/${postId}/${commentId}`, {
+        formData,
+      });
 
-    dispatch({
-      type: EDIT_COMMENT,
-      payload: commentId,
-    });
+      dispatch({
+        type: EDIT_COMMENT,
+        payload: commentId,
+      });
 
-    dispatch(setAlert("Comment successfully edited", "success"));
-  } catch (e) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
-    });
-  }
-};
+      dispatch(setAlert("Comment successfully edited", "success"));
+    } catch (e) {
+      dispatch({
+        type: POST_ERROR,
+        payload: { msg: e.response.statusText, status: e.response.status },
+      });
+    }
+  };

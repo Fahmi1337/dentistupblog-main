@@ -7,19 +7,13 @@ import logoDentistup from "../../img/logoDentistup.png";
 import { NavLink } from "react-router-dom";
 import { getProfileById } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
-const Navbar = ({
-  auth: { isAuthenticated, loading },
-  logoutUser,
-  auth
-}) => {
-
-
+const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser, auth }) => {
   const authLinks = (
     <ul>
-         <li>
+      <li>
         <NavLink to="/posts" activeClassName="active">
-          <i className="fas fa-file-alt"></i>{" "}
-          <span className="hide-sm">Posts</span>
+          <i class="fa-solid fa-rocket"></i>{" "}
+          <span className="hide-sm">News Feed</span>
         </NavLink>
       </li>
       <li>
@@ -28,7 +22,7 @@ const Navbar = ({
           <span className="hide-sm">Dentists</span>
         </NavLink>
       </li>
-   
+
       {/* <li>
         <NavLink to="/groups" activeClassName="active">
           <i className="far fa-comments"></i>{" "}
@@ -82,12 +76,11 @@ const Navbar = ({
   );
 
   const personalNavLinks = (
-    
     <ul>
-       <p>PERSONAL NAVIGATOR</p>
-       <li>
+      <p>PERSONAL NAVIGATOR</p>
+      <li>
         <NavLink to="/savedposts" activeClassName="active">
-        <i class="fa-solid fa-bookmark"></i>{" "}
+          <i class="fa-solid fa-bookmark"></i>{" "}
           <span className="hide-sm">Saved Cases</span>
         </NavLink>
       </li>
@@ -128,7 +121,7 @@ const Navbar = ({
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
-       
+
         {!loading && (
           <Fragment>{isAuthenticated ? personalNavLinks : null}</Fragment>
         )}
@@ -146,7 +139,6 @@ Navbar.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
- 
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);
