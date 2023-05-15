@@ -172,7 +172,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
       type: ADD_COMMENT,
       payload: res.data,
     });
-
+    window.scrollTo(0, 0);
     dispatch(setAlert("Comment successfully added", "success"));
   } catch (e) {
     dispatch({
