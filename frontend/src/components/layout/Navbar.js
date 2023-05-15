@@ -13,7 +13,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser, auth }) => {
       <li>
         <NavLink to="/posts" activeClassName="active">
           <i class="fa-solid fa-rocket"></i>{" "}
-          <span className="hide-sm">News Feed</span>
+          <span className="hide-sm">Feed</span>
         </NavLink>
       </li>
       <li>
