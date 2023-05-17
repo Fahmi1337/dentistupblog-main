@@ -37,7 +37,7 @@ img {
 }
 
 .grey-bg {
-  padding: 1em 20em 1em 2em;
+  padding: 1em 25em 1em 2em;
   background: #f6f6f6;
 }
 
@@ -792,7 +792,9 @@ header {
 #topBarContainer {
   background-color: white;
   position: fixed;
-  top: 1em;
+  top: 0em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 #searchIconContainer {
   color: #bebebe;
@@ -845,8 +847,8 @@ header {
   vertical-align: top;
 }
 #postDescription {
-  background-color: rgb(145 203 215 / 14%);
-  padding: 1em;
+  background-color: rgba(78, 158, 198, 0.15);
+  padding: 1em 2em;
 }
 .profile-top-container {
   background-size: cover;
@@ -962,4 +964,38 @@ header {
 
 .topBarImgContainer {
   background-color: rgba(0, 0, 0, 0) !important;
+}
+.loginRegisterParentContainer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-top: 7em;
+}
+.loginRegisterContainerRight .form-group input{
+width: 50% !important;
+}
+.loginRegisterContainerLeft{
+  margin : 5em 5em;
+}
+.postImage{
+  margin: 1em;
+  width: 150px;
+}
+.postIconsInfo{
+  display: flex;
+}
+.postIconsInfo p{
+ display: none;
+}
+.postIconsInfo i{
+  font-size: 1.3em !important;
+  margin: 0 0.2em;
+}
+.topBarIcons{
+  margin: 0 2em;
+}
+.topBarIcons button{
+  color: #808080;
+}
+.topBarIcons .MuiBadge-anchorOriginTopRight{
+  background-color: #36CB69;
 }

@@ -9,6 +9,10 @@ const PostSchema = new Schema({
   },
 
   postInfo: {
+    postImage: {
+      type: String,
+      default: null,
+    },
     title: {
       type: String,
       required: false,

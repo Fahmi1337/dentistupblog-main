@@ -9,50 +9,79 @@ import { addPost } from "../../actions/post";
 
 
 // creating functional component ans getting props from app.js and destucturing them
-const StepFive = ({ nextStep, handleFormData, prevStep, values, addPost }) => {
+const StepFive = ({ nextStep, handleFormData, prevStep, values, addPost, setFormData, handleClose }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
 
-  // const { bloodPressure, lastName, age, email } = values;
 
-  const [selectedFile, setSelectedFile] = useState(null);
 
-  const onFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+
+
+
+  const handleFileChange = (e) => {
+  
+    setFormData((prevState) => ({
+      ...prevState,
+      ["postImage"]: e?.target?.files[0],
+    }));
+    console.log("image?", e?.target?.files);
+    console.log("postImage?", values.postImage);
   };
-const patientReference = values.patientReference;
-const dateOfBirth = values.dateOfBirth;
-const reasonConsultation = values.reasonConsultation;
-const gender = "hey";
-const medicalHistory = values.medicalHistory;
-const dailyMedications = values.dailyMedications;
-const bloodPressure = values.bloodPressure;
-const pulse = values.pulse;
-const respiration = values.respiration;
-const dentalHistory = values.dentalHistory;
-const extraoralExamination = values.extraoralExamination;
-const intraoralExamination = values.intraoralExamination;
-const examenExoBuccal = values.examenExoBuccal;
-const dermato = values.dermato;
-const symetrieExplanation = values.symetrieExplanation;
-const detailsRespiration = values.detailsRespiration;
-const detailsMastication = values.detailsMastication;
-const detailsDeglutition = values.detailsDeglutition;
-const imageTest = values.imageTest;
-const text = "test";
+
+
+
+  // const onFileChange = (event) => {
+
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["images"]: event?.target?.files,
+  //   }));
+  // };
+
+
+
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
-    addPost({ values });
-    // checking if value of first name and last name is empty show error else take to next step
-    if (validator.isEmpty(values.imageTest) 
-    ) {
-      setError(true);
-    } else {
-      // nextStep();
-      addPost({ patientReference, dateOfBirth, reasonConsultation, gender, medicalHistory, dailyMedications, bloodPressure, pulse, respiration, dentalHistory, extraoralExamination, intraoralExamination, examenExoBuccal, dermato, symetrieExplanation, detailsRespiration, detailsMastication, detailsDeglutition, imageTest, text});
-   
-    }
+
+
+
+    // const formDataToSend = new FormData();
+
+    // for (const key in values) {
+    //   if (values.hasOwnProperty(key)) {
+    //     formDataToSend.append(key, values[key]);
+    //   }
+    // }
+
+
+
+
+
+    const data = new FormData();
+    data.append("postImage", values.postImage);
+    Object.keys(values).forEach((key) => {
+      if (key !== "postImage") {
+        data.append(key, values[key]);
+      }
+    });
+
+
+    // data.append("profileCover", formData.profileCover);
+    // Object.keys(formData).forEach((key) => {
+    //   if (key !== "profileCover") {
+    //     data.append(key, formData[key]);
+    //   }
+    // });
+
+
+console.log("final data?", data)
+
+
+
+    addPost(data);
+      // handleClose();
+ 
   };
   return (
     <>
@@ -60,12 +89,13 @@ const text = "test";
         <Card.Body>
           <Form onSubmit={submitFormData} className="form my-1">
             <Form.Group className="mb-3">
-              <Form.Label>Image test</Form.Label>
+              <Form.Label>Image</Form.Label>
               <Form.Control
                 style={{ border: error ? "2px solid red" : "" }}
-                type="file" 
-                name="imageTest"
-                onChange={handleFormData("imageTest")}
+                type="file"
+                name="image" 
+                multiple
+                onChange={handleFileChange}
               />
               {error ? (
                 <Form.Text style={{ color: "red" }}>

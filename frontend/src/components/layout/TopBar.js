@@ -20,13 +20,74 @@ import InputBase from "@mui/material/InputBase";
 import { logoutUser } from "../../actions/auth";
 import SearchIcon from "@mui/icons-material/Search";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { getPosts } from "../../actions/post";
 import { getAllProfiles } from "../../actions/profile";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import TuneIcon from '@mui/icons-material/Tune';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 const pages = ["Posts", "Dentists", "My Cases", "My Groups"];
 const settings = ["Profile", "Dashboard", "Logout"];
+
+
+
+
+
+
+const styleFilter = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
+const styleMessages = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
+const styleNotifications = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
+const styleProfile = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 
 const TopBar = ({
   auth,
@@ -52,10 +113,10 @@ const TopBar = ({
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const isClickInsideSearchBox = searchBoxRef.current.contains(
+      const isClickInsideSearchBox = searchBoxRef?.current?.contains(
         event.target
       );
-      const isClickInsideResultsContainer = event.target.closest(
+      const isClickInsideResultsContainer = event?.target?.closest(
         "#topBarSearchResultsContainer"
       );
 
@@ -190,9 +251,81 @@ const TopBar = ({
     },
   }));
 
+  
+
+
+
+  const [openFilter, setOpenFilter] = React.useState(false);
+  const handleOpenFilter = () => setOpenFilter(true);
+  const handleCloseFilter = () => setOpenFilter(false);
+
+  const [openMessages, setOpenMessages] = React.useState(false);
+  const handleOpenMessages = () => setOpenMessages(true);
+  const handleCloseMessages = () => setOpenMessages(false);
+
+  const [openNotifcations, setOpenNotifications] = React.useState(false);
+  const handleOpenNotifications = () => setOpenNotifications(true);
+  const handleCloseNotifications = () => setOpenNotifications(false);
+
+  const [openProfile, setOpenProfile] = React.useState(false);
+  const handleOpenProfile = () => setOpenProfile(true);
+  const handleCloseProfile = () => setOpenProfile(false);
+
+
   return (
-    <AppBar position="static" id="topBarContainer">
+    <AppBar position="static" id="topBarContainer" style={{display : auth.isAuthenticated ? "block" : "none"}}>
       <Container maxWidth="xl">
+
+{/* ADVANCED FILTER MODAL */}
+      <Modal
+        open={openFilter}
+        onClose={handleCloseFilter}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleFilter}>
+         <div className="FilterPopupContainer">
+
+<div className="FilterPopupContainerTop" style={{background: "#4E9EC6"}}>
+<i class="fa-solid fa-bars-staggered" style={{color: "white"}}></i>
+<h3>Filter</h3>
+</div>
+<div>
+  <h3>
+    Cas :
+  </h3>
+  <Search>
+              <SearchIconWrapper id="searchIconContainer">
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                id="SearchInputTopBar"
+                value={searchTerm}
+                onChange={handleSearch}
+                ref={searchBoxRef}
+                autoFocus
+              />
+            </Search>
+</div>
+<div>
+  <h3>Gender :</h3>
+  <input type="radio">Male</input>
+  <input type="radio">Female</input>
+</div>
+<div>
+  <h3>
+    Age :
+  </h3>
+  
+</div>
+         </div>
+        </Box>
+      </Modal>
+{/* ADVANCED FILTER MODAL */}
+
+
         <Toolbar id="topBarToolbarContainer" disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
@@ -356,7 +489,35 @@ const TopBar = ({
                 </div>
               )}
           </Box>
-
+          <Box sx={{ flexGrow: 1 }} />
+          <Box className="topBarIcons" sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <IconButton
+          onClick={handleOpenFilter}
+              size="large"
+              aria-label="Filter Search"
+              
+            >
+              <Badge color="error">
+                <TuneIcon />
+              </Badge>
+            </IconButton>
+            <IconButton size="large" aria-label="show 4 new mails" >
+              <Badge badgeContent={1} color="error">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="show 0 new notifications"
+              
+            >
+              <Badge badgeContent={1} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+           
+            </Box>
+           
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton

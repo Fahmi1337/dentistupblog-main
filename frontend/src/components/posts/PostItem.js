@@ -24,8 +24,16 @@ const PostItem = ({
   match,
   showSavedCases,
 }) => {
-
-
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
   return (
     <div className="posts">
       {showUserPosts && user === postsByUserId && (
@@ -45,6 +53,8 @@ const PostItem = ({
                     (postInfo.description?.length > 200 ? "..." : "")}
                 </p>
               )}
+              {postInfo.gender ==="male" && <i class="fa-solid fa-mars"></i>}
+              {postInfo.gender ==="female" && <i class="fa-solid fa-venus"></i>}
               <p className="post-date">
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>
@@ -140,7 +150,30 @@ const PostItem = ({
                     (postInfo.description?.length > 200 ? "..." : "")}
                 </p>
               )}
-
+             <div className="postIconsInfo">
+             {postInfo.gender ==="male" && <i class="fa-solid fa-mars" style={{color: "#4e9ec64d"}}></i>}
+              {postInfo.gender ==="female" && <i class="fa-solid fa-venus" style={{color: "#4e9ec64d"}}></i>}
+             <p>
+             {getAge(postInfo.dateOfBirth)} {" "}
+              </p> 
+              <i class="fa-solid fa-heart-pulse" style={{color: "#4e9ec64d"}}></i>
+              <p>
+              {postInfo.pulse} {" "}
+              </p>
+          
+              <i class="fa-solid fa-lungs" style={{color: "#4e9ec64d"}}></i>
+              <p>
+              {postInfo.respiration} {" "}
+              </p>
+              
+              <i class="fa-solid fa-droplet" style={{color: "#4e9ec64d"}}></i>
+              <p>
+              {postInfo.bloodPressure} {" "}
+              </p>
+              
+              <i class="fa-solid fa-tooth" style={{color: "#4e9ec64d"}}></i>
+             </div>
+   
               <p className="post-date">
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>
@@ -254,6 +287,8 @@ const PostItem = ({
                     (postInfo.description?.length > 200 ? "..." : "")}
                 </p>
               )}
+                  {postInfo.gender === "male" && <i class="fa-solid fa-mars"></i>}
+              {postInfo.gender === "female" && <i class="fa-solid fa-venus"></i>}
               <p className="post-date">
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>

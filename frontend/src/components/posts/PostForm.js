@@ -51,6 +51,7 @@ const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost,
     detailsDeglutition: "",
     title: "",
     description: "",
+    postImage: null,
   });
   useEffect(() => {
     if(postInfo){
@@ -167,11 +168,13 @@ const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost,
             <Row>
               <Col md={{ span: 6, offset: 3 }} className="custom-margin">
                 <StepFive
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  handleFormData={handleInputData}
-                  values={formData}
-                  editMode={editMode}
+                   nextStep={nextStep}
+                   prevStep={prevStep}
+                   handleFormData={handleInputData}
+                   values={formData}
+                   setFormData={setFormData}
+                   editMode={editMode}
+                   handleClose={handleClose}
                 />
               </Col>
             </Row>

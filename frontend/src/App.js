@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import TopBar from "./components/layout/TopBar";
@@ -13,20 +13,36 @@ import setAuthToken from "./utils/setAuthToken";
 
 import "./App.css";
 
+
+
+
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
+
+  const [updatedToken, setUpdatedToken] = useState(true)
+
+
+console.log("store?", store.dispatch(loadUser()))
+
+
   useEffect(() => {
     store.dispatch(loadUser());
+
   }, []);
+
+ 
 
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-         <TopBar />
+
+          {updatedToken && <TopBar />}
+         
          
           <Navbar />
           <Switch>

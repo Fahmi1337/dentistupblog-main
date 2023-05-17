@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../actions/auth";
-
+import Register from "./Register"
 const Login = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -20,7 +20,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
     e.preventDefault();
     loginUser(email, password);
   };
-
+  const [showLogin, setShowLogin] = useState(true);
   // Redirect if successfully login
   if (isAuthenticated) {
     return <Redirect to="/posts" />;
@@ -28,7 +28,14 @@ const Login = ({ loginUser, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
+<div className="loginRegisterParentContainer">
+<div className="loginRegisterContainerLeft">
+<h2>Connect, collaborate, and gain insights. Join our dental community today!</h2>
+</div>
+<div className="loginRegisterContainerRight">
+{showLogin ? (
+<div>
+<h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Login Into Your Account
       </p>
@@ -56,9 +63,35 @@ const Login = ({ loginUser, isAuthenticated }) => {
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-      <p className="my-1">
+      {/* <p className="my-1">
         Don't have an account? <Link to="/register">Register</Link>
+      </p> */}
+<div>
+      <p className="my-1">
+        Don't have an account? <a href="#" onClick={(e) => { setShowLogin(false); e.preventDefault();}}>Register</a>
       </p>
+</div>
+      </div>
+      ) : 
+      (
+      <div>
+             <Register/>
+      
+      <div>
+      <p className="my-1">
+      Already have an account? <a href="#" onClick={(e) => { setShowLogin(true); e.preventDefault();}}>Sign In</a>
+      </p>
+</div>
+      </div>
+ 
+      )}
+</div>
+</div>
+
+      
+
+
+      
     </Fragment>
   );
 };

@@ -84,9 +84,9 @@ const Register = ({ setAlert, registerUser, isAuthenticated }) => {
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
-      <p className="my-1">
+      {/* <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
-      </p>
+      </p> */}
     </Fragment>
   );
 };

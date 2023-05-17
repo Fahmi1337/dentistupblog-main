@@ -140,6 +140,21 @@ return !postInfo  ? (
           <div style={{width: "50%"}}> <PulseLinearProgress variant="determinate" value={(postInfo.pulse*100/82)-30} /></div>
           <p className="my-1"><span>Respiration </span> {postInfo.respiration} /min</p>
           <div style={{width: "50%"}}> <RespirationLinearProgress variant="determinate" value={(postInfo.respiration*100/45)} /></div>
+          <div>
+          {postInfo.postImage && <img
+                              className="postImage"
+                              src={
+                                `${
+                                      process.env.REACT_APP_BASE_URL +
+                                      "/" +
+                                      postInfo.postImage
+                                    }`
+                                  
+                              }
+                              alt="dentistUpProfilePicture"
+                            />}
+          
+          </div>
           </div>
           <div className="gridTwo">
          

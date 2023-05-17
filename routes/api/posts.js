@@ -8,12 +8,40 @@ const User = require("../../models/User");
 const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 
+
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path');
+
+
+router.use(bodyParser.urlencoded({
+  extended: false
+}));
+router.use(bodyParser.json());
+router.use(express.static('public'));
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    let extArray = file.mimetype.split("/");
+    let extension = extArray[extArray.length - 1];
+    cb(null, file.fieldname + '-' + Date.now() + '.' + extension)
+  }
+})
+const upload = multer({ storage: storage });
+const dirname = path.resolve();
+router.use('/uploads', express.static(path.join(dirname, '/uploads')));
 // @route   POST api/posts
 // @desc    Create a post
 // @access  Private
 router.post(
   "/",
-  [auth, [check("bloodPressure", "Text is required").not().isEmpty()]],
+  upload.fields([{
+    name: 'postImage', maxCount: 1
+  }]),
+  [auth, [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
@@ -22,9 +50,13 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select("-password");
-
+      let postImage = null;
+      if (req.files.postImage) {
+        postImage = req.files.postImage[0].path;
+      }
       const newPost = new Post({
         postInfo: {
+          postImage: postImage,
           title: req.body.title,
           description: req.body.description,
           bloodPressure: req.body.bloodPressure,
@@ -70,6 +102,10 @@ router.post(
       
       });
 
+
+   
+
+
       const post = await newPost.save();
       res.json(post);
     } catch (e) {
@@ -84,7 +120,7 @@ router.post(
 // @access  Private
 router.put(
   "/:id",
-  [auth, [check("bloodPressure", "Text is required").not().isEmpty()]],
+  [auth, [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
@@ -148,6 +184,31 @@ router.put(
         (post.name = user.name),
         (post.avatar = user.avatar),
         (post.user = req.user.id);
+
+
+         // Check if any files were uploaded
+      if (req.files && req.files.length > 0) {
+        // Handle the uploaded images
+        const imageUrls = [];
+
+        req.files.forEach((file) => {
+          // Assuming you have a function to generate a unique filename
+          const fileName = generateUniqueFileName(file.originalname);
+          const imagePath = `uploads/${fileName}`;
+
+          // Move the uploaded file to the desired location
+          // Assuming you have a function to handle file movement
+          moveFile(file.path, imagePath);
+
+          // Push the image URL to the array
+          imageUrls.push(imagePath);
+        });
+
+        // Update the image URLs in the post
+        post.images = imageUrls;
+      }
+
+
 
       const updatedPost = await post.save();
       res.json(updatedPost);

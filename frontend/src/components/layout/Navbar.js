@@ -108,7 +108,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser, auth }) => {
   return loading && auth === null ? (
     <Spinner />
   ) : (
-    <div>
+    <div style={{display : auth.isAuthenticated ? "block" : "none"}}>
       <nav className="navbar">
         <h1>
           <Link to="/">

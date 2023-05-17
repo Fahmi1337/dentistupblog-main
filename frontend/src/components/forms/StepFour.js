@@ -111,9 +111,9 @@ const StepFour = ({
     ) {
       setError(true);
     } else {
-      // nextStep();
-      addPost(values);
-      handleClose();
+      nextStep();
+      // addPost(values);
+      // handleClose();
     }
   };
 
@@ -281,8 +281,8 @@ const StepFour = ({
                 Previous
               </Button>
 
-              <Button variant="primary" type="submit">
-                Submit
+              <Button variant="primary" onClick={nextStep}>
+                Next
               </Button>
             </div>
           </Form>
