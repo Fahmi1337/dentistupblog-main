@@ -808,6 +808,19 @@ header {
   margin-left: 9em;
   height: 2em;
 }
+.FilterPopupContainerBody #searchIconContainer {
+  color: #ffffff;
+  margin-left: -2em;
+}
+.FilterPopupContainerBody #SearchInputTopBar {
+  border: 1px solid #bebebe;
+  border-radius: 25px;
+  color: black;
+  width: 20ch;
+  margin-left: -4em;
+  height: 1.5em;
+}
+
 .threeColumns {
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -889,7 +902,7 @@ header {
 #topBarSearchResultsContainer {
   position: absolute;
   top: 100%;
-  left: 20%;
+  left: 30%;
   z-index: 999;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -998,4 +1011,66 @@ width: 50% !important;
 }
 .topBarIcons .MuiBadge-anchorOriginTopRight{
   background-color: #36CB69;
+}
+.FilterPopupContainerTop{
+  display: flex;
+  padding: 1em;
+  align-items: center;
+}
+.FilterPopupContainerTop h3{
+  margin-left: 1em;
+  color: white;
+  font-weight: 500;
+}
+.FilterPopupContainerBody h3{
+  color: #4E9EC6;
+  font-weight: 500;
+}
+.FilterPopupContainerBody div{
+  margin: 1em 2em;
+}
+.FilterPopupContainerBody h4{
+  color: #BEBEBE;
+  font-weight: 500;
+  
+}
+.FilterPopupGenderSelect{
+  display: flex;
+}
+.FilterPopupGenderSelect input{
+  margin: 0 1em;
+}
+.ProfilePopUpItem{
+  display: flex;
+  padding: 1em 2em;
+  align-items: center;
+  color: #808080;
+
+}
+.ProfilePopUpItem h3{
+  margin-left: 1em;
+  font-weight: 500;
+  font-size: large;
+}
+.ProfilePopUpItem h2{
+  margin-left: 0.5em;
+
+  font-weight: 500;
+  font-size: 1.8em;
+}
+.ProfilePopUpItem{
+  color: #808080;
+}
+#ProfilePopUpItemLogOut{
+  border-top: 1px solid #4e9ec6;
+}
+#ProfilePopUpItemManageProfile:hover, #ProfilePopUpItemLogOut:hover{
+  cursor: pointer;
+  background-color: #4E9EC6;
+  color: white ;
+  border-top: 1px solid #ffffff !important;
+}
+#ProfilePopUpItemMyProfile:hover{
+  cursor: pointer;
+
 }

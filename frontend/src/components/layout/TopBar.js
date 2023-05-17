@@ -27,8 +27,10 @@ import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TuneIcon from '@mui/icons-material/Tune';
-import Button from '@mui/material/Button';
+
 import Modal from '@mui/material/Modal';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
 const pages = ["Posts", "Dentists", "My Cases", "My Groups"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
@@ -39,14 +41,13 @@ const settings = ["Profile", "Dashboard", "Logout"];
 
 const styleFilter = {
   position: 'absolute',
-  top: '50%',
-  left: '50%',
+  top: '35%',
+  left: '80%',
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  borderRadius: 2,
 };
 
 
@@ -78,14 +79,14 @@ const styleNotifications = {
 
 const styleProfile = {
   position: 'absolute',
-  top: '50%',
-  left: '50%',
+  top: '18%',
+  left: '90%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 300,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  borderRadius: 2,
   boxShadow: 24,
-  p: 4,
+ 
 };
 
 
@@ -290,6 +291,7 @@ const TopBar = ({
 <i class="fa-solid fa-bars-staggered" style={{color: "white"}}></i>
 <h3>Filter</h3>
 </div>
+<div className="FilterPopupContainerBody">
 <div>
   <h3>
     Cas :
@@ -302,30 +304,103 @@ const TopBar = ({
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
                 id="SearchInputTopBar"
-                value={searchTerm}
-                onChange={handleSearch}
-                ref={searchBoxRef}
-                autoFocus
+             
+              
+                
               />
             </Search>
 </div>
-<div>
+<div className="FilterPopupGenderSelect">
   <h3>Gender :</h3>
-  <input type="radio">Male</input>
-  <input type="radio">Female</input>
+  <input type="radio"/>
+  <h4>Male</h4>
+  <input type="radio"/>
+  <h4>Female</h4>
 </div>
 <div>
   <h3>
-    Age :
+   Minimum Age :
   </h3>
-  
+  <input type="range"/>
 </div>
+<div>
+  <h3>
+   Maximum Age :
+  </h3>
+  <input type="range"/>
+</div>
+<div>
+  <h3>
+    Category :
+  </h3>
+  <Search>
+              <SearchIconWrapper id="searchIconContainer">
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Type something..."
+                inputProps={{ "aria-label": "search" }}
+                id="SearchInputTopBar"
+           
+             
+                
+              />
+            </Search>
+</div>
+</div>
+
          </div>
         </Box>
       </Modal>
 {/* ADVANCED FILTER MODAL */}
 
 
+
+{/* Profile MODAL */}
+<Modal
+        open={openProfile}
+        onClose={handleCloseProfile}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleProfile}>
+         <div className="FilterPopupContainer">
+
+<div id="ProfilePopUpItemMyProfile" className="ProfilePopUpItem" style={{background: "#4E9EC6", color: "white"}} onClick={(e) => {e.preventDefault();history.push(`/profile/${auth?.user?._id}`); handleCloseProfile(); }}>
+
+                <Avatar
+                  alt="Dentistup"
+                  src={
+                    auth?.user?.profileImage
+                      ? `${
+                          process.env.REACT_APP_BASE_URL +
+                          "/" +
+                          auth?.user?.profileImage
+                        }`
+                      : auth?.user?.avatar
+                  }
+                />
+                <i
+                  class="fa-solid fa-caret-down"
+                  style={{ color: "#4E9EC6" }}
+                ></i>
+           
+<h2>{auth?.user?.name}</h2>
+</div>
+<div className="ProfilePopUpItem" id="ProfilePopUpItemManageProfile" onClick={(e) => {e.preventDefault(); history.push(`/dashboard`); handleCloseProfile();}}>
+  <AccountCircleIcon/>
+
+<h3>Manage Account</h3>
+</div>
+<div className="ProfilePopUpItem" id="ProfilePopUpItemLogOut" onClick={(e) => {e.preventDefault(); logoutUser(); history.push(`/login`); handleCloseProfile();}}>
+<LogoutIcon/>
+<h3>Log Out</h3>
+</div>
+
+         </div>
+        </Box>
+      </Modal>
+{/* PROFILE MODAL */}
         <Toolbar id="topBarToolbarContainer" disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
@@ -521,7 +596,8 @@ const TopBar = ({
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton
-                onClick={handleOpenUserMenu}
+                // onClick={handleOpenUserMenu}
+                onClick={handleOpenProfile}
                 sx={{ p: 0 }}
                 className="topBarImgContainer"
               >

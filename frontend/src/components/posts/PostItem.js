@@ -152,7 +152,7 @@ const PostItem = ({
               )}
              <div className="postIconsInfo">
              {postInfo.gender ==="male" && <i class="fa-solid fa-mars" style={{color: "#4e9ec64d"}}></i>}
-              {postInfo.gender ==="female" && <i class="fa-solid fa-venus" style={{color: "#4e9ec64d"}}></i>}
+              {postInfo.gender ==="female" && <i class="fa-solid fa-venus" style={{color: "pink"}}></i>}
              <p>
              {getAge(postInfo.dateOfBirth)} {" "}
               </p> 
