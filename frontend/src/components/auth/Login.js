@@ -3,7 +3,8 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../actions/auth";
-import Register from "./Register"
+import Register from "./Register";
+import dentistupLogo from "../../img/logoDentistup.png"
 const Login = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -30,7 +31,11 @@ const Login = ({ loginUser, isAuthenticated }) => {
     <Fragment>
 <div className="loginRegisterParentContainer">
 <div className="loginRegisterContainerLeft">
-<h2>Connect, collaborate, and gain insights. Join our dental community today!</h2>
+  <div>
+    <img src={dentistupLogo} alt="dentistupLogo" style={{width: "15em", marginBottom:"1em"}}/>
+  </div>
+<h2>Connect, collaborate, and gain insights.</h2> 
+<h2> Join our dental community today!</h2>
 </div>
 <div className="loginRegisterContainerRight">
 {showLogin ? (
