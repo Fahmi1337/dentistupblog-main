@@ -23,72 +23,62 @@ import { useHistory } from "react-router-dom";
 import { getPosts } from "../../actions/post";
 import { getAllProfiles } from "../../actions/profile";
 import { Link } from "react-router-dom";
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import TuneIcon from '@mui/icons-material/Tune';
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import TuneIcon from "@mui/icons-material/Tune";
 
-import Modal from '@mui/material/Modal';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
+import Modal from "@mui/material/Modal";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
 const pages = ["Posts", "Dentists", "My Cases", "My Groups"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
-
-
-
-
-
 const styleFilter = {
-  position: 'absolute',
-  top: '35%',
-  left: '80%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "35%",
+  left: "80%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: 2,
 };
-
 
 const styleMessages = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-
 
 const styleNotifications = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
-
 const styleProfile = {
-  position: 'absolute',
-  top: '18%',
-  left: '90%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "18%",
+  left: "80%",
+  transform: "translate(-50%, -50%)",
   width: 300,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   borderRadius: 2,
   boxShadow: 24,
- 
 };
-
 
 const TopBar = ({
   auth,
@@ -252,10 +242,6 @@ const TopBar = ({
     },
   }));
 
-  
-
-
-
   const [openFilter, setOpenFilter] = React.useState(false);
   const handleOpenFilter = () => setOpenFilter(true);
   const handleCloseFilter = () => setOpenFilter(false);
@@ -272,102 +258,99 @@ const TopBar = ({
   const handleOpenProfile = () => setOpenProfile(true);
   const handleCloseProfile = () => setOpenProfile(false);
 
-
   return (
-    <AppBar position="static" id="topBarContainer" style={{display : auth.isAuthenticated ? "block" : "none"}}>
+    <AppBar
+      position="static"
+      id="topBarContainer"
+      style={{ display: auth.isAuthenticated ? "block" : "none" }}
+    >
       <Container maxWidth="xl">
+        {/* ADVANCED FILTER MODAL */}
+        <Modal
+          open={openFilter}
+          onClose={handleCloseFilter}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleFilter}>
+            <div className="FilterPopupContainer">
+              <div
+                className="FilterPopupContainerTop"
+                style={{ background: "#4E9EC6" }}
+              >
+                <i
+                  class="fa-solid fa-bars-staggered"
+                  style={{ color: "white" }}
+                ></i>
+                <h3>Filter</h3>
+              </div>
+              <div className="FilterPopupContainerBody">
+                <div>
+                  <h3>Cas :</h3>
+                  <Search>
+                    <SearchIconWrapper id="searchIconContainer">
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                      placeholder="Search…"
+                      inputProps={{ "aria-label": "search" }}
+                      id="SearchInputTopBar"
+                    />
+                  </Search>
+                </div>
+                <div className="FilterPopupGenderSelect">
+                  <h3>Gender :</h3>
+                  <input type="radio" />
+                  <h4>Male</h4>
+                  <input type="radio" />
+                  <h4>Female</h4>
+                </div>
+                <div>
+                  <h3>Minimum Age :</h3>
+                  <input type="range" />
+                </div>
+                <div>
+                  <h3>Maximum Age :</h3>
+                  <input type="range" />
+                </div>
+                <div>
+                  <h3>Category :</h3>
+                  <Search>
+                    <SearchIconWrapper id="searchIconContainer">
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                      placeholder="Type something..."
+                      inputProps={{ "aria-label": "search" }}
+                      id="SearchInputTopBar"
+                    />
+                  </Search>
+                </div>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+        {/* ADVANCED FILTER MODAL */}
 
-{/* ADVANCED FILTER MODAL */}
-      <Modal
-        open={openFilter}
-        onClose={handleCloseFilter}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={styleFilter}>
-         <div className="FilterPopupContainer">
-
-<div className="FilterPopupContainerTop" style={{background: "#4E9EC6"}}>
-<i class="fa-solid fa-bars-staggered" style={{color: "white"}}></i>
-<h3>Filter</h3>
-</div>
-<div className="FilterPopupContainerBody">
-<div>
-  <h3>
-    Cas :
-  </h3>
-  <Search>
-              <SearchIconWrapper id="searchIconContainer">
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-                id="SearchInputTopBar"
-             
-              
-                
-              />
-            </Search>
-</div>
-<div className="FilterPopupGenderSelect">
-  <h3>Gender :</h3>
-  <input type="radio"/>
-  <h4>Male</h4>
-  <input type="radio"/>
-  <h4>Female</h4>
-</div>
-<div>
-  <h3>
-   Minimum Age :
-  </h3>
-  <input type="range"/>
-</div>
-<div>
-  <h3>
-   Maximum Age :
-  </h3>
-  <input type="range"/>
-</div>
-<div>
-  <h3>
-    Category :
-  </h3>
-  <Search>
-              <SearchIconWrapper id="searchIconContainer">
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Type something..."
-                inputProps={{ "aria-label": "search" }}
-                id="SearchInputTopBar"
-           
-             
-                
-              />
-            </Search>
-</div>
-</div>
-
-         </div>
-        </Box>
-      </Modal>
-{/* ADVANCED FILTER MODAL */}
-
-
-
-{/* Profile MODAL */}
-<Modal
-        open={openProfile}
-        onClose={handleCloseProfile}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={styleProfile}>
-         <div className="FilterPopupContainer">
-
-<div id="ProfilePopUpItemMyProfile" className="ProfilePopUpItem" style={{background: "#4E9EC6", color: "white"}} onClick={(e) => {e.preventDefault();history.push(`/profile/${auth?.user?._id}`); handleCloseProfile(); }}>
-
+        {/* Profile MODAL */}
+        <Modal
+          open={openProfile}
+          onClose={handleCloseProfile}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleProfile}>
+            <div className="FilterPopupContainer">
+              <div
+                id="ProfilePopUpItemMyProfile"
+                className="ProfilePopUpItem"
+                style={{ background: "#4E9EC6", color: "white" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  history.push(`/profile/${auth?.user?._id}`);
+                  handleCloseProfile();
+                }}
+              >
                 <Avatar
                   alt="Dentistup"
                   src={
@@ -384,23 +367,39 @@ const TopBar = ({
                   class="fa-solid fa-caret-down"
                   style={{ color: "#4E9EC6" }}
                 ></i>
-           
-<h2>{auth?.user?.name}</h2>
-</div>
-<div className="ProfilePopUpItem" id="ProfilePopUpItemManageProfile" onClick={(e) => {e.preventDefault(); history.push(`/dashboard`); handleCloseProfile();}}>
-  <AccountCircleIcon/>
 
-<h3>Manage Account</h3>
-</div>
-<div className="ProfilePopUpItem" id="ProfilePopUpItemLogOut" onClick={(e) => {e.preventDefault(); logoutUser(); history.push(`/login`); handleCloseProfile();}}>
-<LogoutIcon/>
-<h3>Log Out</h3>
-</div>
+                <h2>{auth?.user?.name}</h2>
+              </div>
+              <div
+                className="ProfilePopUpItem"
+                id="ProfilePopUpItemManageProfile"
+                onClick={(e) => {
+                  e.preventDefault();
+                  history.push(`/dashboard`);
+                  handleCloseProfile();
+                }}
+              >
+                <AccountCircleIcon />
 
-         </div>
-        </Box>
-      </Modal>
-{/* PROFILE MODAL */}
+                <h3>Manage Account</h3>
+              </div>
+              <div
+                className="ProfilePopUpItem"
+                id="ProfilePopUpItemLogOut"
+                onClick={(e) => {
+                  e.preventDefault();
+                  logoutUser();
+                  history.push(`/login`);
+                  handleCloseProfile();
+                }}
+              >
+                <LogoutIcon />
+                <h3>Log Out</h3>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+        {/* PROFILE MODAL */}
         <Toolbar id="topBarToolbarContainer" disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
@@ -565,34 +564,31 @@ const TopBar = ({
               )}
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box className="topBarIcons" sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <IconButton
-          onClick={handleOpenFilter}
+          <Box
+            className="topBarIcons"
+            sx={{ display: { xs: "none", md: "flex" } }}
+          >
+            <IconButton
+              onClick={handleOpenFilter}
               size="large"
               aria-label="Filter Search"
-              
             >
               <Badge color="error">
                 <TuneIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" aria-label="show 4 new mails" >
+            <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={1} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 0 new notifications"
-              
-            >
+            <IconButton size="large" aria-label="show 0 new notifications">
               <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-           
-            </Box>
-           
+          </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton

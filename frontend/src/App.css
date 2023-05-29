@@ -160,8 +160,8 @@ div.App.container {
   transition: opacity 0.2s ease-in;
   outline: none;
   border-radius: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 2px 0px 0px -5px,
+    rgba(0, 0, 0, 0.3) 1px 7px 11px -8px;
 }
 
 .badge {
@@ -196,7 +196,8 @@ div.App.container {
 .bg-light,
 .badge-light,
 .alert-light {
-  background: var(--light-color);
+  /* background: var(--light-color); */
+  background: #f4f4f400;
   color: #333;
 }
 
@@ -587,11 +588,11 @@ header {
 }
 
 .post .comment-count {
-  background: var(--light-color);
-  color: var(--primary-color);
+  /* background: var(--light-color); */
+  /* color: var(--primary-color); */
   padding: 0.1rem 0.2rem;
   border-radius: 5px;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .post .post-date {
@@ -954,8 +955,8 @@ header {
   padding: 0 1em;
   margin: 2em 0em 2em 0em;
 
-  box-shadow: -4px -4px 16px rgba(0, 0, 0, 0.06),
-    4px 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.06);
+  /* ,4px 4px 16px rgba(0, 0, 0, 0.06); */
 }
 .inputNewPostContainer img {
   width: 3em;
@@ -968,8 +969,8 @@ header {
   width: 100%;
 }
 .posts .post {
-  box-shadow: -4px -4px 16px rgba(0, 0, 0, 0.06),
-    4px 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.06);
+  /* ,4px 4px 16px rgba(0, 0, 0, 0.06); */
 }
 .topBarImgContainer i {
   font-size: 0.5em;
@@ -1042,7 +1043,7 @@ header {
 }
 .ProfilePopUpItem {
   display: flex;
-  padding: 1em 2em;
+  padding: 0.7em 1.3em;
   align-items: center;
   color: #808080;
 }
@@ -1055,7 +1056,7 @@ header {
   margin-left: 0.5em;
 
   font-weight: 500;
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 .ProfilePopUpItem {
   color: #808080;
@@ -1070,6 +1071,10 @@ header {
   color: white;
   border-top: 1px solid #ffffff !important;
 }
+#ProfilePopUpItemManageProfile,
+#ProfilePopUpItemLogOut {
+  padding-left: 1.8em;
+}
 #ProfilePopUpItemMyProfile:hover {
   cursor: pointer;
 }
@@ -1081,4 +1086,13 @@ div.fullscreen-container {
 }
 div.fullscreen-group {
   margin-top: 2em;
+}
+.comments-btn {
+  background: white !important;
+}
+.post .btn {
+  box-shadow: unset !important;
+}
+.post .btn i {
+  font-size: 1.3em;
 }

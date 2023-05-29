@@ -8,39 +8,42 @@ const User = require("../../models/User");
 const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 
+const bodyParser = require("body-parser");
+const multer = require("multer");
+const path = require("path");
 
-const bodyParser = require('body-parser');
-const multer = require('multer');
-const path = require('path');
-
-
-router.use(bodyParser.urlencoded({
-  extended: false
-}));
+router.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 router.use(bodyParser.json());
-router.use(express.static('public'));
+router.use(express.static("public"));
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
     let extArray = file.mimetype.split("/");
     let extension = extArray[extArray.length - 1];
-    cb(null, file.fieldname + '-' + Date.now() + '.' + extension)
-  }
-})
+    cb(null, file.fieldname + "-" + Date.now() + "." + extension);
+  },
+});
 const upload = multer({ storage: storage });
 const dirname = path.resolve();
-router.use('/uploads', express.static(path.join(dirname, '/uploads')));
+router.use("/uploads", express.static(path.join(dirname, "/uploads")));
 // @route   POST api/posts
 // @desc    Create a post
 // @access  Private
 router.post(
   "/",
-  upload.fields([{
-    name: 'postImage', maxCount: 1
-  }]),
+  upload.fields([
+    {
+      name: "postImage",
+      maxCount: 1,
+    },
+  ]),
   [auth, [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
@@ -99,12 +102,7 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
-      
       });
-
-
-   
-
 
       const post = await newPost.save();
       res.json(post);
@@ -185,8 +183,7 @@ router.put(
         (post.avatar = user.avatar),
         (post.user = req.user.id);
 
-
-         // Check if any files were uploaded
+      // Check if any files were uploaded
       if (req.files && req.files.length > 0) {
         // Handle the uploaded images
         const imageUrls = [];
@@ -207,8 +204,6 @@ router.put(
         // Update the image URLs in the post
         post.images = imageUrls;
       }
-
-
 
       const updatedPost = await post.save();
       res.json(updatedPost);
@@ -232,9 +227,6 @@ router.put(
 //     res.status(500).send("Server Error");
 //   }
 // });
-
-
-
 
 // @route   GET api/posts
 // @desc    Get all posts
@@ -260,8 +252,6 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-
-
 // // @route   GET api/posts/:id
 // // @desc    Get post by Post Id
 // // @access  Private
@@ -282,7 +272,6 @@ router.get("/", auth, async (req, res) => {
 //     res.status(500).send("Server Error");
 //   }
 // });
-
 
 // // @route   GET api/posts/:id
 // // @desc    Get post by Post Id
@@ -328,7 +317,7 @@ router.get("/:id", auth, async (req, res) => {
       const commentProfile = await Profile.findOne({ user: comment.user });
       commentsWithProfileImage.push({
         _id: comment._id,
-       
+
         name: comment.name,
         profileImage: commentProfile ? commentProfile.profileImage : null,
         user: comment.user,
@@ -336,7 +325,6 @@ router.get("/:id", auth, async (req, res) => {
         treatment: comment.treatment,
         diagnostic: comment.diagnostic,
         avatar: comment.avatar,
-
       });
     }
 
@@ -399,12 +387,17 @@ router.put("/like/:id", auth, async (req, res) => {
       post.likes.filter((like) => like.user.toString() === req.user.id).length >
       0
     ) {
-      return res.status(400).json({ msg: "Post already liked" });
+      const removeIndex = post.likes
+        .map((like) => like.user.toString())
+        .indexOf(req.user.id);
+      post.likes.splice(removeIndex, 1);
+      await post.save();
+      res.json(post.likes);
+    } else {
+      post.likes.unshift({ user: req.user.id });
+      await post.save();
+      res.json(post.likes);
     }
-
-    post.likes.unshift({ user: req.user.id });
-    await post.save();
-    res.json(post.likes);
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server Error");
@@ -450,7 +443,7 @@ router.post("/comment/:id", [auth], async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     const post = await Post.findById(req.params.id);
-  
+
     const newComment = {
       treatment: req.body.formData.treatment,
       diagnostic: req.body.formData.diagnostic,
@@ -469,23 +462,20 @@ router.post("/comment/:id", [auth], async (req, res) => {
   }
 });
 
-
-
-
 // @route   PUT api/posts/comment/:postId/:commentId
 // @desc    Edit a comment on a post
 // @access  Private
 router.put("/comment/:postId/:commentId", [auth], async (req, res) => {
   const errors = validationResult(req);
-  
+
   // Return 400 error response if there are validation errors
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
+
   try {
     const post = await Post.findById(req.params.postId);
-    
+
     // Find the index of the comment to be edited
     const commentIndex = post.comments.findIndex(
       (comment) => comment._id.toString() === req.params.commentId
@@ -507,7 +497,7 @@ router.put("/comment/:postId/:commentId", [auth], async (req, res) => {
 
     // Save the updated post
     await post.save();
-    
+
     // Return the updated comments array as response
     res.json(post.comments);
   } catch (e) {
@@ -515,7 +505,6 @@ router.put("/comment/:postId/:commentId", [auth], async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // @route   GET api/posts/comment/:id/:comment_id
 // @desc    Get a comment by id
@@ -528,7 +517,9 @@ router.get("/comment/:id/:comment_id", [auth], async (req, res) => {
       return res.status(404).json({ msg: "Post not found" });
     }
     // Find the comment by id
-    const comment = post.comments.find((comment) => comment.id.toString() === req.params.comment_id);
+    const comment = post.comments.find(
+      (comment) => comment.id.toString() === req.params.comment_id
+    );
     // Check if comment exists
     if (!comment) {
       return res.status(404).json({ msg: "Comment not found" });
@@ -539,9 +530,6 @@ router.get("/comment/:id/:comment_id", [auth], async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-
-
 
 // @route   POST api/posts/comment/:id/:comment_id
 // @desc    Delete a comment on a post
@@ -575,4 +563,3 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
 });
 
 module.exports = router;
-

@@ -105,38 +105,98 @@ const PostItem = ({
               </p>
 
               <Fragment>
-                <button
+                {/* <button
                   onClick={() => addLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-up" />{" "}
+                  <i className="fa-regular fa-heart" />{" "}
                   <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-                </button>
-                <button
+                </button> */}
+                {/* <button
                   onClick={() => removeLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-down" />
-                </button>
+                  <i className="fa-regular fa-thumbs-down" />
+                </button> */}
 
-                {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
-                    onClick={() => savePost(_id)}
+                {likes.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length === 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                      console.log("likes?", likes, "user", auth?.user?._id);
+                    }}
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-regular fa-bookmark"></i>
-                  </button>}
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                )}
 
-                 
-                  {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 1 &&  <button
-                    onClick={() => savePost(_id)}
+                {likes?.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length !== 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                    }}
                     type="button"
                     className="btn btn-light"
                   >
-                   <i class="fa-solid fa-bookmark"></i>
-                  </button>} */}
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                )}
+
+                {showActions && (
+                  <Fragment>
+                    <Link to={`/posts/${_id}`} className="btn comments-btn">
+                      <i class="fa-regular fa-comment"></i>{" "}
+                      {comments.length > 0 && (
+                        <span className="comment-count">{comments.length}</span>
+                      )}
+                    </Link>
+                  </Fragment>
+                )}
+                {_id &&
+                  auth?.user?.savedPosts?.filter(
+                    (savedPost) => savedPost?.post?.toString() === _id
+                  ).length === 0 && (
+                    <button
+                      onClick={() => {
+                        savePost(_id);
+                        loadUser();
+                        loadUser();
+                      }}
+                      type="button"
+                      className="btn btn-light"
+                    >
+                      <i class="fa-regular fa-bookmark"></i>
+                    </button>
+                  )}
+
+                {_id &&
+                  auth?.user?.savedPosts?.filter(
+                    (savedPost) => savedPost?.post?.toString() === _id
+                  ).length !== 0 && (
+                    <button
+                      onClick={() => {
+                        savePost(_id);
+                        loadUser();
+                        loadUser();
+                      }}
+                      type="button"
+                      className="btn btn-light"
+                    >
+                      <i class="fa-solid fa-bookmark"></i>
+                    </button>
+                  )}
 
                 {!auth.loading && user === auth.user._id && (
                   <button
@@ -148,16 +208,6 @@ const PostItem = ({
                   </button>
                 )}
               </Fragment>
-              {showActions && (
-                <Fragment>
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
-                    {comments.length > 0 && (
-                      <span className="comment-count">{comments.length}</span>
-                    )}
-                  </Link>
-                </Fragment>
-              )}
             </div>
           </div>
           {showDetails && (
@@ -232,22 +282,65 @@ const PostItem = ({
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>
               <Fragment>
-                <button
+                {/* <button
                   onClick={() => addLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-up" />{" "}
+                  <i className="fa-regular fa-heart" />{" "}
                   <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-                </button>
-                <button
+                </button> */}
+
+                {likes.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length === 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                      console.log("likes?", likes, "user", auth?.user?._id);
+                    }}
+                    type="button"
+                    className="btn btn-light"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                )}
+
+                {likes?.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length !== 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                    }}
+                    type="button"
+                    className="btn btn-light"
+                  >
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                )}
+
+                {/* <button
                   onClick={() => removeLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-down" />
-                </button>
-
+                  <i className="fa-regular fa-thumbs-down" />
+                </button> */}
+                {showActions && (
+                  <Fragment>
+                    <Link to={`/posts/${_id}`} className="btn comments-btn">
+                      <i class="fa-regular fa-comment"></i>{" "}
+                      {comments.length > 0 && (
+                        <span className="comment-count">{comments.length}</span>
+                      )}
+                    </Link>
+                  </Fragment>
+                )}
                 {_id &&
                   auth?.user?.savedPosts?.filter(
                     (savedPost) => savedPost?.post?.toString() === _id
@@ -292,16 +385,6 @@ const PostItem = ({
                   </button>
                 )}
               </Fragment>
-              {showActions && (
-                <Fragment>
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
-                    {comments.length > 0 && (
-                      <span className="comment-count">{comments.length}</span>
-                    )}
-                  </Link>
-                </Fragment>
-              )}
             </div>
           </div>
           {showDetails && (
@@ -376,21 +459,54 @@ const PostItem = ({
               </p>
 
               <Fragment>
-                <button
+                {/* <button
                   onClick={() => addLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-up" />{" "}
+                  <i className="fa-regular fa-heart" />{" "}
                   <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-                </button>
-                <button
+                </button> */}
+                {/* <button
                   onClick={() => removeLike(_id)}
                   type="button"
                   className="btn btn-light"
                 >
-                  <i className="fas fa-thumbs-down" />
-                </button>
+                  <i className="fa-regular fa-thumbs-down" />
+                </button> */}
+
+                {likes.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length === 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                      console.log("likes?", likes, "user", auth?.user?._id);
+                    }}
+                    type="button"
+                    className="btn btn-light"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                )}
+
+                {likes?.filter(
+                  (like) => like?.user?.toString() === auth?.user?._id
+                ).length !== 0 && (
+                  <button
+                    onClick={() => {
+                      addLike(_id);
+                      loadUser();
+                      loadUser();
+                    }}
+                    type="button"
+                    className="btn btn-light"
+                  >
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                )}
 
                 {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() !== _id) === 0 &&  <button
                     onClick={() => savePost(_id)}
@@ -400,6 +516,16 @@ const PostItem = ({
                     <i class="fa-regular fa-bookmark"></i>
                   </button>} */}
 
+                {showActions && (
+                  <Fragment>
+                    <Link to={`/posts/${_id}`} className="btn comments-btn">
+                      <i class="fa-regular fa-comment"></i>{" "}
+                      {comments.length > 0 && (
+                        <span className="comment-count">{comments.length}</span>
+                      )}
+                    </Link>
+                  </Fragment>
+                )}
                 {_id && savedPostsIds.includes(_id) && (
                   <button
                     onClick={() => {
@@ -424,16 +550,6 @@ const PostItem = ({
                   </button>
                 )}
               </Fragment>
-              {showActions && (
-                <Fragment>
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
-                    {comments.length > 0 && (
-                      <span className="comment-count">{comments.length}</span>
-                    )}
-                  </Link>
-                </Fragment>
-              )}
             </div>
           </div>
           {showDetails && (

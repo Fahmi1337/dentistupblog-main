@@ -89,8 +89,8 @@ const PostDetails = ({
   }
   const images = [
     `${process.env.REACT_APP_BASE_URL + "/" + postInfo.postImage}`,
-    "https://www.barkerdentalcare.co.uk/wp-content/uploads/2016/12/CI2-decay.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS53-plCXj8yvWBSCyebWWuaiHQvPiMo3KfZcpsycLM4ISZpn5Mgd74hBJy85AtPI69VzQ&usqp=CAU",
+    // "https://www.barkerdentalcare.co.uk/wp-content/uploads/2016/12/CI2-decay.jpg",
+    // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS53-plCXj8yvWBSCyebWWuaiHQvPiMo3KfZcpsycLM4ISZpn5Mgd74hBJy85AtPI69VzQ&usqp=CAU",
   ];
   console.log("images??", images);
   // for (var i = 0; i < postInfo.postImages.length; i++) {
