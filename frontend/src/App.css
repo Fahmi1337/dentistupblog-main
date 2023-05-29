@@ -978,99 +978,103 @@ header {
 .topBarImgContainer {
   background-color: rgba(0, 0, 0, 0) !important;
 }
-.loginRegisterParentContainer{
+.loginRegisterParentContainer {
   display: grid;
   grid-template-columns: 50% 50%;
   margin-top: 7em;
 }
-.loginRegisterContainerRight .form-group input{
-width: 50% !important;
+.loginRegisterContainerRight .form-group input {
+  width: 50% !important;
 }
-.loginRegisterContainerLeft{
-  margin : 5em 5em;
+.loginRegisterContainerLeft {
+  margin: 5em 5em;
 }
-.postImage{
+.postImage {
   margin: 1em;
   width: 150px;
 }
-.postIconsInfo{
+.postIconsInfo {
   display: flex;
 }
-.postIconsInfo p{
- display: none;
+.postIconsInfo p {
+  display: none;
 }
-.postIconsInfo i{
+.postIconsInfo i {
   font-size: 1.3em !important;
   margin: 0 0.2em;
 }
-.topBarIcons{
+.topBarIcons {
   margin: 0 2em;
 }
-.topBarIcons button{
+.topBarIcons button {
   color: #808080;
 }
-.topBarIcons .MuiBadge-anchorOriginTopRight{
-  background-color: #36CB69;
+.topBarIcons .MuiBadge-anchorOriginTopRight {
+  background-color: #36cb69;
 }
-.FilterPopupContainerTop{
+.FilterPopupContainerTop {
   display: flex;
   padding: 1em;
   align-items: center;
 }
-.FilterPopupContainerTop h3{
+.FilterPopupContainerTop h3 {
   margin-left: 1em;
   color: white;
   font-weight: 500;
 }
-.FilterPopupContainerBody h3{
-  color: #4E9EC6;
+.FilterPopupContainerBody h3 {
+  color: #4e9ec6;
   font-weight: 500;
 }
-.FilterPopupContainerBody div{
+.FilterPopupContainerBody div {
   margin: 1em 2em;
 }
-.FilterPopupContainerBody h4{
-  color: #BEBEBE;
+.FilterPopupContainerBody h4 {
+  color: #bebebe;
   font-weight: 500;
-  
 }
-.FilterPopupGenderSelect{
+.FilterPopupGenderSelect {
   display: flex;
 }
-.FilterPopupGenderSelect input{
+.FilterPopupGenderSelect input {
   margin: 0 1em;
 }
-.ProfilePopUpItem{
+.ProfilePopUpItem {
   display: flex;
   padding: 1em 2em;
   align-items: center;
   color: #808080;
-
 }
-.ProfilePopUpItem h3{
+.ProfilePopUpItem h3 {
   margin-left: 1em;
   font-weight: 500;
   font-size: large;
 }
-.ProfilePopUpItem h2{
+.ProfilePopUpItem h2 {
   margin-left: 0.5em;
 
   font-weight: 500;
   font-size: 1.8em;
 }
-.ProfilePopUpItem{
+.ProfilePopUpItem {
   color: #808080;
 }
-#ProfilePopUpItemLogOut{
+#ProfilePopUpItemLogOut {
   border-top: 1px solid #4e9ec6;
 }
-#ProfilePopUpItemManageProfile:hover, #ProfilePopUpItemLogOut:hover{
+#ProfilePopUpItemManageProfile:hover,
+#ProfilePopUpItemLogOut:hover {
   cursor: pointer;
-  background-color: #4E9EC6;
-  color: white ;
+  background-color: #4e9ec6;
+  color: white;
   border-top: 1px solid #ffffff !important;
 }
-#ProfilePopUpItemMyProfile:hover{
+#ProfilePopUpItemMyProfile:hover {
   cursor: pointer;
+}
 
+div.fullscreen-container {
+  height: 10vh;
+  width: 10vw;
+  right: 30%;
 }
