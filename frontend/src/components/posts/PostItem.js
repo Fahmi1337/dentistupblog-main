@@ -65,12 +65,24 @@ const PostItem = ({
               </Link>
             </div>
             <div>
-              <h2 className="my-1">{postInfo.title}</h2>
+              <h2 className="my-1">
+                {" "}
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>{postInfo.title}</Link>
+                </Fragment>
+              </h2>
+              <p className="post-date">
+                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+              </p>
               {!showDetails && (
-                <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
-                </p>
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>
+                    <p className="my-1">
+                      {postInfo.description?.slice(0, 200) +
+                        (postInfo.description?.length > 200 ? "..." : "")}
+                    </p>
+                  </Link>
+                </Fragment>
               )}
               <div className="postIconsInfo">
                 {postInfo.gender === "male" && (
@@ -100,9 +112,6 @@ const PostItem = ({
 
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
               </div>
-              <p className="post-date">
-                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
-              </p>
 
               <Fragment>
                 {/* <button
@@ -134,7 +143,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -150,7 +162,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -204,7 +219,7 @@ const PostItem = ({
                     type="button"
                     className="btn btn-danger"
                   >
-                    <i className="fas fa-times"></i>
+                    <i class="fa-regular fa-trash-can"></i>
                   </button>
                 )}
               </Fragment>
@@ -242,12 +257,24 @@ const PostItem = ({
               </Link>
             </div>
             <div>
-              <h2 className="my-1">{postInfo.title}</h2>
+              <h2 className="my-1">
+                {" "}
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>{postInfo.title}</Link>
+                </Fragment>
+              </h2>
+              <p className="post-date">
+                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+              </p>
               {!showDetails && (
-                <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
-                </p>
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>
+                    <p className="my-1">
+                      {postInfo.description?.slice(0, 200) +
+                        (postInfo.description?.length > 200 ? "..." : "")}
+                    </p>
+                  </Link>
+                </Fragment>
               )}
               <div className="postIconsInfo">
                 {postInfo.gender === "male" && (
@@ -278,9 +305,6 @@ const PostItem = ({
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
               </div>
 
-              <p className="post-date">
-                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
-              </p>
               <Fragment>
                 {/* <button
                   onClick={() => addLike(_id)}
@@ -304,7 +328,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -320,7 +347,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -381,7 +411,7 @@ const PostItem = ({
                     type="button"
                     className="btn btn-danger"
                   >
-                    <i className="fas fa-times"></i>
+                    <i class="fa-regular fa-trash-can"></i>
                   </button>
                 )}
               </Fragment>
@@ -419,12 +449,24 @@ const PostItem = ({
               </Link>
             </div>
             <div>
-              <h2 className="my-1">{postInfo.title}</h2>
+              <h2 className="my-1">
+                {" "}
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>{postInfo.title}</Link>
+                </Fragment>
+              </h2>
+              <p className="post-date">
+                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+              </p>
               {!showDetails && (
-                <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
-                </p>
+                <Fragment>
+                  <Link to={`/posts/${_id}`}>
+                    <p className="my-1">
+                      {postInfo.description?.slice(0, 200) +
+                        (postInfo.description?.length > 200 ? "..." : "")}
+                    </p>
+                  </Link>
+                </Fragment>
               )}
               <div className="postIconsInfo">
                 {postInfo.gender === "male" && (
@@ -454,9 +496,6 @@ const PostItem = ({
 
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
               </div>
-              <p className="post-date">
-                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
-              </p>
 
               <Fragment>
                 {/* <button
@@ -488,7 +527,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -504,7 +546,10 @@ const PostItem = ({
                     type="button"
                     className="btn btn-light"
                   >
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>{" "}
+                    <span>
+                      {likes.length > 0 && <span>{likes.length}</span>}
+                    </span>
                   </button>
                 )}
 
@@ -546,7 +591,7 @@ const PostItem = ({
                     type="button"
                     className="btn btn-danger"
                   >
-                    <i className="fas fa-times"></i>
+                    <i class="fa-regular fa-trash-can"></i>
                   </button>
                 )}
               </Fragment>

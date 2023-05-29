@@ -37,8 +37,12 @@ img {
 }
 
 .grey-bg {
-  padding: 1em 25em 1em 2em;
+  /* padding: 1em 25em 1em 2em; */
   background: #f6f6f6;
+  width: 95ch;
+  margin: 0 auto;
+  padding-right: 1em;
+  margin-left: 19%;
 }
 
 /* Utilities */
@@ -571,20 +575,25 @@ header {
 }
 .post {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-gap: 2rem;
+  grid-template-rows: 1fr;
   align-items: center;
   box-shadow: rgb(100 100 111 / 23%) 2px 3px 11px 0px;
   padding-bottom: 2em;
 }
 
 .post > div:first-child {
-  text-align: center;
+  text-align: left;
 }
-
+.post > div:first-child a {
+  display: flex;
+  align-items: center;
+}
+.post > div:first-child a img {
+  margin-right: 1em;
+}
 .post img {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 }
 
 .post .comment-count {
@@ -598,7 +607,8 @@ header {
 .post .post-date {
   color: #aaa;
   font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin: -1em;
+  padding-left: 0.8rem;
 }
 
 /* Mobile Styles */
@@ -997,6 +1007,8 @@ header {
 }
 .postIconsInfo {
   display: flex;
+  margin-bottom: 0.8em;
+  margin-left: -0.3em;
 }
 .postIconsInfo p {
   display: none;
@@ -1092,7 +1104,15 @@ div.fullscreen-group {
 }
 .post .btn {
   box-shadow: unset !important;
+  margin-left: -1.3em;
 }
 .post .btn i {
   font-size: 1.3em;
+}
+.post .btn-danger {
+  color: #333;
+  background: white;
+}
+.post a {
+  color: #333;
 }
