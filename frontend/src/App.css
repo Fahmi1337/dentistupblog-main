@@ -824,6 +824,7 @@ header {
 .threeColumns {
   display: grid;
   grid-template-columns: 33% 33% 33%;
+  margin-bottom: 7em;
 }
 #postDetailsContainer {
   margin: 5em 0;
@@ -1077,4 +1078,7 @@ div.fullscreen-container {
   height: 10vh;
   width: 10vw;
   right: 30%;
+}
+div.fullscreen-group {
+  margin-top: 2em;
 }
