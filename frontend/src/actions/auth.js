@@ -12,9 +12,7 @@ import {
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
-
 axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
-
 
 // Load User
 export const loadUser = () => async (dispatch) => {
@@ -85,7 +83,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (e) {
-    const errors = e.response.data.errors;
+    const errors = e?.response?.data?.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }

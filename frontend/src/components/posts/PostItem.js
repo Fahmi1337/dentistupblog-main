@@ -5,7 +5,7 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 import { savePost } from "../../actions/profile";
-import {loadUser} from "../../actions/auth";
+import { loadUser } from "../../actions/auth";
 import PostDetails from "./PostDetails";
 
 const PostItem = ({
@@ -15,7 +15,17 @@ const PostItem = ({
   savePost,
   loadUser,
   auth,
-  post: { _id, postInfo, name, avatar, user, likes, comments, date, profileImage },
+  post: {
+    _id,
+    postInfo,
+    name,
+    avatar,
+    user,
+    likes,
+    comments,
+    date,
+    profileImage,
+  },
   showActions,
   showDetails,
   showUserPosts,
@@ -23,6 +33,7 @@ const PostItem = ({
   getPost,
   match,
   showSavedCases,
+  savedPostsIds,
 }) => {
   function getAge(dateString) {
     var today = new Date();
@@ -30,10 +41,10 @@ const PostItem = ({
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+      age--;
     }
     return age;
-}
+  }
   return (
     <div className="posts">
       {showUserPosts && user === postsByUserId && (
@@ -41,7 +52,15 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentistup" />
+                <img
+                  className="round-img"
+                  src={
+                    profileImage
+                      ? `${process.env.REACT_APP_BASE_URL + "/" + profileImage}`
+                      : avatar
+                  }
+                  alt="Dentistup"
+                />
                 <h4>{name}</h4>
               </Link>
             </div>
@@ -53,32 +72,56 @@ const PostItem = ({
                     (postInfo.description?.length > 200 ? "..." : "")}
                 </p>
               )}
-              {postInfo.gender ==="male" && <i class="fa-solid fa-mars"></i>}
-              {postInfo.gender ==="female" && <i class="fa-solid fa-venus"></i>}
+              <div className="postIconsInfo">
+                {postInfo.gender === "male" && (
+                  <i
+                    class="fa-solid fa-mars"
+                    style={{ color: "#4e9ec64d" }}
+                  ></i>
+                )}
+                {postInfo.gender === "female" && (
+                  <i class="fa-solid fa-venus" style={{ color: "pink" }}></i>
+                )}
+                <p>{getAge(postInfo.dateOfBirth)} </p>
+                <i
+                  class="fa-solid fa-heart-pulse"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.pulse} </p>
+
+                <i class="fa-solid fa-lungs" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.respiration} </p>
+
+                <i
+                  class="fa-solid fa-droplet"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.bloodPressure} </p>
+
+                <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+              </div>
               <p className="post-date">
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>
 
               <Fragment>
-                  <button
-                    onClick={() => addLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-up" />{" "}
-                    <span>
-                      {likes.length > 0 && <span>{likes.length}</span>}
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => removeLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-down" />
-                  </button>
+                <button
+                  onClick={() => addLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-up" />{" "}
+                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+                </button>
+                <button
+                  onClick={() => removeLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-down" />
+                </button>
 
-                  {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
+                {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
                     onClick={() => savePost(_id)}
                     type="button"
                     className="btn btn-light"
@@ -95,150 +138,24 @@ const PostItem = ({
                    <i class="fa-solid fa-bookmark"></i>
                   </button>} */}
 
-                  {!auth.loading && user === auth.user._id && (
-                    <button
-                      onClick={(e) => deletePost(_id)}
-                      type="button"
-                      className="btn btn-danger"
-                    >
-                      <i className="fas fa-times"></i>
-                    </button>
-                  )}
-                </Fragment>
+                {!auth.loading && user === auth.user._id && (
+                  <button
+                    onClick={(e) => deletePost(_id)}
+                    type="button"
+                    className="btn btn-danger"
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                )}
+              </Fragment>
               {showActions && (
                 <Fragment>
-          
                   <Link to={`/posts/${_id}`} className="btn btn-primary">
                     Discussion{" "}
                     {comments.length > 0 && (
                       <span className="comment-count">{comments.length}</span>
                     )}
                   </Link>
-                
-                </Fragment>
-              )}
-            </div>
-          </div>
-          {showDetails && (
-     
-            <PostDetails
-              postInfo={postInfo}
-              auth={auth}
-              user={user}
-              deletePost={deletePost}
-              _id={_id}
-              getPost={getPost} match={match}
-            />
-          )}
-        </div>
-      )}
-
-      {!showUserPosts && !showSavedCases &&(
-        <div>
-          <div className="post bg-white p-1 my-1">
-            <div>
-              <Link to={`/profile/${user}`}>
-                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentisup" />
-                <h4>{name}</h4>
-              </Link>
-            </div>
-            <div>
-              <h2 className="my-1">{postInfo.title}</h2>
-              {!showDetails && (
-                <p className="my-1">
-                  {postInfo.description?.slice(0, 200) +
-                    (postInfo.description?.length > 200 ? "..." : "")}
-                </p>
-              )}
-             <div className="postIconsInfo">
-             {postInfo.gender ==="male" && <i class="fa-solid fa-mars" style={{color: "#4e9ec64d"}}></i>}
-              {postInfo.gender ==="female" && <i class="fa-solid fa-venus" style={{color: "pink"}}></i>}
-             <p>
-             {getAge(postInfo.dateOfBirth)} {" "}
-              </p> 
-              <i class="fa-solid fa-heart-pulse" style={{color: "#4e9ec64d"}}></i>
-              <p>
-              {postInfo.pulse} {" "}
-              </p>
-          
-              <i class="fa-solid fa-lungs" style={{color: "#4e9ec64d"}}></i>
-              <p>
-              {postInfo.respiration} {" "}
-              </p>
-              
-              <i class="fa-solid fa-droplet" style={{color: "#4e9ec64d"}}></i>
-              <p>
-              {postInfo.bloodPressure} {" "}
-              </p>
-              
-              <i class="fa-solid fa-tooth" style={{color: "#4e9ec64d"}}></i>
-             </div>
-   
-              <p className="post-date">
-                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
-              </p>
-              <Fragment>
-                  <button
-                    onClick={() => addLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-up" />{" "}
-                    <span>
-                      {likes.length > 0 && <span>{likes.length}</span>}
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => removeLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-down" />
-                  </button>
-             
-                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length === 0 &&  <button
-                 
-                    onClick={() => {
-                      savePost(_id); loadUser();
-                    }}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i class="fa-regular fa-bookmark"></i>
-                  </button>}
-
-                 
-                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id).length !== 0 &&  <button
-                         onClick={() => {
-                          savePost(_id); loadUser();
-                        }}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                   <i class="fa-solid fa-bookmark"></i>
-                  </button>}
-
-
-                  {!auth.loading && user === auth.user._id && (
-                    <button
-                      onClick={(e) => deletePost(_id)}
-                      type="button"
-                      className="btn btn-danger"
-                    >
-                      <i className="fas fa-times"></i>
-                    </button>
-                  )}
-                </Fragment>
-              {showActions && (
-                <Fragment>
-          
-                  <Link to={`/posts/${_id}`} className="btn btn-primary">
-                    Discussion{" "}
-                    {comments.length > 0 && (
-                      <span className="comment-count">{comments.length}</span>
-                    )}
-                  </Link>
-                
                 </Fragment>
               )}
             </div>
@@ -250,32 +167,27 @@ const PostItem = ({
               user={user}
               deletePost={deletePost}
               _id={_id}
-              getPost={getPost} match={match}
+              getPost={getPost}
+              match={match}
             />
-            
           )}
         </div>
       )}
 
-
-
-
-
-
-
-
-
-
-
-
-
-{showSavedCases && auth.user.savedPosts.filter((savedPost) => savedPost?.post?.toString() === _id) && (
-
+      {!showUserPosts && !showSavedCases && (
         <div>
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img className="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="Dentistup" />
+                <img
+                  className="round-img"
+                  src={
+                    profileImage
+                      ? `${process.env.REACT_APP_BASE_URL + "/" + profileImage}`
+                      : avatar
+                  }
+                  alt="Dentisup"
+                />
                 <h4>{name}</h4>
               </Link>
             </div>
@@ -287,32 +199,200 @@ const PostItem = ({
                     (postInfo.description?.length > 200 ? "..." : "")}
                 </p>
               )}
-                  {postInfo.gender === "male" && <i class="fa-solid fa-mars"></i>}
-              {postInfo.gender === "female" && <i class="fa-solid fa-venus"></i>}
+              <div className="postIconsInfo">
+                {postInfo.gender === "male" && (
+                  <i
+                    class="fa-solid fa-mars"
+                    style={{ color: "#4e9ec64d" }}
+                  ></i>
+                )}
+                {postInfo.gender === "female" && (
+                  <i class="fa-solid fa-venus" style={{ color: "pink" }}></i>
+                )}
+                <p>{getAge(postInfo.dateOfBirth)} </p>
+                <i
+                  class="fa-solid fa-heart-pulse"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.pulse} </p>
+
+                <i class="fa-solid fa-lungs" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.respiration} </p>
+
+                <i
+                  class="fa-solid fa-droplet"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.bloodPressure} </p>
+
+                <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+              </div>
+
+              <p className="post-date">
+                Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+              </p>
+              <Fragment>
+                <button
+                  onClick={() => addLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-up" />{" "}
+                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+                </button>
+                <button
+                  onClick={() => removeLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-down" />
+                </button>
+
+                {_id &&
+                  auth?.user?.savedPosts?.filter(
+                    (savedPost) => savedPost?.post?.toString() === _id
+                  ).length === 0 && (
+                    <button
+                      onClick={() => {
+                        savePost(_id);
+                        loadUser();
+                        loadUser();
+                      }}
+                      type="button"
+                      className="btn btn-light"
+                    >
+                      <i class="fa-regular fa-bookmark"></i>
+                    </button>
+                  )}
+
+                {_id &&
+                  auth?.user?.savedPosts?.filter(
+                    (savedPost) => savedPost?.post?.toString() === _id
+                  ).length !== 0 && (
+                    <button
+                      onClick={() => {
+                        savePost(_id);
+                        loadUser();
+                        loadUser();
+                      }}
+                      type="button"
+                      className="btn btn-light"
+                    >
+                      <i class="fa-solid fa-bookmark"></i>
+                    </button>
+                  )}
+
+                {!auth.loading && user === auth.user._id && (
+                  <button
+                    onClick={(e) => deletePost(_id)}
+                    type="button"
+                    className="btn btn-danger"
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                )}
+              </Fragment>
+              {showActions && (
+                <Fragment>
+                  <Link to={`/posts/${_id}`} className="btn btn-primary">
+                    Discussion{" "}
+                    {comments.length > 0 && (
+                      <span className="comment-count">{comments.length}</span>
+                    )}
+                  </Link>
+                </Fragment>
+              )}
+            </div>
+          </div>
+          {showDetails && (
+            <PostDetails
+              postInfo={postInfo}
+              auth={auth}
+              user={user}
+              deletePost={deletePost}
+              _id={_id}
+              getPost={getPost}
+              match={match}
+            />
+          )}
+        </div>
+      )}
+
+      {showSavedCases && savedPostsIds.includes(_id) && (
+        <div>
+          <div className="post bg-white p-1 my-1">
+            <div>
+              <Link to={`/profile/${user}`}>
+                <img
+                  className="round-img"
+                  src={
+                    profileImage
+                      ? `${process.env.REACT_APP_BASE_URL + "/" + profileImage}`
+                      : avatar
+                  }
+                  alt="Dentistup"
+                />
+                <h4>{name}</h4>
+              </Link>
+            </div>
+            <div>
+              <h2 className="my-1">{postInfo.title}</h2>
+              {!showDetails && (
+                <p className="my-1">
+                  {postInfo.description?.slice(0, 200) +
+                    (postInfo.description?.length > 200 ? "..." : "")}
+                </p>
+              )}
+              <div className="postIconsInfo">
+                {postInfo.gender === "male" && (
+                  <i
+                    class="fa-solid fa-mars"
+                    style={{ color: "#4e9ec64d" }}
+                  ></i>
+                )}
+                {postInfo.gender === "female" && (
+                  <i class="fa-solid fa-venus" style={{ color: "pink" }}></i>
+                )}
+                <p>{getAge(postInfo.dateOfBirth)} </p>
+                <i
+                  class="fa-solid fa-heart-pulse"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.pulse} </p>
+
+                <i class="fa-solid fa-lungs" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.respiration} </p>
+
+                <i
+                  class="fa-solid fa-droplet"
+                  style={{ color: "#4e9ec64d" }}
+                ></i>
+                <p>{postInfo.bloodPressure} </p>
+
+                <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+              </div>
               <p className="post-date">
                 Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
               </p>
 
               <Fragment>
-                  <button
-                    onClick={() => addLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-up" />{" "}
-                    <span>
-                      {likes.length > 0 && <span>{likes.length}</span>}
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => removeLike(_id)}
-                    type="button"
-                    className="btn btn-light"
-                  >
-                    <i className="fas fa-thumbs-down" />
-                  </button>
-                  
-                  {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() !== _id) === 0 &&  <button
+                <button
+                  onClick={() => addLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-up" />{" "}
+                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+                </button>
+                <button
+                  onClick={() => removeLike(_id)}
+                  type="button"
+                  className="btn btn-light"
+                >
+                  <i className="fas fa-thumbs-down" />
+                </button>
+
+                {/* {auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() !== _id) === 0 &&  <button
                     onClick={() => savePost(_id)}
                     type="button"
                     className="btn btn-light"
@@ -320,50 +400,51 @@ const PostItem = ({
                     <i class="fa-regular fa-bookmark"></i>
                   </button>} */}
 
-                 
-                  {_id && auth?.user?.savedPosts?.filter((savedPost) => savedPost?.post?.toString() === _id) &&  <button
-                         onClick={() => {
-                          savePost(_id); loadUser();
-                        }}
+                {_id && savedPostsIds.includes(_id) && (
+                  <button
+                    onClick={() => {
+                      savePost(_id);
+                      loadUser();
+                      loadUser();
+                    }}
                     type="button"
                     className="btn btn-light"
                   >
-                   <i class="fa-solid fa-bookmark"></i>
-                  </button>}
+                    <i class="fa-solid fa-bookmark"></i>
+                  </button>
+                )}
 
-                  {!auth.loading && user === auth.user._id && (
-                    <button
-                      onClick={(e) => deletePost(_id)}
-                      type="button"
-                      className="btn btn-danger"
-                    >
-                      <i className="fas fa-times"></i>
-                    </button>
-                  )}
-                </Fragment>
+                {!auth.loading && user === auth.user._id && (
+                  <button
+                    onClick={(e) => deletePost(_id)}
+                    type="button"
+                    className="btn btn-danger"
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                )}
+              </Fragment>
               {showActions && (
                 <Fragment>
-          
                   <Link to={`/posts/${_id}`} className="btn btn-primary">
                     Discussion{" "}
                     {comments.length > 0 && (
                       <span className="comment-count">{comments.length}</span>
                     )}
                   </Link>
-                
                 </Fragment>
               )}
             </div>
           </div>
           {showDetails && (
-     
             <PostDetails
               postInfo={postInfo}
               auth={auth}
               user={user}
               deletePost={deletePost}
               _id={_id}
-              getPost={getPost} match={match}
+              getPost={getPost}
+              match={match}
             />
           )}
         </div>
@@ -393,6 +474,10 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost, savePost, loadUser })(
-  PostItem
-);
+export default connect(mapStateToProps, {
+  addLike,
+  removeLike,
+  deletePost,
+  savePost,
+  loadUser,
+})(PostItem);
