@@ -27,7 +27,7 @@ import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import TuneIcon from "@mui/icons-material/Tune";
-
+import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -71,8 +71,8 @@ const styleNotifications = {
 
 const styleProfile = {
   position: "absolute",
-  top: "18%",
-  left: "80%",
+  top: "16%",
+  left: "81%",
   transform: "translate(-50%, -50%)",
   width: 300,
   bgcolor: "background.paper",
@@ -344,7 +344,6 @@ const TopBar = ({
               <div
                 id="ProfilePopUpItemMyProfile"
                 className="ProfilePopUpItem"
-                style={{ background: "#4E9EC6", color: "white" }}
                 onClick={(e) => {
                   e.preventDefault();
                   history.push(`/profile/${auth?.user?._id}`);
@@ -363,14 +362,22 @@ const TopBar = ({
                       : auth?.user?.avatar
                   }
                 />
-                <i
-                  class="fa-solid fa-caret-down"
-                  style={{ color: "#4E9EC6" }}
-                ></i>
 
                 <h2>{auth?.user?.name}</h2>
               </div>
-              <div
+              <div className="manageAccountLinkProfileOptions">
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.push(`/dashboard`);
+                    handleCloseProfile();
+                  }}
+                >
+                  Manage Account
+                </a>
+              </div>
+              <Divider style={{ borderColor: "#4e9ec6" }} />
+              {/* <div
                 className="ProfilePopUpItem"
                 id="ProfilePopUpItemManageProfile"
                 onClick={(e) => {
@@ -382,7 +389,8 @@ const TopBar = ({
                 <AccountCircleIcon />
 
                 <h3>Manage Account</h3>
-              </div>
+              </div> */}
+
               <div
                 className="ProfilePopUpItem"
                 id="ProfilePopUpItemLogOut"
