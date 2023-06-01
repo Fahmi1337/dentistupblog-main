@@ -592,7 +592,7 @@ const TopBar = ({
                         <Link to={`/posts/${post._id}`}>
                           <span>
                             {" "}
-                            <i class="fa-solid fa-hashtag"></i>
+                            <Icon icon="system-uicons:thread" />
                           </span>
                           {post.postInfo.title}{" "}
                         </Link>
