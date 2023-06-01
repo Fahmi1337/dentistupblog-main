@@ -57,5 +57,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://api-dentistup.carthage-solutions.com:5050"
+  "proxy": "http://api-dentistup.carthage-solutions.com:5050",
+  "devDependencies": {
+    "@iconify/react": "^4.1.0"
+  }
 }

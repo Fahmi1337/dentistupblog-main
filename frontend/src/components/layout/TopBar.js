@@ -31,6 +31,7 @@ import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { Icon } from "@iconify/react";
 const pages = ["Posts", "Dentists", "My Cases", "My Groups"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
@@ -71,7 +72,7 @@ const styleNotifications = {
 
 const styleProfile = {
   position: "absolute",
-  top: "16%",
+  top: "23%",
   left: "81%",
   transform: "translate(-50%, -50%)",
   width: 300,
@@ -373,7 +374,7 @@ const TopBar = ({
                     handleCloseProfile();
                   }}
                 >
-                  Manage Account
+                  Manage Your Account
                 </a>
               </div>
               <Divider style={{ borderColor: "#4e9ec6" }} />
@@ -390,19 +391,73 @@ const TopBar = ({
 
                 <h3>Manage Account</h3>
               </div> */}
+              <div className="profilePopupOptionsContainer">
+                <div
+                  className="ProfilePopUpItem"
+                  id="ProfilePopUpItemLogOut"
+                  onClick={(e) => {
+                    e.preventDefault();
 
-              <div
-                className="ProfilePopUpItem"
-                id="ProfilePopUpItemLogOut"
-                onClick={(e) => {
-                  e.preventDefault();
-                  logoutUser();
-                  history.push(`/login`);
-                  handleCloseProfile();
-                }}
-              >
-                <LogoutIcon />
-                <h3>Log Out</h3>
+                    history.push(`/posts`);
+                    handleCloseProfile();
+                  }}
+                >
+                  <Icon icon="pajamas:doc-new" />
+                  <h3>Create a new post</h3>
+                </div>
+                <div
+                  className="ProfilePopUpItem"
+                  id="ProfilePopUpItemLogOut"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    history.push(`/posts`);
+                    handleCloseProfile();
+                  }}
+                >
+                  <Icon icon="material-symbols:help-outline" />
+                  <h3>Help And Support</h3>
+                </div>
+                <div
+                  className="ProfilePopUpItem"
+                  id="ProfilePopUpItemLogOut"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    history.push(`/posts`);
+                    handleCloseProfile();
+                  }}
+                >
+                  <Icon icon="ic:outline-privacy-tip" />
+                  <h3>Privacy Policy</h3>
+                </div>
+                <div
+                  className="ProfilePopUpItem"
+                  id="ProfilePopUpItemLogOut"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    history.push(`/posts`);
+                    handleCloseProfile();
+                  }}
+                >
+                  <Icon icon="ion:settings-outline" />
+                  <h3>Settings</h3>
+                </div>
+
+                <div
+                  className="ProfilePopUpItem"
+                  id="ProfilePopUpItemLogOut"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logoutUser();
+                    history.push(`/login`);
+                    handleCloseProfile();
+                  }}
+                >
+                  <Icon icon="ant-design:logout-outlined" />
+                  <h3>Log Out</h3>
+                </div>
               </div>
             </div>
           </Box>
@@ -535,11 +590,11 @@ const TopBar = ({
                     {filteredPosts.map((post) => (
                       <li key={post._id} className="postSearchResultTopBar">
                         <Link to={`/posts/${post._id}`}>
-                          {post.postInfo.title}{" "}
                           <span>
                             {" "}
-                            <i class="fa-regular fa-clipboard"></i>
+                            <i class="fa-solid fa-hashtag"></i>
                           </span>
+                          {post.postInfo.title}{" "}
                         </Link>
                       </li>
                     ))}
@@ -547,7 +602,6 @@ const TopBar = ({
                       <li key={profile._id}>
                         {" "}
                         <Link to={`/profile/${profile.user._id}`}>
-                          {profile.user.name}{" "}
                           <span>
                             {" "}
                             <img
@@ -564,6 +618,7 @@ const TopBar = ({
                               alt="dentistUpProfilePicture"
                             />
                           </span>
+                          {profile.user.name}{" "}
                         </Link>
                       </li>
                     ))}

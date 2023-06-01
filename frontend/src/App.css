@@ -38,7 +38,7 @@ img {
 
 .grey-bg {
   /* padding: 1em 25em 1em 2em; */
-  background: #f6f6f6;
+  background: #91cbd74d;
   padding-top: 1em;
   padding-bottom: 1em;
   /* width: 95ch;
@@ -56,7 +56,7 @@ Section.container {
   /* max-width: 1100px; */
   margin: auto;
   overflow: hidden;
-  padding: 0 2rem 0 0.9rem;
+  padding: 0 0rem 0 0.9rem;
   margin-top: 6rem;
   margin-bottom: 3rem;
   margin-left: 15em;
@@ -421,6 +421,7 @@ button {
   height: auto;
   padding-bottom: 2em;
   margin: 1.5em 1em;
+  background: white;
 }
 .profile-item img {
   width: 10em;
@@ -815,6 +816,7 @@ header {
   top: 0em;
   padding-top: 1em;
   padding-bottom: 1em;
+  z-index: 9;
 }
 #searchIconContainer {
   color: #bebebe;
@@ -922,11 +924,11 @@ header {
 } */
 #topBarSearchResultsContainer {
   position: absolute;
-  top: 100%;
-  left: 30%;
+  top: 89%;
+  width: 81.5ch;
+  left: 28.7%;
   z-index: 999;
   background-color: #fff;
-  border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -940,10 +942,10 @@ header {
   padding: 0em 1em;
   cursor: pointer;
   color: black;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 .postSearchResultTopBar {
-  padding: 0.7em 1em !important;
+  padding: 1em 1em !important;
 }
 #topBarSearchResultsContainer li span {
   color: black;
@@ -955,14 +957,17 @@ header {
 #topBarSearchResultsContainer li a {
   display: flex;
   align-items: center;
+  color: #333;
 }
 #topBarSearchResultsContainer li img {
-  width: 3em;
   margin-left: 1em;
+  object-fit: cover;
+  height: 2em;
+  width: 2em;
 }
 
 #topBarSearchResultsContainer i {
-  font-size: xx-large;
+  font-size: small;
   margin-left: 0.5em;
 }
 
@@ -1070,7 +1075,7 @@ header {
 }
 .ProfilePopUpItem {
   display: flex;
-  padding: 0.7em 1.2em;
+  padding: 0.3em 1.2em;
   align-items: center;
   color: #808080;
 }
@@ -1080,7 +1085,7 @@ header {
   font-size: 0.9em;
 }
 .ProfilePopUpItem h2 {
-  margin-left: 0.5em;
+  margin-left: 1em;
 
   font-weight: 500;
   font-size: 1.2em;
@@ -1094,8 +1099,8 @@ header {
 #ProfilePopUpItemManageProfile:hover,
 #ProfilePopUpItemLogOut:hover {
   cursor: pointer;
-  background-color: #4e9ec6;
-  color: white;
+  background-color: #91cbd74d;
+  color: #4e9ec6;
 }
 #ProfilePopUpItemManageProfile,
 #ProfilePopUpItemLogOut {
@@ -1104,7 +1109,9 @@ header {
 #ProfilePopUpItemMyProfile:hover {
   cursor: pointer;
 }
-
+#ProfilePopUpItemMyProfile {
+  margin-top: 1em !important;
+}
 div.fullscreen-container {
   height: 10vh;
   width: 10vw;
@@ -1139,16 +1146,22 @@ div.fullscreen-group {
 }
 body {
   padding-right: 0px !important;
-  overflow: hidden;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
 }
 .manageAccountLinkProfileOptions a:hover {
   cursor: pointer;
 }
 .manageAccountLinkProfileOptions {
   text-align: center;
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  margin-top: -1em;
 }
 .manageAccountLinkProfileOptions a {
   color: #1890ff;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+.profilePopupOptionsContainer {
+  padding: 1em 0em;
 }
