@@ -92,7 +92,7 @@ const PostDetails = ({
     // "https://www.barkerdentalcare.co.uk/wp-content/uploads/2016/12/CI2-decay.jpg",
     // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS53-plCXj8yvWBSCyebWWuaiHQvPiMo3KfZcpsycLM4ISZpn5Mgd74hBJy85AtPI69VzQ&usqp=CAU",
   ];
-  console.log("images??", images);
+
   // for (var i = 0; i < postInfo.postImages.length; i++) {
   //   images.push(postImages[i]?.post);
   // }
@@ -101,45 +101,6 @@ const PostDetails = ({
   ) : (
     <Fragment>
       <div>
-        {!auth.loading && user === auth.user._id && (
-          <div>
-            <Modal
-              open={openEditPost}
-              onClose={handleCloseEditPost}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <EditPost
-                  _id={_id}
-                  postInfo={postInfo}
-                  getPost={getPost}
-                  match={match}
-                  handleCloseEditPost={handleCloseEditPost}
-                />
-                {/* <PostForm _id={_id} postInfo={postInfo}  getPost={getPost} match={match} handleCloseEditPost={handleCloseEditPost} editMode={true}/> */}
-              </Box>
-            </Modal>
-            <button
-              onClick={() => {
-                handleOpenEditPost();
-              }}
-              type="button"
-              className="btn btn-success"
-            >
-              <i className="fas fa-pen"> Edit Post</i>
-            </button>
-
-            {/* <button
-              onClick={(e) => deletePost(_id)}
-              type="button"
-              className="btn btn-danger"
-            >
-              <i className="fas fa-times"> Delete Post</i>
-            </button> */}
-          </div>
-        )}
-        {/* <p className="my-1"> Title : {postInfo.title} </p> */}
         <div id="postDetailsContainer">
           <p className="my-1" id="postDescription">
             {" "}
@@ -154,7 +115,6 @@ const PostDetails = ({
               <p className="my-1">
                 <div className="postIconsInfo">
                   <span>Gender - </span>
-                  {/* {postInfo.gender} */}
 
                   {postInfo.gender === "male" && (
                     <i

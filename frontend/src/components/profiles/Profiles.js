@@ -22,32 +22,32 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <div className="grey-bg">
-          <h1 className="large text-primary">Dentists</h1>
-          <p className="lead">
-            <i className="fab fa-connectdevelop"></i> Browse and connect with
-            other dentists
-          </p>
-          <input
-          id="searchPosts"
-        type="text"
-        placeholder="Search profiles..."
-        value={searchKeyword}
-        onChange={(e) => setSearchKeyword(e.target.value)}
-      />
-          <div className="profiles">
-      
-            {filteredProfiles.length > 0 ? (
-              filteredProfiles.map((profile) => (
-               profile.user &&  <ProfileItem key={profile._id} profile={profile} />
-              ))
-            ) : (
-              <h4>No Profiles found...</h4>
-            )}
+          <div className="grey-bg profiles-container">
+            <h1 className="large text-primary">Dentists</h1>
+            <p className="lead">
+              <i className="fab fa-connectdevelop"></i> Browse and connect with
+              other dentists
+            </p>
+            <input
+              id="searchPosts"
+              type="text"
+              placeholder="Search profiles..."
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+            />
+            <div className="profiles">
+              {filteredProfiles.length > 0 ? (
+                filteredProfiles.map(
+                  (profile) =>
+                    profile.user && (
+                      <ProfileItem key={profile._id} profile={profile} />
+                    )
+                )
+              ) : (
+                <h4>No Profiles found...</h4>
+              )}
+            </div>
           </div>
-          </div>
-
-     
         </Fragment>
       )}
     </Fragment>

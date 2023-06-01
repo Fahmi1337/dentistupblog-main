@@ -39,18 +39,24 @@ img {
 .grey-bg {
   /* padding: 1em 25em 1em 2em; */
   background: #f6f6f6;
-  width: 95ch;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  /* width: 95ch;
   margin: 0 auto;
   padding-right: 1em;
-  margin-left: 19%;
+  margin-left: 19%; */
 }
-
+.posts {
+  width: 95ch;
+  padding-right: 1em;
+  margin: 0 auto 0 13%;
+}
 /* Utilities */
 Section.container {
   /* max-width: 1100px; */
   margin: auto;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0 2rem 0 0.9rem;
   margin-top: 6rem;
   margin-bottom: 3rem;
   margin-left: 15em;
@@ -356,7 +362,7 @@ button {
 
 .navbar a {
   color: #594545;
-  padding: 0.8rem 1rem 0.8rem 2rem;
+  padding: 0.8rem 1rem 0.8rem 0rem;
   margin: 0rem 0.25rem;
   display: block;
   width: 15em;
@@ -367,7 +373,7 @@ button {
 .navbar p {
   color: #594545;
   font-weight: 300 !important;
-  margin: 1em 0em 1em 2em;
+  margin: 1em 0em 1em 0em;
   font-size: 17px;
 }
 .navbar i {
@@ -577,8 +583,8 @@ header {
   display: grid;
   grid-template-rows: 1fr;
   align-items: center;
-  box-shadow: rgb(100 100 111 / 23%) 2px 3px 11px 0px;
-  padding-bottom: 2em;
+  /* box-shadow: rgb(100 100 111 / 23%) 2px 3px 11px 0px; */
+  padding: 1em 1em 1em 3em;
 }
 
 .post > div:first-child {
@@ -586,14 +592,17 @@ header {
 }
 .post > div:first-child a {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+}
+.post > div:first-child a h4 {
+  margin-top: -0.2em;
 }
 .post > div:first-child a img {
   margin-right: 1em;
 }
 .post img {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
 }
 
 .post .comment-count {
@@ -607,7 +616,7 @@ header {
 .post .post-date {
   color: #aaa;
   font-size: 0.8rem;
-  margin: -1em;
+  margin: -1.3em 3em 0em 3em;
   padding-left: 0.8rem;
 }
 
@@ -760,14 +769,14 @@ header {
 .navbar a.active {
   background: rgba(145, 203, 215, 0.3);
   color: #4e9ec6;
-  padding-left: 4rem;
+  padding-left: 3rem;
   margin-left: -2rem;
   padding-right: 1rem;
 }
 .navbar a.active::before {
   background: #4e9ec6;
   color: #4e9ec6;
-  left: -37%;
+  left: -25%;
   content: "\00BB";
   position: relative;
   top: 0%;
@@ -962,11 +971,16 @@ header {
   flex-direction: row;
   align-items: center;
   background-color: white;
-  padding: 0 1em;
+  padding: 0 1.5em;
   margin: 2em 0em 2em 0em;
 
   box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.06);
   /* ,4px 4px 16px rgba(0, 0, 0, 0.06); */
+
+  width: 93ch;
+  margin: 0 auto;
+  padding-right: 1em;
+  margin-left: 19.8%;
 }
 .inputNewPostContainer img {
   width: 3em;
@@ -1009,6 +1023,7 @@ header {
   display: flex;
   margin-bottom: 0.8em;
   margin-left: -0.3em;
+  margin-top: 1em;
 }
 .postIconsInfo p {
   display: none;
@@ -1115,4 +1130,11 @@ div.fullscreen-group {
 }
 .post a {
   color: #333;
+}
+.postOptionsContainer {
+  float: right;
+  margin-top: -3em;
+}
+.profiles-container {
+  padding: 2em 13em;
 }
