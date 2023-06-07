@@ -5,11 +5,9 @@ const path = require("path");
 
 const app = express();
 
-
-const cors = require('cors'); 
+const cors = require("cors");
 
 app.use(cors());
-
 
 //Connect Database
 connectDB();
@@ -30,7 +28,7 @@ app.use("/api/posts", require("./routes/api/posts"));
 app.use("/api/groups", require("./routes/api/groups"));
 
 const dirname = path.resolve();
-app.use('/uploads', express.static(path.join(dirname, '/uploads')));
+app.use("/uploads", express.static(path.join(dirname, "/uploads")));
 
 //Serve static assets in production
 if (process.env.NODE_ENV === "production") {
