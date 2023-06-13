@@ -13,36 +13,21 @@ const CommentForm = ({ postId, addComment }) => {
     diagnostic: "",
     treatment: "",
   });
-  // this.state = {
-  //   editorState: EditorState.createEmpty(),
-  // };
-
-  // onEditorStateChange: Function = (editorState) => {
-  //   this.setState({
-  //     editorState,
-  //   });
-  // };
-
-  // const { editorState } = this.state;
 
   const handleFormData = (input) => (e) => {
     // input value from the form
     const { value } = e.target;
-
     setFormData((prevState) => ({
       ...prevState,
       [input]: value,
     }));
   };
 
-  const handleReset = (input) => (e) => {
-    // input value from the form
-    const { value } = "";
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [input]: value,
-    }));
+  const handleReset = () => {
+    setFormData({
+      diagnostic: '',
+      treatment: '',
+    });
   };
 
   return (

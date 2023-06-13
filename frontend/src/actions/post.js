@@ -186,21 +186,24 @@ export const addComment = (postId, formData) => async (dispatch) => {
 
 // Delete comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
-  try {
-    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
-
-    dispatch({
-      type: DELETE_COMMENT,
-      payload: commentId,
-    });
-
-    dispatch(setAlert("Comment successfully deleted", "success"));
-  } catch (e) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
-    });
+  if (window.confirm("Are you sure you want to delete the comment?")) {
+    try {
+      await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+  
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: commentId,
+      });
+  
+      dispatch(setAlert("Comment successfully deleted", "success"));
+    } catch (e) {
+      dispatch({
+        type: POST_ERROR,
+        payload: { msg: e?.response?.statusText, status: e?.response?.status },
+      });
+    }
   }
+
 };
 
 // Edit comment

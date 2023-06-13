@@ -54,13 +54,17 @@ const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
       <div className="inputNewPostContainer">
 
       <img alt="Dentistup" src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + auth?.user?.profileImage}` : auth?.user?.avatar}/>
-      <form className="form">
+      <form className="form newpost-form">
         {" "}
         <input
           type="Text"
           placeholder="Start a new post"
           onClick={handleOpen}
         />
+        <button className="btn btn-primary"  onClick={(e) => {
+                        e.preventDefault();
+                        handleOpen();
+                      }}>Ask for recommendation</button>
       </form>
 
       </div>

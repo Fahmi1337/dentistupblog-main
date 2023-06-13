@@ -1165,3 +1165,18 @@ body {
 .profilePopupOptionsContainer {
   padding: 1em 0em;
 }
+.comments .post .btn{
+       margin-left: 0 !important;
+}
+
+.comments .postOptionsContainer{
+  margin-top: -8.8em;
+}
+.newpost-form{
+  display: flex;
+  align-items: center;
+}
+.newpost-form button{
+width: 50%;
+margin-left: 2em;
+}
