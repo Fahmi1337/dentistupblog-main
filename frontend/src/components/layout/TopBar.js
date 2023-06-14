@@ -48,26 +48,26 @@ const styleFilter = {
 
 const styleMessages = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
+  top: "19%",
+  left: "73%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 350,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  padding: 0,
 };
 
 const styleNotifications = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
+  top: "17%",
+  left: "75%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 350,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  padding: 0,
 };
 
 const styleProfile = {
@@ -463,6 +463,127 @@ const TopBar = ({
           </Box>
         </Modal>
         {/* PROFILE MODAL */}
+
+        {/* Messages MODAL */}
+        <Modal
+          open={openMessages}
+          onClose={handleCloseMessages}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleMessages}>
+            <div className="MessagesPopupContainer">
+              <div className="SingleMessageContainer">
+                <div className="leftSideMessageContainer">
+                  <h4>Fahmi</h4>
+                  <p>Hello Dave, did you see the...</p>
+                  <p class="message-date"> a day ago </p>
+                </div>
+                <div className="rightSideMessageContainer">
+                  <Avatar
+                    alt="Dentistup"
+                    src={
+                      auth?.user?.profileImage
+                        ? `${
+                            process.env.REACT_APP_BASE_URL +
+                            "/" +
+                            auth?.user?.profileImage
+                          }`
+                        : auth?.user?.avatar
+                    }
+                  />
+                </div>
+              </div>
+              <Divider style={{ borderColor: "#aaa" }} />
+              <div className="SingleMessageContainer">
+                <div className="leftSideMessageContainer">
+                  <h4>Mark</h4>
+                  <p>Hi Dave, can you send the link...</p>
+                  <p class="message-date"> 2 days ago </p>
+                </div>
+                <div className="rightSideMessageContainer">
+                  <Avatar
+                    alt="Dentistup"
+                    src={
+                      auth?.user?.profileImage
+                        ? `${
+                            process.env.REACT_APP_BASE_URL +
+                            "/" +
+                            auth?.user?.profileImage
+                          }`
+                        : auth?.user?.avatar
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+        {/* MESSAGES MODAL */}
+
+        {/* Notifications MODAL */}
+        <Modal
+          open={openNotifcations}
+          onClose={handleCloseNotifications}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleNotifications}>
+            <div className="MessagesPopupContainer">
+              <div className="SingleMessageContainer">
+                <div className="leftSideMessageContainer">
+                  <div className="notificationsText">
+                    <h4>Fahmi </h4>
+                    <p> commented on your post</p>
+                  </div>
+
+                  <p class="message-date"> a day ago </p>
+                </div>
+                <div className="rightSideMessageContainer">
+                  <Avatar
+                    alt="Dentistup"
+                    src={
+                      auth?.user?.profileImage
+                        ? `${
+                            process.env.REACT_APP_BASE_URL +
+                            "/" +
+                            auth?.user?.profileImage
+                          }`
+                        : auth?.user?.avatar
+                    }
+                  />
+                </div>
+              </div>
+              <Divider style={{ borderColor: "#aaa" }} />
+              <div className="SingleMessageContainer">
+                <div className="leftSideMessageContainer">
+                  <div className="notificationsText">
+                    <h4>Mark </h4>
+                    <p> liked your post</p>
+                  </div>
+
+                  <p class="message-date"> 2 days ago </p>
+                </div>
+                <div className="rightSideMessageContainer">
+                  <Avatar
+                    alt="Dentistup"
+                    src={
+                      auth?.user?.profileImage
+                        ? `${
+                            process.env.REACT_APP_BASE_URL +
+                            "/" +
+                            auth?.user?.profileImage
+                          }`
+                        : auth?.user?.avatar
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+        {/* Notifications MODAL */}
+
         <Toolbar id="topBarToolbarContainer" disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
@@ -640,12 +761,20 @@ const TopBar = ({
                 <TuneIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" aria-label="show 4 new mails">
+            <IconButton
+              onClick={handleOpenMessages}
+              size="large"
+              aria-label="show 1 new mails"
+            >
               <Badge badgeContent={1} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" aria-label="show 0 new notifications">
+            <IconButton
+              onClick={handleOpenNotifications}
+              size="large"
+              aria-label="show 2 new notifications"
+            >
               <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>

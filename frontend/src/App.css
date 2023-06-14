@@ -1165,18 +1165,43 @@ body {
 .profilePopupOptionsContainer {
   padding: 1em 0em;
 }
-.comments .post .btn{
-       margin-left: 0 !important;
+.comments .post .btn {
+  margin-left: 0 !important;
 }
 
-.comments .postOptionsContainer{
+.comments .postOptionsContainer {
   margin-top: -8.8em;
 }
-.newpost-form{
+.newpost-form {
   display: flex;
   align-items: center;
 }
-.newpost-form button{
-width: 50%;
-margin-left: 2em;
+.newpost-form button {
+  width: 50%;
+  margin-left: 2em;
+}
+.SingleMessageContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+.rightSideMessageContainer div {
+  margin-top: 0.3em;
+}
+.SingleMessageContainer .message-date {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin: 0em 3em 0em -1em;
+  padding-left: 0.8rem;
+}
+.SingleMessageContainer:hover {
+  background-color: #e6fffd8f;
+  cursor: pointer;
+}
+.notificationsText {
+  display: flex;
+}
+.notificationsText h4 {
+  margin-right: 5px;
 }
