@@ -766,7 +766,7 @@ const TopBar = ({
               size="large"
               aria-label="show 1 new mails"
             >
-              <Badge badgeContent={1} color="error">
+              <Badge badgeContent={2} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
@@ -775,7 +775,7 @@ const TopBar = ({
               size="large"
               aria-label="show 2 new notifications"
             >
-              <Badge badgeContent={1} color="error">
+              <Badge badgeContent={2} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
