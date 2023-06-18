@@ -80,7 +80,7 @@ console.log("final data?", data)
 
 
     addPost(data);
-      // handleClose();
+       handleClose();
  
   };
   return (

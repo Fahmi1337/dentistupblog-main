@@ -49,15 +49,15 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
 
 
 
-  const handleFileChange = (e) => {
+  // const handleFileChange = (e) => {
   
-    setFormData((prevState) => ({
-      ...prevState,
-      ["postImage"]: e?.target?.files[0],
-    }));
-    console.log("image?", e?.target?.files);
-    console.log("postImage?", formData.postImage);
-  };
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["postImage"]: e?.target?.files[0],
+  //   }));
+  //   console.log("image?", e?.target?.files);
+  //   console.log("postImage?", formData.postImage);
+  // };
 
   const {
     

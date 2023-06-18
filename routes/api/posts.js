@@ -162,7 +162,7 @@ router.put(
         respiration: req.body.respiration,
         symetrieExplanation: req.body.symetrieExplanation,
         symetrie: req.body.symetrie,
-
+        postImage: req.body.postImage,
         examenAtmNormal: req.body.examenAtmNormal,
         examenAtmDouleur: req.body.examenAtmDouleur,
         examenAtmClaquement: req.body.examenAtmClaquement,
