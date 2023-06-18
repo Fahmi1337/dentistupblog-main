@@ -19,7 +19,7 @@ body {
   font-style: normal;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #91cbd74d;
   color: #333;
 }
 
@@ -38,9 +38,10 @@ img {
 
 .grey-bg {
   /* padding: 1em 25em 1em 2em; */
-  background: #91cbd74d;
+  /* background: #91cbd74d; */
   padding-top: 1em;
   padding-bottom: 1em;
+  margin-left: 2em;
   /* width: 95ch;
   margin: 0 auto;
   padding-right: 1em;
@@ -80,7 +81,7 @@ div.App.container {
 }
 
 .large {
-  font-size: 2.7rem;
+  font-size: 1.7rem;
   line-height: 1;
   margin-bottom: 1rem;
 }
@@ -282,9 +283,12 @@ div.App.container {
 .form .form-text {
   display: block;
   margin-top: 0.3rem;
+  margin-bottom: -1em;
   color: #888;
 }
-
+.form input {
+  margin-top: 1.3em;
+}
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="password"],
@@ -346,11 +350,12 @@ button {
   padding: 0.7rem 2rem;
   position: fixed;
   z-index: 1;
-  width: 20em;
+  width: 15.999em;
   top: 6em;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
   height: -webkit-fill-available;
+  background-color: white;
 }
 
 .navbar ul {
@@ -422,6 +427,7 @@ button {
   padding-bottom: 2em;
   margin: 1.5em 1em;
   background: white;
+  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.06);
 }
 .profile-item img {
   width: 10em;
@@ -845,8 +851,14 @@ header {
 
 .threeColumns {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 10% 66% 32%;
   margin-bottom: 7em;
+}
+.gridOne{
+  display: flex;
+  
+  align-items: center;
+  justify-content: space-around;
 }
 #postDetailsContainer {
   margin: 5em 0;
@@ -890,6 +902,7 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   height: 15em;
+  background-position: center;
 }
 .editProfileButtonContainer {
   margin: -9em 30em 0em 0em;
@@ -1031,7 +1044,7 @@ header {
   margin-top: 1em;
 }
 .postIconsInfo p {
-  display: none;
+  /* display: none; */
 }
 .postIconsInfo i {
   font-size: 1.3em !important;
@@ -1115,7 +1128,7 @@ header {
 div.fullscreen-container {
   height: 10vh;
   width: 10vw;
-  right: 30%;
+  right: 50%;
 }
 div.fullscreen-group {
   margin-top: 2em;
@@ -1140,6 +1153,9 @@ div.fullscreen-group {
 .postOptionsContainer {
   float: right;
   margin-top: -2.8em;
+}
+.postImagesContainer{
+  margin: 0em 1em 10em 1em;
 }
 .profiles-container {
   padding: 2em 13em;
@@ -1205,3 +1221,10 @@ body {
 .notificationsText h4 {
   margin-right: 5px;
 }
+textarea{
+  height: 6em !important;
+}
+.concernedTeethIconInfo:hover{
+  cursor: pointer;
+}
+body:has(.whitebg) { background-color: white !important; }

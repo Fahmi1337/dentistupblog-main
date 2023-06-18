@@ -232,6 +232,9 @@ const PostItem = ({
                       {postInfo.description?.slice(0, 200) +
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
+                    <div>
+                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
+                </div>
                   </Link>
                 </Fragment>
               )}
@@ -262,6 +265,7 @@ const PostItem = ({
                 <p>{postInfo.bloodPressure} </p>
 
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.concernedTeeth} </p>
               </div>
 
               <Fragment>
@@ -479,9 +483,13 @@ const PostItem = ({
                       {postInfo.description?.slice(0, 200) +
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
+                    <div>
+                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
+                </div>
                   </Link>
                 </Fragment>
               )}
+            
               <div className="postIconsInfo">
                 {postInfo.gender === "male" && (
                   <i
@@ -509,6 +517,7 @@ const PostItem = ({
                 <p>{postInfo.bloodPressure} </p>
 
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.concernedTeeth} </p>
               </div>
 
               <Fragment>
@@ -709,6 +718,9 @@ const PostItem = ({
                       {postInfo.description?.slice(0, 200) +
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
+                    <div>
+                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
+                </div>
                   </Link>
                 </Fragment>
               )}
@@ -739,6 +751,7 @@ const PostItem = ({
                 <p>{postInfo.bloodPressure} </p>
 
                 <i class="fa-solid fa-tooth" style={{ color: "#4e9ec64d" }}></i>
+                <p>{postInfo.concernedTeeth} </p>
               </div>
 
               <Fragment>

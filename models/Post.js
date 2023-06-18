@@ -21,6 +21,10 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
+    concernedTeeth:{
+      type: String,
+      required: false,
+    },
     bloodPressure: {
       type: String,
       required: false,

@@ -29,7 +29,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className="loginRegisterParentContainer">
+      <div className="loginRegisterParentContainer whitebg">
         <div className="loginRegisterContainerLeft">
           <div>
             <img

@@ -73,7 +73,7 @@ router.post(
           examenExoBuccal: req.body.examenExoBuccal,
           extraoralExamination: req.body.extraoralExamination,
           gender: req.body.gender,
-
+          concernedTeeth: req.body.concernedTeeth,
           intraoralExamination: req.body.intraoralExamination,
           medicalHistory: req.body.medicalHistory,
           patientReference: req.body.patientReference,
@@ -118,7 +118,7 @@ router.post(
 // @access  Private
 router.put(
   "/:id",
-  [auth, [check("title", "Text is required").not().isEmpty()]],
+  [auth,  [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
@@ -153,7 +153,7 @@ router.put(
         examenExoBuccal: req.body.examenExoBuccal,
         extraoralExamination: req.body.extraoralExamination,
         gender: req.body.gender,
-
+        concernedTeeth: req.body.concernedTeeth,
         intraoralExamination: req.body.intraoralExamination,
         medicalHistory: req.body.medicalHistory,
         patientReference: req.body.patientReference,

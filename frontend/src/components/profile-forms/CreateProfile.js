@@ -87,6 +87,7 @@ if (loading){
       <form className="form" onSubmit={(e) => onSubmit(e)}>
       <div className="form-group">
   <label htmlFor="profileImage">Profile Picture</label>
+  <small className="form-text">Upload a profile picture</small>
   <input
     type="file"
     accept=".jpg,.png,.jpeg"
@@ -98,12 +99,13 @@ if (loading){
       })
     }
   />
-  <small className="form-text">Upload a profile picture</small>
+
 </div>
 
 
 <div className="form-group">
   <label htmlFor="profileCover">Profile Cover</label>
+  <small className="form-text">Upload a profile cover</small>
   <input
     type="file"
     accept=".jpg,.png,.jpeg"
@@ -115,9 +117,12 @@ if (loading){
       })
     }
   />
-  <small className="form-text">Upload a profile cover</small>
+
 </div>
         <div className="form-group">
+        <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
           <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Position</option>
             <option value="Dentist">Dentist</option>
@@ -129,11 +134,12 @@ if (loading){
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
           </select>
-          <small className="form-text">
-            Give us an idea of where you are at in your career
-          </small>
+     
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
           <select
             name="speciality"
             value={speciality}
@@ -145,12 +151,14 @@ if (loading){
             <option value="Orthodontie">Orthodontie</option>
             <option value="Implantologie">Implantologie</option>
             <option value="Esthétique">Esthétique</option>
+            <option value="Généraliste">Généraliste</option>
           </select>
-          <small className="form-text">
-            Give us an idea of where you are at in your career
-          </small>
+     
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Could be your own company or one you work for
+          </small>
           <input
             type="text"
             placeholder="Institute"
@@ -158,11 +166,12 @@ if (loading){
             value={company}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own company or one you work for
-          </small>
+      
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Could be your own or a company website
+          </small>
           <input
             type="text"
             placeholder="Website"
@@ -170,11 +179,12 @@ if (loading){
             value={website}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own or a company website
-          </small>
+       
         </div>
         <div className="form-group">
+        <small className="form-text">
+            City & state suggested (eg. Monastir, Sousse)
+          </small>
           <input
             type="text"
             placeholder="Location"
@@ -182,11 +192,12 @@ if (loading){
             value={location}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            City & state suggested (eg. Monastir, Sousse)
-          </small>
+       
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Please use comma separated values (eg. skill1,skill2,skill3,skill4)
+          </small>
           <input
             type="text"
             placeholder="* Skills"
@@ -194,9 +205,7 @@ if (loading){
             value={skills}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Please use comma separated values (eg. skill1,skill2,skill3,skill4)
-          </small>
+      
         </div>
         {/* <div className="form-group">
           <input
@@ -209,6 +218,7 @@ if (loading){
           <small className="form-text">Title</small>
         </div> */}
          <div className="form-group">
+         <small className="form-text">Title</small>
           <input
             type="text"
             placeholder="Title"
@@ -216,16 +226,17 @@ if (loading){
             value={title}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">Title</small>
+         
         </div>
         <div className="form-group">
+        <small className="form-text">Tell us a little about yourself</small>
           <textarea
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
             onChange={(e) => onChange(e)}
           ></textarea>
-          <small className="form-text">Tell us a little about yourself</small>
+        
         </div>
 
         <div className="my-2">

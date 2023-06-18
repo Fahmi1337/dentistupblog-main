@@ -42,24 +42,24 @@ if (newLoading){
     getCurrentProfile();
 
     setFormData({
-      company: loading || !profile.company ? "" : profile.company,
-      title: loading || !profile.title ? "" : profile.title,
-      website: loading || !profile.website ? "" : profile.website,
-      location: loading || !profile.location ? "" : profile.location,
-      status: loading || !profile.status ? "" : profile.status,
-      speciality: loading || !profile.speciality ? "" : profile.speciality,
-      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      company: loading || !profile?.company ? "" : profile?.company,
+      title: loading || !profile?.title ? "" : profile?.title,
+      website: loading || !profile?.website ? "" : profile?.website,
+      location: loading || !profile?.location ? "" : profile?.location,
+      status: loading || !profile?.status ? "" : profile?.status,
+      speciality: loading || !profile?.speciality ? "" : profile?.speciality,
+      skills: loading || !profile?.skills ? "" : profile?.skills.join(","),
       // githubusername:
       //   loading || !profile.githubusername ? "" : profile.githubusername,
-      bio: loading || !profile.bio ? "" : profile.bio,
-      twitter: loading || !profile.social ? "" : profile.social.twitter,
-      facebook: loading || !profile.social ? "" : profile.social.facebook,
-      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-      youtube: loading || !profile.social ? "" : profile.social.youtube,
-      instagram: loading || !profile.social ? "" : profile.social.instagram,
-      name: loading || !profile.user.name ? "" : profile.user.name,
-      profileImage: loading || !profile.profileImage ? "" : profile.profileImage,
-      profileCover: loading || !profile.profileCover ? "" : profile.profileCover,
+      bio: loading || !profile?.bio ? "" : profile?.bio,
+      twitter: loading || !profile?.social ? "" : profile?.social?.twitter,
+      facebook: loading || !profile?.social ? "" : profile?.social?.facebook,
+      linkedin: loading || !profile?.social ? "" : profile?.social?.linkedin,
+      youtube: loading || !profile?.social ? "" : profile?.social?.youtube,
+      instagram: loading || !profile?.social ? "" : profile?.social?.instagram,
+      name: loading || !profile?.user?.name ? "" : profile?.user?.name,
+      profileImage: loading || !profile?.profileImage ? "" : profile?.profileImage,
+      profileCover: loading || !profile?.profileCover ? "" : profile?.profileCover,
     });
   }, [loading, getCurrentProfile]);
 
@@ -111,7 +111,8 @@ if (newLoading){
   };
 console.log("formData?", formData);
   return (
-    <Fragment>
+    <div className="whitebg" style={{margin: 20}}> 
+<Fragment>
        {checkLoading()}
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
@@ -122,6 +123,7 @@ console.log("formData?", formData);
       <form className="form" onSubmit={(e) => onSubmit(e)}>
       <div className="form-group">
   <label htmlFor="profileImage">Profile Picture</label>
+  <small className="form-text">Upload a profile picture</small>
   <input
     type="file"
     accept=".jpg,.png,.jpeg"
@@ -133,11 +135,12 @@ console.log("formData?", formData);
       })
     }
   />
-  <small className="form-text">Upload a profile picture</small>
+
 </div>
 
 <div className="form-group">
   <label htmlFor="profileCover">Profile Cover</label>
+  <small className="form-text">Upload a profile cover</small>
   <input
     type="file"
     accept=".jpg,.png,.jpeg"
@@ -149,10 +152,13 @@ console.log("formData?", formData);
       })
     }
   />
-  <small className="form-text">Upload a profile cover</small>
+
 </div>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
+          <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
             <option value="0">* Select Professional Status</option>
             <option value="Dentist">Dentist</option>
             <option value="Junior Dentist">Junior Dentist</option>
@@ -163,12 +169,13 @@ console.log("formData?", formData);
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
           </select>
-          <small className="form-text">
-            Give us an idea of where you are at in your career
-          </small>
+      
         </div>
         
         <div className="form-group">
+        <small className="form-text">
+            Give us an idea of where you are at in your speciality
+          </small>
           <select
             name="speciality"
             value={speciality}
@@ -180,12 +187,14 @@ console.log("formData?", formData);
             <option value="Orthodontie">Orthodontie</option>
             <option value="Implantologie">Implantologie</option>
             <option value="Esthétique">Esthétique</option>
+            <option value="Généraliste">Généraliste</option>
           </select>
-          <small className="form-text">
-            Give us an idea of where you are at in your speciality
-          </small>
+    
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Name
+          </small>
           <input
             type="text"
             placeholder="Name"
@@ -193,11 +202,10 @@ console.log("formData?", formData);
             value={name}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Name
-          </small>
+  
         </div>
         <div className="form-group">
+        <small className="form-text">Title</small>
           <input
             type="text"
             placeholder="Title"
@@ -205,9 +213,12 @@ console.log("formData?", formData);
             value={title}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">Title</small>
+      
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Could be your own company or one you work for
+          </small>
           <input
             type="text"
             placeholder="Company"
@@ -215,11 +226,12 @@ console.log("formData?", formData);
             value={company}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own company or one you work for
-          </small>
+   
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Could be your own or a company website
+          </small>
           <input
             type="text"
             placeholder="Website"
@@ -227,11 +239,12 @@ console.log("formData?", formData);
             value={website}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own or a company website
-          </small>
+       
         </div>
         <div className="form-group">
+        <small className="form-text">
+            City & state suggested (eg. Moanstir, Sousse)
+          </small>
           <input
             type="text"
             placeholder="Location"
@@ -239,11 +252,12 @@ console.log("formData?", formData);
             value={location}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            City & state suggested (eg. Moanstir, Sousse)
-          </small>
+       
         </div>
         <div className="form-group">
+        <small className="form-text">
+            Please use comma separated values (eg. skill1,skill2,skill3,skill4)
+          </small>
           <input
             type="text"
             placeholder="* Skills"
@@ -251,9 +265,7 @@ console.log("formData?", formData);
             value={skills}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Please use comma separated values (eg. skill1,skill2,skill3,skill4)
-          </small>
+       
         </div>
         {/* <div className="form-group">
           <input
@@ -267,13 +279,14 @@ console.log("formData?", formData);
         </div> */}
        
         <div className="form-group">
+        <small className="form-text">Tell us a little about yourself</small>
           <textarea
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
             onChange={(e) => onChange(e)}
           ></textarea>
-          <small className="form-text">Tell us a little about yourself</small>
+          
         </div>
 
         <div className="my-2">
@@ -352,6 +365,8 @@ console.log("formData?", formData);
         </Link>
       </form>
     </Fragment>
+    </div>
+    
   );
 };
 

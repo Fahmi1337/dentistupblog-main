@@ -102,6 +102,12 @@ const PostDetails = ({
     <Fragment>
       <div>
         <div id="postDetailsContainer">
+        <p className="my-1">
+                <span>Reason of consultation -</span>{" "}
+                {postInfo.reasonConsultation}{" "}
+              </p>
+
+
           <p className="my-1" id="postDescription">
             {" "}
             {postInfo.description}{" "}
@@ -133,7 +139,10 @@ const PostDetails = ({
               <p className="my-1">
                 <span>Age </span> {getAge(postInfo.dateOfBirth)}
               </p>
-              <p className="my-1">
+          
+            </div>
+            <div className="gridTwo">
+            <p className="my-1">
                 <span>Medical History -</span> {postInfo.medicalHistory}{" "}
               </p>
               <p className="my-1">
@@ -144,9 +153,10 @@ const PostDetails = ({
                 <span>Daily Medication -</span> {postInfo.dailyMedications}{" "}
               </p>
 
+          
               <p className="my-1">
-                <span>Reason of consultation -</span>{" "}
-                {postInfo.reasonConsultation}{" "}
+                <span>Concerned teeth -</span>{" "}
+                {postInfo?.concernedTeeth?.trim()}{" "}
               </p>
               <p className="my-1">
                 {" "}
@@ -191,7 +201,7 @@ const PostDetails = ({
                   value={(postInfo.respiration * 100) / 45}
                 />
               </div>
-              <p className="my-1">
+              <p className="my-1 postImagesContainer">
                 {postInfo.postImage && (
                   <div>
                     {/* <img
@@ -230,8 +240,6 @@ https://www.npmjs.com/package/react-fullscreen-image */}
                   </div>
                 )}
               </p>
-            </div>
-            <div className="gridTwo">
               <p className="my-1">
                 <span>Extraoral Examination -</span>{" "}
                 {postInfo.extraoralExamination}{" "}
@@ -260,63 +268,71 @@ https://www.npmjs.com/package/react-fullscreen-image */}
               <h3>
                 <span></span>Examen des ATM
               </h3>
-              <p className="my-1">
+
+              {postInfo.examenAtmNormal === "true" && <p className="my-1">
                 <span>Normal -</span>{" "}
                 {postInfo.examenAtmNormal === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}
-              </p>
-              <p className="my-1">
+              </p>}
+              
+              {postInfo.examenAtmDouleur === "true" &&  <p className="my-1">
                 <span>Douleur -</span>{" "}
                 {postInfo.examenAtmDouleur === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+             {postInfo.examenAtmClaquement === "true" && <p className="my-1">
                 <span>Claquement -</span>{" "}
                 {postInfo.examenAtmClaquement === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}
-              </p>
-
-              <p className="my-1">
+              </p>}
+              
+{postInfo.examenAtmAutre === "true" &&  <p className="my-1">
                 <span>Autres -</span>{" "}
                 {postInfo.examenAtmAutre === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+             {postInfo.examenAtmAutre.length > 1 &&   <p className="my-1">
                 <span>Explication -</span> {postInfo.examenAtmAutreExplanation}{" "}
-              </p>
+              </p>}
+            
             </div>
             <div className="gridThree">
               <h3>Examens Fonctionnels</h3>
               <h4>Respiration</h4>
-              <p className="my-1">
+
+              {postInfo.respirationNasal === "true" &&  <p className="my-1">
                 <span>Nasal -</span>{" "}
                 {postInfo.respirationNasal === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+
+              {postInfo.respirationMixte === "true" &&  <p className="my-1">
                 <span>Mixte -</span>{" "}
                 {postInfo.respirationMixte === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+              {postInfo.respirationBuccal === "true" &&  <p className="my-1">
                 {" "}
                 <span>Buccal -</span>{" "}
                 {postInfo.respirationBuccal === "true" ? (
@@ -324,51 +340,62 @@ https://www.npmjs.com/package/react-fullscreen-image */}
                 ) : (
                   <UnpublishedIcon />
                 )}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+             {postInfo.detailsRespiration.length > 1 &&   <p className="my-1">
                 <span>Détails -</span> {postInfo.detailsRespiration}{" "}
-              </p>
+              </p>}
+            
 
               <h4>Mastication</h4>
-              <p className="my-1">
+              {postInfo.masticationBilateral === "true" &&  <p className="my-1">
                 <span>Bilateral -</span>{" "}
                 {postInfo.masticationBilateral === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+{postInfo.masticationUnilateral === "true" &&   <p className="my-1">
                 <span>Unilateral -</span>{" "}
                 {postInfo.masticationUnilateral === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+
+            {postInfo.detailsMastication.length > 1 &&  <p className="my-1">
                 <span>Détails -</span> {postInfo.detailsMastication}{" "}
-              </p>
+              </p>}
+             
               <h4>Déglutition</h4>
-              <p className="my-1">
+
+              {postInfo.deglutitionTypique === "true" &&  <p className="my-1">
                 <span>Typique -</span>{" "}
                 {postInfo.deglutitionTypique === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+             
+
+             {postInfo.deglutitionAtypique === "true" && <p className="my-1">
                 <span>Atypique -</span>{" "}
                 {postInfo.deglutitionAtypique === "true" ? (
                   <CheckCircleIcon />
                 ) : (
                   <UnpublishedIcon />
                 )}{" "}
-              </p>
-              <p className="my-1">
+              </p>}
+              
+{postInfo.detailsDeglutition.length > 1 &&  <p className="my-1">
                 <span>Détails -</span> {postInfo.detailsDeglutition}{" "}
-              </p>
+              </p>}
+
+             
             </div>
           </div>
         </div>

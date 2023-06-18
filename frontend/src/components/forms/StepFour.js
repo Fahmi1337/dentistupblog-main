@@ -119,176 +119,348 @@ const StepFour = ({
 
   return (
     <div>
-      <Card>
-        <Card.Body>
-          <Form onSubmit={submitFormData} className="form my-1">
-            <Form.Label>Examen Fonctionnel </Form.Label>
+  <Card>
+    <Card.Body>
+      <Form onSubmit={submitFormData} className="form my-1">
+        <Form.Label>Examen Fonctionnel </Form.Label>
 
-            <Form.Group controlId="getATM" className="mb-3">
-              <Form.Label>La Respiration </Form.Label>
-              <div id="respirationChoices">
-                <Form.Check
-                  value="Nasal"
-                  type="checkbox"
-                  aria-label="Nasal"
-                  label="Nasal"
-                  checked={isRespirationNasalChecked}
-                  onChange={handleOnIsRespirationNasalChange}
-                />
-                <Form.Check
-                  value="Buccal"
-                  type="checkbox"
-                  aria-label="Buccal"
-                  label="Buccal"
-                  checked={isRespirationBuccalChecked}
-                  onChange={handleOnIsRespirationBuccalChange}
-                />
-                <Form.Check
-                  value="Mixte"
-                  type="checkbox"
-                  aria-label="Mixte"
-                  label="Mixte"
-                  checked={isRespirationMixteChecked}
-                  onChange={handleOnIsRespirationMixteChange}
-                />
-              </div>
+        <Form.Group controlId="getATM" className="mb-3">
+          <Form.Label>La Respiration </Form.Label>
+          <div id="respirationChoices">
+            <Form.Check
+              value="Nasal"
+              type="radio"
+              aria-label="Nasal"
+              label="Nasal"
+              checked={isRespirationNasalChecked}
+              onChange={handleOnIsRespirationNasalChange}
+            />
+            <Form.Check
+              value="Buccal"
+              type="radio"
+              aria-label="Buccal"
+              label="Buccal"
+              checked={isRespirationBuccalChecked}
+              onChange={handleOnIsRespirationBuccalChange}
+            />
+            <Form.Check
+              value="Mixte"
+              type="radio"
+              aria-label="Mixte"
+              label="Mixte"
+              checked={isRespirationMixteChecked}
+              onChange={handleOnIsRespirationMixteChange}
+            />
+          </div>
 
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Détails</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                name="detailsRespiration"
-                defaultValue={values.detailsRespiration}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("detailsRespiration")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Détails</Form.Label>
+          <Form.Control
+            style={{ border: error ? "2px solid red" : "" }}
+            name="detailsRespiration"
+            defaultValue={values.detailsRespiration}
+            type="text"
+            placeholder="Write something"
+            onChange={handleFormData("detailsRespiration")}
+          />
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
 
-            <Form.Group controlId="getATM" className="mb-3">
-              <Form.Label>La Mastication</Form.Label>
-              <div id="masticationChoices">
-                <Form.Check
-                  value="Unilatéral"
-                  type="checkbox"
-                  aria-label="Unilatéral"
-                  label="Unilatéral"
-                  checked={isMasticationUnilateralChecked}
-                  onChange={handleOnIsMasticationUnilateralChange}
-                />
-                <Form.Check
-                  value="Bi-latéral"
-                  type="checkbox"
-                  aria-label="Bi-latéral"
-                  label="Bi-latéral"
-                  checked={isMasticationBilateralChecked}
-                  onChange={handleOnIsMasticationBilateralChange}
-                />
-              </div>
+        <Form.Group controlId="getATM" className="mb-3">
+          <Form.Label>La Mastication</Form.Label>
+          <div id="masticationChoices">
+            <Form.Check
+              value="Unilatéral"
+              type="radio"
+              aria-label="Unilatéral"
+              label="Unilatéral"
+              checked={isMasticationUnilateralChecked}
+              onChange={handleOnIsMasticationUnilateralChange}
+            />
+            <Form.Check
+              value="Bi-latéral"
+              type="radio"
+              aria-label="Bi-latéral"
+              label="Bi-latéral"
+              checked={isMasticationBilateralChecked}
+              onChange={handleOnIsMasticationBilateralChange}
+            />
+          </div>
 
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Détails</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                name="detailsMastication"
-                defaultValue={values.detailsMastication}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("detailsMastication")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Détails</Form.Label>
+          <Form.Control
+            style={{ border: error ? "2px solid red" : "" }}
+            name="detailsMastication"
+            defaultValue={values.detailsMastication}
+            type="text"
+            placeholder="Write something"
+            onChange={handleFormData("detailsMastication")}
+          />
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
 
-            <Form.Group controlId="getATM" className="mb-3">
-              <Form.Label>La Déglutition </Form.Label>
-              <div id="deglutationChoices">
-                <Form.Check
-                  value="Typique"
-                  type="checkbox"
-                  aria-label="Typique"
-                  label="Typique"
-                  checked={isDeglutitionTypiqueChecked}
-                  onChange={handleOnIsDeglutitionTypiqueChange}
-                />
-                <Form.Check
-                  value="Atypique"
-                  type="checkbox"
-                  aria-label="Atypique"
-                  label="Atypique"
-                  checked={isDeglutitionAtypiqueChecked}
-                  onChange={handleOnIsDeglutitionAtypiqueChange}
-                />
-              </div>
+        <Form.Group controlId="getATM" className="mb-3">
+          <Form.Label>La Déglutition </Form.Label>
+          <div id="deglutationChoices">
+            <Form.Check
+              value="Typique"
+              type="radio"
+              aria-label="Typique"
+              label="Typique"
+              checked={isDeglutitionTypiqueChecked}
+              onChange={handleOnIsDeglutitionTypiqueChange}
+            />
+            <Form.Check
+              value="Atypique"
+              type="radio"
+              aria-label="Atypique"
+              label="Atypique"
+              checked={isDeglutitionAtypiqueChecked}
+              onChange={handleOnIsDeglutitionAtypiqueChange}
+            />
+          </div>
 
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Détails</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                name="detailsDeglutition"
-                defaultValue={values.detailsDeglutition}
-                type="text"
-                placeholder="Write something"
-                onChange={handleFormData("detailsDeglutition")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Détails</Form.Label>
+          <Form.Control
+            style={{ border: error ? "2px solid red" : "" }}
+            name="detailsDeglutition"
+            defaultValue={values.detailsDeglutition}
+            type="text"
+            placeholder="Write something"
+            onChange={handleFormData("detailsDeglutition")}
+          />
+          {error ? (
+            <Form.Text style={{ color: "red" }}>
+              This is a required field
+            </Form.Text>
+          ) : (
+            ""
+          )}
+        </Form.Group>
 
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Button variant="primary" onClick={prevStep}>
-                Previous
-              </Button>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <Button variant="primary" onClick={prevStep}>
+            Previous
+          </Button>
 
-              <Button variant="primary" onClick={nextStep}>
-                Next
-              </Button>
-            </div>
-          </Form>
-        </Card.Body>
-      </Card>
-    </div>
+          <Button variant="primary" onClick={nextStep}>
+            Next
+          </Button>
+        </div>
+      </Form>
+    </Card.Body>
+  </Card>
+</div>
+
+    // <div>
+    //   <Card>
+    //     <Card.Body>
+    //       <Form onSubmit={submitFormData} className="form my-1">
+    //         <Form.Label>Examen Fonctionnel </Form.Label>
+
+    //         <Form.Group controlId="getATM" className="mb-3">
+    //           <Form.Label>La Respiration </Form.Label>
+    //           <div id="respirationChoices">
+    //             <Form.Check
+    //               value="Nasal"
+    //               type="checkbox"
+    //               aria-label="Nasal"
+    //               label="Nasal"
+    //               checked={isRespirationNasalChecked}
+    //               onChange={handleOnIsRespirationNasalChange}
+    //             />
+    //             <Form.Check
+    //               value="Buccal"
+    //               type="checkbox"
+    //               aria-label="Buccal"
+    //               label="Buccal"
+    //               checked={isRespirationBuccalChecked}
+    //               onChange={handleOnIsRespirationBuccalChange}
+    //             />
+    //             <Form.Check
+    //               value="Mixte"
+    //               type="checkbox"
+    //               aria-label="Mixte"
+    //               label="Mixte"
+    //               checked={isRespirationMixteChecked}
+    //               onChange={handleOnIsRespirationMixteChange}
+    //             />
+    //           </div>
+
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+    //         <Form.Group className="mb-3">
+    //           <Form.Label>Détails</Form.Label>
+    //           <Form.Control
+    //             style={{ border: error ? "2px solid red" : "" }}
+    //             name="detailsRespiration"
+    //             defaultValue={values.detailsRespiration}
+    //             type="text"
+    //             placeholder="Write something"
+    //             onChange={handleFormData("detailsRespiration")}
+    //           />
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+
+    //         <Form.Group controlId="getATM" className="mb-3">
+    //           <Form.Label>La Mastication</Form.Label>
+    //           <div id="masticationChoices">
+    //             <Form.Check
+    //               value="Unilatéral"
+    //               type="checkbox"
+    //               aria-label="Unilatéral"
+    //               label="Unilatéral"
+    //               checked={isMasticationUnilateralChecked}
+    //               onChange={handleOnIsMasticationUnilateralChange}
+    //             />
+    //             <Form.Check
+    //               value="Bi-latéral"
+    //               type="checkbox"
+    //               aria-label="Bi-latéral"
+    //               label="Bi-latéral"
+    //               checked={isMasticationBilateralChecked}
+    //               onChange={handleOnIsMasticationBilateralChange}
+    //             />
+    //           </div>
+
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+    //         <Form.Group className="mb-3">
+    //           <Form.Label>Détails</Form.Label>
+    //           <Form.Control
+    //             style={{ border: error ? "2px solid red" : "" }}
+    //             name="detailsMastication"
+    //             defaultValue={values.detailsMastication}
+    //             type="text"
+    //             placeholder="Write something"
+    //             onChange={handleFormData("detailsMastication")}
+    //           />
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+
+    //         <Form.Group controlId="getATM" className="mb-3">
+    //           <Form.Label>La Déglutition </Form.Label>
+    //           <div id="deglutationChoices">
+    //             <Form.Check
+    //               value="Typique"
+    //               type="checkbox"
+    //               aria-label="Typique"
+    //               label="Typique"
+    //               checked={isDeglutitionTypiqueChecked}
+    //               onChange={handleOnIsDeglutitionTypiqueChange}
+    //             />
+    //             <Form.Check
+    //               value="Atypique"
+    //               type="checkbox"
+    //               aria-label="Atypique"
+    //               label="Atypique"
+    //               checked={isDeglutitionAtypiqueChecked}
+    //               onChange={handleOnIsDeglutitionAtypiqueChange}
+    //             />
+    //           </div>
+
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+    //         <Form.Group className="mb-3">
+    //           <Form.Label>Détails</Form.Label>
+    //           <Form.Control
+    //             style={{ border: error ? "2px solid red" : "" }}
+    //             name="detailsDeglutition"
+    //             defaultValue={values.detailsDeglutition}
+    //             type="text"
+    //             placeholder="Write something"
+    //             onChange={handleFormData("detailsDeglutition")}
+    //           />
+    //           {error ? (
+    //             <Form.Text style={{ color: "red" }}>
+    //               This is a required field
+    //             </Form.Text>
+    //           ) : (
+    //             ""
+    //           )}
+    //         </Form.Group>
+
+    //         <div style={{ display: "flex", justifyContent: "space-around" }}>
+    //           <Button variant="primary" onClick={prevStep}>
+    //             Previous
+    //           </Button>
+
+    //           <Button variant="primary" onClick={nextStep}>
+    //             Next
+    //           </Button>
+    //         </div>
+    //       </Form>
+    //     </Card.Body>
+    //   </Card>
+    // </div>
   );
 };
 

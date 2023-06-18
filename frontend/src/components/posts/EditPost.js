@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {editPost} from "../../actions/post";
+import { getPost } from "../../actions/post";
 const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -20,6 +21,7 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
     gender: "",
     intraoralExamination: "",
     medicalHistory: "",
+    concernedTeeth: "",
     patientReference: "",
     pulse: "",
     reasonConsultation: "",
@@ -44,13 +46,28 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
     setFormData(postInfo);
   }, [postInfo]);
 
+
+
+
+  const handleFileChange = (e) => {
+  
+    setFormData((prevState) => ({
+      ...prevState,
+      ["postImage"]: e?.target?.files[0],
+    }));
+    console.log("image?", e?.target?.files);
+    console.log("postImage?", formData.postImage);
+  };
+
   const {
+    
     title,
     description,
     bloodPressure,
     dailyMedications,
     dateOfBirth,
     dentalHistory,
+    concernedTeeth,
     dermato,
     detailsDeglutition,
     detailsMastication,
@@ -98,8 +115,9 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
   const onSubmit = async (e) => {
     e.preventDefault();
     editPost(_id, formData);
-    getPost(match.params.id);
-    getPost(match.params.id);
+    getPost(_id);
+    getPost(_id);
+  
     handleCloseEditPost();
     // try {
     //   const res = await axios.put(`/api/posts/${props._id}`, formData);
@@ -256,7 +274,16 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
           className="form-control"
         />
       </div>
-    
+      <div className="form-group">
+        <label className="form-label">Concerned Teeth</label>
+        <input
+          type="text"
+          name="concernedTeeth"
+          value={concernedTeeth}
+          onChange={onChange}
+          className="form-control"
+        />
+      </div>
       <div className="form-group">
         <label className="form-label">Dental History</label>
         <input
@@ -553,7 +580,15 @@ const EditPost = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost}
       </div>
       
       
-  
+  {/* <div className="form-group">
+  <label className="form-label">Post Image</label>
+  <input
+    type="file"
+    name="postImage"
+    onChange={handleFileChange}
+    className="form-control"
+  />
+</div> */}
      
 
      
@@ -568,8 +603,10 @@ EditPost.propTypes = {
   editPost: PropTypes.func.isRequired,
 
 };
-
-export default connect(null, { editPost })
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+export default connect(mapStateToProps, { getPost, editPost } )
 (EditPost);
 
 

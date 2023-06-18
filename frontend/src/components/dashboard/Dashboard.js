@@ -7,7 +7,7 @@ import { getCurrentProfile, deleteUserAccount } from "../../actions/profile";
 import { Link } from "react-router-dom";
 import Experience from "./Experience";
 import Education from "./Education";
-
+import CreateProfile from "../profile-forms/CreateProfile"
 const Dashboard = ({
   getCurrentProfile,
   auth: { user },
@@ -22,40 +22,47 @@ const Dashboard = ({
     <Spinner />
   ) : (
     // Then load the dashboard
-    <Fragment>
-      <h1 className="large text-primary">Profile Dashboard</h1>
-      <p className="lead">
-        <i className="fas fa-user"></i> {/* if user exist then show */}
-        Welcome {user && user.name}
-      </p>
-      {/* Check whether the user have a profile or not */}
-      {profile !== null ? (
-        <Fragment>
-          <DashboardActions />
-          <Experience experience={profile.experience} />
-          <Education education={profile.education} />
 
-          <div className="my-2">
-            <button
-              className="btn btn-danger"
-              onClick={() => deleteUserAccount()}
-            >
-              <i className="fas fa-user-minus"></i> Delete My Account
-            </button>
-          </div>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <p>
-            You have not yet setup a profile, please add some information so
-            others can know you better!
-          </p>
-          <Link to="/create-profile" className="btn btn-primary my-1">
-            Create Profile
-          </Link>
-        </Fragment>
-      )}
-    </Fragment>
+<div className="whitebg">
+<Fragment>
+    
+    {/* Check whether the user have a profile or not */}
+    {profile !== null ? (
+      <Fragment>
+          <h1 className="large text-primary">Profile Dashboard</h1>
+    <p className="lead">
+      <i className="fas fa-user"></i> {/* if user exist then show */}
+      Welcome {user && user.name}
+    </p>
+        <DashboardActions />
+        <Experience experience={profile.experience} />
+        <Education education={profile.education} />
+
+        <div className="my-2">
+          <button
+            className="btn btn-danger"
+            onClick={() => deleteUserAccount()}
+          >
+            <i className="fas fa-user-minus"></i> Delete My Account
+          </button>
+        </div>
+      </Fragment>
+    ) : (
+      <Fragment>
+        {/* <p>
+          You have not yet setup a profile, please add some information so
+          others can know you better!
+        </p>
+        <Link to="/create-profile" className="btn btn-primary my-1">
+          Create Profile
+        </Link> */}
+        <CreateProfile/>
+      </Fragment>
+    )}
+  </Fragment>
+</div>
+
+
   );
 };
 
