@@ -20,14 +20,26 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       <Link to="/posts" className="btn btn-primary">
         Back to All Posts
       </Link>
-      <PostItem post={post} showActions={false} showDetails={true} getPost={getPost} match={match}/>
+      <PostItem
+        post={post}
+        showActions={false}
+        showDetails={true}
+        getPost={getPost}
+        match={match}
+      />
       <CommentForm postId={post._id} />
-      <h1 className="my-1">Comments</h1>
+      <h1 className="my-1" style={{ padding: 20 }}>
+        Comments
+      </h1>
       <div className="comments">
         {post.comments.map((comment) => (
-   
-          <CommentItem key={comment._id} comment={comment} postId={post._id} getPost={getPost} match={match}/>
-       
+          <CommentItem
+            key={comment._id}
+            comment={comment}
+            postId={post._id}
+            getPost={getPost}
+            match={match}
+          />
         ))}
       </div>
     </Fragment>

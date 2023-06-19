@@ -102,11 +102,9 @@ const PostDetails = ({
     <Fragment>
       <div>
         <div id="postDetailsContainer">
-        <p className="my-1">
-                <span>Reason of consultation -</span>{" "}
-                {postInfo.reasonConsultation}{" "}
-              </p>
-
+          <p className="my-1">
+            <span>Reason of consultation -</span> {postInfo.reasonConsultation}{" "}
+          </p>
 
           <p className="my-1" id="postDescription">
             {" "}
@@ -139,72 +137,202 @@ const PostDetails = ({
               <p className="my-1">
                 <span>Age </span> {getAge(postInfo.dateOfBirth)}
               </p>
-          
             </div>
             <div className="gridTwo">
-            <p className="my-1">
-                <span>Medical History -</span> {postInfo.medicalHistory}{" "}
-              </p>
-              <p className="my-1">
-                {" "}
-                <span>Dental History -</span> {postInfo.dentalHistory}
-              </p>
-              <p className="my-1">
-                <span>Daily Medication -</span> {postInfo.dailyMedications}{" "}
-              </p>
+              <div className="postDetailsDescTwo">
+                <div className="postDetailsDescTwoLeft">
+                  <p className="my-1">
+                    <span>Medical History -</span> {postInfo.medicalHistory}{" "}
+                  </p>
+                  <p className="my-1">
+                    {" "}
+                    <span>Dental History -</span> {postInfo.dentalHistory}
+                  </p>
+                  <p className="my-1">
+                    <span>Daily Medication -</span> {postInfo.dailyMedications}{" "}
+                  </p>
 
-          
-              <p className="my-1">
-                <span>Concerned teeth -</span>{" "}
-                {postInfo?.concernedTeeth?.trim()}{" "}
-              </p>
-              <p className="my-1">
-                {" "}
-                <span>Blood Pressure </span>{" "}
-                <i
-                  class="fa-solid fa-heart-pulse"
-                  style={{ color: "#4e9ec64d" }}
-                ></i>{" "}
-                {postInfo.bloodPressure} mm Hg
-              </p>
-              <div style={{ width: "50%" }}>
-                {" "}
-                <BloodPressureLinearProgress
-                  variant="determinate"
-                  value={(postInfo.bloodPressure * 100) / 180}
-                />
+                  <p className="my-1">
+                    <span>Concerned teeth -</span>{" "}
+                    {postInfo?.concernedTeeth?.trim()}{" "}
+                  </p>
+                </div>
+                <div className="postDetailsDescTwoRight">
+                  <p className="my-1">
+                    {" "}
+                    <span>Blood Pressure </span>{" "}
+                    <i
+                      class="fa-solid fa-heart-pulse"
+                      style={{ color: "#4e9ec64d" }}
+                    ></i>{" "}
+                    {postInfo.bloodPressure} mm Hg
+                  </p>
+                  <div style={{ width: "50%" }}>
+                    {" "}
+                    <BloodPressureLinearProgress
+                      variant="determinate"
+                      value={(postInfo.bloodPressure * 100) / 180}
+                    />
+                  </div>
+                  <p className="my-1">
+                    <span>Pulse </span>{" "}
+                    <i
+                      class="fa-solid fa-droplet"
+                      style={{ color: "#4e9ec64d" }}
+                    ></i>{" "}
+                    {postInfo.pulse} /min
+                  </p>
+                  <div style={{ width: "50%" }}>
+                    {" "}
+                    <PulseLinearProgress
+                      variant="determinate"
+                      value={(postInfo.pulse * 100) / 82 - 30}
+                    />
+                  </div>
+                  <p className="my-1">
+                    <span>Respiration </span>{" "}
+                    <i
+                      class="fa-solid fa-lungs"
+                      style={{ color: "#4e9ec64d" }}
+                    ></i>{" "}
+                    {postInfo.respiration} /min
+                  </p>
+                  <div style={{ width: "50%" }}>
+                    {" "}
+                    <RespirationLinearProgress
+                      variant="determinate"
+                      value={(postInfo.respiration * 100) / 45}
+                    />
+                  </div>
+                </div>
               </div>
-              <p className="my-1">
-                <span>Pulse </span>{" "}
-                <i
-                  class="fa-solid fa-droplet"
-                  style={{ color: "#4e9ec64d" }}
-                ></i>{" "}
-                {postInfo.pulse} /min
-              </p>
-              <div style={{ width: "50%" }}>
-                {" "}
-                <PulseLinearProgress
-                  variant="determinate"
-                  value={(postInfo.pulse * 100) / 82 - 30}
-                />
+            </div>
+            <div className="gridThree">
+              <div className="postDetailsExamsOne">
+                <h3>Examens Généraux</h3>
+                <p className="my-1">
+                  <span>Extraoral Examination -</span>{" "}
+                  {postInfo.extraoralExamination}{" "}
+                </p>
+                <p className="my-1">
+                  <span>Intraoral Examination -</span>{" "}
+                  {postInfo.intraoralExamination}{" "}
+                </p>
+                <p className="my-1">
+                  <span>Examen exo-buccal -</span> {postInfo.examenExoBuccal}{" "}
+                </p>
+                <p className="my-1">
+                  <span>Dermato -</span> {postInfo.dermato}{" "}
+                </p>
+                <p className="my-1">
+                  <span>Symétrie -</span>{" "}
+                  {postInfo.symetrie === "ouiSymetrie" ? (
+                    <CheckCircleIcon />
+                  ) : (
+                    <UnpublishedIcon />
+                  )}{" "}
+                </p>
+                <p className="my-1">
+                  <span>Détails Symétrie -</span> {postInfo.symetrieExplanation}{" "}
+                </p>
               </div>
-              <p className="my-1">
-                <span>Respiration </span>{" "}
-                <i class="fa-solid fa-lungs" style={{ color: "#4e9ec64d" }}></i>{" "}
-                {postInfo.respiration} /min
-              </p>
-              <div style={{ width: "50%" }}>
-                {" "}
-                <RespirationLinearProgress
-                  variant="determinate"
-                  value={(postInfo.respiration * 100) / 45}
-                />
+              <div className="postDetailsExamsTwo">
+                <h3>
+                  <span></span>Examen des ATM
+                </h3>
+
+                {postInfo.examenAtmNormal === "true" && (
+                  <p className="my-1">
+                    <span>Normal -</span>{" "}
+                    {postInfo.examenAtmNormal === "true" ? (
+                      <CheckCircleIcon />
+                    ) : (
+                      <UnpublishedIcon />
+                    )}
+                  </p>
+                )}
+
+                {postInfo.examenAtmDouleur === "true" && (
+                  <p className="my-1">
+                    <span>Douleur -</span>{" "}
+                    {postInfo.examenAtmDouleur === "true" ? (
+                      <CheckCircleIcon />
+                    ) : (
+                      <UnpublishedIcon />
+                    )}
+                  </p>
+                )}
+
+                {postInfo.examenAtmClaquement === "true" && (
+                  <p className="my-1">
+                    <span>Claquement -</span>{" "}
+                    {postInfo.examenAtmClaquement === "true" ? (
+                      <CheckCircleIcon />
+                    ) : (
+                      <UnpublishedIcon />
+                    )}
+                  </p>
+                )}
+
+                {postInfo.examenAtmAutre === "true" && (
+                  <p className="my-1">
+                    <span>Autres -</span>{" "}
+                    {postInfo.examenAtmAutre === "true" ? (
+                      <CheckCircleIcon />
+                    ) : (
+                      <UnpublishedIcon />
+                    )}
+                  </p>
+                )}
+
+                {postInfo.examenAtmAutre.length > 1 && (
+                  <p className="my-1">
+                    <span>Explication -</span>{" "}
+                    {postInfo.examenAtmAutreExplanation}{" "}
+                  </p>
+                )}
               </div>
-              <p className="my-1 postImagesContainer">
-                {postInfo.postImage && (
-                  <div>
-                    {/* <img
+              <div className="postDetailsExamsThree">
+                <h3>Examens Fonctionnels</h3>
+                <h4>Respiration</h4>
+
+                <p className="my-1">
+                  <span>Type -</span> {postInfo.respirationType}{" "}
+                </p>
+
+                {postInfo.detailsRespiration.length > 1 && (
+                  <p className="my-1">
+                    <span>Détails -</span> {postInfo.detailsRespiration}{" "}
+                  </p>
+                )}
+
+                <h4>Mastication</h4>
+                <p className="my-1">
+                  <span>Type -</span> {postInfo.mastication}{" "}
+                </p>
+
+                {postInfo.detailsMastication.length > 1 && (
+                  <p className="my-1">
+                    <span>Détails -</span> {postInfo.detailsMastication}{" "}
+                  </p>
+                )}
+
+                <h4>Déglutition</h4>
+
+                <p className="my-1">
+                  <span>Type -</span> {postInfo.deglutition}{" "}
+                </p>
+                {postInfo.detailsDeglutition.length > 1 && (
+                  <p className="my-1">
+                    <span>Détails -</span> {postInfo.detailsDeglutition}{" "}
+                  </p>
+                )}
+              </div>
+            </div>
+            <p className="my-1 postImagesContainer">
+              {postInfo.postImage && (
+                <div>
+                  {/* <img
                     className="postImage"
                     src={`${
                       process.env.REACT_APP_BASE_URL + "/" + postInfo.postImage
@@ -212,191 +340,34 @@ const PostDetails = ({
                     alt="dentistUpProfilePicture"
                   /> */}
 
-                    {/* LIBRARY SOURCE URL 
+                  {/* LIBRARY SOURCE URL 
 https://www.npmjs.com/package/react-fullscreen-image */}
 
-                    <ImageGroup>
-                      <ul className="images">
-                        {images.map((i) => (
-                          <li key={i}>
-                            <Image
-                              src={i}
-                              alt="nature"
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                right: "20%",
-                                bottom: 0,
-                                height: "100%",
-                                width: "100%",
-                                objectFit: "cover",
-                              }}
-                            />
-                          </li>
-                        ))}
-                      </ul>
-                    </ImageGroup>
-                  </div>
-                )}
-              </p>
-              <p className="my-1">
-                <span>Extraoral Examination -</span>{" "}
-                {postInfo.extraoralExamination}{" "}
-              </p>
-              <p className="my-1">
-                <span>Intraoral Examination -</span>{" "}
-                {postInfo.intraoralExamination}{" "}
-              </p>
-              <p className="my-1">
-                <span>Examen exo-buccal -</span> {postInfo.examenExoBuccal}{" "}
-              </p>
-              <p className="my-1">
-                <span>Dermato -</span> {postInfo.dermato}{" "}
-              </p>
-              <p className="my-1">
-                <span>Symétrie -</span>{" "}
-                {postInfo.symetrie === "ouiSymetrie" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>
-              <p className="my-1">
-                <span>Détails Symétrie -</span> {postInfo.symetrieExplanation}{" "}
-              </p>
-              <h3>
-                <span></span>Examen des ATM
-              </h3>
-
-              {postInfo.examenAtmNormal === "true" && <p className="my-1">
-                <span>Normal -</span>{" "}
-                {postInfo.examenAtmNormal === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}
-              </p>}
-              
-              {postInfo.examenAtmDouleur === "true" &&  <p className="my-1">
-                <span>Douleur -</span>{" "}
-                {postInfo.examenAtmDouleur === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}
-              </p>}
-             
-             {postInfo.examenAtmClaquement === "true" && <p className="my-1">
-                <span>Claquement -</span>{" "}
-                {postInfo.examenAtmClaquement === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}
-              </p>}
-              
-{postInfo.examenAtmAutre === "true" &&  <p className="my-1">
-                <span>Autres -</span>{" "}
-                {postInfo.examenAtmAutre === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}
-              </p>}
-             
-             {postInfo.examenAtmAutre.length > 1 &&   <p className="my-1">
-                <span>Explication -</span> {postInfo.examenAtmAutreExplanation}{" "}
-              </p>}
-            
-            </div>
-            <div className="gridThree">
-              <h3>Examens Fonctionnels</h3>
-              <h4>Respiration</h4>
-
-              {postInfo.respirationNasal === "true" &&  <p className="my-1">
-                <span>Nasal -</span>{" "}
-                {postInfo.respirationNasal === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-             
-
-              {postInfo.respirationMixte === "true" &&  <p className="my-1">
-                <span>Mixte -</span>{" "}
-                {postInfo.respirationMixte === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-              {postInfo.respirationBuccal === "true" &&  <p className="my-1">
-                {" "}
-                <span>Buccal -</span>{" "}
-                {postInfo.respirationBuccal === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}
-              </p>}
-             
-             {postInfo.detailsRespiration.length > 1 &&   <p className="my-1">
-                <span>Détails -</span> {postInfo.detailsRespiration}{" "}
-              </p>}
-            
-
-              <h4>Mastication</h4>
-              {postInfo.masticationBilateral === "true" &&  <p className="my-1">
-                <span>Bilateral -</span>{" "}
-                {postInfo.masticationBilateral === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-             
-{postInfo.masticationUnilateral === "true" &&   <p className="my-1">
-                <span>Unilateral -</span>{" "}
-                {postInfo.masticationUnilateral === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-
-            {postInfo.detailsMastication.length > 1 &&  <p className="my-1">
-                <span>Détails -</span> {postInfo.detailsMastication}{" "}
-              </p>}
-             
-              <h4>Déglutition</h4>
-
-              {postInfo.deglutitionTypique === "true" &&  <p className="my-1">
-                <span>Typique -</span>{" "}
-                {postInfo.deglutitionTypique === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-             
-
-             {postInfo.deglutitionAtypique === "true" && <p className="my-1">
-                <span>Atypique -</span>{" "}
-                {postInfo.deglutitionAtypique === "true" ? (
-                  <CheckCircleIcon />
-                ) : (
-                  <UnpublishedIcon />
-                )}{" "}
-              </p>}
-              
-{postInfo.detailsDeglutition.length > 1 &&  <p className="my-1">
-                <span>Détails -</span> {postInfo.detailsDeglutition}{" "}
-              </p>}
-
-             
-            </div>
+                  <ImageGroup>
+                    <ul className="images">
+                      {images.map((i) => (
+                        <li key={i}>
+                          <Image
+                            src={i}
+                            alt="dentistup"
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              height: "100%",
+                              width: "85%",
+                              objectFit: "contain",
+                            }}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </ImageGroup>
+                </div>
+              )}
+            </p>
           </div>
         </div>
       </div>

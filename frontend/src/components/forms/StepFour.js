@@ -13,93 +13,151 @@ const StepFour = ({
   values,
   addPost,
   setFormData,
-  handleClose
+  handleClose,
 }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
   const [item, setItem] = useState({ getGender: "" });
 
-  // after form submit validating the form data using validator
-  const [isRespirationNasalChecked, setIsRespirationNasalChecked] =
-    useState(false);
-  const handleOnIsRespirationNasalChange = () => {
-    setIsRespirationNasalChecked(!isRespirationNasalChecked);
+  // // after form submit validating the form data using validator
+  // const [isRespirationNasalChecked, setIsRespirationNasalChecked] =
+  //   useState(false);
+  // const handleOnIsRespirationNasalChange = () => {
+  //   setIsRespirationNasalChecked(!isRespirationNasalChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["respirationNasal"]: !isRespirationNasalChecked,
+  //   }));
+  //   console.log("isRespirationNasalChecked?", !isRespirationNasalChecked);
+  // };
+
+  // const [isRespirationBuccalChecked, setIsRespirationBuccal] = useState(false);
+  // const handleOnIsRespirationBuccalChange = () => {
+  //   setIsRespirationBuccal(!isRespirationBuccalChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["respirationBuccal"]: !isRespirationBuccalChecked,
+  //   }));
+  //   console.log("isRespirationBuccalChecked?", !isRespirationBuccalChecked);
+  // };
+
+  // const [isRespirationMixteChecked, setIsRespirationMixteChecked] =
+  //   useState(false);
+  // const handleOnIsRespirationMixteChange = () => {
+  //   setIsRespirationMixteChecked(!isRespirationMixteChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["respirationMixte"]: !isRespirationMixteChecked,
+  //   }));
+  //   console.log("isRespirationMixteChecked?", !isRespirationMixteChecked);
+  // };
+
+  const [respirationType, setRespirationType] = useState({
+    getRespirationType: "",
+  });
+  const { getRespirationType } = respirationType;
+  const handleChangeRespirationType = (e) => {
+    e.persist();
+    console.log(e?.target?.value);
+
     setFormData((prevState) => ({
       ...prevState,
-      ["respirationNasal"]: !isRespirationNasalChecked,
+      ["respirationType"]: e?.target?.value,
     }));
-    console.log("isRespirationNasalChecked?", !isRespirationNasalChecked);
+
+    setRespirationType((prevState) => ({
+      ...prevState,
+      getRespirationType: e?.target?.value,
+    }));
+    console.log("respirationType?", getRespirationType);
+    console.log("form??", values);
   };
 
-  const [isRespirationBuccalChecked, setIsRespirationBuccal] = useState(false);
-  const handleOnIsRespirationBuccalChange = () => {
-    setIsRespirationBuccal(!isRespirationBuccalChecked);
+  const [mastication, setMastication] = useState({ getMastication: "" });
+  const { getMastication } = mastication;
+  const handleChangeMastication = (e) => {
+    e.persist();
+    console.log(e?.target?.value);
+
     setFormData((prevState) => ({
       ...prevState,
-      ["respirationBuccal"]: !isRespirationBuccalChecked,
+      ["mastication"]: e?.target?.value,
     }));
-    console.log("isRespirationBuccalChecked?", !isRespirationBuccalChecked);
+
+    setMastication((prevState) => ({
+      ...prevState,
+      getMastication: e?.target?.value,
+    }));
+    console.log("mastication?", getMastication);
+    console.log("form??", values);
   };
 
-  const [isRespirationMixteChecked, setIsRespirationMixteChecked] =
-    useState(false);
-  const handleOnIsRespirationMixteChange = () => {
-    setIsRespirationMixteChecked(!isRespirationMixteChecked);
+  const [deglutition, setDeglutition] = useState({ getDeglutition: "" });
+  const { getDeglutition } = deglutition;
+  const handleChangeDeglutition = (e) => {
+    e.persist();
+    console.log(e?.target?.value);
+
     setFormData((prevState) => ({
       ...prevState,
-      ["respirationMixte"]: !isRespirationMixteChecked,
+      ["deglutition"]: e?.target?.value,
     }));
-    console.log("isRespirationMixteChecked?", !isRespirationMixteChecked);
+
+    setDeglutition((prevState) => ({
+      ...prevState,
+      getDeglutition: e?.target?.value,
+    }));
+    console.log("deglutition?", getDeglutition);
   };
 
-  const [isMasticationUnilateralChecked, setIsMasticationUnilateralChecked] =
-    useState(false);
-  const handleOnIsMasticationUnilateralChange = () => {
-    setIsMasticationUnilateralChecked(!isMasticationUnilateralChecked);
-    setFormData((prevState) => ({
-      ...prevState,
-      ["masticationUnilateral"]: !isMasticationUnilateralChecked,
-    }));
-    console.log(
-      "isMasticationUnilateralChecked?",
-      !isMasticationUnilateralChecked
-    );
-  };
-  const [isMasticationBilateralChecked, setIsMasticationBilateralChecked] =
-    useState(false);
-  const handleOnIsMasticationBilateralChange = () => {
-    setIsMasticationBilateralChecked(!isMasticationBilateralChecked);
-    setFormData((prevState) => ({
-      ...prevState,
-      ["masticationBilateral"]: !isMasticationBilateralChecked,
-    }));
-    console.log(
-      "isMasticationBilateralChecked?",
-      !isMasticationBilateralChecked
-    );
-  };
+  // const [isMasticationUnilateralChecked, setIsMasticationUnilateralChecked] =
+  //   useState(false);
+  // const handleOnIsMasticationUnilateralChange = () => {
+  //   setIsMasticationUnilateralChecked(!isMasticationUnilateralChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["masticationUnilateral"]: !isMasticationUnilateralChecked,
+  //   }));
+  //   console.log(
+  //     "isMasticationUnilateralChecked?",
+  //     !isMasticationUnilateralChecked
+  //   );
+  // };
+  // const [isMasticationBilateralChecked, setIsMasticationBilateralChecked] =
+  //   useState(false);
+  // const handleOnIsMasticationBilateralChange = () => {
+  //   setIsMasticationBilateralChecked(!isMasticationBilateralChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["masticationBilateral"]: !isMasticationBilateralChecked,
+  //   }));
+  //   console.log(
+  //     "isMasticationBilateralChecked?",
+  //     !isMasticationBilateralChecked
+  //   );
+  // };
 
-  const [isDeglutitionTypiqueChecked, setIsDeglutitionTypiqueChecked] =
-    useState(false);
-  const handleOnIsDeglutitionTypiqueChange = () => {
-    setIsDeglutitionTypiqueChecked(!isDeglutitionTypiqueChecked);
-    setFormData((prevState) => ({
-      ...prevState,
-      ["deglutitionTypique"]: !isDeglutitionTypiqueChecked,
-    }));
-    console.log("isDeglutitionTypiqueChecked?", !isDeglutitionTypiqueChecked);
-  };
+  // const [isDeglutitionTypiqueChecked, setIsDeglutitionTypiqueChecked] =
+  //   useState(false);
+  // const handleOnIsDeglutitionTypiqueChange = () => {
+  //   setIsDeglutitionTypiqueChecked(!isDeglutitionTypiqueChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["deglutitionTypique"]: !isDeglutitionTypiqueChecked,
+  //   }));
+  //   console.log("isDeglutitionTypiqueChecked?", !isDeglutitionTypiqueChecked);
+  // };
 
-  const [isDeglutitionAtypiqueChecked, setIsDeglutitionAtypiqueChecked] =
-    useState(false);
-  const handleOnIsDeglutitionAtypiqueChange = () => {
-    setIsDeglutitionAtypiqueChecked(!isDeglutitionAtypiqueChecked);
-    setFormData((prevState) => ({
-      ...prevState,
-      ["deglutitionAtypique"]: !isDeglutitionAtypiqueChecked,
-    }));
-    console.log("isDeglutitionAtypiqueChecked?", !isDeglutitionAtypiqueChecked);
-  };
+  // const [isDeglutitionAtypiqueChecked, setIsDeglutitionAtypiqueChecked] =
+  //   useState(false);
+  // const handleOnIsDeglutitionAtypiqueChange = () => {
+  //   setIsDeglutitionAtypiqueChecked(!isDeglutitionAtypiqueChecked);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     ["deglutitionAtypique"]: !isDeglutitionAtypiqueChecked,
+  //   }));
+  //   console.log("isDeglutitionAtypiqueChecked?", !isDeglutitionAtypiqueChecked);
+  // };
   const submitFormData = (e) => {
     e.preventDefault();
 
@@ -107,7 +165,8 @@ const StepFour = ({
     if (
       validator.isEmpty(values?.detailsRespiration) ||
       validator.isEmpty(values?.detailsMastication) ||
-      validator.isEmpty(values?.detailsDeglutition)
+      validator.isEmpty(values?.detailsDeglutition) ||
+      getRespirationType.length < 2
     ) {
       setError(true);
     } else {
@@ -119,176 +178,176 @@ const StepFour = ({
 
   return (
     <div>
-  <Card>
-    <Card.Body>
-      <Form onSubmit={submitFormData} className="form my-1">
-        <Form.Label>Examen Fonctionnel </Form.Label>
+      <Card>
+        <Card.Body>
+          <Form onSubmit={submitFormData} className="form my-1">
+            <Form.Label>Examen Fonctionnel </Form.Label>
 
-        <Form.Group controlId="getATM" className="mb-3">
-          <Form.Label>La Respiration </Form.Label>
-          <div id="respirationChoices">
-            <Form.Check
-              value="Nasal"
-              type="radio"
-              aria-label="Nasal"
-              label="Nasal"
-              checked={isRespirationNasalChecked}
-              onChange={handleOnIsRespirationNasalChange}
-            />
-            <Form.Check
-              value="Buccal"
-              type="radio"
-              aria-label="Buccal"
-              label="Buccal"
-              checked={isRespirationBuccalChecked}
-              onChange={handleOnIsRespirationBuccalChange}
-            />
-            <Form.Check
-              value="Mixte"
-              type="radio"
-              aria-label="Mixte"
-              label="Mixte"
-              checked={isRespirationMixteChecked}
-              onChange={handleOnIsRespirationMixteChange}
-            />
-          </div>
+            <Form.Group controlId="getRespirationType" className="mb-3">
+              <Form.Label>La Respiration </Form.Label>
+              <div id="respirationChoices">
+                <Form.Check
+                  value="Nasal"
+                  type="radio"
+                  aria-label="Nasal"
+                  label="Nasal"
+                  checked={getRespirationType === "Nasal"}
+                  onChange={handleChangeRespirationType}
+                />
+                <Form.Check
+                  value="Buccal"
+                  type="radio"
+                  aria-label="Buccal"
+                  label="Buccal"
+                  checked={getRespirationType === "Buccal"}
+                  onChange={handleChangeRespirationType}
+                />
+                <Form.Check
+                  value="Mixte"
+                  type="radio"
+                  aria-label="Mixte"
+                  label="Mixte"
+                  checked={getRespirationType === "Mixte"}
+                  onChange={handleChangeRespirationType}
+                />
+              </div>
 
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Détails</Form.Label>
-          <Form.Control
-            style={{ border: error ? "2px solid red" : "" }}
-            name="detailsRespiration"
-            defaultValue={values.detailsRespiration}
-            type="text"
-            placeholder="Write something"
-            onChange={handleFormData("detailsRespiration")}
-          />
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Détails</Form.Label>
+              <Form.Control
+                style={{ border: error ? "2px solid red" : "" }}
+                name="detailsRespiration"
+                defaultValue={values.detailsRespiration}
+                type="text"
+                placeholder="Write something"
+                onChange={handleFormData("detailsRespiration")}
+              />
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
 
-        <Form.Group controlId="getATM" className="mb-3">
-          <Form.Label>La Mastication</Form.Label>
-          <div id="masticationChoices">
-            <Form.Check
-              value="Unilatéral"
-              type="radio"
-              aria-label="Unilatéral"
-              label="Unilatéral"
-              checked={isMasticationUnilateralChecked}
-              onChange={handleOnIsMasticationUnilateralChange}
-            />
-            <Form.Check
-              value="Bi-latéral"
-              type="radio"
-              aria-label="Bi-latéral"
-              label="Bi-latéral"
-              checked={isMasticationBilateralChecked}
-              onChange={handleOnIsMasticationBilateralChange}
-            />
-          </div>
+            <Form.Group controlId="getMastication" className="mb-3">
+              <Form.Label>La Mastication</Form.Label>
+              <div id="masticationChoices">
+                <Form.Check
+                  value="Unilatéral"
+                  type="radio"
+                  aria-label="Unilatéral"
+                  label="Unilatéral"
+                  checked={getMastication === "Unilatéral"}
+                  onChange={handleChangeMastication}
+                />
+                <Form.Check
+                  value="Bi-latéral"
+                  type="radio"
+                  aria-label="Bi-latéral"
+                  label="Bi-latéral"
+                  checked={getMastication === "Bi-latéral"}
+                  onChange={handleChangeMastication}
+                />
+              </div>
 
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Détails</Form.Label>
-          <Form.Control
-            style={{ border: error ? "2px solid red" : "" }}
-            name="detailsMastication"
-            defaultValue={values.detailsMastication}
-            type="text"
-            placeholder="Write something"
-            onChange={handleFormData("detailsMastication")}
-          />
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Détails</Form.Label>
+              <Form.Control
+                style={{ border: error ? "2px solid red" : "" }}
+                name="detailsMastication"
+                defaultValue={values.detailsMastication}
+                type="text"
+                placeholder="Write something"
+                onChange={handleFormData("detailsMastication")}
+              />
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
 
-        <Form.Group controlId="getATM" className="mb-3">
-          <Form.Label>La Déglutition </Form.Label>
-          <div id="deglutationChoices">
-            <Form.Check
-              value="Typique"
-              type="radio"
-              aria-label="Typique"
-              label="Typique"
-              checked={isDeglutitionTypiqueChecked}
-              onChange={handleOnIsDeglutitionTypiqueChange}
-            />
-            <Form.Check
-              value="Atypique"
-              type="radio"
-              aria-label="Atypique"
-              label="Atypique"
-              checked={isDeglutitionAtypiqueChecked}
-              onChange={handleOnIsDeglutitionAtypiqueChange}
-            />
-          </div>
+            <Form.Group controlId="getDeglutition" className="mb-3">
+              <Form.Label>La Déglutition </Form.Label>
+              <div id="deglutationChoices">
+                <Form.Check
+                  value="Typique"
+                  type="radio"
+                  aria-label="Typique"
+                  label="Typique"
+                  checked={getDeglutition === "Typique"}
+                  onChange={handleChangeDeglutition}
+                />
+                <Form.Check
+                  value="Atypique"
+                  type="radio"
+                  aria-label="Atypique"
+                  label="Atypique"
+                  checked={getDeglutition === "Atypique"}
+                  onChange={handleChangeDeglutition}
+                />
+              </div>
 
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Détails</Form.Label>
-          <Form.Control
-            style={{ border: error ? "2px solid red" : "" }}
-            name="detailsDeglutition"
-            defaultValue={values.detailsDeglutition}
-            type="text"
-            placeholder="Write something"
-            onChange={handleFormData("detailsDeglutition")}
-          />
-          {error ? (
-            <Form.Text style={{ color: "red" }}>
-              This is a required field
-            </Form.Text>
-          ) : (
-            ""
-          )}
-        </Form.Group>
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Détails</Form.Label>
+              <Form.Control
+                style={{ border: error ? "2px solid red" : "" }}
+                name="detailsDeglutition"
+                defaultValue={values.detailsDeglutition}
+                type="text"
+                placeholder="Write something"
+                onChange={handleFormData("detailsDeglutition")}
+              />
+              {error ? (
+                <Form.Text style={{ color: "red" }}>
+                  This is a required field
+                </Form.Text>
+              ) : (
+                ""
+              )}
+            </Form.Group>
 
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Button variant="primary" onClick={prevStep}>
-            Previous
-          </Button>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <Button variant="primary" onClick={prevStep}>
+                Previous
+              </Button>
 
-          <Button variant="primary" onClick={nextStep}>
-            Next
-          </Button>
-        </div>
-      </Form>
-    </Card.Body>
-  </Card>
-</div>
+              <Button variant="primary" onClick={nextStep}>
+                Next
+              </Button>
+            </div>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
 
     // <div>
     //   <Card>

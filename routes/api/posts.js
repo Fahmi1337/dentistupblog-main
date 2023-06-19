@@ -57,6 +57,7 @@ router.post(
       if (req.files.postImage) {
         postImage = req.files.postImage[0].path;
       }
+      console.log("req?", req.body);
       const newPost = new Post({
         postInfo: {
           postImage: postImage,
@@ -88,15 +89,14 @@ router.post(
           examenAtmClaquement: req.body.examenAtmClaquement,
           examenAtmAutre: req.body.examenAtmAutre,
           examenAtmAutreExplanation: req.body.examenAtmAutreExplanation,
-          respirationNasal: req.body.respirationNasal,
-          respirationBuccal: req.body.respirationBuccal,
-          respirationMixte: req.body.respirationMixte,
+
+          respirationType: req.body.respirationType,
           detailsRespiration: req.body.detailsRespiration,
-          masticationUnilateral: req.body.masticationUnilateral,
-          masticationBilateral: req.body.masticationBilateral,
+
+          mastication: req.body.mastication,
           detailsMastication: req.body.detailsMastication,
-          deglutitionTypique: req.body.deglutitionTypique,
-          deglutitionAtypique: req.body.deglutitionAtypique,
+
+          deglutition: req.body.deglutition,
           detailsDeglutition: req.body.detailsDeglutition,
         },
         name: user.name,
@@ -118,7 +118,7 @@ router.post(
 // @access  Private
 router.put(
   "/:id",
-  [auth,  [check("title", "Text is required").not().isEmpty()]],
+  [auth, [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
@@ -168,15 +168,14 @@ router.put(
         examenAtmClaquement: req.body.examenAtmClaquement,
         examenAtmAutre: req.body.examenAtmAutre,
         examenAtmAutreExplanation: req.body.examenAtmAutreExplanation,
-        respirationNasal: req.body.respirationNasal,
-        respirationBuccal: req.body.respirationBuccal,
-        respirationMixte: req.body.respirationMixte,
+
+        respirationType: req.body.respirationType,
         detailsRespiration: req.body.detailsRespiration,
-        masticationUnilateral: req.body.masticationUnilateral,
-        masticationBilateral: req.body.masticationBilateral,
+
+        mastication: req.body.mastication,
         detailsMastication: req.body.detailsMastication,
-        deglutitionTypique: req.body.deglutitionTypique,
-        deglutitionAtypique: req.body.deglutitionAtypique,
+
+        deglutition: req.body.deglutition,
         detailsDeglutition: req.body.detailsDeglutition,
       }),
         (post.name = user.name),

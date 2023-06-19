@@ -23,12 +23,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser, auth }) => {
         </NavLink>
       </li>
 
-      {/* <li>
+      <li>
         <NavLink to="/groups" activeClassName="active">
-          <i className="far fa-comments"></i>{" "}
+          <i class="fa-solid fa-comments"></i>{" "}
           <span className="hide-sm">Groups</span>
         </NavLink>
-      </li> */}
+      </li>
       {/* <li>
         <NavLink to={`/profile/${auth?.user?._id}`} activeClassName="active">
           <i className="fa fa-user"></i>{" "}
@@ -108,7 +108,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser, auth }) => {
   return loading && auth === null ? (
     <Spinner />
   ) : (
-    <div style={{display : auth.isAuthenticated ? "block" : "none"}}>
+    <div style={{ display: auth.isAuthenticated ? "block" : "none" }}>
       <nav className="navbar">
         <h1>
           <Link to="/">

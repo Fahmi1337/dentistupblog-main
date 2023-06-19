@@ -31,88 +31,97 @@ const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
     getPosts();
   }, [getPosts]);
 
-
-
   const [searchKeyword, setSearchKeyword] = React.useState("");
 
   const filteredPosts = posts.filter((post) =>
-    post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase()) 
+    post.postInfo.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
-
 
   return loading ? (
     <Spinner />
   ) : (
-    <Fragment >
+    <Fragment>
       <div className="grey-bg">
-  {/* <h1 className="large text-primary">Posts</h1>
+        {/* <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="i fas fa-user"></i> Welcome to the Community
       </p> */}
 
-      {/* MODAL START */}
-      <div className="inputNewPostContainer">
+        {/* MODAL START */}
 
-      <img alt="Dentistup" src={auth?.user?.profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + auth?.user?.profileImage}` : auth?.user?.avatar}/>
-      <form className="form newpost-form">
-        {" "}
-        <input
-          type="Text"
-          placeholder="Start a new post"
-          onClick={handleOpen}
-        />
-        <button className="btn btn-primary"  onClick={(e) => {
-                        e.preventDefault();
-                        handleOpen();
-                      }}>Ask for recommendation</button>
-      </form>
+        <div className="posts">
+          <div className="inputNewPostContainer">
+            <img
+              alt="Dentistup"
+              src={
+                auth?.user?.profileImage
+                  ? `${
+                      process.env.REACT_APP_BASE_URL +
+                      "/" +
+                      auth?.user?.profileImage
+                    }`
+                  : auth?.user?.avatar
+              }
+            />
+            <form className="form newpost-form">
+              {" "}
+              <input
+                type="Text"
+                placeholder="Start a new post"
+                onClick={handleOpen}
+              />
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleOpen();
+                }}
+              >
+                Ask for recommendation
+              </button>
+            </form>
+          </div>
 
-      </div>
-     
-
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            {/* PostForm */}
-            <PostForm editMode={false} handleClose={handleClose}/>
-          </Box>
-        </Fade>
-      </Modal>
-      {/* MODAL END */}
-      <div className="posts">
-        {/* {posts.map((post) => (
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+              backdrop: {
+                timeout: 500,
+              },
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                {/* PostForm */}
+                <PostForm editMode={false} handleClose={handleClose} />
+              </Box>
+            </Fade>
+          </Modal>
+          {/* MODAL END */}
+          {/* {posts.map((post) => (
           <PostItem key={post._id} post={post} showDetails={false} />
         ))} */}
-  {/* <input
+          {/* <input
   id="searchPosts"
         type="text"
         placeholder="Search posts..."
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
       /> */}
-{filteredPosts.length > 0 ? (
-             filteredPosts.map((post) => (
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
               <PostItem key={post._id} post={post} showDetails={false} />
             ))
-            ) : (
-              <h4>No Posts found...</h4>
-            )}
-          </div>
+          ) : (
+            <h4>No Posts found...</h4>
+          )}
+        </div>
       </div>
-    
-      
     </Fragment>
   );
 };

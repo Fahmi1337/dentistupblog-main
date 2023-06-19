@@ -21,7 +21,7 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
-    concernedTeeth:{
+    concernedTeeth: {
       type: String,
       required: false,
     },
@@ -123,43 +123,17 @@ const PostSchema = new Schema({
       required: false,
     },
 
-    respirationNasal: {
+    respirationType: {
       type: String,
       required: false,
     },
-    respirationBuccal: {
+
+    mastication: {
       type: String,
       required: false,
     },
-    respirationMixte: {
-      type: String,
-      required: false,
-    },
-    detailsRespiration: {
-      type: String,
-      required: false,
-    },
-    masticationUnilateral: {
-      type: String,
-      required: false,
-    },
-    masticationBilateral: {
-      type: String,
-      required: false,
-    },
-    detailsMastication: {
-      type: String,
-      required: false,
-    },
-    deglutitionTypique: {
-      type: String,
-      required: false,
-    },
-    deglutitionAtypique: {
-      type: String,
-      required: false,
-    },
-    detailsDeglutition: {
+
+    deglutition: {
       type: String,
       required: false,
     },

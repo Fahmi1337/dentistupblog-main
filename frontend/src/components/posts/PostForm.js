@@ -11,9 +11,16 @@ import StepFour from "../forms/StepFour";
 import StepFive from "../forms/StepFive";
 import Final from "../forms/Final";
 
-const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost, editMode, handleClose}) => {
-
-
+const PostForm = ({
+  _id,
+  postInfo,
+  editPost,
+  getPost,
+  match,
+  handleCloseEditPost,
+  editMode,
+  handleClose,
+}) => {
   const [step, setstep] = useState(1);
 
   //state for form data
@@ -40,26 +47,28 @@ const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost,
     examenAtmAutre: "",
     examenAtmAutreExplanation: "",
     concernedTeeth: "",
-    respirationNasal: "",
-    respirationBuccal: "",
-    respirationMixte: "",
+    respirationType: "",
+    // respirationNasal: "",
+    // respirationBuccal: "",
+    // respirationMixte: "",
     detailsRespiration: "",
-    masticationUnilateral: "",
-    masticationBilateral: "",
+    // masticationUnilateral: "",
+    // masticationBilateral: "",
+    mastication: "",
     detailsMastication: "",
-    deglutitionTypique: "",
-    deglutitionAtypique: "",
+    // deglutitionTypique: "",
+    // deglutitionAtypique: "",
+    deglutition: "",
     detailsDeglutition: "",
     title: "",
     description: "",
     postImage: null,
   });
   useEffect(() => {
-    if(postInfo){
+    if (postInfo) {
       setFormData(postInfo);
-      console.log("edit form?", formData)
+      console.log("edit form?", formData);
     }
- 
   }, [postInfo]);
   // function for going to next step by increasing step state by 1
   const nextStep = () => {
@@ -169,13 +178,13 @@ const PostForm = ({_id, postInfo, editPost, getPost, match, handleCloseEditPost,
             <Row>
               <Col md={{ span: 6, offset: 3 }} className="custom-margin">
                 <StepFive
-                   nextStep={nextStep}
-                   prevStep={prevStep}
-                   handleFormData={handleInputData}
-                   values={formData}
-                   setFormData={setFormData}
-                   editMode={editMode}
-                   handleClose={handleClose}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                  setFormData={setFormData}
+                  editMode={editMode}
+                  handleClose={handleClose}
                 />
               </Col>
             </Row>

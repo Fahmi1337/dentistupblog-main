@@ -579,6 +579,9 @@ button {
 }
 
 /* Posts Page */
+.post-form {
+  padding: 3%;
+}
 .post-form .post-form-header {
   background: var(--primary-color);
   padding: 0.5rem;
@@ -851,12 +854,12 @@ header {
 
 .threeColumns {
   display: grid;
-  grid-template-rows: 10% 66% 32%;
+  grid-template-rows: auto;
   margin-bottom: 7em;
 }
-.gridOne{
+.gridOne {
   display: flex;
-  
+
   align-items: center;
   justify-content: space-around;
 }
@@ -998,7 +1001,7 @@ header {
   width: 93ch;
   margin: 0 auto;
   padding-right: 1em;
-  margin-left: 19.8%;
+  margin-left: 13%;
 }
 .inputNewPostContainer img {
   width: 3em;
@@ -1128,7 +1131,6 @@ header {
 div.fullscreen-container {
   height: 10vh;
   width: 10vw;
-  right: 50%;
 }
 div.fullscreen-group {
   margin-top: 2em;
@@ -1154,7 +1156,7 @@ div.fullscreen-group {
   float: right;
   margin-top: -2.8em;
 }
-.postImagesContainer{
+.postImagesContainer {
   margin: 0em 1em 10em 1em;
 }
 .profiles-container {
@@ -1177,6 +1179,9 @@ body {
 .manageAccountLinkProfileOptions a {
   color: #1890ff;
   font-size: 1.1em;
+}
+.gridTwo {
+  margin: 3em 0;
 }
 .profilePopupOptionsContainer {
   padding: 1em 0em;
@@ -1221,10 +1226,30 @@ body {
 .notificationsText h4 {
   margin-right: 5px;
 }
-textarea{
+textarea {
   height: 6em !important;
 }
-.concernedTeethIconInfo:hover{
+.postDetailsDescTwo {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-items: center;
+}
+.gridThree {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+.concernedTeethIconInfo:hover {
   cursor: pointer;
 }
-body:has(.whitebg) { background-color: white !important; }
+
+body:has(.whitebg) {
+  background-color: white !important;
+}
+.groupsContainer {
+  padding: 2em;
+  margin-left: 15em;
+}
+div.fullscreen-image {
+  left: 30%;
+}

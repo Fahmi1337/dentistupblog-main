@@ -233,8 +233,16 @@ const PostItem = ({
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
                     <div>
-                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
-                </div>
+                      <img
+                        src={`${
+                          process.env.REACT_APP_BASE_URL +
+                          "/" +
+                          postInfo.postImage
+                        }`}
+                        alt="postImage"
+                        style={{ width: 300, height: "auto" }}
+                      />
+                    </div>
                   </Link>
                 </Fragment>
               )}
@@ -484,12 +492,20 @@ const PostItem = ({
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
                     <div>
-                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
-                </div>
+                      <img
+                        src={`${
+                          process.env.REACT_APP_BASE_URL +
+                          "/" +
+                          postInfo.postImage
+                        }`}
+                        alt="postImage"
+                        style={{ width: 300, height: "auto" }}
+                      />
+                    </div>
                   </Link>
                 </Fragment>
               )}
-            
+
               <div className="postIconsInfo">
                 {postInfo.gender === "male" && (
                   <i
@@ -719,8 +735,16 @@ const PostItem = ({
                         (postInfo.description?.length > 200 ? "..." : "")}
                     </p>
                     <div>
-                <img src={postInfo.postImage} alt="postImage" style={{width: 300, height:"auto"}} />
-                </div>
+                      <img
+                        src={`${
+                          process.env.REACT_APP_BASE_URL +
+                          "/" +
+                          postInfo.postImage
+                        }`}
+                        alt="postImage"
+                        style={{ width: 300, height: "auto" }}
+                      />
+                    </div>
                   </Link>
                 </Fragment>
               )}

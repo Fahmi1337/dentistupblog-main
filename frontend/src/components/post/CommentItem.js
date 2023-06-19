@@ -60,7 +60,16 @@ const StyledMenu = styled((props) => (
 
 const CommentItem = ({
   postId,
-  comment: { _id, name, diagnostic, treatment, avatar, user, date, profileImage },
+  comment: {
+    _id,
+    name,
+    diagnostic,
+    treatment,
+    avatar,
+    user,
+    date,
+    profileImage,
+  },
   auth,
   comment,
   deleteComment,
@@ -74,11 +83,10 @@ const CommentItem = ({
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-  borderRadius: 5,
+    borderRadius: 5,
     boxShadow: 24,
     p: 4,
   };
-  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -89,26 +97,32 @@ const CommentItem = ({
     setAnchorEl(null);
   };
 
-
-
   const [openEditComment, setOpenEditComment] = React.useState(false);
   const handleOpenEditComment = () => setOpenEditComment(true);
   const handleCloseEditComment = () => setOpenEditComment(false);
   return (
-    <div class="post bg-white p-1 my-1">
+    <div class="post p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
-          <img class="round-img" src={profileImage ? `${process.env.REACT_APP_BASE_URL +"/" + profileImage}` : avatar} alt="DentistUpAvatar" />
+          <img
+            class="round-img"
+            src={
+              profileImage
+                ? `${process.env.REACT_APP_BASE_URL + "/" + profileImage}`
+                : avatar
+            }
+            alt="DentistUpAvatar"
+          />
           <h4>{name}</h4>
         </Link>
         <p className="post-date">
-                {" "}
-                {moment
-                  .utc(date.replace("T", " ").replace("Z", ""))
-                  .local()
-                  .startOf("seconds")
-                  .fromNow()}{" "}
-              </p>
+          {" "}
+          {moment
+            .utc(date.replace("T", " ").replace("Z", ""))
+            .local()
+            .startOf("seconds")
+            .fromNow()}{" "}
+        </p>
       </div>
       <div>
         <p class="my-1">{diagnostic}</p>
@@ -117,69 +131,75 @@ const CommentItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p> */}
 
-
-
-
-{!auth.loading && user === auth.user._id && (
-                <div className="postOptionsContainer">
-                  <IconButton
-                    aria-label="delete"
-                    id="demo-customized-button"
-                    aria-controls={open ? "demo-customized-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    variant="contained"
-                    disableElevation
-                    onClick={handleClick}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-
-                  <StyledMenu
-                    id="demo-customized-menu"
-                    MenuListProps={{
-                      "aria-labelledby": "demo-customized-button",
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                  >
-                    <MenuItem
-                      onClick={(e) => {
-                        handleOpenEditComment();
-                        e.preventDefault();
-                        handleClose();
-                      }}
-                      disableRipple
-                    >
-                      <EditIcon />
-                      Edit
-                    </MenuItem>
-                    <MenuItem
-                      onClick={(e) => {
-                        handleClose();
-                        deleteComment(postId, _id);
-                      }}
-                      disableRipple
-                    >
-                      <DeleteIcon />
-                      Delete
-                    </MenuItem>
-                  </StyledMenu>
-                </div>
-              )}
-
-<Modal
-              open={openEditComment}
-              onClose={handleCloseEditComment}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
+        {!auth.loading && user === auth.user._id && (
+          <div className="postOptionsContainer">
+            <IconButton
+              aria-label="delete"
+              id="demo-customized-button"
+              aria-controls={open ? "demo-customized-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              variant="contained"
+              disableElevation
+              onClick={handleClick}
             >
-              <Box sx={style}>
-                <EditComment _id={_id} auth={auth} postId={postId} diagnostic={diagnostic} treatment={treatment} comment={comment} handleCloseEditComment={handleCloseEditComment} getPost={getPost} match={match}/>
-              </Box>
-            </Modal>
+              <MoreVertIcon />
+            </IconButton>
 
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem
+                onClick={(e) => {
+                  handleOpenEditComment();
+                  e.preventDefault();
+                  handleClose();
+                }}
+                disableRipple
+              >
+                <EditIcon />
+                Edit
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => {
+                  handleClose();
+                  deleteComment(postId, _id);
+                }}
+                disableRipple
+              >
+                <DeleteIcon />
+                Delete
+              </MenuItem>
+            </StyledMenu>
+          </div>
+        )}
+
+        <Modal
+          open={openEditComment}
+          onClose={handleCloseEditComment}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <EditComment
+              _id={_id}
+              auth={auth}
+              postId={postId}
+              diagnostic={diagnostic}
+              treatment={treatment}
+              comment={comment}
+              handleCloseEditComment={handleCloseEditComment}
+              getPost={getPost}
+              match={match}
+            />
+          </Box>
+        </Modal>
 
         {/* {!auth.loading && user === auth.user._id && (
           <div>
