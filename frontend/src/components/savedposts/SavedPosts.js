@@ -37,7 +37,10 @@ const SavedPosts = ({
       savedPostsIds={savedPostsIds}
     />
   ));
-
+  console.log(
+    "hello?.??",
+    auth?.user?.savedPosts?.some((v) => posts.includes(v))
+  );
   return (
     <div className="grey-bg">
       {auth?.user?.savedPosts?.length > 0 ? (
