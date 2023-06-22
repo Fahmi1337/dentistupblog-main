@@ -26,7 +26,7 @@ const App = () => {
   const [updatedToken, setUpdatedToken] = useState(true)
 
 
-console.log("store?", store.dispatch(loadUser()))
+console.log("store?", store.getState().post.posts)
 
 
   useEffect(() => {
