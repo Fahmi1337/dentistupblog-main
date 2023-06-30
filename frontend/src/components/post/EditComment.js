@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {editComment} from "../../actions/post"
-const EditComment = ({ postId, _id, comment, editComment, handleCloseEditComment, getPost, match }) => {
+import { editComment } from "../../actions/post";
+const EditComment = ({
+  postId,
+  _id,
+  comment,
+  editComment,
+  handleCloseEditComment,
+  getPost,
+  match,
+}) => {
   const [formData, setFormData] = useState({
     treatment: "",
     diagnostic: "",
@@ -18,33 +26,30 @@ const EditComment = ({ postId, _id, comment, editComment, handleCloseEditComment
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
-   
-   editComment(postId, _id, formData );
-   handleCloseEditComment();
-   getPost(match.params.id);
-   getPost(match.params.id);
+    editComment(postId, _id, formData);
+    handleCloseEditComment();
+    getPost(match.params.id);
+    getPost(match.params.id);
   };
 
   return (
     <div>
       <h3>Comment</h3>
-     
-        <div className="card-body" id="editCommentContainer">
-               <form onSubmit={onSubmit} className="form my-1"> 
 
+      <div className="card-body" id="editCommentContainer">
+        <form onSubmit={onSubmit} className="form my-1">
+          <div className="form-group">
+            <label className="form-label">Diagnostic</label>
+            <textarea
+              type="text"
+              name="diagnostic"
+              value={diagnostic}
+              onChange={onChange}
+              className="form-control"
+            />
+          </div>
 
-               <div className="form-group">
-        <label className="form-label">Diagnostic</label>
-        <textarea
-          type="text"
-          name="diagnostic"
-          value={diagnostic}
-          onChange={onChange}
-          className="form-control"
-        />
-      </div>
-
-      <div className="form-group">
+          {/* <div className="form-group">
         <label className="form-label">Treatment</label>
         <textarea
           type="text"
@@ -53,20 +58,19 @@ const EditComment = ({ postId, _id, comment, editComment, handleCloseEditComment
           onChange={onChange}
           className="form-control"
         />
+      </div> */}
+        </form>
+        <button type="submit" onClick={onSubmit} className="btn btn-primary">
+          {" "}
+          Update
+        </button>
       </div>
-    </form>
-              <button type="submit" onClick={onSubmit} className="btn btn-primary"> Update</button>
-        </div>
-  </div>
-                );
-            };
-
-
+    </div>
+  );
+};
 
 EditComment.propTypes = {
-              editComment: PropTypes.func.isRequired,
-         
-            };
-    
-export default connect(null, { editComment })
-(EditComment);
+  editComment: PropTypes.func.isRequired,
+};
+
+export default connect(null, { editComment })(EditComment);

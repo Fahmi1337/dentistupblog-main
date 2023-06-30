@@ -183,7 +183,6 @@ const PostDetails = ({
                         onClick={handleOpen}
                         className="concernedTeethIconInfo"
                       />{" "}
-                      -{" "}
                     </span>{" "}
                     {postInfo?.concernedTeeth?.trim()}{" "}
                   </p>
@@ -402,7 +401,7 @@ https://www.npmjs.com/package/react-fullscreen-image */}
                               right: 0,
                               bottom: 0,
                               height: "100%",
-                              width: "85%",
+                              width: "100%",
                               objectFit: "contain",
                             }}
                           />

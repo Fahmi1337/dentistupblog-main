@@ -126,7 +126,7 @@ const CommentItem = ({
       </div>
       <div>
         <p class="my-1">{diagnostic}</p>
-        <p class="my-1">{treatment}</p>
+        {/* <p class="my-1">{treatment}</p> */}
         {/* <p class="post-date">
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p> */}
@@ -192,7 +192,7 @@ const CommentItem = ({
               auth={auth}
               postId={postId}
               diagnostic={diagnostic}
-              treatment={treatment}
+              // treatment={treatment}
               comment={comment}
               handleCloseEditComment={handleCloseEditComment}
               getPost={getPost}
