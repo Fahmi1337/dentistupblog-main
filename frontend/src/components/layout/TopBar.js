@@ -29,8 +29,6 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import TuneIcon from "@mui/icons-material/Tune";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { Icon } from "@iconify/react";
 const pages = ["Posts", "Dentists", "My Cases", "My Groups"];
 const settings = ["Profile", "Dashboard", "Logout"];

@@ -9,7 +9,7 @@ import PostDetails from "./PostDetails";
 import moment from "moment";
 
 import { styled, alpha } from "@mui/material/styles";
-
+import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import EditIcon from "@mui/icons-material/Edit";
@@ -149,7 +149,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img
+                <Avatar
                   className="round-img"
                   src={
                     profileImage
@@ -407,7 +407,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img
+                <Avatar
                   className="round-img"
                   src={
                     profileImage
@@ -649,7 +649,7 @@ const PostItem = ({
           <div className="post bg-white p-1 my-1">
             <div>
               <Link to={`/profile/${user}`}>
-                <img
+                <Avatar
                   className="round-img"
                   src={
                     profileImage

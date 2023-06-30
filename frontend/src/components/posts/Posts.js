@@ -5,7 +5,7 @@ import { getPosts } from "../../actions/post";
 import Spinner from "../layout/Spinner";
 import PostItem from "./PostItem";
 import PostForm from "./PostForm";
-
+import Avatar from "@mui/material/Avatar";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -51,7 +51,7 @@ const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
 
         <div className="posts">
           <div className="inputNewPostContainer">
-            <img
+            <Avatar
               alt="Dentistup"
               src={
                 auth?.user?.profileImage

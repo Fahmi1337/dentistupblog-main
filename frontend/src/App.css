@@ -605,14 +605,10 @@ header {
   align-items: flex-start;
 }
 .post > div:first-child a h4 {
-  margin-top: -0.2em;
+  margin-left: 0.7em;
 }
 .post > div:first-child a img {
-  margin-right: 1em;
-}
-.post img {
-  width: 35px;
-  height: 35px;
+  /* margin-right: 0.5em; */
 }
 
 .post .comment-count {
@@ -1003,12 +999,12 @@ header {
   padding-right: 1em;
   margin-left: 13%;
 }
-.inputNewPostContainer img {
-  width: 3em;
+.inputNewPostContainer div {
+  /* width: 3em;
   height: 3em;
   object-fit: cover;
-  border-radius: 50%;
-  margin-right: 1.5em;
+  border-radius: 50%; */
+  margin-right: 1em;
 }
 .inputNewPostContainer form {
   width: 100%;
