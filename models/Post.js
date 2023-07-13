@@ -155,6 +155,10 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "user",
       },
+      name: {
+        type: String,
+       
+      },
     },
   ],
   comments: [
