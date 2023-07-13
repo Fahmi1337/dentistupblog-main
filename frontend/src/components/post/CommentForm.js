@@ -25,8 +25,8 @@ const CommentForm = ({ postId, addComment }) => {
 
   const handleReset = () => {
     setFormData({
-      diagnostic: '',
-      treatment: '',
+      diagnostic: "",
+      treatment: "",
     });
   };
 
@@ -54,7 +54,7 @@ const CommentForm = ({ postId, addComment }) => {
             onChange={handleFormData("diagnostic")}
             required
           ></textarea>
-          <textarea
+          {/* <textarea
             name="treatment"
             cols="30"
             rows="5"
@@ -62,7 +62,7 @@ const CommentForm = ({ postId, addComment }) => {
             value={formData.treatment}
             onChange={handleFormData("treatment")}
             required
-          ></textarea>
+          ></textarea> */}
           {/* <Editor /> */}
 
           <input type="submit" className="btn btn-dark my-1" value="Submit" />

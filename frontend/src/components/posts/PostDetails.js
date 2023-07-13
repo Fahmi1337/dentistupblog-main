@@ -11,6 +11,11 @@ import LinearProgress, {
 import { styled } from "@mui/material/styles";
 import Spinner from "../layout/Spinner";
 import { ImageGroup, Image } from "react-fullscreen-image";
+import teethNumbers from "../../img/deethNumbers.svg";
+
+import { Icon } from "@iconify/react";
+// creating functional component ans getting props from app.js and destucturing them
+
 const PostDetails = ({
   postInfo,
   auth,
@@ -28,6 +33,18 @@ const PostDetails = ({
     width: "80em",
     bgcolor: "background.paper",
     borderRadius: 5,
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const TeethStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "40em",
+    bgcolor: "background.paper",
+    textAlign: "center",
     boxShadow: 24,
     p: 4,
   };
@@ -96,6 +113,12 @@ const PostDetails = ({
   // for (var i = 0; i < postInfo.postImages.length; i++) {
   //   images.push(postImages[i]?.post);
   // }
+
+  //Modal options
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return !postInfo ? (
     <Spinner />
   ) : (
@@ -153,10 +176,31 @@ const PostDetails = ({
                   </p>
 
                   <p className="my-1">
-                    <span>Concerned teeth -</span>{" "}
+                    <span>
+                      Concerned teeth{" "}
+                      <Icon
+                        icon="fluent:info-24-regular"
+                        onClick={handleOpen}
+                        className="concernedTeethIconInfo"
+                      />{" "}
+                    </span>{" "}
                     {postInfo?.concernedTeeth?.trim()}{" "}
                   </p>
                 </div>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={TeethStyle}>
+                    <img
+                      src={teethNumbers}
+                      alt="teeth"
+                      style={{ width: "30em", textAlign: "center" }}
+                    />
+                  </Box>
+                </Modal>
                 <div className="postDetailsDescTwoRight">
                   <p className="my-1">
                     {" "}
@@ -357,7 +401,7 @@ https://www.npmjs.com/package/react-fullscreen-image */}
                               right: 0,
                               bottom: 0,
                               height: "100%",
-                              width: "85%",
+                              width: "100%",
                               objectFit: "contain",
                             }}
                           />

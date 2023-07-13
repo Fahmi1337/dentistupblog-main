@@ -26,11 +26,11 @@ const CreateProfile = ({ createProfile, history }) => {
   });
   const [loading, setLoading] = useState(false);
   const checkLoading = (e) => {
-if (loading){
-  return <Spinner/>
-}
-  }
-  
+    if (loading) {
+      return <Spinner />;
+    }
+  };
+
   //   for toggling social inputs on and off
   const [displaySocialInput, toggleSocialInput] = useState(false);
   // Destructurization
@@ -54,26 +54,25 @@ if (loading){
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = (e) => {
-      e.preventDefault();
-      const data = new FormData();
-      data.append("profileImage", formData.profileImage);
-      Object.keys(formData).forEach((key) => {
-        if (key !== "profileImage") {
-          data.append(key, formData[key]);
-        }
-      });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("profileImage", formData.profileImage);
+    Object.keys(formData).forEach((key) => {
+      if (key !== "profileImage") {
+        data.append(key, formData[key]);
+      }
+    });
 
-
-      // data.append("profileCover", formData.profileCover);
-      // Object.keys(formData).forEach((key) => {
-      //   if (key !== "profileCover") {
-      //     data.append(key, formData[key]);
-      //   }
-      // });
-      createProfile(data, history, false);
-      setLoading(true);
-    };
+    // data.append("profileCover", formData.profileCover);
+    // Object.keys(formData).forEach((key) => {
+    //   if (key !== "profileCover") {
+    //     data.append(key, formData[key]);
+    //   }
+    // });
+    createProfile(data, history, false);
+    setLoading(true);
+  };
 
   return (
     <Fragment>
@@ -85,42 +84,39 @@ if (loading){
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
-      <div className="form-group">
-  <label htmlFor="profileImage">Profile Picture</label>
-  <small className="form-text">Upload a profile picture</small>
-  <input
-    type="file"
-    accept=".jpg,.png,.jpeg"
-    name="profileImage"
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        profileImage: e.target.files[0],
-      })
-    }
-  />
-
-</div>
-
-
-<div className="form-group">
-  <label htmlFor="profileCover">Profile Cover</label>
-  <small className="form-text">Upload a profile cover</small>
-  <input
-    type="file"
-    accept=".jpg,.png,.jpeg"
-    name="profileCover"
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        profileCover: e.target.files[0],
-      })
-    }
-  />
-
-</div>
         <div className="form-group">
-        <small className="form-text">
+          <label htmlFor="profileImage">Profile Picture</label>
+          <small className="form-text">Upload a profile picture</small>
+          <input
+            type="file"
+            accept=".jpg,.png,.jpeg"
+            name="profileImage"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                profileImage: e.target.files[0],
+              })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="profileCover">Profile Cover</label>
+          <small className="form-text">Upload a profile cover</small>
+          <input
+            type="file"
+            accept=".jpg,.png,.jpeg"
+            name="profileCover"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                profileCover: e.target.files[0],
+              })
+            }
+          />
+        </div>
+        <div className="form-group">
+          <small className="form-text">
             Give us an idea of where you are at in your career
           </small>
           <select name="status" value={status} onChange={(e) => onChange(e)}>
@@ -132,12 +128,11 @@ if (loading){
             <option value="Student or Learning">Student or Learning</option>
             <option value="Instructor">Instructor or Teacher</option>
             <option value="Intern">Intern</option>
-            <option value="Other">Other</option>
+            <option value="Dr.">Dr.</option>
           </select>
-     
         </div>
         <div className="form-group">
-        <small className="form-text">
+          <small className="form-text">
             Give us an idea of where you are at in your career
           </small>
           <select
@@ -153,10 +148,9 @@ if (loading){
             <option value="Esthétique">Esthétique</option>
             <option value="Généraliste">Généraliste</option>
           </select>
-     
         </div>
         <div className="form-group">
-        <small className="form-text">
+          <small className="form-text">
             Could be your own company or one you work for
           </small>
           <input
@@ -166,10 +160,9 @@ if (loading){
             value={company}
             onChange={(e) => onChange(e)}
           />
-      
         </div>
         <div className="form-group">
-        <small className="form-text">
+          <small className="form-text">
             Could be your own or a company website
           </small>
           <input
@@ -179,10 +172,9 @@ if (loading){
             value={website}
             onChange={(e) => onChange(e)}
           />
-       
         </div>
         <div className="form-group">
-        <small className="form-text">
+          <small className="form-text">
             City & state suggested (eg. Monastir, Sousse)
           </small>
           <input
@@ -192,10 +184,9 @@ if (loading){
             value={location}
             onChange={(e) => onChange(e)}
           />
-       
         </div>
         <div className="form-group">
-        <small className="form-text">
+          <small className="form-text">
             Please use comma separated values (eg. skill1,skill2,skill3,skill4)
           </small>
           <input
@@ -205,7 +196,6 @@ if (loading){
             value={skills}
             onChange={(e) => onChange(e)}
           />
-      
         </div>
         {/* <div className="form-group">
           <input
@@ -217,8 +207,8 @@ if (loading){
           />
           <small className="form-text">Title</small>
         </div> */}
-         <div className="form-group">
-         <small className="form-text">Title</small>
+        <div className="form-group">
+          <small className="form-text">Title</small>
           <input
             type="text"
             placeholder="Title"
@@ -226,17 +216,15 @@ if (loading){
             value={title}
             onChange={(e) => onChange(e)}
           />
-         
         </div>
         <div className="form-group">
-        <small className="form-text">Tell us a little about yourself</small>
+          <small className="form-text">Tell us a little about yourself</small>
           <textarea
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
             onChange={(e) => onChange(e)}
           ></textarea>
-        
         </div>
 
         <div className="my-2">
@@ -314,8 +302,6 @@ if (loading){
           Go Back
         </Link>
       </form>
-      
-     
     </Fragment>
   );
 };
