@@ -26,7 +26,8 @@ app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 // Groups Routes
 app.use("/api/groups", require("./routes/api/groups"));
-
+// Generate Routes
+app.use("/api/generate", require("./routes/api/generate"));
 const dirname = path.resolve();
 app.use("/uploads", express.static(path.join(dirname, "/uploads")));
 
