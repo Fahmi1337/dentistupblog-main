@@ -69,6 +69,10 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
+    visibility: {
+      type: String,
+      required: false,
+    },
     intraoralExamination: {
       type: String,
       required: false,

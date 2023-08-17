@@ -306,7 +306,16 @@ console.log("user?", req.user.id)
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    const profiles = await Profile.find()
+      .populate({
+        path: "user",
+        select: ["name", "avatar", "following", "followers"], // Select the fields you want to populate
+        populate: [
+          { path: "following.user", select: ["name"] }, // Populate the following users' names
+          { path: "followers.user", select: ["name"] }  // Populate the followers users' names
+        ]
+      });
+
     res.json(profiles);
   } catch (e) {
     console.error(e.message);
@@ -584,6 +593,186 @@ router.put("/savepost/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+
+
+
+
+// router.put("/follow/:id", auth, async (req, res) => {
+//   try {
+//     const loggedInUserId = req.user.id;
+//     const followingUser = await User.findById(loggedInUserId);
+
+//     if (!followingUser) {
+//       return res.status(404).json({ msg: "User not found" });
+//     }
+
+//     const followUserId = req.params.id;
+//     const followedUser = await User.findById(followUserId);
+
+//     if (!followedUser) {
+//       return res.status(404).json({ msg: "Followed user not found" });
+//     }
+
+//     const followUserIndex = followingUser.following.findIndex(
+//       (following) => following.user.toString() === followUserId
+//     );
+
+//     if (followUserIndex !== -1) {
+//       // User is already following, so unfollow
+//       followingUser.following.splice(followUserIndex, 1);
+//       followedUser.followers = followedUser.followers.filter(
+//         (follower) => follower.toString() !== loggedInUserId
+//       );
+//       await followingUser.save();
+//       await followedUser.save();
+//       return res.json({ msg: "User unfollowed", following: followingUser.following });
+//     } else {
+//       // User is not following, so follow
+//       followingUser.following.unshift({ user: followUserId });
+//       followedUser.followers.unshift(loggedInUserId);
+//       await followingUser.save();
+//       await followedUser.save();
+//       res.json({ msg: "User followed", following: followingUser.following });
+//     }
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+// @route   PUT api/profile/follow/:id
+// @desc    Follow or unfollow a user
+// @access  Private
+// router.put("/follow/:id", auth, async (req, res) => {
+//   try {
+//     const loggedInUserId = req.user.id;
+//     const followingUser = await User.findById(loggedInUserId);
+
+//     if (!followingUser) {
+//       return res.status(404).json({ msg: "User not found" });
+//     }
+
+//     const followUserId = req.params.id;
+//     const followedUser = await User.findById(followUserId);
+
+
+
+
+
+//     if (!followedUser) {
+//       return res.status(404).json({ msg: "Followed user not found" });
+//     }
+
+//     const isFollowing = followingUser.following.some(
+//       (following) => following.user.toString() === followUserId
+//     );
+
+
+
+//     const followUserIndex = followingUser.following.findIndex(
+//       (following) => following.user.toString() === followUserId
+//     );
+
+//     if (followUserIndex !== -1) {
+//       // User is already following, so unfollow
+//       followingUser.following.splice(followUserIndex, 1);
+//       followedUser.followers = followedUser.followers.filter(
+//         (follower) => follower.toString() !== loggedInUserId
+//       );
+//       await followingUser.save();
+//       await followedUser.save();
+//       return res.json({ msg: "User unfollowed", following: followingUser.following });
+//     } else {
+//       // User is not following, so follow
+
+
+      
+//       followingUser.following.unshift({ user: followUserId });
+//       followedUser.followers.unshift(loggedInUserId);
+//       await followingUser.save();
+//       await followedUser.save();
+//       res.json({ msg: "User followed", following: followingUser.following });
+//     }
+
+
+
+//     if (isFollowing) {
+//       // User is already following, so unfollow
+//       followingUser.following = followingUser.following.filter(
+//         (following) => following.user.toString() !== followUserId
+//       );
+//       followedUser.followers = followedUser.followers.filter(
+//         (follower) => follower.user.toString() !== loggedInUserId
+//       );
+//       await followingUser.save();
+//       await followedUser.save();
+//       return res.json({ msg: "User unfollowed", following: followingUser.following });
+//     } else {
+//       // User is not following, so follow
+//       followingUser.following.push({ user: followUserId });
+//       followedUser.followers.push({ user: loggedInUserId });
+//       await followingUser.save();
+//       await followedUser.save();
+//       res.json({ msg: "User followed", following: followingUser.following });
+//     }
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+
+
+
+router.put("/follow/:id", auth, async (req, res) => {
+  try {
+    const loggedInUserId = req.user.id;
+    const followingUser = await User.findById(loggedInUserId);
+
+    if (!followingUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    const followUserId = req.params.id;
+    const followedUser = await User.findById(followUserId);
+
+    if (!followedUser) {
+      return res.status(404).json({ msg: "Followed user not found" });
+    }
+
+    const isFollowing = followingUser.following.some(
+      (following) => following.user.toString() === followUserId
+    );
+
+    if (isFollowing) {
+      // User is already following, so unfollow
+      followingUser.following = followingUser.following.filter(
+        (following) => following.user.toString() !== followUserId
+      );
+      followedUser.followers = followedUser.followers.filter(
+        (follower) => follower.user.toString() !== loggedInUserId
+      );
+    } else {
+      // User is not following, so follow
+      followingUser.following.unshift({ user: followUserId });
+      followedUser.followers.unshift({ user: loggedInUserId });
+    }
+
+    await followingUser.save();
+    await followedUser.save();
+    
+    return res.json({ msg: isFollowing ? "User unfollowed" : "User followed", following: followingUser.following });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
+
+
+
 
 
 

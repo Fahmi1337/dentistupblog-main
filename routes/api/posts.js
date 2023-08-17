@@ -98,6 +98,7 @@ router.post(
 
           deglutition: req.body.deglutition,
           detailsDeglutition: req.body.detailsDeglutition,
+          visibility: req.body.visibility,
         },
         name: user.name,
         avatar: user.avatar,
@@ -174,7 +175,7 @@ router.put(
 
         mastication: req.body.mastication,
         detailsMastication: req.body.detailsMastication,
-
+        visibility: req.body.visibility,
         deglutition: req.body.deglutition,
         detailsDeglutition: req.body.detailsDeglutition,
       }),
