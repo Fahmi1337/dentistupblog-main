@@ -11,7 +11,16 @@ const ProfileSchema = new mongoose.Schema({
   website: {
     type: String,
   },
-  location: {
+  state: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  phonenumber: {
+    type: String,
+  },
+  phonecode: {
     type: String,
   },
   status: {

@@ -26,7 +26,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       "user",
-      ["name", "avatar"]
+      ["name", "avatar", "email"]
     );
 
     // if there's no profile
@@ -95,7 +95,10 @@ router.post(
       title,
       company,
       website,
-      location,
+      state,
+      country,
+      phonenumber,
+      phonecode,
       bio,
       status,
       speciality,
@@ -128,7 +131,10 @@ console.log("user?", req.user.id)
     if (company) profileFields.company = company;
     if (title) profileFields.title = title;
     if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
+    if (state) profileFields.state = state;
+    if (country) profileFields.country = country;
+    if (phonenumber) profileFields.phonenumber = phonenumber;
+    if (phonecode) profileFields.phonecode = phonecode;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (speciality) profileFields.speciality = speciality;
@@ -210,7 +216,7 @@ console.log("user?", req.user.id)
 //       name,
 //       company,
 //       website,
-//       location,
+//       state,
 //       bio,
 //       status,
 //       speciality,
@@ -240,7 +246,7 @@ console.log("user?", req.user.id)
 //     profileFields.user = req.user.id;
 //     if (company) profileFields.company = company;
 //     if (website) profileFields.website = website;
-//     if (location) profileFields.location = location;
+//     if (state) profileFields.state = state;
 //     if (bio) profileFields.bio = bio;
 //     if (status) profileFields.status = status;
 //     if (speciality) profileFields.speciality = speciality;
@@ -388,13 +394,13 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
     // destructuring
-    const { title, company, location, from, to, current, description } =
+    const { title, company, state, from, to, current, description } =
       req.body;
     // create a new Experience object
     const newExperience = {
       title,
       company,
-      location,
+      state,
       from,
       to,
       current,
