@@ -33,17 +33,65 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const dirname = path.resolve();
 router.use("/uploads", express.static(path.join(dirname, "/uploads")));
+
+
+
+const imageFields = [
+  {
+    name: "radiopanoramicbefore",
+    maxCount: 1,
+  },
+  {
+    name: "radiopanoramicafter",
+    maxCount: 1,
+  },
+  {
+    name: "conebeambefore",
+    maxCount: 1,
+  },
+  {
+    name: "conebeamafter",
+    maxCount: 1,
+  },
+  {
+    name: "endobuccalebefore",
+    maxCount: 1,
+  },
+  {
+    name: "endobuccaleafter",
+    maxCount: 1,
+  },
+  {
+    name: "vuefacebefore",
+    maxCount: 1,
+  },
+  {
+    name: "vuefaceafter",
+    maxCount: 1,
+  },
+  {
+    name: "vueprofilbefore",
+    maxCount: 1,
+  },
+  {
+    name: "vueprofilafter",
+    maxCount: 1,
+  },
+  {
+    name: "teleradioprofilbefore",
+    maxCount: 1,
+  },
+  {
+    name: "teleradioprofilafter",
+    maxCount: 1,
+  },
+];
 // @route   POST api/posts
 // @desc    Create a post
 // @access  Private
 router.post(
   "/",
-  upload.fields([
-    {
-      name: "postImage",
-      maxCount: 1,
-    },
-  ]),
+  upload.fields(imageFields),
   [auth, [check("title", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
@@ -53,14 +101,38 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select("-password");
-      let postImage = null;
-      if (req.files.postImage) {
-        postImage = req.files.postImage[0].path;
-      }
+      // let postImage = null;
+      // if (req.files.postImage) {
+      //   postImage = req.files.postImage[0].path;
+      // }
+
+      const imageFields = [
+        "radiopanoramicbefore",
+        "radiopanoramicafter",
+        "conebeambefore",
+        "conebeamafter",
+        "endobuccalebefore",
+        "endobuccaleafter",
+        "vuefacebefore",
+        "vuefaceafter",
+        "vueprofilbefore",
+        "vueprofilafter",
+        "teleradioprofilbefore",
+        "teleradioprofilafter",
+      ];
+      
+      const images = {};
+      
+      imageFields.forEach((fieldName) => {
+        if (req.files[fieldName]) {
+          images[fieldName] = req.files[fieldName][0].path;
+        }
+      });
+
       console.log("req?", req.body);
       const newPost = new Post({
         postInfo: {
-          postImage: postImage,
+          postImages: images,
           title: req.body.title,
           description: req.body.description,
           bloodPressure: req.body.bloodPressure,

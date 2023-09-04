@@ -9,9 +9,58 @@ const PostSchema = new Schema({
   },
 
   postInfo: {
-    postImage: {
+ 
+    postImages:{
+
+      radiopanoramicbefore: {
       type: String,
       default: null,
+    },
+    radiopanoramicafter: {
+      type: String,
+      default: null,
+    },
+    conebeambefore: {
+      type: String,
+      default: null,
+    },
+    conebeamafter: {
+      type: String,
+      default: null,
+    },
+    endobuccalebefore: {
+      type: String,
+      default: null,
+    },
+    endobuccaleafter: {
+      type: String,
+      default: null,
+    },
+    vuefacebefore: {
+      type: String,
+      default: null,
+    },
+    vuefaceafter: {
+      type: String,
+      default: null,
+    },
+    vueprofilbefore: {
+      type: String,
+      default: null,
+    },
+    vueprofilafter: {
+      type: String,
+      default: null,
+    },
+    teleradioprofilbefore: {
+      type: String,
+      default: null,
+    },
+    teleradioprofilafter: {
+      type: String,
+      default: null,
+    },
+
     },
     title: {
       type: String,
