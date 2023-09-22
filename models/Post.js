@@ -190,6 +190,19 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
+
+    participants: {
+      type: [String],
+      required: false,
+    },
+    casediagnostics: {
+      type: String,
+      required: false,
+    },
+    treatmentplan: {
+      type: String,
+      required: false,
+    },
   },
   profileImage: {
     type: String,

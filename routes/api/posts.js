@@ -171,6 +171,13 @@ router.post(
           deglutition: req.body.deglutition,
           detailsDeglutition: req.body.detailsDeglutition,
           visibility: req.body.visibility,
+
+
+          participants : req.body.participants.split(",").map((skill) => skill.trim()),
+
+          // participants: req.body.participants,
+          casediagnostics: req.body.casediagnostics,
+          treatmentplan: req.body.treatmentplan,
         },
         name: user.name,
         avatar: user.avatar,
@@ -250,6 +257,10 @@ router.put(
         visibility: req.body.visibility,
         deglutition: req.body.deglutition,
         detailsDeglutition: req.body.detailsDeglutition,
+        participants : req.body.participants.split(",").map((skill) => skill.trim()),
+        // participants: req.body.participants,
+        casediagnostics: req.body.casediagnostics,
+        treatmentplan: req.body.treatmentplan,
       }),
         (post.name = user.name),
         (post.avatar = user.avatar),

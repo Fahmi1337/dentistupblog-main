@@ -92,7 +92,9 @@ router.post(
     // destructure the request
     const {
       name,
-      title,
+      companyphonenumber,
+      companyphonecode,
+      companyaddress,
       company,
       website,
       state,
@@ -129,7 +131,9 @@ console.log("user?", req.user.id)
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
-    if (title) profileFields.title = title;
+    if (companyphonenumber) profileFields.companyphonenumber = companyphonenumber;
+    if (companyphonecode) profileFields.companyphonecode = companyphonecode;
+    if (companyaddress) profileFields.companyaddress = companyaddress;
     if (website) profileFields.website = website;
     if (state) profileFields.state = state;
     if (country) profileFields.country = country;

@@ -41,7 +41,13 @@ const ProfileSchema = new mongoose.Schema({
   // githubusername: {
   //   type: String,
   // },
-  title: {
+  companyphonenumber: {
+    type: String,
+  },
+  companyphonecode: {
+    type: String,
+  },
+  companyaddress: {
     type: String,
   },
   profileImage: {
