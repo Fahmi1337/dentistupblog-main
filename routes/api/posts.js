@@ -395,7 +395,7 @@ router.put(
         }
       });
 
-      console.log('req?', req.files);
+      
       const updatedPost = await Post.findByIdAndUpdate(
         req.params.id,
         {
