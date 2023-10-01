@@ -350,7 +350,7 @@ router.post(
 router.put(
   '/:id',
   upload.fields(imageFields),
-  [auth, [check('title', 'Text is required').not().isEmpty()]],
+  [auth],
   async (req, res) => {
     const errors = validationResult(req);
     //   if there are errors
