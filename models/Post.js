@@ -199,10 +199,24 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
+    associatedgroup: {
+      type: String,
+      required: false,
+    },
     treatmentplan: {
       type: String,
       required: false,
     },
+    sessions: [{
+     name: {
+      type: String,
+      },
+      treatmentplan: {
+        type: String,
+      },
+    }],
+   
+    
   },
   profileImage: {
     type: String,

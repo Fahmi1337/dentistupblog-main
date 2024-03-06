@@ -1,7 +1,8 @@
-// Express server
 const express = require("express");
 const connectDB = require("./config/db");
 const path = require("path");
+const https = require("https");
+const fs = require("fs");
 
 const app = express();
 
@@ -9,10 +10,10 @@ const cors = require("cors");
 
 app.use(cors());
 
-//Connect Database
+// Connect Database
 connectDB();
 
-//Init middleware
+// Init middleware
 app.use(express.json({ extended: false }));
 
 // Defining our Routes
@@ -28,10 +29,11 @@ app.use("/api/posts", require("./routes/api/posts"));
 app.use("/api/groups", require("./routes/api/groups"));
 // Generate Routes
 app.use("/api/generate", require("./routes/api/generate"));
+
 const dirname = path.resolve();
 app.use("/uploads", express.static(path.join(dirname, "/uploads")));
 
-//Serve static assets in production
+// Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
   app.use(express.static("frontend/build"));
@@ -41,6 +43,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5050;
+const httpsOptions = {
+  key: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.key"),
+  cert: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.crt"),
+};
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+// Create HTTPS server
+const PORT = process.env.PORT || 5050;
+const server = https.createServer(httpsOptions, app);
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

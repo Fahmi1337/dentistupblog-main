@@ -178,6 +178,8 @@ router.post(
           // participants: req.body.participants,
           casediagnostics: req.body.casediagnostics,
           treatmentplan: req.body.treatmentplan,
+          sessions: req.body.sessions,
+          associatedgroup: req.body.associatedgroup,
         },
         name: user.name,
         avatar: user.avatar,
@@ -442,6 +444,8 @@ router.put(
             // participants: req.body.participants,
             'postInfo.casediagnostics': req.body.casediagnostics,
             'postInfo.treatmentplan': req.body.treatmentplan,
+            'postInfo.sessions': req.body.sessions,
+            'postInfo.associatedgroup': req.body.associatedgroup,
           },
         },
         { new: true }

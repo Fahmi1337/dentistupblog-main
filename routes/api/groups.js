@@ -190,36 +190,21 @@ router.get("/:id", auth, async (req, res) => {
       return res.status(404).json({ msg: "Group not found" });
     }
     const profile = await Profile.findOne({ user: group.user });
+    res.json(group);
 
-    const commentsWithProfileImage = [];
-    for (const comment of group.comments) {
-      const commentProfile = await Profile.findOne({ user: comment.user });
-      commentsWithProfileImage.push({
-        _id: comment._id,
-       
-        name: comment.name,
-        profileImage: commentProfile ? commentProfile.profileImage : null,
-        user: comment.user,
-        date: comment.date,
-        treatment: comment.treatment,
-        diagnostic: comment.diagnostic,
-        avatar: comment.avatar,
 
-      });
-    }
-
-    res.json({
-      _id: group._id,
-      name: group.name,
-      profileImage: profile ? profile.profileImage : null,
-      groupInfo: group.groupInfo,
-      date: group.date,
-      likes: group.likes,
-      user: group.user,
-      avatar: group.avatar,
-      _v: group._v,
-      comments: commentsWithProfileImage,
-    });
+    // res.json({
+    //   _id: group._id,
+    //   name: group.name,
+    //   profileImage: profile ? profile.profileImage : null,
+    //   groupInfo: group.groupInfo,
+    //   date: group.date,
+    //   likes: group.likes,
+    //   user: group.user,
+    //   avatar: group.avatar,
+    //   _v: group._v,
+    //   comments: commentsWithProfileImage,
+    // });
   } catch (e) {
     console.error(e.message);
     if (e.kind === "ObjectId") {
@@ -319,15 +304,34 @@ router.post("/:id/posts", [auth], async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     const group = await Group.findById(req.params.id);
   
-    // const newPost = {
-    //   treatment: req.body.formData.treatment,
-    //   diagnostic: req.body.formData.diagnostic,
-    //   name: user.name,
-    //   avatar: user.avatar,
-    //   user: req.user.id,
-    // };
+ 
+    const imageFields = [
+      "radiopanoramicbefore",
+      "radiopanoramicafter",
+      "conebeambefore",
+      "conebeamafter",
+      "endobuccalebefore",
+      "endobuccaleafter",
+      "vuefacebefore",
+      "vuefaceafter",
+      "vueprofilbefore",
+      "vueprofilafter",
+      "teleradioprofilbefore",
+      "teleradioprofilafter",
+    ];
+    
+    const images = {};
+    
+    imageFields.forEach((fieldName) => {
+      if (req.files[fieldName]) {
+        images[fieldName] = req.files[fieldName][0].path;
+      }
+    });
+
+    console.log("req?", req.body);
     const newPost = new Post({
-      postInfo: {
+      postInfo: {     
+        postImages: images,
         title: req.body.title,
         description: req.body.description,
         bloodPressure: req.body.bloodPressure,
@@ -341,7 +345,7 @@ router.post("/:id/posts", [auth], async (req, res) => {
         examenExoBuccal: req.body.examenExoBuccal,
         extraoralExamination: req.body.extraoralExamination,
         gender: req.body.gender,
-
+        concernedTeeth: req.body.concernedTeeth,
         intraoralExamination: req.body.intraoralExamination,
         medicalHistory: req.body.medicalHistory,
         patientReference: req.body.patientReference,
@@ -356,21 +360,28 @@ router.post("/:id/posts", [auth], async (req, res) => {
         examenAtmClaquement: req.body.examenAtmClaquement,
         examenAtmAutre: req.body.examenAtmAutre,
         examenAtmAutreExplanation: req.body.examenAtmAutreExplanation,
-        respirationNasal: req.body.respirationNasal,
-        respirationBuccal: req.body.respirationBuccal,
-        respirationMixte: req.body.respirationMixte,
+
+        respirationType: req.body.respirationType,
         detailsRespiration: req.body.detailsRespiration,
-        masticationUnilateral: req.body.masticationUnilateral,
-        masticationBilateral: req.body.masticationBilateral,
+
+        mastication: req.body.mastication,
         detailsMastication: req.body.detailsMastication,
-        deglutitionTypique: req.body.deglutitionTypique,
-        deglutitionAtypique: req.body.deglutitionAtypique,
+
+        deglutition: req.body.deglutition,
         detailsDeglutition: req.body.detailsDeglutition,
+        visibility: req.body.visibility,
+
+
+        participants : req.body.participants.split(",").map((skill) => skill.trim()),
+
+        
+        casediagnostics: req.body.casediagnostics,
+        treatmentplan: req.body.treatmentplan,
+        sessions: req.body.sessions,
       },
       name: user.name,
       avatar: user.avatar,
       user: req.user.id,
-    
     });
     group.posts.unshift(newPost);
 
