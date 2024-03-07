@@ -207,6 +207,10 @@ const PostSchema = new Schema({
       type: String,
       required: false,
     },
+    groupId: {
+      type: String,
+      required: false,
+    },
     sessions: [{
      name: {
       type: String,

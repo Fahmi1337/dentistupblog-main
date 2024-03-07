@@ -17,11 +17,24 @@ const GroupSchema = new Schema({
       type: String,
       required: false,
     },
+    type: {
+      type: String,
+      required: false,
+    },
+    privacy: {
+      type: String,
+      required: false,
+    },
+    groupImage: {
+      type: String,
+      default: null,
+    },
+    groupBackgroundImage: {
+      type: String,
+      default: null,
+    },
   },
-  groupImage: {
-    type: String,
-    default: null,
-  },
+
   name: {
     type: String,
   },

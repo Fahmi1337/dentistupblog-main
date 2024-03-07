@@ -180,6 +180,7 @@ router.post(
           treatmentplan: req.body.treatmentplan,
           sessions: req.body.sessions,
           associatedgroup: req.body.associatedgroup,
+          groupId: req.body.groupId,
         },
         name: user.name,
         avatar: user.avatar,
@@ -446,6 +447,8 @@ router.put(
             'postInfo.treatmentplan': req.body.treatmentplan,
             'postInfo.sessions': req.body.sessions,
             'postInfo.associatedgroup': req.body.associatedgroup,
+            'postInfo.groupId': req.body.groupId,
+            
           },
         },
         { new: true }

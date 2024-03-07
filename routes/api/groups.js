@@ -27,6 +27,10 @@ router.post(
         groupInfo: {
           title: req.body.title,
           description: req.body.description,
+          type: req.body.type,
+          privacy: req.body.privacy,
+          groupImage: req.body.groupImage,
+          groupBackgroundImage: req.body.groupBackgroundImage,
         },
         name: user.name,
         avatar: user.avatar,
