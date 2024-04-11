@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const GroupSchema = new Schema({
+const EventSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "user",
   },
 
-  groupInfo: {
-    groupImages:{
-      groupimage: {
+  eventInfo: {
+    eventImages:{
+      eventimage: {
       type: String,
       default: null,
     },
-    groupbackgroundimage: {
+    eventbackgroundimage: {
       type: String,
       default: null,
     },
@@ -35,11 +35,11 @@ const GroupSchema = new Schema({
       type: String,
       required: false,
     },
-    // groupImage: {
+    // eventImage: {
     //   type: String,
     //   default: null,
     // },
-    // groupBackgroundImage: {
+    // eventBackgroundImage: {
     //   type: String,
     //   default: null,
     // },
@@ -116,4 +116,4 @@ const GroupSchema = new Schema({
   },
 });
 
-module.exports = Group = mongoose.model("group", GroupSchema);
+module.exports = Event = mongoose.model("event", EventSchema);

@@ -27,6 +27,8 @@ app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 // Groups Routes
 app.use("/api/groups", require("./routes/api/groups"));
+// Groups Routes
+app.use("/api/events", require("./routes/api/events"));
 // Generate Routes
 app.use("/api/generate", require("./routes/api/generate"));
 

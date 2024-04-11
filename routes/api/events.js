@@ -6,7 +6,7 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
 const Profile = require("../../models/Profile");
-const Group = require("../../models/Group");
+const Event = require("../../models/Event");
 
 
 const bodyParser = require("body-parser");
@@ -40,18 +40,18 @@ router.use("/uploads", express.static(path.join(dirname, "/uploads")));
 
 const imageFields = [
   {
-    name: "groupimage",
+    name: "eventimage",
     maxCount: 1,
   },
   {
-    name: "groupbackgroundimage",
+    name: "eventbackgroundimage",
     maxCount: 1,
   },
 ];
 
 
-// @route   POST api/groups
-// @desc    Create a group
+// @route   POST api/events
+// @desc    Create a event
 // @access  Private
 router.post(
   "/",
@@ -66,8 +66,8 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
       const imageFields = [
-        "groupimage",
-        "groupbackgroundimage",
+        "eventimage",
+        "eventbackgroundimage",
       ];
       
       const images = {};
@@ -77,15 +77,15 @@ router.post(
           images[fieldName] = req.files[fieldName][0].path;
         }
       });
-      const newGroup = new Group({
-        groupInfo: {
-          groupImages: images,
+      const newEvent = new Event({
+        eventInfo: {
+          eventImages: images,
           title: req.body.title,
           description: req.body.description,
           type: req.body.type,
           privacy: req.body.privacy,
-          groupImage: req.body.groupImage,
-          groupBackgroundImage: req.body.groupBackgroundImage,
+          eventImage: req.body.eventImage,
+          eventBackgroundImage: req.body.eventBackgroundImage,
         },
         name: user.name,
         avatar: user.avatar,
@@ -93,8 +93,8 @@ router.post(
       
       });
 
-      const group = await newGroup.save();
-      res.json(group);
+      const event = await newEvent.save();
+      res.json(event);
     } catch (e) {
       console.error(e.message);
       res.status(500).send("Server Error");
@@ -102,8 +102,8 @@ router.post(
   }
 );
 
-// @route   PUT api/groups/:id
-// @desc    Update a group
+// @route   PUT api/events/:id
+// @desc    Update a event
 // @access  Private
 router.put(
   "/:id",
@@ -118,8 +118,8 @@ router.put(
     try {
       const user = await User.findById(req.user.id).select("-password");
       const imageFields = [
-        "groupimage",
-        "groupbackgroundimage",
+        "eventimage",
+        "eventbackgroundimage",
       ];
       const images = {};
 
@@ -132,29 +132,29 @@ router.put(
           images[fieldName] = existingPostImages[fieldName];
         }
       });
-      const group = await Group.findById(req.params.id);
+      const event = await Event.findById(req.params.id);
 
-      if (!group) {
-        return res.status(404).json({ msg: "Group not found" });
+      if (!event) {
+        return res.status(404).json({ msg: "Event not found" });
       }
 
       // Only allow post update by post owner
-      if (group.user.toString() !== req.user.id) {
+      if (event.user.toString() !== req.user.id) {
         return res.status(401).json({ msg: "User not authorized" });
       }
 
-      (group.groupInfo = {
-       groupImages: images,
+      (event.eventInfo = {
+       eventImages: images,
         title: req.body.title,
         description: req.body.description,
        
       }),
-        (group.name = user.name),
-        (group.avatar = user.avatar),
-        (group.user = req.user.id);
+        (event.name = user.name),
+        (event.avatar = user.avatar),
+        (event.user = req.user.id);
 
-      const updatedGroup = await group.save();
-      res.json(updatedGroup);
+      const updatedEvent = await event.save();
+      res.json(updatedEvent);
     } catch (e) {
       console.error(e.message);
       res.status(500).send("Server Error");
@@ -166,24 +166,24 @@ router.put(
 
 
 
-// @route   GET api/groups
-// @desc    Get all groups
+// @route   GET api/events
+// @desc    Get all events
 // @access  Private
 router.get("/", auth, async (req, res) => {
   try {
-    // Get all groups
-    const groups = await Group.find().sort({ date: -1 });
+    // Get all events
+    const events = await Event.find().sort({ date: -1 });
 
     // Loop through each post and get the user's profileImage
-    const groupsWithProfileImages = await Promise.all(
-        groups.map(async (group) => {
-        const profile = await Profile.findOne({ user: group.user });
+    const eventsWithProfileImages = await Promise.all(
+        events.map(async (event) => {
+        const profile = await Profile.findOne({ user: event.user });
         const profileImage = profile ? profile.profileImage : null;
-        return { ...group._doc, profileImage };
+        return { ...event._doc, profileImage };
       })
     );
 
-    res.json(groupsWithProfileImages);
+    res.json(eventsWithProfileImages);
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server Error");
@@ -193,28 +193,28 @@ router.get("/", auth, async (req, res) => {
 
 
 
-// @route   POST api/groups/:id/request
-// @desc    Request to join a group
+// @route   POST api/events/:id/request
+// @desc    Request to join a event
 // @access  Private
 router.post("/:id/request", auth, async (req, res) => {
   try {
-    const group = await Group.findById(req.params.id);
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
 
     // Check if the user is already a member
-    if (group.members.includes(req.user.id)) {
-      return res.status(400).json({ msg: "User is already a member of this group" });
+    if (event.members.includes(req.user.id)) {
+      return res.status(400).json({ msg: "User is already a member of this event" });
     }
 
     // Check if the user has already sent a request
-    if (group.pendingRequests.includes(req.user.id)) {
-      return res.status(400).json({ msg: "User has already sent a request to join this group" });
+    if (event.pendingRequests.includes(req.user.id)) {
+      return res.status(400).json({ msg: "User has already sent a request to join this event" });
     }
 
-    group.pendingRequests.push(req.user.id);
-    await group.save();
+    event.pendingRequests.push(req.user.id);
+    await event.save();
 
     res.json({ msg: "Request sent successfully" });
   } catch (err) {
@@ -223,26 +223,26 @@ router.post("/:id/request", auth, async (req, res) => {
   }
 });
 
-// @route   PUT api/groups/:id/leave
-// @desc    Leave a group
+// @route   PUT api/events/:id/leave
+// @desc    Leave a event
 // @access  Private
 router.put("/:id/leave", auth, async (req, res) => {
   try {
-    const group = await Group.findById(req.params.id);
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
 
-    // Check if the user is a member of the group
-    if (!group.members.includes(req.user.id)) {
-      return res.status(400).json({ msg: "User is not a member of this group" });
+    // Check if the user is a member of the event
+    if (!event.members.includes(req.user.id)) {
+      return res.status(400).json({ msg: "User is not a member of this event" });
     }
 
     // Remove user from members array
-    group.members = group.members.filter(member => member.toString() !== req.user.id);
-    await group.save();
+    event.members = event.members.filter(member => member.toString() !== req.user.id);
+    await event.save();
 
-    res.json({ msg: "User left the group successfully" });
+    res.json({ msg: "User left the event successfully" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -253,72 +253,72 @@ router.put("/:id/leave", auth, async (req, res) => {
 
 
 
-// // @route   GET api/groups/:id
-// // @desc    Get group by Group Id
+// // @route   GET api/events/:id
+// // @desc    Get event by Event Id
 // // @access  Private
 // router.get("/:id", auth, async (req, res) => {
 //   try {
-//     //   to get the most recent groups
-//     const group = await Group.findById(req.params.id);
-//     // if there are no group
-//     if (!group) {
-//       return res.status(404).json({ msg: "Group not found" });
+//     //   to get the most recent events
+//     const event = await Event.findById(req.params.id);
+//     // if there are no event
+//     if (!event) {
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
-//     res.json(group);
+//     res.json(event);
 //   } catch (e) {
 //     console.error(e.message);
 //     if (e.kind === "ObjectId") {
-//       return res.status(404).json({ msg: "Group not found" });
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
 //     res.status(500).send("Server Error");
 //   }
 // });
 
 
-// // @route   GET api/groups/:id
-// // @desc    Get group by Group Id
+// // @route   GET api/events/:id
+// // @desc    Get event by Event Id
 // // @access  Private
 // router.get("/:id", auth, async (req, res) => {
 //   try {
-//     const group = await Group.findById(req.params.id);
-//     if (!group) {
-//       return res.status(404).json({ msg: "Group not found" });
+//     const event = await Event.findById(req.params.id);
+//     if (!event) {
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
-//     const profile = await Profile.findOne({ user: group.user });
+//     const profile = await Profile.findOne({ user: event.user });
 //     res.json({
-//       _id: group._id,
-//       name: group.name,
+//       _id: event._id,
+//       name: event.name,
 //       profileImage: profile ? profile.profileImage : null,
-//       groupInfo: group.groupInfo,
-//       date: group.date,
-//       likes: group.likes,
-//       comments: group.comments,
+//       eventInfo: event.eventInfo,
+//       date: event.date,
+//       likes: event.likes,
+//       comments: event.comments,
 //     });
 //   } catch (e) {
 //     console.error(e.message);
 //     if (e.kind === "ObjectId") {
-//       return res.status(404).json({ msg: "Group not found" });
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
 //     res.status(500).send("Server Error");
 //   }
 // });
 
-// @route   GET api/groups/:id
-// @desc    Get group by Group Id
+// @route   GET api/events/:id
+// @desc    Get event by Event Id
 // @access  Private
 // router.get("/:id", auth, async (req, res) => {
 //   try {
-//     const group = await Group.findById(req.params.id);
-//     if (!group) {
-//       return res.status(404).json({ msg: "Group not found" });
+//     const event = await Event.findById(req.params.id);
+//     if (!event) {
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
-//     const profile = await Profile.findOne({ user: group.user });
-//     res.json(group);
+//     const profile = await Profile.findOne({ user: event.user });
+//     res.json(event);
 
 //   } catch (e) {
 //     console.error(e.message);
 //     if (e.kind === "ObjectId") {
-//       return res.status(404).json({ msg: "Group not found" });
+//       return res.status(404).json({ msg: "Event not found" });
 //     }
 //     res.status(500).send("Server Error");
 //   }
@@ -326,17 +326,17 @@ router.put("/:id/leave", auth, async (req, res) => {
 
 
 
-// @route   GET api/groups/:id
-// @desc    Get a group by ID
+// @route   GET api/events/:id
+// @desc    Get a event by ID
 // @access  Public (or Private if you want to restrict access)
 router.get("/:id", async (req, res) => {
   try {
-    const group = await Group.findById(req.params.id);
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
 
-    res.json(group);
+    res.json(event);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -345,69 +345,69 @@ router.get("/:id", async (req, res) => {
 
 
 
-// @route   PUT api/groups/:id/accept-request/:userId
-// @desc    Accept a request to join the group
+// @route   PUT api/events/:id/accept-request/:userId
+// @desc    Accept a request to join the event
 // @access  Private
 router.put("/:id/accept-request/:userId", auth, async (req, res) => {
   try {
-    const group = await Group.findById(req.params.id);
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
 
-    // Check if the user making the request is the owner of the group
-    if (group.user.toString() !== req.user.id) {
+    // Check if the user making the request is the owner of the event
+    if (event.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
     // Check if the user to be accepted is in pending requests
-    if (!group.pendingRequests.includes(req.params.userId)) {
+    if (!event.pendingRequests.includes(req.params.userId)) {
       return res.status(400).json({ msg: "User is not in pending requests" });
     }
 
     // Add the user to the members array
-    group.members.push(req.params.userId);
+    event.members.push(req.params.userId);
 
     // Remove the user from pending requests
-    group.pendingRequests = group.pendingRequests.filter(
+    event.pendingRequests = event.pendingRequests.filter(
       (userId) => userId.toString() !== req.params.userId
     );
 
-    await group.save();
+    await event.save();
 
-    res.json({ msg: "User accepted to the group successfully" });
+    res.json({ msg: "User accepted to the event successfully" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
 
-// @route   PUT api/groups/:id/reject-request/:userId
-// @desc    Reject a request to join the group
+// @route   PUT api/events/:id/reject-request/:userId
+// @desc    Reject a request to join the event
 // @access  Private
 router.put("/:id/reject-request/:userId", auth, async (req, res) => {
   try {
-    const group = await Group.findById(req.params.id);
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
 
-    // Check if the user making the request is the owner of the group
-    if (group.user.toString() !== req.user.id) {
+    // Check if the user making the request is the owner of the event
+    if (event.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
     // Check if the user to be rejected is in pending requests
-    if (!group.pendingRequests.includes(req.params.userId)) {
+    if (!event.pendingRequests.includes(req.params.userId)) {
       return res.status(400).json({ msg: "User is not in pending requests" });
     }
 
     // Remove the user from pending requests
-    group.pendingRequests = group.pendingRequests.filter(
+    event.pendingRequests = event.pendingRequests.filter(
       (userId) => userId.toString() !== req.params.userId
     );
 
-    await group.save();
+    await event.save();
 
     res.json({ msg: "Request rejected successfully" });
   } catch (err) {
@@ -418,35 +418,35 @@ router.put("/:id/reject-request/:userId", auth, async (req, res) => {
 
 
 
-// @route   DELETE api/groups/:id
-// @desc    Delete a group by Id
+// @route   DELETE api/events/:id
+// @desc    Delete a event by Id
 // @access  Private
 router.delete("/:id", auth, async (req, res) => {
   try {
-    //   to get the most recent groups
-    const group = await Group.findById(req.params.id);
-    // if the group doesn't exist
-    if (!group) {
-      return res.status(404).json({ msg: "Group not found" });
+    //   to get the most recent events
+    const event = await Event.findById(req.params.id);
+    // if the event doesn't exist
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
     }
-    //   Check if user doesn't own the group
-    if (group.user.toString() !== req.user.id) {
+    //   Check if user doesn't own the event
+    if (event.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
-    await group.remove();
-    res.json({ msg: "Group Removed" });
+    await event.remove();
+    res.json({ msg: "Event Removed" });
   } catch (e) {
     console.error(e.message);
     if (e.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Group not found" });
+      return res.status(404).json({ msg: "Event not found" });
     }
     res.status(500).send("Server Error");
   }
 });
 
-// // @route   PUT api/groups/like/:id
-// // @desc    Like a group
+// // @route   PUT api/events/like/:id
+// // @desc    Like a event
 // // @access  Private
 // router.put("/like/:id", auth, async (req, res) => {
 //   try {
@@ -495,8 +495,8 @@ router.delete("/:id", auth, async (req, res) => {
 //   }
 // });
 
-// @route   POST api/groups/:id/posts
-// @desc    Create a post in a group
+// @route   POST api/events/:id/posts
+// @desc    Create a post in a event
 // @access  Private
 router.post("/:id/posts", [auth], async (req, res) => {
   const errors = validationResult(req);
@@ -506,7 +506,7 @@ router.post("/:id/posts", [auth], async (req, res) => {
   }
   try {
     const user = await User.findById(req.user.id).select("-password");
-    const group = await Group.findById(req.params.id);
+    const event = await Event.findById(req.params.id);
   
  
     const imageFields = [
@@ -587,10 +587,10 @@ router.post("/:id/posts", [auth], async (req, res) => {
       avatar: user.avatar,
       user: req.user.id,
     });
-    group.posts.unshift(newPost);
+    event.posts.unshift(newPost);
 
-    await group.save();
-    res.json(group.posts);
+    await event.save();
+    res.json(event.posts);
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server Error");
