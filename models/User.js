@@ -5,6 +5,18 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  verified: {
+    type: String,
+    default: "unverified",
+  },
+  rejectionComment: {
+    type: String,
+    default: "none",
+  },
+  role: {
+    type: String,
+    default: "user",
+  },
   email: {
     type: String,
     required: true,
@@ -17,11 +29,16 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+
   date: {
     type: Date,
     default: Date.now,
   },
   profileImage: {
+    type: String,
+    default: null,
+  },
+  proofPicture: {
     type: String,
     default: null,
   },

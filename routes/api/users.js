@@ -13,6 +13,8 @@ const { check, validationResult } = require("express-validator");
 // Importing our User model
 const User = require("../../models/User");
 
+const auth = require("../../middleware/auth");
+
 // @route   POST api/users
 // @desc    Register user
 // @access  Public
@@ -59,12 +61,17 @@ router.post(
         email,
         avatar,
         password,
+        verified,
+        role,
+        rejectionComment,
       });
       //Encrypt password
       const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
-
+user.verified = "unverified";
+user.role = "user";
+user.rejectionComment = "none";
       await user.save();
       // Return jsonwebtoken
       const payload = {
@@ -84,6 +91,35 @@ router.post(
   }
 );
 
+
+// @route   PUT api/users/update/:id
+// @desc    Update user verification status with rejection comment
+// @access  Private (assuming authentication is required)
+router.put("/update/:id", auth, async (req, res) => {
+  const { verified, rejectionComment } = req.body;
+
+  try {
+    let user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+console.log("received data?", verified, rejectionComment);
+    user.verified = verified;
+    if (verified === "rejected" && rejectionComment) {
+      user.rejectionComment = rejectionComment;
+    }
+    if (verified === "rejected" && rejectionComment) {
+      user.rejectionComment = "verified!";
+    }
+    await user.save();
+
+    res.json({ msg: "User verification status updated" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 
 

@@ -26,7 +26,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       "user",
-      ["name", "avatar", "email"]
+      ["name", "avatar", "email", "verified", "role","rejectionComment"]
     );
 
     // if there's no profile
@@ -73,6 +73,8 @@ router.post(
   // upload.single('profileCover'),
   upload.fields([{
     name: 'profileImage', maxCount: 1
+  },{
+    name: 'proofPicture', maxCount: 1
   }, {
     name: 'profileCover', maxCount: 1
   }]),
@@ -118,6 +120,11 @@ router.post(
       profileImage = req.files.profileImage[0].path;
     }
 
+    let proofPicture = null;
+    if (req.files.proofPicture) {
+      proofPicture = req.files.proofPicture[0].path;
+    }
+    
 
     let profileCover = null;
     if (req.files.profileCover) {
@@ -144,6 +151,9 @@ console.log("user?", req.user.id)
     if (speciality) profileFields.speciality = speciality;
     // if (githubusername) profileFields.githubusername = githubusername;
     if (profileImage) profileFields.profileImage = profileImage;
+    if (proofPicture) profileFields.proofPicture = proofPicture;
+    
+
     if (profileCover) profileFields.profileCover = profileCover;
     // Separating the skills by comma from the skills array
     if (skills) {
@@ -154,6 +164,7 @@ console.log("user?", req.user.id)
     if (youtube) profileFields.social.youtube = youtube;
     if (twitter) profileFields.social.twitter = twitter;
     if (facebook) profileFields.social.facebook = facebook;
+  
     if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
 
@@ -319,7 +330,7 @@ router.get("/", async (req, res) => {
     const profiles = await Profile.find()
       .populate({
         path: "user",
-        select: ["name", "avatar", "following", "followers"], // Select the fields you want to populate
+        select: ["name", "avatar", "following", "followers", "verified","role","rejectionComment"], // Select the fields you want to populate
         populate: [
           { path: "following.user", select: ["name"] }, // Populate the following users' names
           { path: "followers.user", select: ["name"] }  // Populate the followers users' names

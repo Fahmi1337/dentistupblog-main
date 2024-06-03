@@ -11,6 +11,10 @@ const ProfileSchema = new mongoose.Schema({
   website: {
     type: String,
   },
+  proofPicture: {
+    type: String,
+    default: null,
+  },
   state: {
     type: String,
   },
