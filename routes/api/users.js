@@ -61,9 +61,9 @@ router.post(
         email,
         avatar,
         password,
-        verified,
-        role,
-        rejectionComment,
+        // verified,
+        // role,
+        // rejectionComment,
       });
       //Encrypt password
       const salt = await bcrypt.genSalt(10);
@@ -106,12 +106,9 @@ router.put("/update/:id", auth, async (req, res) => {
     }
 console.log("received data?", verified, rejectionComment);
     user.verified = verified;
-    if (verified === "rejected" && rejectionComment) {
+  
       user.rejectionComment = rejectionComment;
-    }
-    if (verified === "rejected" && rejectionComment) {
-      user.rejectionComment = "verified!";
-    }
+   
     await user.save();
 
     res.json({ msg: "User verification status updated" });

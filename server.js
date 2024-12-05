@@ -3,7 +3,7 @@ const connectDB = require("./config/db");
 const path = require("path");
 const https = require("https");
 const fs = require("fs");
-
+const http = require("http");
 const app = express();
 
 const cors = require("cors");
@@ -45,15 +45,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const httpsOptions = {
-  key: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.key"),
-  cert: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.crt"),
-};
+// const httpsOptions = {
+//   key: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.key"),
+//   cert: fs.readFileSync("/var/www/httpd-cert/api-community.dentistup.tn_2023-12-26-19-38_14.crt"),
+// };
 
 
 
 // Create HTTPS server
 const PORT = process.env.PORT || 5050;
-const server = https.createServer(httpsOptions, app);
-
+// const server = https.createServer(httpsOptions, app);
+const server = http.createServer(app);
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
