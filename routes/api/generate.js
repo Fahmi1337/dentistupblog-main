@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require('openai'); // Import OpenAI library
 
 // Initialize OpenAI API with your API key
 const configuration = new Configuration({
-    apiKey: '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', // Replace with your OpenAI API key
+    apiKey: '', // Replace with your OpenAI API key
 });
 const openai = new OpenAIApi(configuration);
 
