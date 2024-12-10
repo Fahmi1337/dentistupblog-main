@@ -11,7 +11,8 @@ const Post = require("../../models/Post");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-const generate = require('./generate'); // Import the generate function
+const generate = require('./generate');
+const { blurTextInImage } = require("./imageUtils");
 router.use(
   bodyParser.urlencoded({
     extended: false,
@@ -123,13 +124,28 @@ router.post(
       
       const images = {};
       
-      imageFields.forEach((fieldName) => {
-        if (req.files[fieldName]) {
-          images[fieldName] = req.files[fieldName][0].path;
-        }
-      });
+      // imageFields.forEach((fieldName) => {
+      //   if (req.files[fieldName]) {
+      //     images[fieldName] = req.files[fieldName][0].path;
+      //   }
+      // });
 
-      console.log("req?", req.body);
+
+      for (const fieldName of imageFields) {
+        if (req.files[fieldName]) {
+            const imagePath = req.files[fieldName][0].path;
+    
+            // Remove text from the image and get the modified image path
+            const modifiedImagePath = await blurTextInImage(imagePath);
+    
+            // Store the modified image path in the images object
+            images[fieldName] = modifiedImagePath;
+        }
+    }
+    
+      
+
+      // console.log("req?", req.body);
       const newPost = new Post({
         postInfo: {
           postImages: images,
