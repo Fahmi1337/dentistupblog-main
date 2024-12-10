@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require('openai'); // Import OpenAI library
 
 // Initialize OpenAI API with your API key
 const configuration = new Configuration({
-    apiKey: '', // Replace with your OpenAI API key
+    apiKey: '', 
 });
 const openai = new OpenAIApi(configuration);
 
