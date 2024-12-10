@@ -62,6 +62,10 @@ const PostSchema = new Schema({
     },
 
     },
+    airesponse: {
+      type: String,
+      default: null, 
+    },
     title: {
       type: String,
       required: false,

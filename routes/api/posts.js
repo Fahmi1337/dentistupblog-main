@@ -11,7 +11,7 @@ const Post = require("../../models/Post");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-
+const generate = require('./generate'); // Import the generate function
 router.use(
   bodyParser.urlencoded({
     extended: false,
@@ -187,6 +187,9 @@ router.post(
         user: req.user.id,
       });
 
+      const aiResponse = await generate(`From this data, generate a more insightful diagnosis and treatment plan, skip including the data provided like patient overview and clinical findings, use html br tags only so the response is organized : ${newPost.postInfo}`);
+      newPost.postInfo.airesponse = aiResponse;
+
       const post = await newPost.save();
       res.json(post);
     } catch (e) {
@@ -195,6 +198,10 @@ router.post(
     }
   }
 );
+
+
+
+
 
 
 
